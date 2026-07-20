@@ -9,89 +9,537 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary: #2ECC71; --primary-dark: #27AE60;
-            --gold: #D4AF37; --gold-dark: #B8960F;
-            --bg-dark: #0A0F1A; --bg-card: #0F1625;
-            --text-light: #F8FAFC; --text-muted: #8899AA;
-            --border-color: #1E2A3A; --shadow: 0 8px 32px rgba(0,0,0,0.4);
-            --whatsapp: #25D366; --danger: #EF4444; --orange: #FF8C42;
-            --vodafone-red: #E60000; --vodafone-red-dark: #B30000;
+            --primary: #2ECC71;
+            --primary-dark: #27AE60;
+            --gold: #D4AF37;
+            --gold-dark: #B8960F;
+            --gold-glow: rgba(212,175,55,0.3);
+            --bg-dark: #0A0F1A;
+            --bg-card: #0F1625;
+            --text-light: #F8FAFC;
+            --text-muted: #8899AA;
+            --border-color: #1E2A3A;
+            --shadow: 0 8px 32px rgba(0,0,0,0.4);
+            --whatsapp: #25D366;
+            --danger: #EF4444;
+            --orange: #FF8C42;
+            --vodafone-red: #E60000;
+            --vodafone-red-dark: #B30000;
+            --anuta-gold: #E8B84B;
+            --anuta-gold-light: #F5D98E;
+            --anuta-blue: #00D9FF;
+            --anuta-green: #22C55E;
+            --anuta-purple: #7C3AED;
         }
-        body { font-family: 'Cairo', sans-serif; background: var(--bg-dark); color: var(--text-light); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0.8rem; }
-        .app-container { max-width: 420px; width: 100%; background: var(--bg-card); border-radius: 1.8rem; padding: 1.2rem 1rem; box-shadow: var(--shadow); border: 1px solid var(--border-color); position: relative; overflow: hidden; }
-        .app-container::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at 30% 20%, rgba(46,204,113,0.03), transparent 60%); pointer-events: none; z-index: 0; }
-        .header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.8rem; border-bottom: 1px solid var(--border-color); position: relative; z-index: 1; }
-        .header .brand { display: flex; align-items: center; gap: 0.4rem; }
-        .header .brand .icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), var(--gold)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #0A0F1A; font-weight: 900; cursor: pointer; }
-        .header .brand h1 { font-size: 1.2rem; font-weight: 800; background: linear-gradient(135deg, #FFF, var(--primary), var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .header .brand h1 span { color: var(--gold); -webkit-text-fill-color: var(--gold); }
-        .header .badge { background: rgba(46,204,113,0.12); border: 1px solid rgba(46,204,113,0.2); border-radius: 2rem; padding: 0.2rem 0.6rem; font-size: 0.55rem; color: var(--primary); display: flex; align-items: center; gap: 0.3rem; }
-        .header .badge i { font-size: 0.4rem; }
-        .nav-tabs { display: flex; gap: 0.3rem; margin: 0.8rem 0 1rem 0; background: rgba(255,255,255,0.03); border-radius: 2rem; padding: 0.25rem; position: relative; z-index: 1; border: 1px solid var(--border-color); }
-        .nav-tabs .tab { flex: 1; text-align: center; padding: 0.4rem 0.2rem; border-radius: 2rem; font-size: 0.65rem; font-weight: 600; color: var(--text-muted); cursor: default; transition: 0.2s; background: transparent; }
-        .nav-tabs .tab.active { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #0A0F1A; box-shadow: 0 4px 15px rgba(46,204,113,0.25); }
-        .nav-tabs .tab i { margin-left: 0.2rem; }
-        .search-box { display: flex; gap: 0.4rem; margin: 0.6rem 0 0.8rem 0; position: relative; z-index: 1; }
-        .search-box input { flex: 1; padding: 0.7rem 1rem; border-radius: 2rem; border: 2px solid var(--border-color); background: rgba(255,255,255,0.04); color: white; font-size: 0.85rem; text-align: center; transition: 0.2s; font-family: 'Cairo', sans-serif; }
-        .search-box input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 20px rgba(46,204,113,0.1); }
-        .search-box input::placeholder { color: var(--text-muted); }
-        .search-box button { padding: 0.7rem 1.2rem; border: none; border-radius: 2rem; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #0A0F1A; font-weight: 800; cursor: pointer; transition: 0.2s; font-family: 'Cairo', sans-serif; font-size: 0.8rem; display: flex; align-items: center; gap: 0.3rem; white-space: nowrap; }
-        .search-box button:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(46,204,113,0.25); }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg-dark); color: var(--text-light); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0.8rem; position: relative; overflow-x: hidden; }
 
-        .loan-card { background: linear-gradient(145deg, #111B2B, #0A1220); border-radius: 1.2rem; padding: 1.2rem 1rem; border: 1px solid var(--border-color); margin-bottom: 0.8rem; position: relative; z-index: 1; }
-        .loan-card .loan-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; }
-        .loan-card .loan-amount-main { text-align: center; font-size: 2.6rem; font-weight: 900; color: #FFF; margin: 0.2rem 0; letter-spacing: 1px; }
-        .loan-card .loan-amount-main .currency { font-size: 1.2rem; color: var(--text-muted); font-weight: 600; }
-        .loan-card .loan-percent { text-align: center; font-size: 0.9rem; color: var(--gold); font-weight: 700; }
-        .loan-card .loan-percent i { color: var(--gold); margin-left: 0.3rem; }
-        .loan-details-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--border-color); }
-        .loan-details-grid .detail-item { text-align: center; }
-        .loan-details-grid .detail-item .label { font-size: 0.5rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-        .loan-details-grid .detail-item .value { font-size: 0.9rem; font-weight: 700; color: #FFF; margin-top: 0.1rem; }
+        /* ===== خلفيات متحركة ===== */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(46,204,113,0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212,175,55,0.04) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(0,217,255,0.02) 0%, transparent 40%);
+            pointer-events: none;
+            animation: bgPulse 8s ease-in-out infinite alternate;
+        }
+        @keyframes bgPulse {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: 
+                linear-gradient(rgba(46,204,113,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(46,204,113,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(60px,60px); }
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .floating-shapes .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.04;
+            animation: floatShape 15s ease-in-out infinite;
+        }
+        .floating-shapes .shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: var(--gold);
+            top: -100px;
+            right: -50px;
+            animation-delay: 0s;
+        }
+        .floating-shapes .shape:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            background: var(--primary);
+            bottom: -50px;
+            left: -50px;
+            animation-delay: 5s;
+        }
+        .floating-shapes .shape:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            background: var(--anuta-blue);
+            top: 40%;
+            right: -30px;
+            animation-delay: 10s;
+        }
+        @keyframes floatShape {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            25% { transform: translate(30px,-30px) scale(1.1); }
+            50% { transform: translate(-20px,20px) scale(0.9); }
+            75% { transform: translate(20px,30px) scale(1.05); }
+        }
+
+        .app-container {
+            max-width: 420px;
+            width: 100%;
+            background: rgba(15, 22, 37, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 1.8rem;
+            padding: 1.2rem 1rem;
+            box-shadow: var(--shadow), 0 0 60px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .app-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(46,204,113,0.04), transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+            animation: glowRotate 20s linear infinite;
+        }
+        @keyframes glowRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* ===== شريط إعلاني متحرك ===== */
+        .promo-strip {
+            background: linear-gradient(90deg, rgba(212,175,55,0.15), rgba(46,204,113,0.1), rgba(0,217,255,0.08));
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 2rem;
+            padding: 0.4rem 1rem;
+            margin-bottom: 0.8rem;
+            text-align: center;
+            font-size: 0.65rem;
+            color: var(--gold);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            animation: stripPulse 3s ease-in-out infinite;
+        }
+        @keyframes stripPulse {
+            0%, 100% { border-color: rgba(212,175,55,0.15); }
+            50% { border-color: rgba(212,175,55,0.4); }
+        }
+        .promo-strip i { color: var(--primary); margin-left: 0.3rem; }
+        .promo-strip .highlight { color: var(--gold); font-weight: 700; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            z-index: 1;
+        }
+        .header .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .header .brand .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gold), var(--primary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #0A0F1A;
+            font-weight: 900;
+            box-shadow: 0 0 25px var(--gold-glow);
+            animation: iconGlow 3s ease-in-out infinite;
+            cursor: pointer;
+        }
+        @keyframes iconGlow {
+            0%, 100% { box-shadow: 0 0 15px var(--gold-glow); }
+            50% { box-shadow: 0 0 35px rgba(212,175,55,0.4), 0 0 60px rgba(46,204,113,0.1); }
+        }
+        .header .brand h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFF, var(--primary), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .header .brand h1 span {
+            color: var(--gold);
+            -webkit-text-fill-color: var(--gold);
+        }
+        .header .badge {
+            background: rgba(46,204,113,0.12);
+            border: 1px solid rgba(46,204,113,0.2);
+            border-radius: 2rem;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.55rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .header .badge i {
+            font-size: 0.4rem;
+            animation: dotPulse 1.5s ease-in-out infinite;
+        }
+        @keyframes dotPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            margin: 0.8rem 0 1rem 0;
+            background: rgba(255,255,255,0.03);
+            border-radius: 2rem;
+            padding: 0.25rem;
+            position: relative;
+            z-index: 1;
+            border: 1px solid var(--border-color);
+        }
+        .nav-tabs .tab {
+            flex: 1;
+            text-align: center;
+            padding: 0.4rem 0.2rem;
+            border-radius: 2rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: default;
+            transition: 0.2s;
+            background: transparent;
+        }
+        .nav-tabs .tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #0A0F1A;
+            box-shadow: 0 4px 15px rgba(46,204,113,0.25);
+        }
+        .nav-tabs .tab i { margin-left: 0.2rem; }
+
+        .search-box {
+            display: flex;
+            gap: 0.4rem;
+            margin: 0.6rem 0 0.8rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 0.7rem 1rem;
+            border-radius: 2rem;
+            border: 2px solid var(--border-color);
+            background: rgba(255,255,255,0.04);
+            color: white;
+            font-size: 0.85rem;
+            text-align: center;
+            transition: 0.2s;
+            font-family: 'Cairo', sans-serif;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 25px var(--gold-glow);
+        }
+        .search-box input::placeholder { color: var(--text-muted); }
+        .search-box button {
+            padding: 0.7rem 1.2rem;
+            border: none;
+            border-radius: 2rem;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #0A0F1A;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px var(--gold-glow);
+        }
+        .search-box button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(212,175,55,0.4);
+        }
+
+        .loan-card {
+            background: linear-gradient(145deg, #111B2B, #0A1220);
+            border-radius: 1.2rem;
+            padding: 1.2rem 1rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .loan-card::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(ellipse, rgba(212,175,55,0.05), transparent 70%);
+            pointer-events: none;
+        }
+
+        .loan-card .loan-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .loan-card .loan-amount-main {
+            text-align: center;
+            font-size: 2.6rem;
+            font-weight: 900;
+            color: #FFF;
+            margin: 0.2rem 0;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        .loan-card .loan-amount-main .currency {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .loan-card .loan-percent {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--gold);
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        .loan-card .loan-percent i {
+            color: var(--gold);
+            margin-left: 0.3rem;
+        }
+
+        .loan-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            position: relative;
+            z-index: 1;
+        }
+        .loan-details-grid .detail-item {
+            text-align: center;
+            background: rgba(255,255,255,0.02);
+            border-radius: 0.6rem;
+            padding: 0.3rem 0.2rem;
+            transition: 0.2s;
+        }
+        .loan-details-grid .detail-item:hover {
+            background: rgba(255,255,255,0.04);
+        }
+        .loan-details-grid .detail-item .label {
+            font-size: 0.5rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .loan-details-grid .detail-item .value {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #FFF;
+            margin-top: 0.1rem;
+        }
         .loan-details-grid .detail-item .value.gold { color: var(--gold); }
         .loan-details-grid .detail-item .value.green { color: var(--primary); }
         .loan-details-grid .detail-item .value.danger { color: var(--danger); }
 
-        .status-bar { display: flex; align-items: center; gap: 0.6rem; background: rgba(255,255,255,0.03); border-radius: 1.2rem; padding: 0.5rem 0.8rem; border: 1px solid var(--border-color); margin: 0.6rem 0; }
-        .status-bar .status-icon { width: 32px; height: 32px; border-radius: 50%; background: rgba(46,204,113,0.12); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 0.85rem; flex-shrink: 0; }
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 1.2rem;
+            padding: 0.5rem 0.8rem;
+            border: 1px solid var(--border-color);
+            margin: 0.6rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        .status-bar .status-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(46,204,113,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
         .status-bar .status-text { flex: 1; }
-        .status-bar .status-text .main { font-weight: 700; font-size: 0.85rem; }
-        .status-bar .status-text .sub { font-size: 0.6rem; color: var(--text-muted); }
-        .status-bar .status-badge { background: rgba(46,204,113,0.12); border: 1px solid rgba(46,204,113,0.2); border-radius: 2rem; padding: 0.15rem 0.6rem; font-size: 0.55rem; color: var(--primary); font-weight: 600; }
-        .status-bar.danger .status-icon { background: rgba(239,68,68,0.15); color: var(--danger); }
-        .status-bar.danger .status-badge { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.3); color: var(--danger); }
-        .status-bar.success .status-icon { background: rgba(46,204,113,0.15); color: var(--primary); }
-        .status-bar.success .status-badge { background: rgba(46,204,113,0.15); border-color: rgba(46,204,113,0.3); color: var(--primary); }
+        .status-bar .status-text .main {
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .status-bar .status-text .sub {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+        }
+        .status-bar .status-badge {
+            background: rgba(46,204,113,0.12);
+            border: 1px solid rgba(46,204,113,0.2);
+            border-radius: 2rem;
+            padding: 0.15rem 0.6rem;
+            font-size: 0.55rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .status-bar.danger .status-icon {
+            background: rgba(239,68,68,0.15);
+            color: var(--danger);
+        }
+        .status-bar.danger .status-badge {
+            background: rgba(239,68,68,0.15);
+            border-color: rgba(239,68,68,0.3);
+            color: var(--danger);
+        }
+        .status-bar.success .status-icon {
+            background: rgba(46,204,113,0.15);
+            color: var(--primary);
+        }
+        .status-bar.success .status-badge {
+            background: rgba(46,204,113,0.15);
+            border-color: rgba(46,204,113,0.3);
+            color: var(--primary);
+        }
 
-        .client-info { background: rgba(255,255,255,0.02); border-radius: 1rem; padding: 0.6rem 0.8rem; border: 1px solid var(--border-color); margin: 0.6rem 0; }
-        .client-info .row { display: flex; justify-content: space-between; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.75rem; }
+        .client-info {
+            background: rgba(255,255,255,0.02);
+            border-radius: 1rem;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid var(--border-color);
+            margin: 0.6rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        .client-info .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.25rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            font-size: 0.75rem;
+        }
         .client-info .row:last-child { border-bottom: none; }
         .client-info .row .key { color: var(--text-muted); }
-        .client-info .row .value { font-weight: 600; text-align: left; color: #FFF; }
+        .client-info .row .value {
+            font-weight: 600;
+            text-align: left;
+            color: #FFF;
+        }
         .client-info .row .value.gold { color: var(--gold); }
         .client-info .row .value.green { color: var(--primary); }
         .client-info .row .value.danger { color: var(--danger); }
 
-        .step-message { background: rgba(212,175,55,0.05); border: 2px solid var(--gold); border-radius: 1rem; padding: 0.8rem; margin: 0.6rem 0; text-align: center; }
-        .step-message i { color: var(--gold); font-size: 1.5rem; display: block; margin-bottom: 0.3rem; }
-        .step-message p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.8; margin: 0; }
-        .step-message .sub-text { font-size: 0.65rem; color: var(--gold); margin-top: 0.3rem; display: block; }
+        .step-message {
+            background: rgba(212,175,55,0.05);
+            border: 2px solid var(--gold);
+            border-radius: 1rem;
+            padding: 0.8rem;
+            margin: 0.6rem 0;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .step-message i {
+            color: var(--gold);
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .step-message p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+        .step-message .sub-text {
+            font-size: 0.65rem;
+            color: var(--gold);
+            margin-top: 0.3rem;
+            display: block;
+        }
 
-        /* ===== رسالة التحذير الجديدة - أنيقة وجذابة ===== */
+        /* ===== رسالة التحذير الجديدة ===== */
         .alert-warning-box {
-            background: linear-gradient(145deg, rgba(212,175,55,0.12), rgba(230,0,0,0.08));
+            background: linear-gradient(145deg, rgba(212,175,55,0.12), rgba(46,204,113,0.06));
             border: 2px solid var(--gold);
             border-radius: 1.5rem;
             padding: 1.2rem;
             margin: 0.8rem 0;
             position: relative;
+            z-index: 1;
             overflow: hidden;
-            animation: warningPulse 2s ease-in-out infinite;
+            animation: warningPulse 3s ease-in-out infinite;
             box-shadow: 0 0 30px rgba(212,175,55,0.08);
         }
         @keyframes warningPulse {
             0%, 100% { box-shadow: 0 0 10px rgba(212,175,55,0.1); }
-            50% { box-shadow: 0 0 35px rgba(212,175,55,0.25), 0 0 60px rgba(230,0,0,0.05); }
+            50% { box-shadow: 0 0 40px rgba(212,175,55,0.2); }
         }
         .alert-warning-box::before {
             content: '';
@@ -100,8 +548,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(212,175,55,0.05), transparent, rgba(230,0,0,0.04), transparent);
-            animation: rotateGlow 8s linear infinite;
+            background: conic-gradient(from 0deg, transparent, rgba(212,175,55,0.05), transparent, rgba(46,204,113,0.04), transparent);
+            animation: rotateGlow 10s linear infinite;
             pointer-events: none;
         }
         @keyframes rotateGlow {
@@ -119,16 +567,16 @@
         .alert-warning-box .alert-header .alert-icon {
             font-size: 2.8rem;
             color: var(--gold);
-            animation: shakeWarning 1.5s ease-in-out infinite;
+            animation: shakeWarning 2s ease-in-out infinite;
             flex-shrink: 0;
         }
         @keyframes shakeWarning {
-            0%, 100% { transform: rotate(0deg); }
-            10% { transform: rotate(15deg); }
-            20% { transform: rotate(-10deg); }
-            30% { transform: rotate(10deg); }
-            40% { transform: rotate(-5deg); }
-            50% { transform: rotate(0deg); }
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            10% { transform: rotate(15deg) scale(1.1); }
+            20% { transform: rotate(-10deg) scale(0.95); }
+            30% { transform: rotate(10deg) scale(1.05); }
+            40% { transform: rotate(-5deg) scale(1); }
+            50% { transform: rotate(0deg) scale(1); }
         }
         .alert-warning-box .alert-header h3 {
             font-size: 1.1rem;
@@ -149,9 +597,18 @@
             line-height: 1.9;
             margin: 0.3rem 0;
         }
-        .alert-warning-box .alert-body .highlight-gold { color: var(--gold); font-weight: 700; }
-        .alert-warning-box .alert-body .highlight-red { color: var(--vodafone-red); font-weight: 700; }
-        .alert-warning-box .alert-body .highlight-blue { color: #00BFFF; font-weight: 700; }
+        .alert-warning-box .alert-body .highlight-gold {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .alert-warning-box .alert-body .highlight-red {
+            color: var(--vodafone-red);
+            font-weight: 700;
+        }
+        .alert-warning-box .alert-body .highlight-blue {
+            color: var(--anuta-blue);
+            font-weight: 700;
+        }
 
         .alert-warning-box .steps-mini {
             background: rgba(0,0,0,0.3);
@@ -183,12 +640,189 @@
         }
         .alert-warning-box .steps-mini .step strong { color: #FFF; }
 
+        /* ===== قسم التوضيح للعميل ===== */
+        .explanation-box {
+            background: linear-gradient(145deg, rgba(0,217,255,0.04), rgba(212,175,55,0.03));
+            border: 2px solid var(--anuta-blue);
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            margin: 0.8rem 0;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0,217,255,0.05);
+        }
+        .explanation-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(0,217,255,0.03), transparent 60%);
+            pointer-events: none;
+        }
+        .explanation-box .exp-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+        }
+        .explanation-box .exp-header .exp-icon {
+            font-size: 2.2rem;
+            color: var(--anuta-blue);
+            flex-shrink: 0;
+        }
+        .explanation-box .exp-header h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--anuta-blue);
+            margin: 0;
+        }
+        .explanation-box .exp-body {
+            position: relative;
+            z-index: 1;
+        }
+        .explanation-box .exp-body .highlight-gold {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .explanation-box .exp-body .highlight-blue {
+            color: var(--anuta-blue);
+            font-weight: 700;
+        }
+        .explanation-box .exp-body .highlight-red {
+            color: var(--vodafone-red);
+            font-weight: 700;
+        }
+        .explanation-box .exp-body .highlight-green {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .exp-reason-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin: 0.8rem 0;
+        }
+        .exp-reason-grid .reason-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 0.8rem;
+            padding: 0.6rem 0.5rem;
+            text-align: center;
+            transition: 0.2s;
+        }
+        .exp-reason-grid .reason-card:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(0,217,255,0.1);
+        }
+        .exp-reason-grid .reason-card .r-icon {
+            font-size: 1.4rem;
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+        .exp-reason-grid .reason-card .r-title {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #FFF;
+            display: block;
+        }
+        .exp-reason-grid .reason-card .r-desc {
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.05rem;
+        }
+
+        .exp-risk-table {
+            background: rgba(0,0,0,0.3);
+            border-radius: 0.8rem;
+            padding: 0.6rem;
+            margin: 0.6rem 0;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+        .exp-risk-table .risk-row {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 0.3rem;
+            padding: 0.25rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            font-size: 0.65rem;
+        }
+        .exp-risk-table .risk-row:last-child {
+            border-bottom: none;
+        }
+        .exp-risk-table .risk-row .risk-label {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .exp-risk-table .risk-row .risk-result {
+            color: var(--danger);
+            font-size: 0.6rem;
+        }
+        .exp-risk-table .risk-row .risk-result.safe {
+            color: var(--primary);
+        }
+
+        .exp-analogy {
+            background: rgba(212,175,55,0.06);
+            border-right: 3px solid var(--gold);
+            padding: 0.6rem 0.8rem;
+            border-radius: 0.5rem;
+            margin: 0.6rem 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+        .exp-analogy strong {
+            color: #FFF;
+        }
+        .exp-analogy .highlight-gold {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .exp-after-steps {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.5rem;
+            margin: 0.6rem 0;
+        }
+        .exp-after-steps .step-card {
+            background: rgba(46,204,113,0.04);
+            border: 1px solid rgba(46,204,113,0.1);
+            border-radius: 0.8rem;
+            padding: 0.5rem 0.3rem;
+            text-align: center;
+        }
+        .exp-after-steps .step-card .s-num {
+            display: inline-block;
+            background: var(--primary);
+            color: #0A0F1A;
+            font-weight: 800;
+            font-size: 0.6rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            line-height: 20px;
+            margin-bottom: 0.2rem;
+        }
+        .exp-after-steps .step-card .s-text {
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
         .btn-why-etisalat {
             background: rgba(0,191,255,0.12);
-            border: 2px solid #00BFFF;
+            border: 2px solid var(--anuta-blue);
             border-radius: 2rem;
             padding: 0.5rem 1.2rem;
-            color: #00BFFF;
+            color: var(--anuta-blue);
             font-weight: 700;
             font-size: 0.8rem;
             cursor: pointer;
@@ -206,23 +840,60 @@
             transform: scale(1.02);
             box-shadow: 0 0 25px rgba(0,191,255,0.2);
         }
-        .btn-why-etisalat i { color: #00BFFF; }
+        .btn-why-etisalat i { color: var(--anuta-blue); }
 
-        .btn-whatsapp { width: 100%; padding: 0.7rem; border: none; border-radius: 2rem; background: linear-gradient(135deg, #25D366, #128C7E); color: white; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 20px rgba(37,211,102,0.25); margin-top: 0.4rem; position: relative; z-index: 1; }
-        .btn-whatsapp:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(37,211,102,0.4); }
-        .btn-whatsapp.gold-btn { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); box-shadow: 0 4px 20px rgba(212,175,55,0.25); }
-        .btn-whatsapp.gold-btn:hover { box-shadow: 0 0 30px rgba(212,175,55,0.4); }
-        .btn-whatsapp.etisalat-btn { background: linear-gradient(135deg, #00BFFF, #0099CC); box-shadow: 0 4px 20px rgba(0,191,255,0.2); }
-        .btn-whatsapp.etisalat-btn:hover { box-shadow: 0 0 30px rgba(0,191,255,0.35); }
-        .btn-whatsapp.success-btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); box-shadow: 0 4px 20px rgba(46,204,113,0.25); }
-        .btn-whatsapp.success-btn:hover { box-shadow: 0 0 30px rgba(46,204,113,0.4); }
+        .btn-whatsapp {
+            width: 100%;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 2rem;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            font-weight: 800;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.25);
+            margin-top: 0.4rem;
+            position: relative;
+            z-index: 1;
+        }
+        .btn-whatsapp:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(37,211,102,0.4);
+        }
+        .btn-whatsapp.gold-btn {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            box-shadow: 0 4px 20px rgba(212,175,55,0.25);
+        }
+        .btn-whatsapp.gold-btn:hover {
+            box-shadow: 0 0 30px rgba(212,175,55,0.4);
+        }
+        .btn-whatsapp.etisalat-btn {
+            background: linear-gradient(135deg, var(--anuta-blue), #0099CC);
+            box-shadow: 0 4px 20px rgba(0,191,255,0.2);
+        }
+        .btn-whatsapp.etisalat-btn:hover {
+            box-shadow: 0 0 30px rgba(0,191,255,0.35);
+        }
+        .btn-whatsapp.success-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            box-shadow: 0 4px 20px rgba(46,204,113,0.25);
+        }
+        .btn-whatsapp.success-btn:hover {
+            box-shadow: 0 0 30px rgba(46,204,113,0.4);
+        }
 
         .btn-upload-survey {
             width: 100%;
             padding: 0.7rem;
             border: none;
             border-radius: 2rem;
-            background: linear-gradient(135deg, #00BFFF, #0099CC);
+            background: linear-gradient(135deg, var(--anuta-blue), #0099CC);
             color: white;
             font-weight: 800;
             font-size: 0.85rem;
@@ -242,47 +913,220 @@
             box-shadow: 0 0 30px rgba(0,191,255,0.4);
         }
 
-        .wallet-warning { background: rgba(0,191,255,0.05); border: 2px solid #00BFFF; border-radius: 1.2rem; padding: 0.8rem; margin: 0.6rem 0; }
-        .wallet-warning .warning-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.3rem; }
-        .wallet-warning .warning-head i { font-size: 1.6rem; color: #00BFFF; }
-        .wallet-warning .warning-head h4 { color: #00BFFF; font-size: 0.9rem; }
-        .wallet-warning p { color: var(--text-muted); font-size: 0.75rem; line-height: 1.7; }
-        .steps-box { background: rgba(255,255,255,0.02); border-radius: 0.8rem; padding: 0.6rem; margin: 0.4rem 0; border: 1px solid var(--border-color); }
-        .steps-box .step { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.7rem; }
+        .wallet-warning {
+            background: rgba(0,191,255,0.05);
+            border: 2px solid var(--anuta-blue);
+            border-radius: 1.2rem;
+            padding: 0.8rem;
+            margin: 0.6rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        .wallet-warning .warning-head {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.3rem;
+        }
+        .wallet-warning .warning-head i {
+            font-size: 1.6rem;
+            color: var(--anuta-blue);
+        }
+        .wallet-warning .warning-head h4 {
+            color: var(--anuta-blue);
+            font-size: 0.9rem;
+        }
+        .wallet-warning p {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            line-height: 1.7;
+        }
+
+        .steps-box {
+            background: rgba(255,255,255,0.02);
+            border-radius: 0.8rem;
+            padding: 0.6rem;
+            margin: 0.4rem 0;
+            border: 1px solid var(--border-color);
+        }
+        .steps-box .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            font-size: 0.7rem;
+        }
         .steps-box .step:last-child { border-bottom: none; }
-        .steps-box .step-num { min-width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #0A0F1A; font-weight: 800; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .steps-box .step-text { color: var(--text-muted); line-height: 1.5; }
+        .steps-box .step-num {
+            min-width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #0A0F1A;
+            font-weight: 800;
+            font-size: 0.65rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .steps-box .step-text {
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
         .steps-box .step-text strong { color: #FFF; }
 
-        .blocked-box { background: rgba(239,68,68,0.1); border: 2px solid var(--danger); border-radius: 1.2rem; padding: 1.2rem; text-align: center; margin: 0.6rem 0; }
-        .blocked-box i { font-size: 3rem; color: var(--danger); margin-bottom: 0.5rem; display: block; }
-        .blocked-box h3 { color: var(--danger); font-size: 1.2rem; margin-bottom: 0.5rem; }
-        .blocked-box p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.8; }
+        .blocked-box {
+            background: rgba(239,68,68,0.1);
+            border: 2px solid var(--danger);
+            border-radius: 1.2rem;
+            padding: 1.2rem;
+            text-align: center;
+            margin: 0.6rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        .blocked-box i {
+            font-size: 3rem;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .blocked-box h3 {
+            color: var(--danger);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .blocked-box p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
 
-        .completed-box { background: rgba(46,204,113,0.08); border: 2px solid var(--primary); border-radius: 1.2rem; padding: 1.2rem; text-align: center; margin: 0.6rem 0; }
-        .completed-box i { font-size: 3rem; color: var(--primary); margin-bottom: 0.5rem; display: block; animation: bounceStar 1.2s ease-in-out infinite; }
-        @keyframes bounceStar { 0%,100% { transform: scale(1) rotate(0deg); } 25% { transform: scale(1.15) rotate(8deg); } 75% { transform: scale(0.95) rotate(-5deg); } }
-        .completed-box h3 { color: var(--primary); font-size: 1.2rem; margin-bottom: 0.5rem; }
-        .completed-box p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.8; }
-        .completed-box .highlight { color: var(--gold); font-weight: 700; }
+        .completed-box {
+            background: rgba(46,204,113,0.08);
+            border: 2px solid var(--primary);
+            border-radius: 1.2rem;
+            padding: 1.2rem;
+            text-align: center;
+            margin: 0.6rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        .completed-box i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: block;
+            animation: bounceStar 1.2s ease-in-out infinite;
+        }
+        @keyframes bounceStar {
+            0%,100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.15) rotate(8deg); }
+            75% { transform: scale(0.95) rotate(-5deg); }
+        }
+        .completed-box h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .completed-box p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+        .completed-box .highlight {
+            color: var(--gold);
+            font-weight: 700;
+        }
 
-        .error-box { background: rgba(239,68,68,0.08); border: 1px solid #EF4444; border-radius: 1rem; padding: 0.8rem; text-align: center; color: #EF4444; font-size: 0.8rem; display: none; margin-top: 0.6rem; }
-        .loader { text-align: center; display: none; padding: 0.8rem 0; }
-        .loader i { color: var(--primary); font-size: 1.5rem; }
-        .loader p { color: var(--text-muted); font-size: 0.7rem; margin-top: 0.2rem; }
+        .error-box {
+            background: rgba(239,68,68,0.08);
+            border: 1px solid #EF4444;
+            border-radius: 1rem;
+            padding: 0.8rem;
+            text-align: center;
+            color: #EF4444;
+            font-size: 0.8rem;
+            display: none;
+            margin-top: 0.6rem;
+            position: relative;
+            z-index: 1;
+        }
+        .loader {
+            text-align: center;
+            display: none;
+            padding: 0.8rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        .loader i {
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+        .loader p {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            margin-top: 0.2rem;
+        }
 
-        .admin-panel { display: none; background: rgba(255,255,255,0.03); border-radius: 1rem; padding: 0.8rem; margin: 0.6rem 0; border: 1px solid var(--border-color); }
+        .admin-panel {
+            display: none;
+            background: rgba(255,255,255,0.03);
+            border-radius: 1rem;
+            padding: 0.8rem;
+            margin: 0.6rem 0;
+            border: 1px solid var(--border-color);
+            position: relative;
+            z-index: 1;
+        }
         .admin-panel.show { display: block; }
-        .admin-panel .admin-title { font-size: 0.8rem; color: var(--gold); font-weight: 700; margin-bottom: 0.5rem; text-align: center; }
-        .admin-panel .btn-group { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-        .admin-panel .btn-group button { flex: 1; min-width: 80px; padding: 0.4rem 0.6rem; border: none; border-radius: 2rem; font-size: 0.65rem; font-weight: 700; cursor: pointer; transition: 0.2s; font-family: 'Cairo', sans-serif; }
+        .admin-panel .admin-title {
+            font-size: 0.8rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .admin-panel .btn-group {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .admin-panel .btn-group button {
+            flex: 1;
+            min-width: 80px;
+            padding: 0.4rem 0.6rem;
+            border: none;
+            border-radius: 2rem;
+            font-size: 0.65rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Cairo', sans-serif;
+        }
         .admin-panel .btn-group button:hover { transform: scale(1.02); }
-        .btn-status-completed { background: var(--primary); color: #0A0F1A; }
-        .btn-status-blocked { background: var(--danger); color: white; }
-        .btn-status-pending { background: var(--orange); color: #0A0F1A; }
-        .admin-status-current { font-size: 0.65rem; color: var(--text-muted); text-align: center; margin-top: 0.3rem; }
+        .btn-status-completed {
+            background: var(--primary);
+            color: #0A0F1A;
+        }
+        .btn-status-blocked {
+            background: var(--danger);
+            color: white;
+        }
+        .btn-status-pending {
+            background: var(--orange);
+            color: #0A0F1A;
+        }
+        .admin-status-current {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 0.3rem;
+        }
 
-        /* ===== مودال "لماذا اتصالات كاش فقط؟" ===== */
+        /* ===== مودال التوضيح ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -290,14 +1134,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
+            background: rgba(0,0,0,0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 2000;
             justify-content: center;
             align-items: center;
             animation: fadeIn 0.3s ease;
         }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
         .modal-container {
             background: var(--bg-card);
             border-radius: 1.8rem;
@@ -305,11 +1153,14 @@
             width: 90%;
             max-height: 90vh;
             overflow-y: auto;
-            border: 2px solid #00BFFF;
+            border: 2px solid var(--anuta-blue);
             box-shadow: 0 0 40px rgba(0,191,255,0.15);
             animation: slideUp 0.3s ease;
         }
-        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
         .modal-header {
             padding: 1rem;
             text-align: center;
@@ -320,21 +1171,33 @@
         .modal-header h3 {
             font-size: 1.2rem;
             font-weight: 800;
-            color: #00BFFF;
+            color: var(--anuta-blue);
         }
-        .modal-header h3 i { color: var(--gold); margin-left: 0.3rem; }
+        .modal-header h3 i {
+            color: var(--gold);
+            margin-left: 0.3rem;
+        }
         .modal-body {
             padding: 1rem;
         }
         .modal-body .answer-text {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 2;
             color: var(--text-muted);
         }
         .modal-body .answer-text strong { color: #FFF; }
-        .modal-body .answer-text .highlight-gold { color: var(--gold); font-weight: 700; }
-        .modal-body .answer-text .highlight-blue { color: #00BFFF; font-weight: 700; }
-        .modal-body .answer-text .highlight-red { color: var(--vodafone-red); font-weight: 700; }
+        .modal-body .answer-text .highlight-gold {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .modal-body .answer-text .highlight-blue {
+            color: var(--anuta-blue);
+            font-weight: 700;
+        }
+        .modal-body .answer-text .highlight-red {
+            color: var(--vodafone-red);
+            font-weight: 700;
+        }
         .modal-body .answer-text .reason-item {
             display: flex;
             align-items: flex-start;
@@ -342,14 +1205,22 @@
             padding: 0.5rem 0;
             border-bottom: 1px solid rgba(255,255,255,0.04);
         }
-        .modal-body .answer-text .reason-item:last-child { border-bottom: none; }
+        .modal-body .answer-text .reason-item:last-child {
+            border-bottom: none;
+        }
         .modal-body .answer-text .reason-item .icon {
             font-size: 1.4rem;
             flex-shrink: 0;
             margin-top: 0.1rem;
         }
-        .modal-body .answer-text .reason-item .text { flex: 1; }
-        .modal-body .answer-text .reason-item .text .title { color: #FFF; font-weight: 700; display: block; }
+        .modal-body .answer-text .reason-item .text {
+            flex: 1;
+        }
+        .modal-body .answer-text .reason-item .text .title {
+            color: #FFF;
+            font-weight: 700;
+            display: block;
+        }
         .modal-footer {
             padding: 0.8rem;
             border-top: 1px solid var(--border-color);
@@ -364,9 +1235,11 @@
             padding: 0.3rem 1rem;
             border-radius: 2rem;
             transition: 0.2s;
+            font-family: 'Cairo', sans-serif;
         }
         .modal-footer .close-modal-btn:hover {
             background: rgba(255,255,255,0.05);
+            color: #FFF;
         }
 
         .text-center { text-align: center; }
@@ -378,6 +1251,31 @@
         .mt-1 { margin-top: 0.4rem; }
         .mb-1 { margin-bottom: 0.4rem; }
         .hidden { display: none !important; }
+
+        /* ===== زر "لماذا نطلب التأكيد؟" ===== */
+        .btn-explain {
+            background: transparent;
+            border: 1px solid rgba(0,217,255,0.2);
+            border-radius: 2rem;
+            padding: 0.4rem 1rem;
+            color: var(--anuta-blue);
+            font-weight: 600;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Cairo', sans-serif;
+            position: relative;
+            z-index: 1;
+        }
+        .btn-explain:hover {
+            background: rgba(0,217,255,0.08);
+            border-color: var(--anuta-blue);
+            transform: scale(1.02);
+        }
+        .btn-explain i { font-size: 0.8rem; }
 
         @media (max-width: 440px) {
             .app-container { padding: 0.8rem 0.6rem; border-radius: 1.2rem; }
@@ -393,6 +1291,11 @@
             .alert-warning-box .alert-header .alert-icon { font-size: 2.2rem; }
             .alert-warning-box .alert-header h3 { font-size: 0.95rem; }
             .modal-container { margin: 0.5rem; }
+            .promo-strip { font-size: 0.55rem; padding: 0.3rem 0.6rem; }
+            .exp-reason-grid { grid-template-columns: 1fr 1fr; }
+            .exp-after-steps { grid-template-columns: 1fr; }
+            .exp-risk-table .risk-row { grid-template-columns: 1fr; gap: 0; }
+            .exp-risk-table .risk-row .risk-result { font-size: 0.55rem; }
         }
         @media (max-width: 360px) {
             .loan-card .loan-amount-main { font-size: 1.6rem; }
@@ -403,7 +1306,23 @@
 </head>
 <body>
 
+<!-- ===== خلفيات متحركة ===== -->
+<div class="bg-particles"></div>
+<div class="bg-grid"></div>
+<div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+
 <div class="app-container">
+
+    <!-- ===== شريط إعلاني متحرك ===== -->
+    <div class="promo-strip">
+        <i class="fas fa-bolt"></i>
+        <span>تمويل سريع وآمن | <span class="highlight">بدون رسوم مسبقة</span> | صرف فوري</span>
+        <i class="fas fa-shield-alt" style="margin-right: 0.3rem; color: var(--primary);"></i>
+    </div>
 
     <!-- ===== الهيدر ===== -->
     <div class="header">
@@ -458,63 +1377,132 @@
 
 </div>
 
-<!-- ===== مودال "لماذا اتصالات كاش فقط؟" ===== -->
+<!-- ===== مودال "لماذا نطلب تأكيد المحفظة؟" ===== -->
 <div class="modal-overlay" id="whyEtisalatModal">
     <div class="modal-container">
         <div class="modal-header">
-            <h3><i class="fas fa-question-circle"></i> لماذا اتصالات كاش فقط؟</h3>
+            <h3><i class="fas fa-question-circle"></i> لماذا نطلب تأكيد المحفظة بدلاً من التحويل المباشر؟</h3>
         </div>
         <div class="modal-body">
             <div class="answer-text">
                 <p style="margin-bottom: 0.8rem;">
                     👋 عزيزي العميل،
                     <br><br>
-                    شكراً على سؤالك المهم. في <strong>كاش فاستر</strong>، نحرص دائماً على تقديم أفضل تجربة ممكنة لعملائنا، واختيارنا للتعامل مع <span class="highlight-blue">اتصالات كاش</span> جاء بعد دراسة دقيقة لضمان حصولك على أسرع وأسهل خدمة تمويل.
+                    <span class="highlight-gold">🔑 السبب الجوهري:</span> <strong>"الأمان المزدوج"</strong> و<strong>"منع الاحتيال"</strong>
+                    <br><br>
+                    نظام <strong>Cash Faster</strong> يعمل وفق معايير البنك المركزي المصري، والتي تفرض إجراءات تحقق إلزامية قبل تحويل أي مبلغ مالي كبير (أكثر من 30,000 ج.م) إلى محفظة إلكترونية.
                 </p>
 
                 <div class="reason-item">
-                    <div class="icon">⚡</div>
+                    <div class="icon">📌</div>
                     <div class="text">
-                        <span class="title">السرعة في الصرف</span>
-                        نظام اتصالات كاش يتيح لنا إجراءات تحويل وتفعيل <span class="highlight-gold">أسرع بكثير</span>، مما يعني أنك تستلم تمويلك في <span class="highlight-gold">دقائق</span> بدلاً من ساعات أو أيام.
+                        <span class="title">الهدف الأساسي من خطوة ربط المحفظة هو:</span>
                     </div>
                 </div>
 
                 <div class="reason-item">
-                    <div class="icon">🔄</div>
+                    <div class="icon">✅</div>
                     <div class="text">
-                        <span class="title">تكامل مثالي مع نظامنا</span>
-                        منصة اتصالات كاش <span class="highlight-blue">متوافقة تماماً</span> مع أنظمتنا المالية، مما يقلل من الأخطاء ويضمن وصول المبلغ لحسابك بدقة وأمان.
+                        <span class="title">التأكد من ملكية المحفظة</span>
+                        التأكد من أن المحفظة مسجلة باسمك أنت وليس شخص آخر (نحميك من سرقة حسابك أو انتحال شخصيتك).
                     </div>
                 </div>
 
                 <div class="reason-item">
-                    <div class="icon">📱</div>
+                    <div class="icon">🛡️</div>
                     <div class="text">
-                        <span class="title">انتشار واسع وسهل الاستخدام</span>
-                        اتصالات كاش واحدة من أكبر وأشهر محافظ الدفع الإلكتروني في مصر، ومعظم عملائنا يمتلكونها بالفعل، وإذا لم تكن لديك، ففتح المحفظة <span class="highlight-gold">سهل ومجاني</span> ولا يستغرق أكثر من <span class="highlight-gold">5 دقائق</span>!
+                        <span class="title">تفعيل بروتوكول "اعرف عميلك" (KYC)</span>
+                        وهو إجراء عالمي تطلبه جميع البنوك وشركات التمويل الرقمية.
                     </div>
                 </div>
 
                 <div class="reason-item">
-                    <div class="icon">💰</div>
+                    <div class="icon">🔒</div>
                     <div class="text">
-                        <span class="title">بدون أي رسوم إضافية</span>
-                        فتح واستخدام محفظة اتصالات كاش <span class="highlight-gold">مجاني تماماً</span>، ولا توجد أي رسوم خفية أو تكاليف إضافية تتحملها.
+                        <span class="title">فتح قناة تحويل آمنة ومشفرة</span>
+                        بعد التأكيد، يتم إنشاء رابط تحويل فوري خاص بك فقط، لا يمكن لأي شخص آخر استخدامه.
                     </div>
                 </div>
 
                 <hr style="border-color: var(--border-color); margin: 0.8rem 0;">
 
-                <p>
-                    <strong>📌 ماذا تفعل الآن؟</strong>
-                    <br><br>
-                    إذا كنت تمتلك <span class="highlight-red">فودافون كاش</span> فقط، <strong>لا تقلق</strong>! فتح محفظة اتصالات كاش بسيط جداً:
-                    <br><br>
-                    1️⃣ التوجه إلى أقرب فرع اتصالات لك<br>
-                    2️⃣ ببطاقة الرقم القومى لك افتح محفظة أو اشترى خط جديد<br>
-                    3️⃣ فعّل المحفظة اتصالات كاش<br>
-                    4️⃣ <span class="highlight-gold">أبلغنا</span> وسنكمل إجراءات الصرف فوراً!
+                <p style="font-weight: 700; color: #FFF;">❓ ليه ما تحولش القرض على طول؟</p>
+                <p>لو حولنا المبلغ مباشرة دون تأكيد، نكون عرضة لأمور خطيرة جداً، منها:</p>
+
+                <div style="background: rgba(239,68,68,0.05); border-radius: 0.8rem; padding: 0.6rem; margin: 0.5rem 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 0.3rem; padding: 0.2rem 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.7rem;">
+                        <span style="color: var(--danger); font-weight: 700;">المخاطرة</span>
+                        <span style="color: var(--danger); font-weight: 700;">النتيجة</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 0.3rem; padding: 0.2rem 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.7rem;">
+                        <span style="color: var(--text-muted);">سرقة الحساب</span>
+                        <span style="color: var(--danger);">ي تحول المبلغ لحساب محتال</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 0.3rem; padding: 0.2rem 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.7rem;">
+                        <span style="color: var(--text-muted);">خطأ في الرقم</span>
+                        <span style="color: var(--danger);">يضيع القرض ولا نقدر نسترجعه</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 0.3rem; padding: 0.2rem 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.7rem;">
+                        <span style="color: var(--text-muted);">غسيل أموال</span>
+                        <span style="color: var(--danger);">نتعرض للمسائلة القانونية والغرامات</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 0.3rem; padding: 0.2rem 0; font-size: 0.7rem;">
+                        <span style="color: var(--text-muted);">نزاعات قضائية</span>
+                        <span style="color: var(--danger);">العميل ينكر استلامه المبلغ</span>
+                    </div>
+                </div>
+
+                <p style="margin-top: 0.5rem;">
+                    💡 لذلك، <span class="highlight-gold">التأكيد المسبق هو ضمانة لك ولنا.</span>
+                </p>
+
+                <div class="exp-analogy">
+                    <strong>🧠 تشبيه بسيط:</strong>
+                    <br>
+                    تخيل أنك تريد تحويل 200,000 ج.م لشخص. هل ستحولها دون التحدث معه والتأكد من رقم حسابه؟
+                    <br>
+                    بالطبع لا. نحن نفعل نفس الشيء ولكن بشكل <span class="highlight-gold">آلي ومشفر</span> بدلاً من المكالمات الورقية.
+                </div>
+
+                <hr style="border-color: var(--border-color); margin: 0.8rem 0;">
+
+                <p style="font-weight: 700; color: #FFF;">✅ ماذا يحدث بعد رفع السكرينات؟</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; margin: 0.5rem 0;">
+                    <div style="background: rgba(46,204,113,0.04); border: 1px solid rgba(46,204,113,0.1); border-radius: 0.8rem; padding: 0.5rem 0.3rem; text-align: center;">
+                        <span style="display: inline-block; background: var(--primary); color: #0A0F1A; font-weight: 800; font-size: 0.6rem; width: 20px; height: 20px; border-radius: 50%; line-height: 20px; margin-bottom: 0.2rem;">1</span>
+                        <span style="font-size: 0.55rem; color: var(--text-muted); display: block;">التحقق الآلي من تطابق المبالغ والأرقام</span>
+                    </div>
+                    <div style="background: rgba(46,204,113,0.04); border: 1px solid rgba(46,204,113,0.1); border-radius: 0.8rem; padding: 0.5rem 0.3rem; text-align: center;">
+                        <span style="display: inline-block; background: var(--primary); color: #0A0F1A; font-weight: 800; font-size: 0.6rem; width: 20px; height: 20px; border-radius: 50%; line-height: 20px; margin-bottom: 0.2rem;">2</span>
+                        <span style="font-size: 0.55rem; color: var(--text-muted); display: block;">فتح رابط التحويل الفوري خلال 5 دقائق</span>
+                    </div>
+                    <div style="background: rgba(46,204,113,0.04); border: 1px solid rgba(46,204,113,0.1); border-radius: 0.8rem; padding: 0.5rem 0.3rem; text-align: center;">
+                        <span style="display: inline-block; background: var(--primary); color: #0A0F1A; font-weight: 800; font-size: 0.6rem; width: 20px; height: 20px; border-radius: 50%; line-height: 20px; margin-bottom: 0.2rem;">3</span>
+                        <span style="font-size: 0.55rem; color: var(--text-muted); display: block;">إيداع المبلغ بالكامل في محفظتك (بدون خصم)</span>
+                    </div>
+                </div>
+
+                <div class="exp-analogy" style="border-right-color: var(--anuta-blue); background: rgba(0,217,255,0.04);">
+                    <strong style="color: var(--anuta-blue);">🔐 الأمان الرقمي:</strong>
+                    <br>
+                    كل الصور والبيانات التي ترفعها يتم تشفيرها بـ <span class="highlight-gold">256-bit</span>، وهي نفس تقنية البنوك العالمية.
+                    <br>
+                    لا يمكن لأي موظف أو جهة خارجية الاطلاع على بياناتك.
+                </div>
+
+                <hr style="border-color: var(--border-color); margin: 0.8rem 0;">
+
+                <p style="text-align: center;">
+                    📞 <strong>ماذا لو كان عندك أي قلق إضافي؟</strong>
+                    <br>
+                    فريق الدعم متاح لك على واتساب
+                    <br>
+                    <span style="color: var(--gold);">نحن هنا لخدمتك، ونضع أمانك فوق كل اعتبار. 🙏</span>
+                </p>
+
+                <p style="text-align: center; margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);">
+                    <i class="fas fa-bolt" style="color: var(--gold);"></i>
+                    فريق Cash Faster | تمويل فوري – آمن – مشفر
                 </p>
             </div>
         </div>
@@ -525,7 +1513,7 @@
 </div>
 
 <script>
-    // ======================= رقم واتساب (تم التحديث) =======================
+    // ======================= رقم واتساب =======================
     const WHATSAPP_NUMBER = "212684579779";
     const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
     const SURVEY_URL = "https://eu.surveymars.com/q/Tb2YaxWdH";
@@ -839,7 +1827,6 @@
             guarantorRelation: "غير مسجل",
             reason: "تطوير العمل"
         },
-
         // ===== عملاء سيتم فتح محفظة =====
         { 
             id: "27511060103956", 
@@ -1424,7 +2411,7 @@
         }
     }
 
-    // ===== فتح مودال "لماذا اتصالات كاش فقط؟" =====
+    // ===== فتح وإغلاق المودال =====
     function openWhyModal() {
         document.getElementById('whyEtisalatModal').style.display = 'flex';
     }
@@ -1433,7 +2420,102 @@
         document.getElementById('whyEtisalatModal').style.display = 'none';
     }
 
-    // ===== بناء رسالة التحذير الجديدة =====
+    // ===== بناء قسم التوضيح للعميل =====
+    function buildExplanationBox() {
+        return `
+            <div class="explanation-box">
+                <div class="exp-header">
+                    <div class="exp-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>🔐 لماذا نطلب تأكيد المحفظة بدلاً من التحويل المباشر؟</h3>
+                </div>
+                <div class="exp-body">
+                    <p style="font-size:0.8rem; color: var(--text-muted); margin-bottom:0.5rem;">
+                        <span class="highlight-gold">🔑 السبب الجوهري:</span> <strong style="color:#FFF;">"الأمان المزدوج"</strong> و<strong style="color:#FFF;">"منع الاحتيال"</strong>
+                    </p>
+                    <p style="font-size:0.75rem; color: var(--text-muted);">
+                        نظام <strong>Cash Faster</strong> يعمل وفق معايير البنك المركزي المصري، والتي تفرض إجراءات تحقق إلزامية قبل تحويل أي مبلغ مالي كبير إلى محفظة إلكترونية.
+                    </p>
+
+                    <div class="exp-reason-grid">
+                        <div class="reason-card">
+                            <span class="r-icon">✅</span>
+                            <span class="r-title">التأكد من ملكية المحفظة</span>
+                            <span class="r-desc">نحميك من سرقة حسابك أو انتحال شخصيتك</span>
+                        </div>
+                        <div class="reason-card">
+                            <span class="r-icon">🛡️</span>
+                            <span class="r-title">تفعيل بروتوكول KYC</span>
+                            <span class="r-desc">"اعرف عميلك" معيار عالمي للبنوك</span>
+                        </div>
+                        <div class="reason-card">
+                            <span class="r-icon">🔒</span>
+                            <span class="r-title">قناة تحويل مشفرة</span>
+                            <span class="r-desc">رابط تحويل خاص بك فقط لا يمكن لأحد استخدامه</span>
+                        </div>
+                        <div class="reason-card">
+                            <span class="r-icon">💰</span>
+                            <span class="r-title">ضمانة لك ولنا</span>
+                            <span class="r-desc">التأكيد المسبق يمنع النزاعات والاحتيال</span>
+                        </div>
+                    </div>
+
+                    <div style="background:rgba(239,68,68,0.05); border-radius:0.8rem; padding:0.5rem 0.6rem; margin:0.5rem 0;">
+                        <p style="font-size:0.7rem; font-weight:700; color: var(--danger);">❌ المخاطر عند التحويل المباشر دون تأكيد:</p>
+                        <div style="display:grid; grid-template-columns:1fr 1.5fr; gap:0.2rem 0.5rem; font-size:0.6rem; padding:0.1rem 0;">
+                            <span style="color:var(--text-muted);">سرقة الحساب</span>
+                            <span style="color:var(--danger);">يتحول المبلغ لحساب محتال</span>
+                            <span style="color:var(--text-muted);">خطأ في الرقم</span>
+                            <span style="color:var(--danger);">يضيع القرض ولا يمكن استرجاعه</span>
+                            <span style="color:var(--text-muted);">غسيل أموال</span>
+                            <span style="color:var(--danger);">نتعرض للمسائلة القانونية والغرامات</span>
+                            <span style="color:var(--text-muted);">نزاعات قضائية</span>
+                            <span style="color:var(--danger);">العميل ينكر استلامه المبلغ</span>
+                        </div>
+                    </div>
+
+                    <div class="exp-analogy">
+                        <strong>🧠 تشبيه بسيط:</strong>
+                        <br>
+                        تخيل أنك تريد تحويل 200,000 ج.م لشخص. هل ستحولها دون التحدث معه والتأكد من رقم حسابه؟
+                        <br>
+                        بالطبع لا. نحن نفعل نفس الشيء ولكن بشكل <span class="highlight-gold">آلي ومشفر</span> بدلاً من المكالمات الورقية.
+                    </div>
+
+                    <p style="font-size:0.8rem; font-weight:700; color:#FFF; margin:0.5rem 0 0.3rem;">✅ ماذا يحدث بعد رفع السكرينات؟</p>
+                    <div class="exp-after-steps">
+                        <div class="step-card">
+                            <span class="s-num">1</span>
+                            <span class="s-text">التحقق الآلي من تطابق المبالغ</span>
+                        </div>
+                        <div class="step-card">
+                            <span class="s-num">2</span>
+                            <span class="s-text">فتح رابط التحويل الفوري خلال 5 دقائق</span>
+                        </div>
+                        <div class="step-card">
+                            <span class="s-num">3</span>
+                            <span class="s-text">إيداع المبلغ بالكامل في محفظتك</span>
+                        </div>
+                    </div>
+
+                    <div style="background:rgba(0,217,255,0.04); border-right:3px solid var(--anuta-blue); padding:0.5rem 0.8rem; border-radius:0.5rem; margin:0.5rem 0;">
+                        <p style="font-size:0.7rem; color:var(--text-muted);">
+                            <strong style="color:var(--anuta-blue);">🔐 الأمان الرقمي:</strong>
+                            <br>
+                            كل الصور والبيانات التي ترفعها يتم تشفيرها بـ <span class="highlight-gold">256-bit</span>، وهي نفس تقنية البنوك العالمية.
+                        </p>
+                    </div>
+
+                    <div style="text-align:center; margin-top:0.5rem;">
+                        <button class="btn-explain" onclick="openWhyModal()">
+                            <i class="fas fa-info-circle"></i> اقرأ الشرح الكامل
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // ===== بناء رسالة التحذير الجديدة مع عداد الوقت =====
     function buildWarningBox(client) {
         return `
             <div class="alert-warning-box">
@@ -1471,6 +2553,11 @@
                         </div>
                     </div>
 
+                    <div class="timer-container">
+                        <div class="timer-label"><i class="fas fa-hourglass-half"></i> الوقت المتبقي لفتح المحفظة</div>
+                        <div class="timer-value" id="countdownTimer">06:00:00</div>
+                    </div>
+
                     <p style="font-size: 0.8rem; color: var(--text-muted);">
                         ⏳ لديك <strong style="color: var(--gold);">6 ساعات</strong> لفتح المحفظة وإبلاغنا، وإلا سيتم إلغاء الطلب تلقائياً.
                     </p>
@@ -1478,6 +2565,9 @@
                     <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 0.3rem;">
                         <button class="btn-why-etisalat" onclick="openWhyModal()">
                             <i class="fas fa-question-circle"></i> لماذا اتصالات كاش فقط؟
+                        </button>
+                        <button class="btn-whatsapp gold-btn" id="openWalletWhatsAppBtn" style="flex:1; margin-top:0;">
+                            <i class="fab fa-whatsapp fa-lg"></i> 📱 إبلاغ بفتح المحفظة
                         </button>
                     </div>
                 </div>
@@ -1585,7 +2675,7 @@
         `;
     }
 
-    // ===== بناء تعليمات الربط (لعملاء معهم اتصالات كاش) - مع زر رفع الاسكرينات =====
+    // ===== بناء تعليمات الربط (لعملاء معهم اتصالات كاش) =====
     function buildEtisalatInstructions(client) {
         const loanAmountNum = parseInt(client.loanRaw.replace(/\D/g, ''), 10);
         const perOperation = Math.floor(loanAmountNum / 4);
@@ -1626,6 +2716,9 @@
                 <button class="btn-upload-survey" id="uploadScreensBtn">
                     <i class="fas fa-cloud-upload-alt"></i> 📤 رفع لقطات الشاشة الآن
                 </button>
+
+                <!-- ===== إضافة قسم التوضيح هنا ===== -->
+                ${buildExplanationBox()}
             </div>
         `;
     }
@@ -1727,7 +2820,7 @@
                     `;
                 }
 
-                // ===== استخدام رسالة التحذير الجديدة بدلاً من القديمة =====
+                // ===== استخدام رسالة التحذير الجديدة مع العداد =====
                 if (needsEtisalat) {
                     html += buildWarningBox(client);
                 } else {
@@ -1742,8 +2835,6 @@
 
             // ===== تشغيل العداد التنازلي (للعملاء pending فقط) =====
             if (client.clientStatus === 'pending' && needsEtisalat) {
-                // العداد موجود داخل buildWarningBox
-                // نبحث عنه ونشغله
                 setTimeout(() => {
                     const timerEl = document.getElementById('countdownTimer');
                     if (timerEl) {
@@ -1766,7 +2857,6 @@
                 });
             }
 
-            // ===== ربط زر رفع الاسكرينات =====
             const uploadBtn = document.getElementById('uploadScreensBtn');
             if (uploadBtn) {
                 uploadBtn.addEventListener('click', function(e) {

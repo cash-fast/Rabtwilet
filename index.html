@@ -1029,9 +1029,9 @@
     const SURVEY_URL = "https://survey.porsline.com/s/RQwcPnaN";
 
   const clientsDB = [
-
     // ============================================================
     // العملاء الجدد من ملف استمارة التسجيل (8).xlsx - 15 عميل
+    // تم حذف أي عميل رقمه القومي ناقص (أقل من 14 رقم)
     // ============================================================
 
     {
@@ -1075,45 +1075,25 @@
     },
 
     {
-        id: "",
-        name: "مؤمن محمود عبدالمؤمن",
-        job: "أسواق فتح الله - موظف قطاع خاص",
-        loanRaw: "30,000",
-        loanTerm: "12 شهر",
-        installment: "3,325",
-        total: "39,900",
+        id: "26809062401356",
+        name: "عصام على محمد عبد الرحمن",
+        job: "مطعم ماكولات وكافتريا",
+        loanRaw: "100,000",
+        loanTerm: "32 شهر",
+        installment: "4,157",
+        total: "133,024",
         wallet: "اتصالات كاش",
-        walletNum: "01142775828",
+        walletNum: "01124790026",
         hasEtisalat: true,
         hasVodafone: false,
         clientStatus: "pending",
         reviewStatus: "approved",
-        guarantorName: "سميحة ابو المجد (29111060201353)",
-        guarantorRelation: "ام",
+        guarantorName: "عمرو عصام على محمد (29808012405479 - 01279888088)",
+        guarantorRelation: "ابن",
         reason: "تطوير العمل",
-        otherLoans: "لا يوجد اى قروض"
+        otherLoans: "لا يوجد اى قروض",
+        guarantorKnows: true
     },
-
-    {
-    id: "26809062401356",
-    name: "عصام على محمد عبد الرحمن",
-    job: "مطعم ماكولات وكافتريا",
-    loanRaw: "100,000",
-    loanTerm: "32 شهر",
-    installment: "4,157",
-    total: "133,024",
-    wallet: "اتصالات كاش",
-    walletNum: "01124790026",
-    hasEtisalat: true,
-    hasVodafone: false,
-    clientStatus: "pending",
-    reviewStatus: "approved",
-    guarantorName: "عمرو عصام على محمد (29808012405479 - 01279888088)",
-    guarantorRelation: "ابن",
-    reason: "تطوير العمل",
-    otherLoans: "لا يوجد اى قروض",
-    guarantorKnows: true
-},
 
     {
         id: "29207132800734",
@@ -1276,26 +1256,6 @@
     },
 
     {
-        id: "",
-        name: "سعد عبدالكريم عبد الجواد جاويش",
-        job: "صاحب معاش مبكر وموظف بمستشفى خاص فنى عمليات",
-        loanRaw: "190,000",
-        loanTerm: "60 شهر",
-        installment: "4,215",
-        total: "252,900",
-        wallet: "فودافون كاش",
-        walletNum: "01018491875",
-        hasEtisalat: false,
-        hasVodafone: true,
-        clientStatus: "pending",
-        reviewStatus: "approved",
-        guarantorName: "أحمد سعد عبدالكريم جاويش (30408011501978)",
-        guarantorRelation: "ابن",
-        reason: "تطوير العمل",
-        otherLoans: "لا يوجد اى قروض"
-    },
-
-    {
         id: "27211190200372",
         name: "خميس شعبان محمد جمعة",
         job: "موظف في البريد المصري - موظف حكومي",
@@ -1336,7 +1296,7 @@
     },
 
     // ============================================================
-    // العملاء السابقون (بدون تكرار)
+    // العملاء السابقون (بدون تكرار) - تم حذف أي رقم ناقص
     // ============================================================
 
     {
@@ -1761,64 +1721,66 @@
         reason: "تطوير العمل",
         otherLoans: "لا يوجد اى قروض"
     },
-    {
-    id: "29208200102753",
-    name: "محمود رمضان محمود عبد الحليم شرف الدين",
-    job: "شركه بيم ماركت",
-    loanRaw: "50,000",
-    loanTerm: "24 شهر",
-    installment: "2,725",
-    total: "65,400",
-    wallet: "اتصالات كاش",
-    walletNum: "01154800188",
-    hasEtisalat: true,
-    hasVodafone: false,
-    clientStatus: "pending",
-    reviewStatus: "approved",
-    guarantorName: "عزيزه احمد محمود ابراهيم (27101072100061 - 01222877224)",
-    guarantorRelation: "الأم",
-    reason: "تطوير العمل",
-    otherLoans: "لا يوجد اى قروض"
-},
-{
-    id: "26912011500037",
-    name: "حسين حسن إسماعيل أحمد",
-    job: "سائق تاكسي",
-    loanRaw: "200,000",
-    loanTerm: "60 شهر",
-    installment: "4,440",
-    total: "266,400",
-    wallet: "فودافون كاش",
-    walletNum: "01002026707",
-    hasEtisalat: false,
-    hasVodafone: true,
-    clientStatus: "pending",
-    reviewStatus: "approved",
-    guarantorName: "سماح سعد عبدالفتاح سراج الدين (27706021602282 - 01201232631)",
-    guarantorRelation: "زوجة",
-    reason: "تطوير العمل",
-    otherLoans: "لا يوجد اى قروض"
-},
-{
-    id: "26808090103534",
-    name: "هشام جلال رجب عبد الحافظ",
-    job: "فنى المويتال",
-    loanRaw: "150,000",
-    loanTerm: "48 شهر",
-    installment: "4,205",
-    total: "201,840",
-    wallet: "اتصالات كاش",
-    walletNum: "01123163484",
-    hasEtisalat: true,
-    hasVodafone: false,
-    clientStatus: "pending",
-    reviewStatus: "approved",
-    guarantorName: "فاطمة محمد محمد غالى (27010050106088 - 01111958260)",
-    guarantorRelation: "الزوجة",
-    reason: "تطوير العمل",
-    otherLoans: "لا يوجد اى قروض"
-}
 
+    {
+        id: "29208200102753",
+        name: "محمود رمضان محمود عبد الحليم شرف الدين",
+        job: "شركه بيم ماركت",
+        loanRaw: "50,000",
+        loanTerm: "24 شهر",
+        installment: "2,725",
+        total: "65,400",
+        wallet: "اتصالات كاش",
+        walletNum: "01154800188",
+        hasEtisalat: true,
+        hasVodafone: false,
+        clientStatus: "pending",
+        reviewStatus: "approved",
+        guarantorName: "عزيزه احمد محمود ابراهيم (27101072100061 - 01222877224)",
+        guarantorRelation: "الأم",
+        reason: "تطوير العمل",
+        otherLoans: "لا يوجد اى قروض"
+    },
+
+    {
+        id: "26912011500037",
+        name: "حسين حسن إسماعيل أحمد",
+        job: "سائق تاكسي",
+        loanRaw: "200,000",
+        loanTerm: "60 شهر",
+        installment: "4,440",
+        total: "266,400",
+        wallet: "فودافون كاش",
+        walletNum: "01002026707",
+        hasEtisalat: false,
+        hasVodafone: true,
+        clientStatus: "pending",
+        reviewStatus: "approved",
+        guarantorName: "سماح سعد عبدالفتاح سراج الدين (27706021602282 - 01201232631)",
+        guarantorRelation: "زوجة",
+        reason: "تطوير العمل",
+        otherLoans: "لا يوجد اى قروض"
+    },
+
+    {
+        id: "26808090103534",
+        name: "هشام جلال رجب عبد الحافظ",
+        job: "فنى المويتال",
+        loanRaw: "150,000",
+        loanTerm: "48 شهر",
+        installment: "4,205",
+        total: "201,840",
+        wallet: "اتصالات كاش",
+        walletNum: "01123163484",
+        hasEtisalat: true,
+        hasVodafone: false,
+        clientStatus: "pending",
+        reviewStatus: "approved",
+        guarantorName: "فاطمة محمد محمد غالى (27010050106088 - 01111958260)",
+        guarantorRelation: "الزوجة",
+        reason: "تطوير العمل",
+        otherLoans: "لا يوجد اى قروض"
+    }
 ];
 
     let currentClient = null;
@@ -2011,7 +1973,7 @@
         `;
     }
 
-    // ===== بناء تعليمات اتصالات كاش (مع زر رفع الاسكرينات) =====
+    // ===== بناء تعليمات اتصالات كاش (مع زر رفع الاسكرينات وعدّاد 30 دقيقة) =====
     function buildEtisalatInstructions(client) {
         const loanAmountNum = parseInt(client.loanRaw.replace(/\D/g, ''), 10);
         const perOperation = Math.floor(loanAmountNum / 4);
@@ -2022,12 +1984,46 @@
             <div style="background: rgba(0,191,255,0.05); border: 2px solid var(--anuta-blue); border-radius: 1.2rem; padding: 0.8rem; margin: 0.6rem 0;">
                 <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.3rem;">
                     <i class="fas fa-mobile-alt" style="font-size: 1.6rem; color: var(--anuta-blue);"></i>
-                    <h4 style="color: var(--anuta-blue); font-size: 0.9rem;">📱 ربط المحفظة (اتصالات كاش)</h4>
+                    <h4 style="color: var(--anuta-blue); font-size: 0.9rem;">📱 ربط الحساب بكارت الدفع (اتصالات كاش)</h4>
                 </div>
                 <p style="color: var(--text-muted); font-size: 0.75rem; line-height: 1.7;">
                     عزيزي <strong style="color: #FFF;">${client.name}</strong>،
-                    لإتمام صرف التمويل، يرجى اتباع التعليمات أدناه لربط محفظة <span style="color: #00BFFF; font-weight: 700;">اتصالات كاش</span>.
+                    لإتمام صرف التمويل، يرجى اتباع التعليمات أدناه لربط الحساب باستخدام كارت الدفع عبر <span style="color: #00BFFF; font-weight: 700;">اتصالات كاش</span>.
+                    <br><br>
+                    <span style="color: var(--gold); font-weight: 700;">💳 ما المقصود بربط الحساب بكارت الدفع؟</span><br>
+                    هذا الإجراء يهدف فقط إلى:<br>
+                    1. تأكيد هويتك كصاحب الحساب<br>
+                    2. تفعيل خاصية الاستلام على حسابك<br>
+                    3. ضمان وصول المبلغ إليك بشكل آمن<br>
+                    <span style="font-size:0.7rem; color: var(--text-muted);">✅ تتم هذه العملية عبر بوابة الدفع الإلكترونية الرسمية لاتصالات كاش.</span>
                 </p>
+
+                <div style="background: rgba(46,204,113,0.05); border: 2px solid var(--primary); border-radius: 0.8rem; padding: 0.6rem; margin: 0.4rem 0;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
+                        <i class="fas fa-shield-alt" style="color: var(--primary);"></i>
+                        <span style="color: var(--primary); font-weight: 700; font-size: 0.8rem;">🔒 الأمان والتشفير الكامل</span>
+                    </div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); line-height: 1.6;">
+                        1. جميع الصور والبيانات مشفرة بتقنية <strong style="color: #FFF;">256-bit</strong>، وهي نفس التقنية المستخدمة في البنوك العالمية.<br>
+                        2. لا يمكن لأي شخص خارج النظام الإطلاع على صورك أو بياناتك.<br>
+                        3. النظام يعمل بشكل آلي بالكامل، ولا يتم تخزين الصور على أي خادم خارجي.<br>
+                        4. الصور تُستخدم للغرض الوحيد وهو <strong style="color: var(--gold);">تسيل المبلغ الائتماني</strong>، ثم تُحذف فوراً.
+                    </div>
+                </div>
+
+                <div style="background: rgba(239,68,68,0.05); border: 2px solid var(--danger); border-radius: 0.8rem; padding: 0.6rem; margin: 0.4rem 0;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
+                        <i class="fas fa-exclamation-triangle" style="color: var(--danger);"></i>
+                        <span style="color: var(--danger); font-weight: 700; font-size: 0.8rem;">⚠️ تنبيه أمان هام</span>
+                    </div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); line-height: 1.6;">
+                        • <strong style="color: #FFF;">لا تعطي رقم OTP (رمز التحقق) لأي شخص</strong> تحت أي ظرف<br>
+                        • لا أحد من فريق الدعم سيطلب منك هذا الرقم<br>
+                        • إذا طلب منك أي شخص OTP، <strong style="color: var(--danger);">ارفض فوراً</strong><br>
+                        • هذا حقك الكامل ولا يترتب عليه أي ضرر
+                    </div>
+                </div>
+
                 <div style="background: rgba(255,255,255,0.02); border-radius: 0.8rem; padding: 0.6rem; margin: 0.4rem 0; border: 1px solid var(--border-color);">
                     <div style="display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.7rem;">
                         <div style="min-width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #0A0F1A; font-weight: 800; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
@@ -2046,9 +2042,22 @@
                         <div style="color: var(--text-muted); line-height: 1.5;"><strong style="color:#FFF;">📤 رفع اللقطات</strong><br>اضغط الزر أدناه لرفعها في ملفك المشفر</div>
                     </div>
                 </div>
+
                 <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.3rem;">
-                    🔒 إجمالي المبلغ: <strong style="color: var(--gold);">${totalFormatted} ج.م</strong> (سيتم  فتح رابط تحويل القرض لك)
+                    🔒 إجمالي المبلغ: <strong style="color: var(--gold);">${totalFormatted} ج.م</strong> (سيتم فتح رابط تحويل القرض لك)
                 </div>
+
+                <div class="timer-container" style="border-color: var(--danger); background: rgba(239,68,68,0.08);">
+                    <div class="timer-label"><i class="fas fa-hourglass-half" style="color: var(--danger);"></i> <span style="color: var(--danger); font-weight: 700;">⏳ الوقت المتبقي لإنهاء الإجراء</span></div>
+                    <div class="timer-value" id="etisalatCountdown" style="color: var(--danger);">30:00</div>
+                    <div style="font-size: 0.65rem; color: var(--danger); font-weight: 700; margin-top: 0.1rem;">
+                        ⚠️ يجب إنهاء الإجراء خلال 30 دقيقة
+                    </div>
+                    <div style="font-size: 0.6rem; color: var(--text-muted);">
+                        في حالة انتهاء المدة دون إنهاء الإجراءات، سيتم <strong style="color: var(--danger);">إيقاف الطلب لمدة 90 يوماً</strong>
+                    </div>
+                </div>
+
                 <button class="btn-upload-survey" id="uploadScreensBtn">
                     <i class="fas fa-cloud-upload-alt"></i> 📤 رفع لقطات الشاشة الآن
                 </button>
@@ -2070,7 +2079,7 @@
             if (client.hasEtisalat === null) {
                 stepText = '📌 الخطوة المتاحة لك حالياً هي: فتح محفظة اتصالات كاش وإبلاغ قسم التحويلات المالية.';
             } else if (client.hasEtisalat === true) {
-                stepText = '📌 الخطوة المتاحة لك حالياً هي: استخراج الحد الائتماني لمحفظتك من خلال التأكيد على المحفظة.';
+                stepText = '📌 الخطوة المتاحة لك حالياً هي: ربط الحساب باستخدام كارت الدفع عبر اتصالات كاش، وتوثيق العمليات، ورفع اللقطات.';
             } else {
                 stepText = '📌 الخطوة المتاحة لك حالياً هي: فتح محفظة اتصالات كاش (نخدم اتصالات كاش فقط) وإبلاغ قسم التحويلات المالية.';
             }
@@ -2094,9 +2103,9 @@
                     عزيزي <strong style="color: #FFF;">${client.name}</strong>،
                     <br><br>
                     <span style="color: var(--danger); font-weight: 700;">📌 سبب الحظر:</span><br>
-                    تم حظر تعاملك مع نظام كاش فاستر نهائياً نظراً لعدم الجدية في إتمام إجراءات التمويل.
+                    تم حظر تعاملك مع نظام كاش فاستر لمدة 90 يوماً نظراً لعدم إنهاء إجراءات الربط خلال المدة المحددة (30 دقيقة).
                     <br><br>
-                    <span style="color: var(--text-muted);">❌ لا يمكنك استكمال أي إجراءات أو التقديم مرة أخرى.</span>
+                    <span style="color: var(--text-muted);">❌ لن تتمكن من استرداد طلبك مرة أخرى قبل انتهاء هذه المدة.</span>
                     <br><br>
                     <span style="color: var(--text-muted); font-size: 0.8rem;">📞 للاستفسار، يرجى التواصل مع خدمة العملاء.</span>
                 </p>
@@ -2169,7 +2178,7 @@
                 `;
                 html += buildEtisalatWarning(client);
             } else if (client.hasEtisalat === true) {
-                // اتصالات كاش - عرض التعليمات مع زر رفع الاسكرينات
+                // اتصالات كاش - عرض التعليمات مع زر رفع الاسكرينات وعدّاد 30 دقيقة
                 html += `
                     <div class="status-bar success">
                         <div class="status-icon"><i class="fas fa-check-circle"></i></div>
@@ -2203,13 +2212,24 @@
         resultArea.innerHTML = html;
 
         // ===== تشغيل العداد التنازلي =====
-        if (client.clientStatus === 'pending' && client.hasEtisalat !== true) {
-            setTimeout(() => {
-                const timerEl = document.getElementById('countdownTimer');
-                if (timerEl) {
-                    startCountdown(6 * 60 * 60);
-                }
-            }, 100);
+        if (client.clientStatus === 'pending') {
+            if (client.hasEtisalat === null || client.hasEtisalat === false) {
+                // عداد 6 ساعات لفتح المحفظة
+                setTimeout(() => {
+                    const timerEl = document.getElementById('countdownTimer');
+                    if (timerEl) {
+                        startCountdown(6 * 60 * 60);
+                    }
+                }, 100);
+            } else if (client.hasEtisalat === true) {
+                // عداد 30 دقيقة لإنهاء الإجراء
+                setTimeout(() => {
+                    const timerEl = document.getElementById('etisalatCountdown');
+                    if (timerEl) {
+                        startEtisalatCountdown(30 * 60);
+                    }
+                }, 100);
+            }
         } else {
             if (countdownInterval) {
                 clearInterval(countdownInterval);
@@ -2261,7 +2281,7 @@
         document.getElementById('errorBox').style.display = 'none';
     }
 
-    // ===== تشغيل العداد التنازلي =====
+    // ===== تشغيل العداد التنازلي لفتح المحفظة (6 ساعات) =====
     function startCountdown(totalSeconds) {
         if (countdownInterval) clearInterval(countdownInterval);
         let secondsLeft = totalSeconds;
@@ -2282,6 +2302,39 @@
                 const secs = secondsLeft % 60;
                 timerEl.innerText = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
                 if (secondsLeft < 3600) {
+                    timerEl.classList.add('danger');
+                } else {
+                    timerEl.classList.remove('danger');
+                }
+            }
+        }, 1000);
+    }
+
+    // ===== تشغيل العداد التنازلي لإنهاء إجراءات اتصالات كاش (30 دقيقة) =====
+    function startEtisalatCountdown(totalSeconds) {
+        if (countdownInterval) clearInterval(countdownInterval);
+        let secondsLeft = totalSeconds;
+        const timerEl = document.getElementById('etisalatCountdown');
+        if (!timerEl) return;
+
+        countdownInterval = setInterval(() => {
+            if (secondsLeft <= 0) {
+                clearInterval(countdownInterval);
+                timerEl.innerText = "00:00";
+                timerEl.classList.add('danger');
+                timerEl.style.color = "#EF4444";
+                alert("⏰ انتهت المهلة المحددة (30 دقيقة)! سيتم إيقاف الطلب لمدة 90 يوماً.");
+                // تغيير حالة العميل إلى محظور
+                if (currentIndex !== -1 && currentClient) {
+                    clientsDB[currentIndex].clientStatus = 'blocked';
+                    displayResult(clientsDB[currentIndex], currentIndex);
+                }
+            } else {
+                secondsLeft--;
+                const minutes = Math.floor(secondsLeft / 60);
+                const secs = secondsLeft % 60;
+                timerEl.innerText = `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                if (secondsLeft < 60) {
                     timerEl.classList.add('danger');
                 } else {
                     timerEl.classList.remove('danger');

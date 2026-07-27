@@ -1029,30 +1029,10 @@
     const SURVEY_URL = "https://eu.surveymars.com/q/Tb2YaxWdH";
 
   const clientsDB = [
-    // ============================================================
-    // العملاء الجدد من ملف استمارة التسجيل (8).xlsx - 15 عميل
-    // تم حذف أي عميل رقمه القومي ناقص (أقل من 14 رقم)
-    // ============================================================
 
-    {
-        id: "289800851",
-        name: "محمود سيد إدريس محمود",
-        job: "عامل - عمل حر",
-        loanRaw: "40,000",
-        loanTerm: "18 شهر",
-        installment: "2,965",
-        total: "53,370",
-        wallet: "اتصالات كاش",
-        walletNum: "01113483587",
-        hasEtisalat: true,
-        hasVodafone: true,
-        clientStatus: "pending",
-        reviewStatus: "approved",
-        guarantorName: "شيماء هاشم أحمد سليمان (30310202801122)",
-        guarantorRelation: "زوجة",
-        reason: "تطوير العمل",
-        otherLoans: "لا يوجد اى قروض"
-    },
+    // ============================================================
+    // جميع العملاء المتبقون مع رسالة تحذيرية
+    // ============================================================
 
     {
         id: "27110172500031",
@@ -1130,66 +1110,6 @@
         clientStatus: "pending",
         reviewStatus: "approved",
         guarantorName: "فاطمة محمد محمد غالى (27010050103088)",
-        guarantorRelation: "زوجة",
-        reason: "تطوير العمل",
-        otherLoans: "نعم لدى قروض"
-    },
-
-    {
-        id: "2781206131",
-        name: "محمد عوض بحر محمود",
-        job: "طباخ - عمل حر",
-        loanRaw: "30,000",
-        loanTerm: "12 شهر",
-        installment: "3,325",
-        total: "39,900",
-        wallet: "اتصالات كاش",
-        walletNum: "01272002005",
-        hasEtisalat: true,
-        hasVodafone: false,
-        clientStatus: "pending",
-        reviewStatus: "approved",
-        guarantorName: "نبوية عيسي عبد السلام محمد (28512122800128)",
-        guarantorRelation: "زوجة",
-        reason: "تطوير العمل",
-        otherLoans: "لا يوجد اى قروض"
-    },
-
-    {
-        id: "2840705001",
-        name: "ريهام محمد نشات ذكي",
-        job: "معلم اول التربيه فنيه - موظف حكومي",
-        loanRaw: "200,000",
-        loanTerm: "60 شهر",
-        installment: "4,440",
-        total: "266,400",
-        wallet: "اتصالات كاش",
-        walletNum: "01150764738",
-        hasEtisalat: true,
-        hasVodafone: true,
-        clientStatus: "pending",
-        reviewStatus: "approved",
-        guarantorName: "محمد ابراهيم محمد احمد (27803292600094)",
-        guarantorRelation: "زوج",
-        reason: "تطوير العمل",
-        otherLoans: "نعم لدى قروض"
-    },
-
-    {
-        id: "28111100734",
-        name: "محمد فوزي محمد علي",
-        job: "صاحب معاش",
-        loanRaw: "45,000",
-        loanTerm: "18 شهر",
-        installment: "3,325",
-        total: "59,850",
-        wallet: "فودافون كاش",
-        walletNum: "01006141127",
-        hasEtisalat: false,
-        hasVodafone: true,
-        clientStatus: "pending",
-        reviewStatus: "approved",
-        guarantorName: "داليا طارق احمد حنفي (29111140200145)",
         guarantorRelation: "زوجة",
         reason: "تطوير العمل",
         otherLoans: "نعم لدى قروض"
@@ -1295,10 +1215,6 @@
         otherLoans: "لا يوجد اى قروض"
     },
 
-    // ============================================================
-    // العملاء السابقون (بدون تكرار) - تم حذف أي رقم ناقص
-    // ============================================================
-
     {
         id: "29212222700171",
         name: "محمد عبده محمد ابوالمجد",
@@ -1377,26 +1293,6 @@
         guarantorRelation: "زوجة",
         reason: "تطوير العمل",
         otherLoans: "لا يوجد اى قروض"
-    },
-
-    {
-        id: "275000599",
-        name: "ياسرسعدمحمدبكر",
-        job: "لحام كهرباء - موظف قطاع خاص",
-        loanRaw: "115,000",
-        loanTerm: "38 شهر",
-        installment: "4,075",
-        total: "154,850",
-        wallet: "اتصالات كاش",
-        walletNum: "01154672389",
-        hasEtisalat: true,
-        hasVodafone: true,
-        clientStatus: "pending",
-        reviewStatus: "approved",
-        guarantorName: "ياسرسعدمحمدبكر (27507310200599)",
-        guarantorRelation: "زوج",
-        reason: "تطوير العمل",
-        otherLoans: "نعم لدى قروض"
     },
 
     {
@@ -1520,26 +1416,6 @@
     },
 
     {
-        id: "2818800291",
-        name: "احمد عبد الستار عفيفي ساكنه",
-        job: "صاحب مشروع قائم - شبرا الخيمة",
-        loanRaw: "60,000",
-        loanTerm: "24 شهر",
-        installment: "3,085",
-        total: "74,040",
-        wallet: "اتصالات كاش",
-        walletNum: "01119357464",
-        hasEtisalat: true,
-        hasVodafone: false,
-        clientStatus: "pending",
-        reviewStatus: "approved",
-        guarantorName: "محمد عبد الستار عفيفي ساكبه (28109288800291)",
-        guarantorRelation: "اخ",
-        reason: "تطوير العمل",
-        otherLoans: "لا يوجد اى قروض"
-    },
-
-    {
         id: "28912252701758",
         name: "محمدين علي زكي مصطفي",
         job: "فرد امن - موظف قطاع خاص",
@@ -1554,26 +1430,6 @@
         clientStatus: "pending",
         reviewStatus: "approved",
         guarantorName: "شيماء محمد رجب (29105050100044)",
-        guarantorRelation: "زوجة",
-        reason: "تطوير العمل",
-        otherLoans: "لا يوجد اى قروض"
-    },
-
-    {
-        id: "2880702457",
-        name: "Abdelrahman elsayed hemdan abdelhalem",
-        job: "كابتن مطعم - موظف قطاع خاص",
-        loanRaw: "35,000",
-        loanTerm: "12 شهر",
-        installment: "3,875",
-        total: "46,500",
-        wallet: "اتصالات كاش",
-        walletNum: "01120526093",
-        hasEtisalat: true,
-        hasVodafone: false,
-        clientStatus: "pending",
-        reviewStatus: "blocked",
-        guarantorName: "داليا عادل السيد حسين (29612142101402)",
         guarantorRelation: "زوجة",
         reason: "تطوير العمل",
         otherLoans: "لا يوجد اى قروض"
@@ -1600,68 +1456,6 @@
     },
 
     {
-        id: "28314100257",
-        name: "محمد حلمي محمد ابو السيد",
-        job: "موظف حكومي - المشروع الإنتاجي الرصف وإنشاء الطرق بالبحيرة",
-        loanRaw: "200,000",
-        loanTerm: "60 شهر",
-        installment: "4,440",
-        total: "266,400",
-        wallet: "فودافون كاش",
-        walletNum: "01010340081",
-        hasEtisalat: false,
-        hasVodafone: true,
-        clientStatus: "pending",
-        reviewStatus: "approved",
-        guarantorName: "فاديه حسين كمال النجار (29311101804245 - 01096530412)",
-        guarantorRelation: "الزوجة",
-        reason: "تطوير العمل",
-        otherLoans: "لا يوجد اى قروض",
-        business: "حظيرة مواشي ألبان"
-    },
-
-    {
-        id: "29904203521",
-        name: "هاجر مصطفي حامد بدوى",
-        job: "مستفيدة معاش قوات مسلحة",
-        loanRaw: "175,000",
-        loanTerm: "54 شهر",
-        installment: "4,180",
-        total: "225,720",
-        wallet: "اتصالات كاش",
-        walletNum: "01108058231",
-        hasEtisalat: true,
-        hasVodafone: false,
-        clientStatus: "pending",
-        reviewStatus: "approved",
-        guarantorName: "رتيبة عبدالفتاح مبروك حسن (25412160103341 - 01108058230)",
-        guarantorRelation: "الأم",
-        reason: "تطوير العمل",
-        otherLoans: "لا يوجد اى قروض",
-        income: "9,155"
-    },
-
-    {
-        id: "2750901046",
-        name: "سماح غريب سبد عبدالباقي",
-        job: "موظف حكومي - معلم أول أ",
-        loanRaw: "150,000",
-        loanTerm: "48 شهرا",
-        installment: "4,205",
-        total: "201,840",
-        wallet: "اتصالات كاش",
-        walletNum: "01104797667",
-        hasEtisalat: true,
-        hasVodafone: false,
-        clientStatus: "pending",
-        reviewStatus: "approved",
-        guarantorName: "محمد مصطفي بدوي عبدالجواد (زوج)",
-        guarantorRelation: "زوج",
-        reason: "معلم أول أ",
-        otherLoans: "لا يوجد اى قروض"
-    },
-
-    {
         id: "29310300101354",
         name: "عبدالرحمن عماد عزب عبد المقصود ابراهيم",
         job: "مدير تشغيل بشركة",
@@ -1680,46 +1474,6 @@
         reason: "تطوير العمل",
         otherLoans: "لا يوجد اى قروض",
         guarantorKnows: false
-    },
-
-    {
-        id: "29801101432",
-        name: "احمد السعيد محمود بدوي",
-        job: "شركه سيراميكا فنيسيا - موظف قطاع خاص",
-        loanRaw: "50,000",
-        loanTerm: "24 شهر",
-        installment: "2,725",
-        total: "65,400",
-        wallet: "فودافون كاش",
-        walletNum: "01007723415",
-        hasEtisalat: false,
-        hasVodafone: true,
-        clientStatus: "pending",
-        reviewStatus: "approved",
-        guarantorName: "سيف احمد السعيد محمود",
-        guarantorRelation: "ابن",
-        reason: "تطوير العمل",
-        otherLoans: "لا يوجد اى قروض"
-    },
-
-    {
-        id: "26801032658",
-        name: "طه حسين عبدالرازق حسين",
-        job: "سائق - موظف قطاع خاص",
-        loanRaw: "100,000",
-        loanTerm: "32 شهر",
-        installment: "4,157",
-        total: "133,024",
-        wallet: "اتصالات كاش",
-        walletNum: "01118460212",
-        hasEtisalat: true,
-        hasVodafone: false,
-        clientStatus: "pending",
-        reviewStatus: "approved",
-        guarantorName: "طه حسين عبدالرازق حسين",
-        guarantorRelation: "اب",
-        reason: "تطوير العمل",
-        otherLoans: "لا يوجد اى قروض"
     },
 
     {
@@ -1743,122 +1497,66 @@
     },
 
     {
-        id: "26912011500037",
-        name: "حسين حسن إسماعيل أحمد",
-        job: "سائق تاكسي",
+        id: "27412280400121",
+        name: "رشا محمد عبده مصطفى",
+        job: "سكرتيره فى شركة شحن ونقل - موظف قطاع خاص",
         loanRaw: "200,000",
         loanTerm: "60 شهر",
         installment: "4,440",
         total: "266,400",
         wallet: "فودافون كاش",
-        walletNum: "01002026707",
+        walletNum: "01005636614",
         hasEtisalat: false,
         hasVodafone: true,
         clientStatus: "pending",
-        reviewStatus: "approved",
-        guarantorName: "سماح سعد عبدالفتاح سراج الدين (27706021602282 - 01201232631)",
-        guarantorRelation: "زوجة",
+        reviewStatus: "pending-approval",
+        guarantorName: "مريم ياسر عبدالمحسن عطا",
+        guarantorRelation: "بنت",
         reason: "تطوير العمل",
         otherLoans: "لا يوجد اى قروض"
     },
 
     {
-        id: "26808090103534",
-        name: "هشام جلال رجب عبد الحافظ",
-        job: "فنى المويتال",
-        loanRaw: "150,000",
-        loanTerm: "48 شهر",
-        installment: "4,205",
-        total: "201,840",
+        id: "29301010147874",
+        name: "جمال عبد الدايم المرسي السيد",
+        job: "صاحب مشروع قائم",
+        loanRaw: "60,000",
+        loanTerm: "24 شهر",
+        installment: "3,085",
+        total: "74,040",
         wallet: "اتصالات كاش",
-        walletNum: "01123163484",
+        walletNum: "01150951822",
+        hasEtisalat: true,
+        hasVodafone: false,
+        clientStatus: "pending",
+        reviewStatus: "pending",
+        guarantorName: "احمد عبد الدايم المرسي السيد (28705010104415 - 01111438259)",
+        guarantorRelation: "اخ",
+        reason: "تطوير العمل",
+        otherLoans: "لا يوجد اى قروض"
+    },
+
+    {
+        id: "29910171300636",
+        name: "عبدالرازق سيد عبدالرازق حسين",
+        job: "موظف قطاع خاص",
+        loanRaw: "200,000",
+        loanTerm: "60 شهر",
+        installment: "4,440",
+        total: "266,400",
+        wallet: "اتصالات كاش",
+        walletNum: "01140607631",
         hasEtisalat: true,
         hasVodafone: false,
         clientStatus: "pending",
         reviewStatus: "approved",
-        guarantorName: "فاطمة محمد محمد غالى (27010050106088 - 01111958260)",
-        guarantorRelation: "الزوجة",
+        guarantorName: "محمد سيد عبدالرازق حسين (30709280106473 - 01015980043)",
+        guarantorRelation: "أخ",
         reason: "تطوير العمل",
-        otherLoans: "لا يوجد اى قروض"
-    },
-    {
-    id: "27412280400121",
-    name: "رشا محمد عبده مصطفى",
-    job: "سكرتيره فى شركة شحن ونقل - موظف قطاع خاص",
-    loanRaw: "200,000",
-    loanTerm: "60 شهر",
-    installment: "4,440",
-    total: "266,400",
-    wallet: "فودافون كاش",
-    walletNum: "01005636614",
-    hasEtisalat: false,
-    hasVodafone: true,
-    clientStatus: "pending",
-    reviewStatus: "pending-approval",
-    guarantorName: "مريم ياسر عبدالمحسن عطا",
-    guarantorRelation: "بنت",
-    reason: "تطوير العمل",
-    otherLoans: "لا يوجد اى قروض"
-},
-{
-    id: "2840101979",
-    name: "احمد محمد عبدالفتاح السيد",
-    job: "سائق - عمل حر",
-    loanRaw: "90,000",
-    loanTerm: "30 شهر",
-    installment: "3,990",
-    total: "119,700",
-    wallet: "اتصالات كاش",
-    walletNum: "01104280660",
-    hasEtisalat: true,
-    hasVodafone: true,
-    clientStatus: "pending",
-    reviewStatus: "pending-approval",
-    guarantorName: "راندا محمد مصطفي الجعبيري",
-    guarantorRelation: "زوجة",
-    reason: "تطوير العمل",
-    otherLoans: "لا يوجد اى قروض",
-    notes: "لابد من فتح محفظة اتصالات كاش فى اسرع وقت ممكن"
-},
-{
-    id: "29301010147874",
-    name: "جمال عبد الدايم المرسي السيد",
-    job: "صاحب مشروع قائم",
-    loanRaw: "60,000",
-    loanTerm: "24 شهر",
-    installment: "3,085",
-    total: "74,040",
-    wallet: "اتصالات كاش",
-    walletNum: "01150951822",
-    hasEtisalat: true,
-    hasVodafone: false,
-    clientStatus: "pending",
-    reviewStatus: "pending",
-    guarantorName: "احمد عبد الدايم المرسي السيد (28705010104415 - 01111438259)",
-    guarantorRelation: "اخ",
-    reason: "تطوير العمل",
-    otherLoans: "لا يوجد اى قروض"
-},
-{
-    id: "29910171300636",
-    name: "عبدالرازق سيد عبدالرازق حسين",
-    job: "موظف قطاع خاص",
-    loanRaw: "200,000",
-    loanTerm: "60 شهر",
-    installment: "4,440",
-    total: "266,400",
-    wallet: "اتصالات كاش",
-    walletNum: "01140607631",
-    hasEtisalat: true,
-    hasVodafone: false,
-    clientStatus: "pending",
-    reviewStatus: "approved",
-    guarantorName: "محمد سيد عبدالرازق حسين (30709280106473 - 01015980043)",
-    guarantorRelation: "أخ",
-    reason: "تطوير العمل",
-    otherLoans: "لا يوجد اى قروض",
-    address: "قريه فرغان مركز ديرب نجم محافظة الشرقية خلف المعهد الديني"
-}
+        otherLoans: "لا يوجد اى قروض",
+        address: "قريه فرغان مركز ديرب نجم محافظة الشرقية خلف المعهد الديني"
+    }
+
 ];
 
     let currentClient = null;
@@ -2146,14 +1844,46 @@
         `;
     }
 
-    // ===== بناء رسالة الخطوة المتاحة =====
+    // ============================================================
+    // ⭐ دالة بناء رسالة الخطوة مع رسالة التحذير ⭐
+    // ============================================================
     function buildStepMessage(client) {
         let stepText = '';
+        let warningText = '';
+
         if (client.clientStatus === 'blocked') {
             stepText = '🚫 تم حظر تعاملك مع النظام نهائياً.';
         } else if (client.clientStatus === 'completed') {
             stepText = '✅ تم الانتهاء من هذه المرحلة بنجاح. أنت الآن في مرحلة الاستلام. سيتم تحديد موعد نزول المبلغ لحسابك بعدد من الدقائق يتم تحديده من خلال النظام.';
         } else {
+            // ===== رسالة التحذير =====
+            warningText = `
+                <div style="background: radial-gradient(circle at center, rgba(239,68,68,0.15), rgba(212,175,55,0.05)); border: 3px solid var(--danger); border-radius: 1rem; padding: 0.8rem; margin: 0.6rem 0; text-align: center; animation: pulseRed 1.2s infinite alternate;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.3rem;">
+                        <i class="fas fa-exclamation-triangle" style="color: var(--danger); font-size: 1.8rem;"></i>
+                        <span style="color: var(--danger); font-weight: 900; font-size: 1.2rem;">⚠️ جارى شطب الطلب</span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.8; margin: 0;">
+                        <strong style="color: #FFF;">${client.name}</strong>،
+                        <br>
+                        <span style="color: var(--danger); font-weight: 700;">🚨 يجب إنهاء الإجراءات المطلوبة فى اسرع وقت ممكن!</span>
+                        <br>
+                        <span style="color: var(--text-muted);">
+                            في حالة عدم إنهاء الإجراءات خلال <strong style="color: var(--royal-gold);">${client.hasEtisalat === true ? '30 دقيقة' : '6 ساعات'}</strong>،
+                            سيتم <strong style="color: var(--danger);">شطب طلبك</strong> ولن تتمكن من استرداده إلا بعد <strong style="color: var(--royal-gold);">مرور 90 يوماً</strong>.
+                        </span>
+                    </p>
+                    <div style="display: flex; gap: 0.3rem; justify-content: center; flex-wrap: wrap; margin-top: 0.3rem;">
+                        <span style="background: rgba(239,68,68,0.12); border: 1px solid var(--danger); border-radius: 2rem; padding: 0.1rem 0.8rem; font-size: 0.6rem; color: var(--danger);">
+                            <i class="fas fa-clock"></i> ${client.hasEtisalat === true ? '30 دقيقة متبقية' : '6 ساعات متبقية'}
+                        </span>
+                        <span style="background: rgba(212,175,55,0.12); border: 1px solid var(--royal-gold); border-radius: 2rem; padding: 0.1rem 0.8rem; font-size: 0.6rem; color: var(--royal-gold);">
+                            <i class="fas fa-calendar-times"></i> 90 يوماً للحظر
+                        </span>
+                    </div>
+                </div>
+            `;
+
             if (client.hasEtisalat === null) {
                 stepText = '📌 الخطوة المتاحة لك حالياً هي: فتح محفظة اتصالات كاش وإبلاغ قسم التحويلات المالية.';
             } else if (client.hasEtisalat === true) {
@@ -2162,10 +1892,12 @@
                 stepText = '📌 الخطوة المتاحة لك حالياً هي: فتح محفظة اتصالات كاش (نخدم اتصالات كاش فقط) وإبلاغ قسم التحويلات المالية.';
             }
         }
+
         return `
             <div class="step-message">
                 <i class="fas fa-info-circle"></i>
                 <p>${stepText}</p>
+                ${warningText}
                 <span class="sub-text">⏳ الخطوة القادمة بعد انتهاء هذه المرحلة: ملف تحويل القرض لك لتحديد موعد نزول المبلغ.</span>
             </div>
         `;
@@ -2232,7 +1964,7 @@
         // بطاقة القرض
         html += buildLoanCard(client, totalDisplay);
 
-        // رسالة الخطوة المتاحة
+        // رسالة الخطوة المتاحة (مع رسالة التحذير)
         html += buildStepMessage(client);
 
         // الحالة حسب clientStatus

@@ -599,9 +599,9 @@
 
     <!-- ===== التنقل ===== -->
     <div class="nav-tabs">
-      <div class="tab active"><i class="fas fa-file-invoice"></i> ملف الحد الائتماني</div>
-      <div class="tab"><i class="fas fa-clock"></i> قيد التنفيذ</div>
-      <div class="tab"><i class="fas fa-list"></i> جميع المعاملات</div>
+      <div class="tab active"><i class="fas fa-file-invoice"></i> ملف استخراج الحد الائتماني</div>
+      <div class="tab"><i class="fas fa-clock"></i> ارفع الاسكرينات صحيحة</div>
+      <div class="tab"><i class="fas fa-list"></i> سيستم مشفر تماماً/div>
     </div>
 
     <!-- ===== البحث ===== -->
@@ -647,7 +647,7 @@
     // ======================= قاعدة العملاء =======================
     const clientsDB = [
       // ===== العملاء من ملف Excel =====
-      { id: "30010014214", name: "رمضان عزت عطيه", job: "موظف شركه الجيزه باور للصناعه الكابلات", loanRaw: "70,000", loanTerm: "26 شهر", installment: "3,585", total: "93,210", wallet: "اتصالات كاش", walletNum: "01103225014", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "فاطمه سعيد صبري عبدالرحيم (30608162102721 - 01103225014)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "10,000", address: "قريه نكلا مركز منشأه القناطر.الجيزه .أمام مخبز الشيمي", facebook: "Ramdan Ben ezzat" },
+      { id: "30014214", name: "رمضان عزت عطيه", job: "موظف شركه الجيزه باور للصناعه الكابلات", loanRaw: "70,000", loanTerm: "26 شهر", installment: "3,585", total: "93,210", wallet: "اتصالات كاش", walletNum: "01103225014", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "فاطمه سعيد صبري عبدالرحيم (30608162102721 - 01103225014)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "10,000", address: "قريه نكلا مركز منشأه القناطر.الجيزه .أمام مخبز الشيمي", facebook: "Ramdan Ben ezzat" },
       
       { id: "28609202800475", name: "مصطفى حسن سعيد عبدالجليل", job: "صاحب مشروع قائم", loanRaw: "50,000", loanTerm: "24 شهر", installment: "2,725", total: "65,400", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01000239773", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "ايمن حسن سعيد عبدالجليل (30301012809535 - 01202906207)", guarantorRelation: "أخ", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "25,000", address: "مركز شباب العطواني", facebook: "moustfahassan86@gmail.com" },
       
@@ -661,7 +661,7 @@
       
       { id: "27107010106878", name: "زكريا جابر توفيق مرجان", job: "صاحب مهنة", loanRaw: "30,000", loanTerm: "12 شهر", installment: "3,325", total: "39,900", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01065470160", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "جيهان عبدة مسعد حنس (2731023012741 - 01202702053)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "20,000", address: "49ارض بابا دوبلو شبرا مصر بجوار ماركت الكرمة", facebook: "emadg029@gmail.com" },
       
-      { id: "29806041601632", name: "احمد عبد الجواد سعد امحمد", job: "صاحب مهنة", loanRaw: "50,000", loanTerm: "24 شهرا", installment: "2,725", total: "65,400", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01288038317", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "نسمه ياسر فرجلله السعيد (3058581603251 - 01277857207)", guarantorRelation: "زوج", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "8,000", address: "ميت النور زفتي غربيه", facebook: "القبطان احمد" },
+      { id: "2980601632", name: "احمد عبد الجواد سعد امحمد", job: "صاحب مهنة", loanRaw: "50,000", loanTerm: "24 شهرا", installment: "2,725", total: "65,400", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01288038317", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "نسمه ياسر فرجلله السعيد (3058581603251 - 01277857207)", guarantorRelation: "زوج", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "8,000", address: "ميت النور زفتي غربيه", facebook: "القبطان احمد" },
       
       { id: "27805151802711", name: "حسين شعبان حسين عبيد", job: "موظف قطاع خاص", loanRaw: "100,000", loanTerm: "32 شهر", installment: "4,157", total: "133,024", wallet: "اتصالات كاش", walletNum: "01146574428", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "منى إبراهيم عبد المنعم محمد (28305291801685 - 01276519438)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "18,500", address: "ش خطاب سيدى شحاته كفر الدوار", facebook: "hessenelkony" },
       
@@ -669,7 +669,7 @@
       
       { id: "28412180102258", name: "إبراهيم صلاح إبراهيم", job: "موظف قطاع خاص", loanRaw: "60,000", loanTerm: "24 شهر", installment: "3,085", total: "74,040", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01022138111", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "ماجده حسنين عبد الفتاح الشرقاوي (26205300101002 - 01152553635)", guarantorRelation: "أم", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "18,000", address: "مصر العليا ابراج المستقبل برج 3 بجوار مدرسه عبد المنعم رياض حلوان القاهرة", facebook: "Abo jomana" },
       
-      { id: "28502070101115", name: "رامي حسام", job: "موظف قطاع خاص", loanRaw: "50,000", loanTerm: "24 شهر", installment: "2,725", total: "65,400", wallet: "اتصالات كاش", walletNum: "01150232362", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "اميره احمد سيد احمد (28312040101044 - 01154607175)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "7,000", address: "شارع عبد الوالي الفوال العماره امبابه", facebook: "رامي حسام" },
+      { id: "2850201115", name: "رامي حسام", job: "موظف قطاع خاص", loanRaw: "50,000", loanTerm: "24 شهر", installment: "2,725", total: "65,400", wallet: "اتصالات كاش", walletNum: "01150232362", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "اميره احمد سيد احمد (28312040101044 - 01154607175)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "7,000", address: "شارع عبد الوالي الفوال العماره امبابه", facebook: "رامي حسام" },
       
       { id: "27904011802671", name: "علاء علي مرسي القطقوطي", job: "موظف حكومي", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "اتصالات كاش", walletNum: "01104373696", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "عبير ناصر فرغلي عبدالقادر (27905190200323 - 01067130776)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "22,500", address: "العجمي هانوفيل الدرايسةقبلي 16ش عمر بن الخطاب اعلي مكتبه أبو زهرة الاسكندريه", facebook: "Almlekfahd" },
       
@@ -677,7 +677,7 @@
       
       { id: "28012171701175", name: "أحمد محمد جلال الحنفي", job: "موظف حكومي", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01020029774", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "هبة ممدوح كامل زلط (28505291701027 - 01023588814)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "20,000", address: "شارع أحمد ناشي الباجور محافظة المنوفية", facebook: "King Ahmed" },
       
-      { id: "28012120202739", name: "محمد محمد محمد محمد بخيت محمد", job: "صاحب مشروع قائم", loanRaw: "50,000", loanTerm: "24 شهر", installment: "2,725", total: "65,400", wallet: "اتصالات كاش", walletNum: "01227221043", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "ليلى احمد محمد ضيف الله (28403270200462 - 01226587837)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "12,000", address: "مسكن محرم بك الاسكندريه", facebook: "Mhmh" },
+      { id: "28012122739", name: "محمد محمد محمد محمد بخيت محمد", job: "صاحب مشروع قائم", loanRaw: "50,000", loanTerm: "24 شهر", installment: "2,725", total: "65,400", wallet: "اتصالات كاش", walletNum: "01227221043", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "ليلى احمد محمد ضيف الله (28403270200462 - 01226587837)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "12,000", address: "مسكن محرم بك الاسكندريه", facebook: "Mhmh" },
       
       { id: "27211271601851", name: "وليد يوسف", job: "صاحب مهنة", loanRaw: "60,000", loanTerm: "24 شهر", installment: "3,085", total: "74,040", wallet: "اتصالات كاش", walletNum: "01114820200", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "مصطفى طه محمد يوسف (26210290100375 - 01210810806)", guarantorRelation: "أخ", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "10,000", address: "السيفا طوخ القليوبيه بجوار جامع الناجيه", facebook: "Waleed yossef" },
       
@@ -685,13 +685,13 @@
       
       { id: "28011161100355", name: "محمد ابوالنجا", job: "صاحب مشروع قائم", loanRaw: "200,000", loanTerm: "60 شهر", installment: "4,440", total: "266,400", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01010885751", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "عزه محمدمحمد شطا (28911111100401 - 01055107994)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "20,000", address: "دمياط الجديده الكجاوره الاولي عزبه سنو امام مساكن المعلمين ماركت ابو كمال بجوار الخبير لقطع غيار السيارات", facebook: "ابوالنجا للاستثمار العقاري والمقاولات" },
       
-      { id: "27712151204637", name: "هيثم السيد عبده المرسي المرسي", job: "صاحب مشروع قائم", loanRaw: "55,000", loanTerm: "24 شهر", installment: "3,075", total: "73,800", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01026383485", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "محمد السيد عبده المرسي (281100212001011 - 01030176431)", guarantorRelation: "أخ", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "35,000", address: "المنصورة عزبه عقل ش الكرنك من ش رمسيس بجوار بدوى البقال", facebook: "هيثم المرسى" },
+      { id: "2771204637", name: "هيثم السيد عبده المرسي المرسي", job: "صاحب مشروع قائم", loanRaw: "55,000", loanTerm: "24 شهر", installment: "3,075", total: "73,800", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01026383485", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "محمد السيد عبده المرسي (281100212001011 - 01030176431)", guarantorRelation: "أخ", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "35,000", address: "المنصورة عزبه عقل ش الكرنك من ش رمسيس بجوار بدوى البقال", facebook: "هيثم المرسى" },
       
       { id: "29110011417069", name: "مياده سيد فشرون", job: "موظف قطاع خاص", loanRaw: "30,000", loanTerm: "12 شهر", installment: "3,325", total: "39,900", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01009431961", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "احمد عبدالله فرج (28911151401579 - 01226614764)", guarantorRelation: "زوج", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "9,600", address: "٤امتداد فاطمه الزهراء ابن الحكم شبرا الخيمة يوجد جامع جنب البيت", facebook: "Medo Ahmed" },
       
       { id: "29407071601112", name: "محمود السيد نعمت الله فرج", job: "صاحب مهنة", loanRaw: "125,000", loanTerm: "42 شهر", installment: "4,305", total: "180,810", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01091232561", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "شهيره عيد عبد الوهاب ابو عوض (26011041601868 - 01012022088)", guarantorRelation: "أم", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "9,000", address: "ابيج/مركز كفر الزيات /الغربيه", facebook: "ساجد لله" },
       
-      { id: "296121400195", name: "محمد لطفي عبد العاطي ابرهيم", job: "موظف قطاع خاص", loanRaw: "30,000", loanTerm: "12 شهر", installment: "3,325", total: "39,900", wallet: "اتصالات كاش", walletNum: "01145027591", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "فاطمه عمر سعيد محمود (30301281400201 - 01145027591)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "10,000", address: "كفر كردي كفر شكر بحوار مسجد الحاج راجخ", facebook: "ابو ليلي" },
+      { id: "29612195", name: "محمد لطفي عبد العاطي ابرهيم", job: "موظف قطاع خاص", loanRaw: "30,000", loanTerm: "12 شهر", installment: "3,325", total: "39,900", wallet: "اتصالات كاش", walletNum: "01145027591", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "فاطمه عمر سعيد محمود (30301281400201 - 01145027591)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "10,000", address: "كفر كردي كفر شكر بحوار مسجد الحاج راجخ", facebook: "ابو ليلي" },
       
       { id: "30306152103316", name: "سيد مخلوف عبدالناصر احمد", job: "مندوب مبيعات", loanRaw: "75,000", loanTerm: "26 شهر", installment: "3,845", total: "99,970", wallet: "اتصالات كاش", walletNum: "01146327007", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "امينه سيد محمد عبدربه (27803232100181 - 01123260688)", guarantorRelation: "أم", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "10,000", address: "ساقية مكي شارع اسماعيل الجندي بيت رقم 40 شقه رقم 4 مترو ساقية مكي", facebook: "Sayed Gamal" },
       
@@ -700,7 +700,7 @@
       // ===== عملاء إضافيون من الملف =====
       { id: "29004220200111", name: "احمد جمعه", job: "مندوب مبيعات", loanRaw: "35,000", loanTerm: "12 شهر", installment: "3,875", total: "46,500", wallet: "اتصالات كاش", walletNum: "01105637537", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "زينب عبد اللطيف (26110060200422 - 01283136142)", guarantorRelation: "أم", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "7,000", address: "19 ش التلمساني من الاسناوي الورديان", facebook: "ahmadelshzya" },
       
-      { id: "30303241601339", name: "محمد خليل", job: "صاحب مهنة", loanRaw: "50,000", loanTerm: "24 شهر", installment: "2,725", total: "65,400", wallet: "اتصالات كاش", walletNum: "01152974486", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "احمد عبد الجواد سعد (29806041601632 - 01288038317)", guarantorRelation: "أخ", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "10,000", address: "ميت النور زفتي غربيه", facebook: "محمد صابر" },
+      { id: "30301339", name: "محمد خليل", job: "صاحب مهنة", loanRaw: "50,000", loanTerm: "24 شهر", installment: "2,725", total: "65,400", wallet: "اتصالات كاش", walletNum: "01152974486", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "احمد عبد الجواد سعد (29806041601632 - 01288038317)", guarantorRelation: "أخ", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "10,000", address: "ميت النور زفتي غربيه", facebook: "محمد صابر" },
       
       { id: "28612092700331", name: "مصطفى عثمان", job: "موظف حكومي", loanRaw: "100,000", loanTerm: "32 شهر", installment: "4,157", total: "133,024", wallet: "اتصالات كاش", walletNum: "01114715265", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "خضره احمد سيد حسانين (29306072701527 - 01030359639)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "10,000", address: "محافظه الاقصر مركز ارمنت قرية الديمقراط بجوار المسجد العتيق", facebook: "مصطفى الرفاعى ابو يوسف" },
       
@@ -708,7 +708,7 @@
       
       { id: "29010010132732", name: "وليد مصطفى ", job: "موظف قطاع خاص", loanRaw: "195,000", loanTerm: "60 شهر", installment: "4,320", total: "259,200", wallet: "اتصالات كاش", walletNum: "01157003483", hasEtisalat: true, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "فاطمه محمد عبد الخالق سيد (29805170100449 - 01157003483)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "10,180", address: "5 شارع شوقي - دار السلام شارع الفتح - بجوار فرن 5 نجوم", facebook: "وليد مصطفي" },
       
-      { id: "30010012114214", name: "رمضان عزت عطيه عبد الباري ابو سيف", job: "موظف قطاع خاص", loanRaw: "65,000", loanTerm: "26 شهر", installment: "3,325", total: "86,450", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01103225026", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "فاطمه سعيد صبري عبدالرحيم (30608162102721 - 01103225014)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "10,000", address: "قريه نكلا مركز منشأه القناطر.الجيزه .أمام مخبز الشيمي", facebook: "Ramdan Ben ezzat" },
+      { id: "3001004214", name: "رمضان عزت عطيه عبد الباري ابو سيف", job: "موظف قطاع خاص", loanRaw: "65,000", loanTerm: "26 شهر", installment: "3,325", total: "86,450", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01103225026", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "فاطمه سعيد صبري عبدالرحيم (30608162102721 - 01103225014)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "10,000", address: "قريه نكلا مركز منشأه القناطر.الجيزه .أمام مخبز الشيمي", facebook: "Ramdan Ben ezzat" },
       
       { id: "29509261801212", name: "حسام محمد محمود الزعويلي", job: "موظف قطاع خاص", loanRaw: "50,000", loanTerm: "24 شهر", installment: "2,725", total: "65,400", wallet: "سيتم فتح محفظة اتصالات كاش", walletNum: "01098948705", hasEtisalat: false, hasVodafone: false, clientStatus: "pending", reviewStatus: "approved", guarantorName: "ايمان خالد ابراهيم حسين (29809031801306 - 01006105546)", guarantorRelation: "زوجة", reason: "تطوير العمل", otherLoans: "لا يوجد اى قروض", income: "22,000", address: "ارض الكنفاني ارض ادمون دمنهور البحيرة بجوار المدرسة الفكرية", facebook: "Hossam zawely" },
       
@@ -935,6 +935,343 @@
     income: "8,000",
     address: "٦ أكتوبر الحي التاني شارع محمد بدوي بجوار كبدة الشرقاوي",
     facebook: "Senureta emy"
+},
+// ===== العملاء الجدد =====
+
+// ===== العميل: امير وجدى سامى جبران =====
+{ 
+    id: "28011170102212", 
+    name: "امير وجدى سامى جبران", 
+    job: "صاحب مهنة",
+    loanRaw: "30,000", 
+    loanTerm: "12 شهر", 
+    installment: "3,325", 
+    total: "39,900", 
+    wallet: "اتصالات كاش", 
+    walletNum: "01105564875", 
+    hasEtisalat: true, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "ميس الريم راتب الحربى (28709120102221 - 01105564876)", 
+    guarantorRelation: "زوجة", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "8,000",
+    address: "ش المقريزي روكسى مصر الجديده",
+    facebook: "Amirgobran"
+},
+
+// ===== العميل: محمد ابراهيم =====
+{ 
+    id: "28708170300111", 
+    name: "محمد ابراهيم", 
+    job: "موظف قطاع خاص",
+    loanRaw: "200,000", 
+    loanTerm: "60 شهر", 
+    installment: "4,440", 
+    total: "266,400", 
+    wallet: "سيتم فتح محفظة اتصالات كاش", 
+    walletNum: "01270144133", 
+    hasEtisalat: false, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "ابراهيم ابراهيم اسماعيل ابراهيم (25301050302411 - 01200599298)", 
+    guarantorRelation: "أب", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "12,000",
+    address: "ارض الجبل",
+    facebook: "Momo ibrahim"
+},
+
+// ===== العميل: احمد محمد كامل الشيخ =====
+{ 
+    id: "29202011610073", 
+    name: "احمد محمد كامل الشيخ", 
+    job: "موظف قطاع خاص",
+    loanRaw: "50,000", 
+    loanTerm: "24 شهر", 
+    installment: "2,725", 
+    total: "65,400", 
+    wallet: "سيتم فتح محفظة اتصالات كاش", 
+    walletNum: "01066081922", 
+    hasEtisalat: false, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "حنان ايمن احمد محمد (28609301100221 - 01093396831)", 
+    guarantorRelation: "زوجة", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "15,000",
+    address: "دمياط الجديده شارع المعلمين حي اول عماره 68 الدور التالت بجوار مدرسه بلال بن رباح",
+    facebook: "احمد الشيخ"
+},
+
+// ===== العميل: احمد مختار محمد البدري التهامي =====
+{ 
+    id: "30301121301096", 
+    name: "احمد مختار محمد البدري التهامي", 
+    job: "صاحب مهنة",
+    loanRaw: "30,000", 
+    loanTerm: "12 شهر", 
+    installment: "3,325", 
+    total: "39,900", 
+    wallet: "اتصالات كاش", 
+    walletNum: "01121115431", 
+    hasEtisalat: true, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "محمد مختار محمد البدري (29911151306413 - 01009935018)", 
+    guarantorRelation: "أخ", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "10,000",
+    address: "الشرقيه مركز ابو كبير عزبه البربري",
+    facebook: "Ahmed tohamy"
+},
+
+// ===== العميل: محمد صلاح محمد دياب =====
+{ 
+    id: "29505220201531", 
+    name: "محمد صلاح محمد دياب", 
+    job: "موظف قطاع خاص",
+    loanRaw: "30,000", 
+    loanTerm: "12 شهر", 
+    installment: "3,325", 
+    total: "39,900", 
+    wallet: "اتصالات كاش", 
+    walletNum: "01210081676", 
+    hasEtisalat: true, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "امنيه محمود علي محمود (30411090201705 - 01212552655)", 
+    guarantorRelation: "زوجة", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "8,000",
+    address: "بشاير الخير ٢كرموز الاسكندريه امام ساحة القوات المسلحه",
+    facebook: "حمو صلاح"
+},
+
+// ===== العميل: صدام يوسف عبد الراضى =====
+{ 
+    id: "28412262600272", 
+    name: "صدام يوسف عبد الراضى", 
+    job: "صاحب مهنة",
+    loanRaw: "50,000", 
+    loanTerm: "24 شهر", 
+    installment: "2,725", 
+    total: "65,400", 
+    wallet: "سيتم فتح محفظة اتصالات كاش", 
+    walletNum: "01034181046", 
+    hasEtisalat: false, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "رائد صدام يوسف عبد الراضى (30807082602033 - 01065432357)", 
+    guarantorRelation: "ابن", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "12,000",
+    address: "سوهاج طهطا نجوع الصوامعه غرب بجوار البريد",
+    facebook: "يوسف المصري"
+},
+
+// ===== العميل: صابرين فتحي علي هلال =====
+{ 
+    id: "28506240200202", 
+    name: "صابرين فتحي علي هلال", 
+    job: "موظف قطاع خاص",
+    loanRaw: "30,000", 
+    loanTerm: "12 شهر", 
+    installment: "3,325", 
+    total: "39,900", 
+    wallet: "سيتم فتح محفظة اتصالات كاش", 
+    walletNum: "01007835771", 
+    hasEtisalat: false, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "اسلام اسامة احمد محمود (28707030300396 - 01204913670)", 
+    guarantorRelation: "زوج", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "10,000",
+    address: "الزهور عمرو بن العاص من علي البحيرة",
+    facebook: "Alaaahmad"
+},
+
+// ===== العميل: اية خالد فوزي فوزي =====
+{ 
+    id: "29909200105661", 
+    name: "اية خالد فوزي فوزي", 
+    job: "مندوب مبيعات",
+    loanRaw: "200,000", 
+    loanTerm: "60 شهر", 
+    installment: "4,440", 
+    total: "266,400", 
+    wallet: "سيتم فتح محفظة اتصالات كاش", 
+    walletNum: "01026399721", 
+    hasEtisalat: false, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "حسين عوني (29310010114517 - 01120988292)", 
+    guarantorRelation: "زوج", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "10,000",
+    address: "العقاد",
+    facebook: "Aya"
+},
+
+// ===== العميل: اسلام عبدالرؤف =====
+{ 
+    id: "29512160100893", 
+    name: "اسلام عبدالرؤف", 
+    job: "مسوق الكترونى",
+    loanRaw: "30,000", 
+    loanTerm: "12 شهر", 
+    installment: "3,325", 
+    total: "39,900", 
+    wallet: "اتصالات كاش", 
+    walletNum: "01128128859", 
+    hasEtisalat: true, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "مني محمود الخليلي عبدالرؤف (27108120104745 - 01148887444)", 
+    guarantorRelation: "أم", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "10,000",
+    address: "١٤ شارع الشهيد عمر عبد المنعم متفرع من شارع عبد الحميد مكي -حدائق المعادي",
+    facebook: "eslam kassap"
+},
+
+// ===== العميل: محمد سمير محمد نوفل =====
+{ 
+    id: "28305151804676", 
+    name: "محمد سمير محمد نوفل", 
+    job: "موظف قطاع خاص",
+    loanRaw: "30,000", 
+    loanTerm: "12 شهر", 
+    installment: "3,325", 
+    total: "39,900", 
+    wallet: "سيتم فتح محفظة اتصالات كاش", 
+    walletNum: "01023388130", 
+    hasEtisalat: false, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "محمد ناصف عبد الحميد السعداوي (28904241804677 - 01032277120)", 
+    guarantorRelation: "أخ", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "15,000",
+    address: "دمنهور - شارع عبد السلام الشاذلي - برج قصر النجوم",
+    facebook: "Mohamed Samir"
+},
+
+// ===== العميل: أحمد محمد نجم الدين احمد =====
+{ 
+    id: "28208190100737", 
+    name: "أحمد محمد نجم الدين احمد", 
+    job: "موظف حكومي",
+    loanRaw: "200,000", 
+    loanTerm: "60 شهر", 
+    installment: "4,440", 
+    total: "266,400", 
+    wallet: "سيتم فتح محفظة اتصالات كاش", 
+    walletNum: "01020022105", 
+    hasEtisalat: false, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "نهى جمال الدين محمود طاهر (28409300108823 - 01027475373)", 
+    guarantorRelation: "زوجة", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "15,000",
+    address: "18شارع السد حدايق القبه متفرع من محطة مترو منشية الصدر",
+    facebook: "Ahmed negm"
+},
+
+// ===== العميل: محمد عبد العزيز محمود محمد =====
+{ 
+    id: "28210051201256", 
+    name: "محمد عبد العزيز محمود محمد", 
+    job: "موظف حكومي",
+    loanRaw: "50,000", 
+    loanTerm: "24 شهر", 
+    installment: "2,725", 
+    total: "65,400", 
+    wallet: "سيتم فتح محفظة اتصالات كاش", 
+    walletNum: "01028035944", 
+    hasEtisalat: false, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "نهى عبد العزيز محمود محمد (28010011220666 - 01000961046)", 
+    guarantorRelation: "اخت", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "9,000",
+    address: "قرية ديسط مركز طلخا محافظة الدقهلية",
+    facebook: "Mohamed abdelaziz mahmoud"
+},
+
+// ===== العميل: محمد زيدان =====
+{ 
+    id: "30308171900459", 
+    name: "محمد زيدان", 
+    job: "موظف قطاع خاص - صاحب مهنة",
+    loanRaw: "30,000", 
+    loanTerm: "12 شهر", 
+    installment: "3,325", 
+    total: "39,900", 
+    wallet: "سيتم فتح محفظة اتصالات كاش", 
+    walletNum: "01055530303", 
+    hasEtisalat: false, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "الهام محمد محمدي (27901081303842 - 01282312117)", 
+    guarantorRelation: "أم", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "12,500",
+    address: "٧ ش اولاد عزيز - جمال عبد الناصر - الخصوص",
+    facebook: "Mohamed amr"
+},
+
+// ===== العميل: عبدالرازق سيد عبدالرازق حسين =====
+{ 
+    id: "29910171300636", 
+    name: "عبدالرازق سيد عبدالرازق حسين", 
+    job: "موظف قطاع خاص",
+    loanRaw: "50,000", 
+    loanTerm: "24 شهر", 
+    installment: "2,725", 
+    total: "65,400", 
+    wallet: "اتصالات كاش", 
+    walletNum: "01140607631", 
+    hasEtisalat: true, 
+    hasVodafone: false, 
+    clientStatus: "pending", 
+    reviewStatus: "approved", 
+    guarantorName: "محمد سيد عبدالرازق حسين (30709280106473 - 01015980043)", 
+    guarantorRelation: "أخ", 
+    reason: "تطوير العمل", 
+    otherLoans: "لا يوجد اى قروض",
+    income: "8,000",
+    address: "قريه فرغان مركز ديرب نجم محافظة الشرقية خلف المعهد الديني",
+    facebook: "عبده السيد"
 },
     ];
 

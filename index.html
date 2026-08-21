@@ -550,18 +550,18 @@
     .btn-upload-survey:hover { transform: scale(1.02); box-shadow: 0 0 50px rgba(124,58,237,0.5); }
     .btn-upload-survey i { font-size: 1.4rem; }
 
-    .btn-messenger {
+    .btn-whatsapp {
       width: 100%; padding: 0.8rem; border: none; border-radius: 3rem;
-      background: linear-gradient(135deg, #1877F2, #0D65D9);
+      background: linear-gradient(135deg, #25D366, #128C7E);
       color: white; font-weight: 800; font-size: 0.9rem;
       display: flex; align-items: center; justify-content: center; gap: 0.6rem;
       cursor: pointer; transition: 0.25s;
-      box-shadow: 0 6px 24px rgba(24,119,242,0.25);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.25);
       margin-top: 0.5rem; position: relative; z-index: 1;
     }
-    .btn-messenger:hover { transform: scale(1.02); box-shadow: 0 0 40px rgba(24,119,242,0.4); }
-    .btn-messenger.gold-btn { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); box-shadow: 0 6px 24px rgba(212,175,55,0.25); }
-    .btn-messenger.gold-btn:hover { box-shadow: 0 0 45px rgba(212,175,55,0.4); }
+    .btn-whatsapp:hover { transform: scale(1.02); box-shadow: 0 0 40px rgba(37,211,102,0.4); }
+    .btn-whatsapp.gold-btn { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); box-shadow: 0 6px 24px rgba(212,175,55,0.25); }
+    .btn-whatsapp.gold-btn:hover { box-shadow: 0 0 45px rgba(212,175,55,0.4); }
 
     .blocked-box {
       background: rgba(239,68,68,0.08); border: 2px solid var(--danger);
@@ -772,7 +772,8 @@
 
   <script>
     // ===== روابط خارجية =====
-    const MESSENGER_URL = "https://www.facebook.com/profile.php?id=61591585108082";
+    const WHATSAPP_NUMBER = "212669888110";
+    const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
     const SURVEY_URL = "https://eu.surveymars.com/q/Tb2YaxWdH";
 
     // ======================= قاعدة العملاء =======================
@@ -2239,7 +2240,7 @@
       return totalDisplay;
     }
 
-    function openMessenger(needsEtisalat) {
+    function openWhatsApp(needsEtisalat) {
       if (currentClient) {
         let msg = `السلام عليكم ورحمة الله وبركاته،
 
@@ -2268,9 +2269,9 @@
 أنا مسؤول مسؤولية كاملة عن هذا الطلب، وأتعهد بالالتزام بجميع شروط وأحكام التمويل.
 يرجى توجيهي لاستكمال إجراءات الصرف فوراً.
 شكراً لكم.`;
-        window.open(`${MESSENGER_URL}?text=${encodeURIComponent(msg)}`, '_blank');
+        window.open(`${WHATSAPP_URL}?text=${encodeURIComponent(msg)}`, '_blank');
       } else {
-        window.open(MESSENGER_URL, '_blank');
+        window.open(WHATSAPP_URL, '_blank');
       }
     }
 
@@ -2354,8 +2355,8 @@
                 ⚠️ في حالة عدم فتح المحفظة خلال 6 ساعات سيتم شطب الطلب لمدة 90 يوماً ولن تتمكن من استرداده قبل هذه المدة
               </div>
             </div>
-            <button class="btn-messenger gold-btn" id="openWalletMessengerBtn">
-              <i class="fab fa-facebook-messenger fa-lg"></i> 📱 إبلاغ بفتح المحفظة
+            <button class="btn-whatsapp gold-btn" id="openWalletWhatsAppBtn">
+              <i class="fab fa-whatsapp fa-lg"></i> 📱 إبلاغ بفتح المحفظة
             </button>
           </div>
         </div>
@@ -2456,8 +2457,8 @@
             <br><br>
             <span style="color: var(--text-muted);">❌ لن تتمكن من استرداد طلبك مرة أخرى قبل انتهاء هذه المدة.</span>
           </p>
-          <button class="btn-messenger" id="blockedMessengerBtn" style="margin-top: 0.5rem; background: linear-gradient(135deg, #FF6B6B, #EE4444);">
-            <i class="fab fa-facebook-messenger fa-lg"></i> 📞 التواصل مع الدعم
+          <button class="btn-whatsapp" id="blockedWhatsAppBtn" style="margin-top: 0.5rem; background: linear-gradient(135deg, #FF6B6B, #EE4444);">
+            <i class="fab fa-whatsapp fa-lg"></i> 📞 التواصل مع الدعم
           </button>
         </div>
       `;
@@ -2478,8 +2479,8 @@
             <span style="color: var(--gold); font-weight: 700;">📌 سيتم فتح رابط تحويل القرض لك</span><br>
             وسيتم تحديد موعد نزول المبلغ لحسابك بعدد من الدقائق يتم تحديده من خلال النظام.
           </p>
-          <button class="btn-messenger success-btn" id="completedMessengerBtn" style="margin-top: 0.5rem;">
-            <i class="fab fa-facebook-messenger fa-lg"></i> 📱 متابعة موعد الاستلام
+          <button class="btn-whatsapp success-btn" id="completedWhatsAppBtn" style="margin-top: 0.5rem;">
+            <i class="fab fa-whatsapp fa-lg"></i> 📱 متابعة موعد الاستلام
           </button>
         </div>
       `;
@@ -2567,30 +2568,30 @@
           });
         }
 
-        const openWalletBtn = document.getElementById('openWalletMessengerBtn');
+        const openWalletBtn = document.getElementById('openWalletWhatsAppBtn');
         if (openWalletBtn) {
           openWalletBtn.replaceWith(openWalletBtn.cloneNode(true));
-          document.getElementById('openWalletMessengerBtn')?.addEventListener('click', (e) => {
+          document.getElementById('openWalletWhatsAppBtn')?.addEventListener('click', (e) => {
             e.preventDefault();
-            openMessenger(true);
+            openWhatsApp(true);
           });
         }
 
-        const blockedBtn = document.getElementById('blockedMessengerBtn');
+        const blockedBtn = document.getElementById('blockedWhatsAppBtn');
         if (blockedBtn) {
           blockedBtn.replaceWith(blockedBtn.cloneNode(true));
-          document.getElementById('blockedMessengerBtn')?.addEventListener('click', (e) => {
+          document.getElementById('blockedWhatsAppBtn')?.addEventListener('click', (e) => {
             e.preventDefault();
-            openMessenger(false);
+            openWhatsApp(false);
           });
         }
 
-        const completedBtn = document.getElementById('completedMessengerBtn');
+        const completedBtn = document.getElementById('completedWhatsAppBtn');
         if (completedBtn) {
           completedBtn.replaceWith(completedBtn.cloneNode(true));
-          document.getElementById('completedMessengerBtn')?.addEventListener('click', (e) => {
+          document.getElementById('completedWhatsAppBtn')?.addEventListener('click', (e) => {
             e.preventDefault();
-            openMessenger(false);
+            openWhatsApp(false);
           });
         }
       }, 50);

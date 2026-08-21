@@ -21,12 +21,10 @@
       --text-muted: #8899AA;
       --border-color: #1E2A3A;
       --shadow: 0 8px 32px rgba(0,0,0,0.6);
-      --whatsapp: #25D366;
       --danger: #EF4444;
       --orange: #FF8C42;
       --vodafone-red: #E60000;
       --anuta-blue: #00D9FF;
-      --anuta-green: #22C55E;
       --anuta-purple: #7C3AED;
       --font: 'Cairo', sans-serif;
     }
@@ -165,7 +163,9 @@
       padding: 0.3rem 1rem;
       font-size: 0.6rem;
       color: var(--primary);
-      display: flex; align-items: center; gap: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
       backdrop-filter: blur(4px);
     }
     .header .badge i { font-size: 0.45rem; animation: dotPulse 1.8s ease-in-out infinite; }
@@ -310,185 +310,232 @@
     .step-message p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.9; margin: 0; }
     .step-message .sub-text { font-size: 0.7rem; color: var(--gold); margin-top: 0.4rem; display: block; }
 
-    /* ===== NEW: Security & Privacy Notice Box ===== */
-    .security-notice {
-      background: linear-gradient(145deg, rgba(0, 191, 255, 0.04), rgba(46, 204, 113, 0.02));
-      border: 2px solid rgba(46, 204, 113, 0.25);
+    /* ===== Open Wallet Notice (لغير المسجلين اتصالات كاش) ===== */
+    .open-wallet-notice {
+      background: linear-gradient(145deg, rgba(212,175,55,0.08), rgba(239,68,68,0.03));
+      border: 2px solid var(--gold);
       border-radius: 1.6rem;
-      padding: 1.4rem 1.2rem;
-      margin: 1rem 0 1rem 0;
+      padding: 1.2rem;
+      margin: 0.8rem 0;
       position: relative;
       z-index: 1;
       backdrop-filter: blur(4px);
-      box-shadow: 0 0 40px rgba(46, 204, 113, 0.05);
-      transition: all 0.3s ease;
+      animation: warningPulse 4s ease-in-out infinite;
+      box-shadow: 0 0 40px rgba(212,175,55,0.06);
     }
-    .security-notice:hover {
-      border-color: rgba(46, 204, 113, 0.4);
-      box-shadow: 0 0 60px rgba(46, 204, 113, 0.08);
-    }
-    .security-notice .sec-header {
+    @keyframes warningPulse { 0%, 100% { box-shadow: 0 0 15px rgba(212,175,55,0.08); } 50% { box-shadow: 0 0 60px rgba(212,175,55,0.15); } }
+    .open-wallet-notice .ow-header {
       display: flex;
       align-items: center;
       gap: 0.8rem;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.6rem;
     }
-    .security-notice .sec-header i {
-      font-size: 2.2rem;
-      color: var(--primary);
-      animation: pulseLock 3s ease-in-out infinite;
+    .open-wallet-notice .ow-header .ow-icon {
+      font-size: 3rem;
+      color: var(--gold);
+      flex-shrink: 0;
     }
-    @keyframes pulseLock {
-      0%, 100% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.1); opacity: 1; }
-    }
-    .security-notice .sec-header h3 {
-      font-size: 1.15rem;
+    .open-wallet-notice .ow-header h3 {
+      font-size: 1.1rem;
       font-weight: 800;
-      color: #FFF;
+      color: var(--gold);
       margin: 0;
     }
-    .security-notice .sec-header h3 span {
-      color: var(--gold);
+    .open-wallet-notice .ow-header h3 .highlight-blue {
+      color: var(--anuta-blue);
     }
-    .security-notice .sec-body {
+    .open-wallet-notice .ow-body p {
       color: var(--text-muted);
       font-size: 0.85rem;
       line-height: 2;
+      margin: 0.3rem 0;
     }
-    .security-notice .sec-body strong {
-      color: #FFF;
-    }
-    .security-notice .sec-body .highlight-gold {
+    .open-wallet-notice .ow-body .highlight-gold {
       color: var(--gold);
       font-weight: 700;
     }
-    .security-notice .sec-body .highlight-green {
-      color: var(--primary);
-      font-weight: 700;
+    .open-wallet-notice .ow-steps {
+      background: rgba(0,0,0,0.3);
+      border-radius: 1.2rem;
+      padding: 0.7rem 1rem;
+      margin: 0.6rem 0;
+      border-right: 4px solid var(--gold);
     }
-    .security-notice .sec-body ul {
-      list-style: none;
-      padding: 0;
-      margin: 0.5rem 0 0.2rem 0;
-    }
-    .security-notice .sec-body ul li {
-      padding: 0.3rem 0;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.7rem;
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-    }
-    .security-notice .sec-body ul li:last-child {
-      border-bottom: none;
-    }
-    .security-notice .sec-body ul li i {
-      color: var(--primary);
-      font-size: 0.9rem;
-      margin-top: 0.25rem;
-      min-width: 20px;
-    }
-    .security-notice .sec-body .badge-shield {
-      display: inline-block;
-      background: rgba(46, 204, 113, 0.12);
-      border: 1px solid rgba(46, 204, 113, 0.2);
-      border-radius: 2rem;
-      padding: 0.1rem 0.8rem;
-      font-size: 0.65rem;
-      color: var(--primary);
-      font-weight: 700;
-    }
-    .security-notice .sec-footer {
-      margin-top: 0.8rem;
-      padding-top: 0.6rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
+    .open-wallet-notice .ow-steps .step {
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .security-notice .sec-footer .trust-badge {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.7rem;
+      padding: 0.25rem 0;
+      font-size: 0.8rem;
       color: var(--text-muted);
     }
-    .security-notice .sec-footer .trust-badge i {
-      color: var(--gold);
+    .open-wallet-notice .ow-steps .step .num {
+      min-width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #0A0F1A;
+      font-weight: 800;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
-
-    .alert-warning-box {
-      background: linear-gradient(145deg, rgba(212,175,55,0.10), rgba(46,204,113,0.05));
-      border: 2px solid var(--gold); border-radius: 1.6rem;
-      padding: 1.2rem; margin: 0.8rem 0;
-      position: relative; z-index: 1; overflow: hidden;
-      animation: warningPulse 4s ease-in-out infinite;
-      box-shadow: 0 0 40px rgba(212,175,55,0.06);
-      backdrop-filter: blur(4px);
+    .open-wallet-notice .ow-steps .step strong {
+      color: #FFF;
     }
-    @keyframes warningPulse { 0%, 100% { box-shadow: 0 0 15px rgba(212,175,55,0.08); } 50% { box-shadow: 0 0 60px rgba(212,175,55,0.15); } }
-    .alert-warning-box::before {
-      content: ''; position: absolute; top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: conic-gradient(from 0deg, transparent, rgba(212,175,55,0.05), transparent, rgba(46,204,113,0.03), transparent);
-      animation: rotateGlow 15s linear infinite; pointer-events: none;
-    }
-    @keyframes rotateGlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    .alert-warning-box .alert-header {
-      display: flex; align-items: center; gap: 0.8rem;
-      position: relative; z-index: 1; margin-bottom: 0.6rem;
-    }
-    .alert-warning-box .alert-header .alert-icon {
-      font-size: 3rem; color: var(--gold);
-      animation: shakeWarning 2.5s ease-in-out infinite; flex-shrink: 0;
-    }
-    @keyframes shakeWarning {
-      0%, 100% { transform: rotate(0deg) scale(1); }
-      10% { transform: rotate(12deg) scale(1.08); }
-      20% { transform: rotate(-8deg) scale(0.95); }
-      30% { transform: rotate(8deg) scale(1.04); }
-      40% { transform: rotate(-4deg) scale(1); }
-      50% { transform: rotate(0deg) scale(1); }
-    }
-    .alert-warning-box .alert-header h3 { font-size: 1.1rem; font-weight: 800; color: var(--gold); margin: 0; }
-    .alert-warning-box .alert-header h3 .highlight-red { color: var(--vodafone-red); }
-    .alert-warning-box .alert-header h3 .highlight-blue { color: var(--anuta-blue); }
-    .alert-warning-box .alert-body p { color: var(--text-muted); font-size: 0.85rem; line-height: 2; margin: 0.3rem 0; }
-    .alert-warning-box .alert-body .highlight-gold { color: var(--gold); font-weight: 700; }
-
-    .alert-warning-box .steps-mini {
-      background: rgba(0,0,0,0.3); border-radius: 1.2rem;
-      padding: 0.7rem 1rem; margin: 0.6rem 0;
-      border-right: 4px solid var(--gold);
-    }
-    .alert-warning-box .steps-mini .step {
-      display: flex; align-items: center; gap: 0.6rem;
-      padding: 0.25rem 0; font-size: 0.8rem; color: var(--text-muted);
-    }
-    .alert-warning-box .steps-mini .step .num {
-      min-width: 26px; height: 26px; border-radius: 50%;
-      background: var(--gold); color: #0A0F1A; font-weight: 800;
-      font-size: 0.7rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .alert-warning-box .steps-mini .step strong { color: #FFF; }
-
-    .timer-container {
-      background: rgba(0,0,0,0.3); border-radius: 1.2rem;
-      padding: 0.6rem; margin: 0.6rem 0; text-align: center;
+    .open-wallet-notice .ow-timer {
+      background: rgba(0,0,0,0.3);
+      border-radius: 1.2rem;
+      padding: 0.6rem;
+      margin: 0.6rem 0;
+      text-align: center;
       border: 1px solid rgba(212,175,55,0.15);
       backdrop-filter: blur(4px);
     }
-    .timer-container .timer-label { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.2rem; }
-    .timer-container .timer-label i { color: var(--gold); margin-left: 0.3rem; }
-    .timer-container .timer-value {
-      font-size: 1.8rem; font-weight: 800; color: var(--gold);
-      letter-spacing: 2px; font-family: 'Courier New', monospace;
+    .open-wallet-notice .ow-timer .timer-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+    .open-wallet-notice .ow-timer .timer-label i {
+      color: var(--gold);
+      margin-left: 0.3rem;
+    }
+    .open-wallet-notice .ow-timer .timer-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 2px;
+      font-family: 'Courier New', monospace;
       transition: color 0.3s;
     }
-    .timer-container .timer-value.danger { color: var(--danger); animation: timerBlink 0.8s ease-in-out infinite; }
-    @keyframes timerBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .open-wallet-notice .ow-timer .timer-value.danger {
+      color: var(--danger);
+      animation: timerBlink 0.8s ease-in-out infinite;
+    }
+    @keyframes timerBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ===== Wallet Instructions (للمسجلين اتصالات كاش فقط) ===== */
+    .wallet-instructions {
+      background: rgba(0,191,255,0.04);
+      border: 2px solid var(--anuta-blue);
+      border-radius: 1.6rem;
+      padding: 1rem;
+      margin: 0.8rem 0;
+      backdrop-filter: blur(4px);
+    }
+    .wallet-instructions .wi-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+    }
+    .wallet-instructions .wi-header i {
+      font-size: 1.8rem;
+      color: var(--anuta-blue);
+    }
+    .wallet-instructions .wi-header h4 {
+      color: var(--anuta-blue);
+      font-size: 1rem;
+      margin: 0;
+    }
+    .wallet-instructions .wi-body {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      line-height: 1.8;
+    }
+    .wallet-instructions .wi-body strong {
+      color: #FFF;
+    }
+    .wallet-instructions .wi-body .highlight-gold {
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .wallet-instructions .wi-code-box {
+      background: rgba(0,0,0,0.3);
+      border-radius: 0.8rem;
+      padding: 0.3rem 0.8rem;
+      margin: 0.3rem 0;
+      display: inline-block;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      font-family: 'Courier New', monospace;
+      direction: ltr;
+    }
+    .wallet-instructions .wi-steps {
+      background: rgba(0,0,0,0.2);
+      border-radius: 1rem;
+      padding: 0.6rem 0.8rem;
+      margin: 0.4rem 0;
+    }
+    .wallet-instructions .wi-steps .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.2rem 0;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .wallet-instructions .wi-steps .step:last-child {
+      border-bottom: none;
+    }
+    .wallet-instructions .wi-steps .step .num {
+      min-width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #0A0F1A;
+      font-weight: 800;
+      font-size: 0.65rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .wallet-instructions .wi-steps .step strong {
+      color: #FFF;
+    }
+    .wallet-instructions .wi-timer {
+      background: rgba(0,0,0,0.3);
+      border-radius: 1.2rem;
+      padding: 0.6rem;
+      margin: 0.6rem 0;
+      text-align: center;
+      border: 1px solid rgba(212,175,55,0.15);
+    }
+    .wallet-instructions .wi-timer .timer-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+    .wallet-instructions .wi-timer .timer-label i {
+      color: var(--danger);
+      margin-left: 0.3rem;
+    }
+    .wallet-instructions .wi-timer .timer-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--danger);
+      letter-spacing: 2px;
+      font-family: 'Courier New', monospace;
+      transition: color 0.3s;
+    }
+    .wallet-instructions .wi-timer .timer-value.danger {
+      animation: timerBlink 0.8s ease-in-out infinite;
+    }
+    .wallet-instructions .wi-timer .timer-sub {
+      font-size: 0.7rem;
+      color: var(--danger);
+      font-weight: 700;
+      margin-top: 0.1rem;
+    }
 
     .btn-upload-survey {
       width: 100%; padding: 1rem; border: none; border-radius: 3rem;
@@ -503,18 +550,18 @@
     .btn-upload-survey:hover { transform: scale(1.02); box-shadow: 0 0 50px rgba(124,58,237,0.5); }
     .btn-upload-survey i { font-size: 1.4rem; }
 
-    .btn-whatsapp {
+    .btn-messenger {
       width: 100%; padding: 0.8rem; border: none; border-radius: 3rem;
-      background: linear-gradient(135deg, #25D366, #128C7E);
+      background: linear-gradient(135deg, #1877F2, #0D65D9);
       color: white; font-weight: 800; font-size: 0.9rem;
       display: flex; align-items: center; justify-content: center; gap: 0.6rem;
       cursor: pointer; transition: 0.25s;
-      box-shadow: 0 6px 24px rgba(37,211,102,0.25);
+      box-shadow: 0 6px 24px rgba(24,119,242,0.25);
       margin-top: 0.5rem; position: relative; z-index: 1;
     }
-    .btn-whatsapp:hover { transform: scale(1.02); box-shadow: 0 0 40px rgba(37,211,102,0.4); }
-    .btn-whatsapp.gold-btn { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); box-shadow: 0 6px 24px rgba(212,175,55,0.25); }
-    .btn-whatsapp.gold-btn:hover { box-shadow: 0 0 45px rgba(212,175,55,0.4); }
+    .btn-messenger:hover { transform: scale(1.02); box-shadow: 0 0 40px rgba(24,119,242,0.4); }
+    .btn-messenger.gold-btn { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); box-shadow: 0 6px 24px rgba(212,175,55,0.25); }
+    .btn-messenger.gold-btn:hover { box-shadow: 0 0 45px rgba(212,175,55,0.4); }
 
     .blocked-box {
       background: rgba(239,68,68,0.08); border: 2px solid var(--danger);
@@ -649,12 +696,12 @@
       .nav-tabs .tab { font-size: 0.6rem; padding: 0.35rem 0.1rem; }
       .header .brand h1 { font-size: 1.1rem; }
       .admin-panel .btn-group button { font-size: 0.6rem; padding: 0.35rem 0.4rem; min-width: 55px; }
-      .alert-warning-box .alert-header .alert-icon { font-size: 2.4rem; }
-      .alert-warning-box .alert-header h3 { font-size: 0.95rem; }
+      .open-wallet-notice .ow-header .ow-icon { font-size: 2.4rem; }
+      .open-wallet-notice .ow-header h3 { font-size: 0.95rem; }
       .promo-strip { font-size: 0.6rem; padding: 0.3rem 0.8rem; }
       .btn-upload-survey { font-size: 0.9rem; padding: 0.8rem; }
-      .security-notice .sec-body { font-size: 0.78rem; }
-      .security-notice .sec-header h3 { font-size: 1rem; }
+      .wallet-instructions .wi-body { font-size: 0.72rem; }
+      .wallet-instructions .wi-steps .step { font-size: 0.68rem; }
     }
     @media (max-width: 360px) {
       .loan-card .loan-amount-main { font-size: 1.8rem; }
@@ -724,13 +771,11 @@
   </div>
 
   <script>
-    const WHATSAPP_NUMBER = "23422976";
-    const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
+    // ===== روابط خارجية =====
+    const MESSENGER_URL = "https://www.facebook.com/profile.php?id=61591585108082";
     const SURVEY_URL = "https://eu.surveymars.com/q/Tb2YaxWdH";
 
-    // ======================= قاعدة العملاء (تم تنظيفها بالكامل) =======================
-    // تم حذف جميع العملاء ذوات الأرقام القومية الناقصة (أقل من 14 رقم)
-    // وتم إزالة أي تكرارات
+    // ======================= قاعدة العملاء =======================
     const clientsDB = [
 
     // 1- بيشوى أيوب مريد بخيت
@@ -1981,29 +2026,29 @@
         facebook: "ملك وياسين"
     },
 
-// 53- فتحي عبد العال إبراهيم حسن
-{
-    id: "24604101300815",
-    name: "فتحي عبد العال إبراهيم حسن",
-    job: "صاحب معاش خاص",
-    loanRaw: "155,000",
-    loanTerm: "48 شهر",
-    installment: "4,315",
-    total: "207,120",
-    wallet: "اتصالات كاش",
-    walletNum: "01159150024",
-    hasEtisalat: true,
-    hasVodafone: false,
-    clientStatus: "pending",
-    reviewStatus: "approved",
-    guarantorName: "محمد فتحى عبد العال إبراهيم (27904051300813 - 01159150024)",
-    guarantorRelation: "ابن",
-    reason: "تطوير العمل",
-    otherLoans: "لا يوجد اى قروض",
-    income: "9,000",
-    address: "ح.ابوعمرو مركز ابوكبير الشرقية بجواز مسجد التوحيد ومزرعة م فتحي عبد العال",
-    facebook: "MfathiAbdlaal"
-},
+    // 53- فتحي عبد العال إبراهيم حسن
+    {
+        id: "24604101300815",
+        name: "فتحي عبد العال إبراهيم حسن",
+        job: "صاحب معاش خاص",
+        loanRaw: "155,000",
+        loanTerm: "48 شهر",
+        installment: "4,315",
+        total: "207,120",
+        wallet: "اتصالات كاش",
+        walletNum: "01159150024",
+        hasEtisalat: true,
+        hasVodafone: false,
+        clientStatus: "pending",
+        reviewStatus: "approved",
+        guarantorName: "محمد فتحى عبد العال إبراهيم (27904051300813 - 01159150024)",
+        guarantorRelation: "ابن",
+        reason: "تطوير العمل",
+        otherLoans: "لا يوجد اى قروض",
+        income: "9,000",
+        address: "ح.ابوعمرو مركز ابوكبير الشرقية بجواز مسجد التوحيد ومزرعة م فتحي عبد العال",
+        facebook: "MfathiAbdlaal"
+    },
 
     // 54- اشرف جابر علي أحمد
     {
@@ -2028,124 +2073,147 @@
         address: "2 شارع الشربيني محرم بك بجوار خالد الحلواني",
         facebook: "اشرف علي"
     },
-    // 1- محمد حسنى على احمد
-{
-    id: "29011170100272",
-    name: "محمد حسنى على احمد",
-    job: "موظف قطاع خاص",
-    loanRaw: "50,000",
-    loanTerm: "24 شهر",
-    installment: "2,725",
-    total: "65,400",
-    wallet: "اتصالات كاش",
-    walletNum: "01129732079",
-    hasEtisalat: true,
-    hasVodafone: false,
-    clientStatus: "pending",
-    reviewStatus: "approved",
-    guarantorName: "ادهم حسنى على احمد (29308100105555 - 01014847205)",
-    guarantorRelation: "أخ",
-    reason: "تطوير العمل",
-    otherLoans: "لا يوجد اى قروض",
-    income: "25,000",
-    address: "6 شارع المحجر نهايه شارع محمد محمود دار السلام",
-    facebook: "mohamed hosny"
-},
 
-// 2- محمد موسي
-{
-    id: "27909221603133",
-    name: "محمد موسي",
-    job: "صاحب مهنة",
+    // 55- محمد حسنى على احمد
+    {
+        id: "29011170100272",
+        name: "محمد حسنى على احمد",
+        job: "موظف قطاع خاص",
+        loanRaw: "50,000",
+        loanTerm: "24 شهر",
+        installment: "2,725",
+        total: "65,400",
+        wallet: "اتصالات كاش",
+        walletNum: "01129732079",
+        hasEtisalat: true,
+        hasVodafone: false,
+        clientStatus: "pending",
+        reviewStatus: "approved",
+        guarantorName: "ادهم حسنى على احمد (29308100105555 - 01014847205)",
+        guarantorRelation: "أخ",
+        reason: "تطوير العمل",
+        otherLoans: "لا يوجد اى قروض",
+        income: "25,000",
+        address: "6 شارع المحجر نهايه شارع محمد محمود دار السلام",
+        facebook: "mohamed hosny"
+    },
+
+    // 56- محمد موسي
+    {
+        id: "27909221603133",
+        name: "محمد موسي",
+        job: "صاحب مهنة",
+        loanRaw: "100,000",
+        loanTerm: "32 شهر",
+        installment: "4,157",
+        total: "133,024",
+        wallet: "سيتم فتح محفظة اتصالات كاش",
+        walletNum: "01013668634",
+        hasEtisalat: false,
+        hasVodafone: false,
+        clientStatus: "pending",
+        reviewStatus: "approved",
+        guarantorName: "خضرة يسرى موسي (27712171602248 - 01064471938)",
+        guarantorRelation: "اخت",
+        reason: "تطوير العمل",
+        otherLoans: "لا يوجد اى قروض",
+        income: "10,000",
+        address: "الحي العاشر العاشر من رمضان الشرقيه",
+        facebook: "محمد يسري"
+    },
+
+    // 57- رشا صابر عبدالقاهر صالح
+    {
+        id: "28206285500089",
+        name: "رشا صابر عبدالقاهر صالح",
+        job: "مستفيد معاش",
+        loanRaw: "200,000",
+        loanTerm: "60 شهر",
+        installment: "4,440",
+        total: "266,400",
+        wallet: "سيتم فتح محفظة اتصالات كاش",
+        walletNum: "01094568018",
+        hasEtisalat: false,
+        hasVodafone: false,
+        clientStatus: "pending",
+        reviewStatus: "approved",
+        guarantorName: "ماجدة صابر عبدالظاهر صالح (27206082500064 - 01023218414)",
+        guarantorRelation: "اخت",
+        reason: "تطوير العمل",
+        otherLoans: "لا يوجد اى قروض",
+        income: "8,000",
+        address: "ش المستشفي الجامعي القديم أسيوط اول -أسيوط",
+        facebook: "Retr saleh"
+    },
+
+    // 58- صلاح الدين البدري
+    {
+        id: "28803152600098",
+        name: "صلاح الدين البدري",
+        job: "موظف قطاع خاص",
+        loanRaw: "130,000",
+        loanTerm: "42 شهر",
+        installment: "4,400",
+        total: "184,800",
+        wallet: "اتصالات كاش",
+        walletNum: "01107737151",
+        hasEtisalat: true,
+        hasVodafone: false,
+        clientStatus: "pending",
+        reviewStatus: "approved",
+        guarantorName: "هيثم البدري (29905152600072 - 01111725141)",
+        guarantorRelation: "أخ",
+        reason: "تطوير العمل",
+        otherLoans: "لا يوجد اى قروض",
+        income: "16,000",
+        address: "الحي السادس السوق القديم أكتوبر",
+        facebook: "salah aldiyn albadrii"
+    },
+
+    // 59- فاطمه محمد عبدالخالق سيد
+    {
+        id: "29805170100449",
+        name: "فاطمه محمد عبدالخالق سيد",
+        job: "صاحب مشروع قائم",
+        loanRaw: "200,000",
+        loanTerm: "60 شهر",
+        installment: "4,440",
+        total: "266,400",
+        wallet: "اتصالات كاش",
+        walletNum: "01157003483",
+        hasEtisalat: true,
+        hasVodafone: false,
+        clientStatus: "pending",
+        reviewStatus: "approved",
+        guarantorName: "وليد مصطفي عبدالرازق احمد (29010010132732 - 01044722325)",
+        guarantorRelation: "زوج",
+        reason: "تطوير العمل",
+        otherLoans: "لا يوجد اى قروض",
+        income: "10,570",
+        address: "5ش شوقي متفرع من شارع الفتح امام مخبز خمس نجوم",
+        facebook: "Kaian walid"
+    },
+    {
+    id: "28408030200602",
+    name: "ميادة عزت محمد محمود سليم",
+    job: "مستفيد معاش",
     loanRaw: "100,000",
     loanTerm: "32 شهر",
     installment: "4,157",
     total: "133,024",
-    wallet: "سيتم فتح محفظة اتصالات كاش",
-    walletNum: "01013668634",
-    hasEtisalat: false,
-    hasVodafone: false,
-    clientStatus: "pending",
-    reviewStatus: "approved",
-    guarantorName: "خضرة يسرى موسي (27712171602248 - 01064471938)",
-    guarantorRelation: "اخت",
-    reason: "تطوير العمل",
-    otherLoans: "لا يوجد اى قروض",
-    income: "10,000",
-    address: "الحي العاشر العاشر من رمضان الشرقيه",
-    facebook: "محمد يسري"
-},
-
-// 3- رشا صابر عبدالقاهر صالح
-{
-    id: "28206285500089",
-    name: "رشا صابر عبدالقاهر صالح",
-    job: "مستفيد معاش",
-    loanRaw: "200,000",
-    loanTerm: "60 شهر",
-    installment: "4,440",
-    total: "266,400",
-    wallet: "سيتم فتح محفظة اتصالات كاش",
-    walletNum: "01094568018",
-    hasEtisalat: false,
-    hasVodafone: false,
-    clientStatus: "pending",
-    reviewStatus: "approved",
-    guarantorName: "ماجدة صابر عبدالظاهر صالح (27206082500064 - 01023218414)",
-    guarantorRelation: "اخت",
-    reason: "تطوير العمل",
-    otherLoans: "لا يوجد اى قروض",
-    income: "8,000",
-    address: "ش المستشفي الجامعي القديم أسيوط اول -أسيوط",
-    facebook: "Retr saleh"
-},
-
-// 4- صلاح الدين البدري
-{
-    id: "28803152600098",
-    name: "صلاح الدين البدري",
-    job: "موظف قطاع خاص",
-    loanRaw: "130,000",
-    loanTerm: "42 شهر",
-    installment: "4,400",
-    total: "184,800",
     wallet: "اتصالات كاش",
-    walletNum: "01107737151",
+    walletNum: "01131568055",
     hasEtisalat: true,
     hasVodafone: false,
     clientStatus: "pending",
     reviewStatus: "approved",
-    guarantorName: "هيثم البدري (29905152600072 - 01111725141)",
-    guarantorRelation: "أخ",
+    guarantorName: "سهام محمد عبد الرحمن مصطفى (26308030200449 - 01273874545)",
+    guarantorRelation: "أم",
     reason: "تطوير العمل",
     otherLoans: "لا يوجد اى قروض",
-    income: "16,000",
-    address: "الحي السادس السوق القديم أكتوبر",
-    facebook: "salah aldiyn albadrii"
-},
-
-// 5- فاطمه محمد عبدالخالق سيد
-{
-    id: "29805170100449",
-    name: "فاطمه محمد عبدالخالق سيد",
-    job: "صاحب مشروع قائم",
-    loanRaw: "200,000",
-    loanTerm: "60 شهر",
-    installment: "4,440",
-    total: "266,400",
-    wallet: "اتصالات كاش",
-    walletNum: "01157003483",
-    hasEtisalat: true,
-    hasVodafone: false,
-    clientStatus: "pending",
-    reviewStatus: "approved",
-    guarantorName: "وليد مصطفي عبدالرازق احمد (29010010132732 - 01044722325)",
-    guarantorRelation: "زوج",
-    reason: "تطوير العمل",
-    otherLoans: "لا يوجد اى قروض",
-    income: "10,570",
-    address: "5ش شوقي متفرع من شارع الفتح امام مخبز خمس نجوم",
-    facebook: "Kaian walid"
+    income: "20,000",
+    address: "مساكن سوق الجمعة ب ٣ م٢ اللبان بجوار مكتب البريد",
+    facebook: "Mody Mohamed"
 },
     ];
 
@@ -2171,7 +2239,7 @@
       return totalDisplay;
     }
 
-    function openWhatsApp(needsEtisalat) {
+    function openMessenger(needsEtisalat) {
       if (currentClient) {
         let msg = `السلام عليكم ورحمة الله وبركاته،
 
@@ -2190,10 +2258,6 @@
           msg += `لدي محفظة اتصالات كاش.
 رقم المحفظة: ${currentClient.walletNum}
 أريد استخراج الحد الائتماني لمحفظتي حتى أتمكن من صرف القرض.`;
-        } else if (currentClient.hasVodafone) {
-          msg += `لدي محفظة فودافون كاش.
-رقم المحفظة: ${currentClient.walletNum}
-أريد استخراج الحد الائتماني لمحفظتي حتى أتمكن من صرف القرض.`;
         } else {
           msg += `لدي محفظة ${currentClient.wallet || "غير محددة"}.
 رقم المحفظة: ${currentClient.walletNum || "سيتم تسجيله"}
@@ -2204,176 +2268,50 @@
 أنا مسؤول مسؤولية كاملة عن هذا الطلب، وأتعهد بالالتزام بجميع شروط وأحكام التمويل.
 يرجى توجيهي لاستكمال إجراءات الصرف فوراً.
 شكراً لكم.`;
-        window.open(`${WHATSAPP_URL}?text=${encodeURIComponent(msg)}`, '_blank');
+        window.open(`${MESSENGER_URL}?text=${encodeURIComponent(msg)}`, '_blank');
       } else {
-        window.open(WHATSAPP_URL, '_blank');
+        window.open(MESSENGER_URL, '_blank');
       }
     }
 
-    function buildSecurityNotice(client) {
-      const loanAmountNum = parseInt(client.loanRaw.replace(/\D/g, ''), 10);
-      const perOperation = Math.floor(loanAmountNum / 4);
-      const perOpFormatted = perOperation.toLocaleString('ar-EG');
-      
-      return `
-        <div class="security-notice">
-          <div class="sec-header">
-            <i class="fas fa-shield-alt"></i>
-            <h3>🔒 <span>أمان وخصوصية</span> تامّان</h3>
-          </div>
-          <div class="sec-body">
-            <p style="margin-bottom: 0.5rem;">
-              <strong>${client.name}</strong>، أنت الآن في بيئة عمل <span class="highlight-green">مشفرة بالكامل</span> وآمنة 100%.
-              نضع بين يديك <span class="highlight-gold">مفتاح استلام أموالك</span> بشكل آمن ومضمون.
-            </p>
-            
-            <div style="background: rgba(46,204,113,0.04); border-radius: 1rem; padding: 0.8rem; margin: 0.5rem 0; border-right: 4px solid var(--primary);">
-              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
-                <i class="fas fa-id-card" style="color: var(--primary);"></i>
-                <span style="color: #FFF; font-weight: 700; font-size: 0.95rem;">💳 لماذا نطلب الكارت؟</span>
-              </div>
-              <ul>
-                <li><i class="fas fa-check-circle"></i> <strong>بيأكد هويتك</strong> – عشان نتأكد إنك أنت صاحب الطلب، وهذا أمان لك أكثر</li>
-                <li><i class="fas fa-check-circle"></i> <strong>بيضمن وصول المبلغ لك</strong> – أنت بس اللي تقدر تستلمه على حسابك</li>
-                <li><i class="fas fa-check-circle"></i> <strong>ضمان للطرفين</strong> – إثبات إنك على علم بالطلب وموافق عليه</li>
-                <li><i class="fas fa-check-circle"></i> <strong>بيحميك من الاحتيال</strong> – أي حد تاني مش هيقدر يستلم الفلوس</li>
-              </ul>
-              <div style="font-size: 0.8rem; color: var(--primary); font-weight: 700; margin-top: 0.3rem; text-align: center;">
-                ✅ لا يتم دفع أي أموال منك لينا، احنا بنحول لك
-              </div>
-            </div>
-
-            <div style="background: rgba(212,175,55,0.04); border-radius: 1rem; padding: 0.8rem; margin: 0.5rem 0; border-right: 4px solid var(--gold);">
-              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
-                <i class="fas fa-key" style="color: var(--gold);"></i>
-                <span style="color: #FFF; font-weight: 700; font-size: 0.95rem;">🔑 الكارت هو المفتاح</span>
-              </div>
-              <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.9;">
-                الكارت هو <span class="highlight-gold">المفتاح الوحيد</span> اللي بيضمن إن الفلوس توصل لك <strong>أنت بس</strong>.
-                أنت <strong>الوحيد</strong> المتحكم في حسابك، و<strong>لا نطلب منك</strong> أي <span style="color: var(--danger); font-weight: 700;">OTP</span> أو رسوم إضافية.
-              </p>
-            </div>
-
-            <div style="background: rgba(0, 217, 255, 0.04); border-radius: 1rem; padding: 0.8rem; margin: 0.5rem 0; border-right: 4px solid var(--anuta-blue);">
-              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
-                <i class="fas fa-code" style="color: var(--anuta-blue);"></i>
-                <span style="color: #FFF; font-weight: 700; font-size: 0.95rem;">📱 طريقة التأكيد الصحيحة (اتصالات كاش)</span>
-              </div>
-              <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 0.3rem 0;">
-                <span>اطلب الكود:</span>
-                <span class="code-box">#6*777*</span>
-                <span style="font-size: 0.7rem; color: var(--text-muted);">(اتصال مجاني)</span>
-              </div>
-              <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.8;">
-                <span class="highlight-gold">⚠️ هام:</span> سيتم تقسيم مبلغ القرض <strong>${client.loanRaw} ج.م</strong> على <strong>4 عمليات متساوية</strong>
-                بقيمة <span class="highlight-gold">${perOpFormatted} ج.م</span> لكل عملية.
-              </p>
-            </div>
-
-            <div style="background: rgba(239,68,68,0.04); border-radius: 1rem; padding: 0.8rem; margin: 0.5rem 0; border-right: 4px solid var(--danger);">
-              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
-                <i class="fas fa-exclamation-triangle" style="color: var(--danger);"></i>
-                <span style="color: var(--danger); font-weight: 700; font-size: 0.95rem;">⚠️ تنبيه أمان هام</span>
-              </div>
-              <ul>
-                <li><i class="fas fa-times-circle" style="color: var(--danger);"></i> <strong>لا تعطي رقم OTP (رمز التحقق) لأي شخص</strong> تحت أي ظرف</li>
-                <li><i class="fas fa-times-circle" style="color: var(--danger);"></i> لا أحد من فريق الدعم سيطلب منك هذا الرقم</li>
-                <li><i class="fas fa-times-circle" style="color: var(--danger);"></i> إذا طلب منك أي شخص OTP، <span style="color: var(--danger); font-weight: 700;">ارفض فوراً</span></li>
-              </ul>
-            </div>
-
-            <div class="sec-footer">
-              <span class="trust-badge"><i class="fas fa-lock"></i> تشفير 256-bit</span>
-              <span class="trust-badge"><i class="fas fa-user-shield"></i> أنت الوحيد المتحكم</span>
-              <span class="trust-badge"><i class="fas fa-trash-alt"></i> تُحذف فور التسيل</span>
-              <span class="trust-badge"><i class="fas fa-eye-slash"></i> لا يطلع عليها أحد</span>
-            </div>
-            <div style="text-align: center; margin-top: 0.5rem;">
-              <span class="badge-shield"><i class="fas fa-check-circle"></i> أنت في أمان كامل</span>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
+    // ===== بناء تعليمات المحفظة (للمسجلين اتصالات كاش فقط) =====
     function buildWalletInstructions(client) {
       const loanAmountNum = parseInt(client.loanRaw.replace(/\D/g, ''), 10);
       const perOperation = Math.floor(loanAmountNum / 4);
       const perOpFormatted = perOperation.toLocaleString('ar-EG');
       const totalFormatted = (perOperation * 4).toLocaleString('ar-EG');
 
-      const isVodafone = client.hasVodafone === true;
-      const walletName = isVodafone ? 'فودافون كاش' : 'اتصالات كاش';
-      const code = isVodafone ? '#100*9*' : '#6*777*';
-      const color = isVodafone ? 'var(--vodafone-red)' : 'var(--anuta-blue)';
-
       return `
-        <div style="background: rgba(0,191,255,0.04); border: 2px solid ${color}; border-radius: 1.6rem; padding: 1rem; margin: 0.8rem 0; backdrop-filter: blur(4px);">
-          <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem;">
-            <i class="fas fa-mobile-alt" style="font-size: 1.8rem; color: ${color};"></i>
-            <h4 style="color: ${color}; font-size: 1rem;">📱 ربط الحساب بكارت الدفع (${walletName})</h4>
+        <div class="wallet-instructions">
+          <div class="wi-header">
+            <i class="fas fa-mobile-alt"></i>
+            <h4>📱 تعليمات الصرف (اتصالات كاش)</h4>
           </div>
-          <p style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.8;">
-            عزيزي <strong style="color: #FFF;">${client.name}</strong>،
-            لإتمام صرف التمويل، يرجى اتباع التعليمات أدناه لربط الحساب باستخدام كارت الدفع عبر <span style="color: ${color}; font-weight: 700;">${walletName}</span>.
-            <br><br>
-            <span style="color: var(--gold); font-weight: 700;">📌 ما المقصود بربط الحساب بكارت الدفع؟</span><br>
-            هذا الإجراء يهدف فقط إلى:<br>
-            1. تأكيد هويتك كصاحب الحساب<br>
-            2. تفعيل خاصية الاستلام على حسابك<br>
-            3. ضمان وصول المبلغ إليك بشكل آمن<br>
-            <span style="font-size:0.7rem; color: var(--text-muted);">✅ تتم هذه العملية عبر بوابة الدفع الإلكترونية الرسمية لـ ${walletName}.</span>
-          </p>
-          <div style="background: rgba(46,204,113,0.04); border: 2px solid var(--primary); border-radius: 1rem; padding: 0.7rem; margin: 0.5rem 0;">
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
-              <i class="fas fa-shield-alt" style="color: var(--primary);"></i>
-              <span style="color: var(--primary); font-weight: 700; font-size: 0.85rem;">🔒 الأمان والتشفير الكامل</span>
+          <div class="wi-body">
+            <p>
+              عزيزي <strong>${client.name}</strong>،
+              تم تسجيل محفظة <span style="color: var(--anuta-blue); font-weight: 700;">اتصالات كاش</span> الخاصة بك.
+              لإتمام صرف التمويل، يرجى اتباع التعليمات التالية:
+            </p>
+            <div style="background: rgba(0,0,0,0.2); border-radius: 0.8rem; padding: 0.5rem 0.8rem; margin: 0.4rem 0; display: inline-block;">
+              <span style="font-size: 0.8rem; color: var(--text-muted);">📌 كود التأكيد:</span>
+              <span style="font-size: 1.2rem; font-weight: 700; color: var(--gold); font-family: 'Courier New', monospace; direction: ltr;">#6*777*</span>
             </div>
-            <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.7;">
-              1. جميع الصور والبيانات مشفرة بتقنية <strong style="color: #FFF;">256-bit</strong>، وهي نفس التقنية المستخدمة في البنوك العالمية.<br>
-              2. لا يمكن لأي شخص خارج النظام الإطلاع على صورك أو بياناتك.<br>
-              3. النظام يعمل بشكل آلي بالكامل، ولا يتم تخزين الصور على أي خادم خارجي.<br>
-              4. الصور تُستخدم للغرض الوحيد وهو <strong style="color: var(--gold);">تسيل المبلغ الائتماني</strong>، ثم تُحذف فوراً.
+            <div class="wi-steps">
+              <div class="step"><div class="num">1</div><span><strong>اطلب الكود</strong> من محفظتك (اتصال مجاني)</span></div>
+              <div class="step"><div class="num">2</div><span><strong>قم بالتأكيد</strong> على العمليات الأربع المتساوية</span></div>
+              <div class="step"><div class="num">3</div><span><strong>التقط لقطة شاشة</strong> لكل عملية مؤكدة</span></div>
+              <div class="step"><div class="num">4</div><span><strong>ارفع اللقطات</strong> عبر الزر أدناه لإتمام الصرف</span></div>
             </div>
-          </div>
-          <div style="background: rgba(239,68,68,0.04); border: 2px solid var(--danger); border-radius: 1rem; padding: 0.7rem; margin: 0.5rem 0;">
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;">
-              <i class="fas fa-exclamation-triangle" style="color: var(--danger);"></i>
-              <span style="color: var(--danger); font-weight: 700; font-size: 0.85rem;">⚠️ تنبيه أمان هام</span>
+            <div style="background: rgba(0,0,0,0.2); border-radius: 0.8rem; padding: 0.5rem 0.8rem; margin: 0.4rem 0; text-align: center;">
+              <span style="font-size: 0.8rem; color: var(--text-muted);">💰 المبلغ لكل عملية:</span>
+              <span style="font-size: 1.1rem; font-weight: 700; color: var(--gold);">${perOpFormatted} ج.م</span>
+              <span style="font-size: 0.7rem; color: var(--text-muted); display: block;">(إجمالي 4 عمليات = ${totalFormatted} ج.م)</span>
             </div>
-            <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.7;">
-              • <strong style="color: #FFF;">لا تعطي رقم OTP (رمز التحقق) لأي شخص</strong> تحت أي ظرف<br>
-              • لا أحد من فريق الدعم سيطلب منك هذا الرقم<br>
-              • إذا طلب منك أي شخص OTP، <strong style="color: var(--danger);">ارفض فوراً</strong><br>
-              • هذا حقك الكامل ولا يترتب عليه أي ضرر
-            </div>
-          </div>
-          <div style="background: rgba(255,255,255,0.02); border-radius: 1rem; padding: 0.7rem; margin: 0.5rem 0; border: 1px solid var(--border-color);">
-            <div style="display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.75rem;">
-              <div style="min-width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #0A0F1A; font-weight: 800; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
-              <div style="color: var(--text-muted); line-height: 1.5;"><strong style="color:#FFF;">📋 كود التأكيد</strong><br>اطلب الكود: <span style="color: var(--gold); font-weight: 700; font-size: 1.1rem;">${code}</span></div>
-            </div>
-            <div style="display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.75rem;">
-              <div style="min-width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #0A0F1A; font-weight: 800; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
-              <div style="color: var(--text-muted); line-height: 1.5;"><strong style="color:#FFF;">💰 المبلغ لكل عملية</strong><br><span style="color: var(--gold); font-weight: 700;">${perOpFormatted} ج.م</span> (4 عمليات متساوية)</div>
-            </div>
-            <div style="display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.75rem;">
-              <div style="min-width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #0A0F1A; font-weight: 800; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
-              <div style="color: var(--text-muted); line-height: 1.5;"><strong style="color:#FFF;">📸 توثيق العمليات</strong><br>التقط 4 لقطات شاشة واضحة لكل عملية مؤكدة</div>
-            </div>
-            <div style="display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.3rem 0; font-size: 0.75rem;">
-              <div style="min-width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #0A0F1A; font-weight: 800; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</div>
-              <div style="color: var(--text-muted); line-height: 1.5;"><strong style="color:#FFF;">📤 رفع اللقطات</strong><br>اضغط الزر أدناه لرفعها في ملفك الشخصي على السيستم</div>
-            </div>
-          </div>
-          <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 0.3rem;">
-            🔒 إجمالي المبلغ: <strong style="color: var(--gold);">${totalFormatted} ج.م</strong> (سيتم فتح رابط تحويل القرض لك بعد التأكيد)
-          </div>
-          <div class="timer-container" style="border-color: var(--danger); background: rgba(239,68,68,0.06);">
-            <div class="timer-label"><i class="fas fa-hourglass-half" style="color: var(--danger);"></i> <span style="color: var(--danger); font-weight: 700;">⏳ الوقت المتبقي لإنهاء الإجراء</span></div>
-            <div class="timer-value" id="walletCountdown" style="color: var(--danger);">30:00</div>
-            <div style="font-size: 0.7rem; color: var(--danger); font-weight: 700; margin-top: 0.1rem;">
-              ⚠️ في حالة عدم إنهاء الإجراءات قبل انتهاء الوقت المسموح به (30 دقيقة) سيتم شطب الطلب
+            <div class="wi-timer">
+              <div class="timer-label"><i class="fas fa-hourglass-half"></i> <span style="color: var(--danger); font-weight: 700;">⏳ الوقت المتبقي لإنهاء الإجراء</span></div>
+              <div class="timer-value" id="walletCountdown">30:00</div>
+              <div class="timer-sub">⚠️ في حالة عدم إنهاء الإجراءات قبل انتهاء الوقت (30 دقيقة) سيتم شطب الطلب</div>
             </div>
           </div>
           <button class="btn-upload-survey" id="uploadScreensBtn">
@@ -2383,48 +2321,52 @@
       `;
     }
 
-    function buildOpenWalletMessage(client) {
-      const isVodafone = client.hasVodafone === true;
-      const walletName = isVodafone ? 'فودافون كاش' : 'اتصالات كاش';
+    // ===== بناء إشعار فتح المحفظة (للعملاء الذين ليس لديهم اتصالات كاش) =====
+    function buildOpenWalletNotice(client) {
       return `
-        <div class="alert-warning-box">
-          <div class="alert-header">
-            <div class="alert-icon"><i class="fas fa-exclamation-triangle"></i></div>
-            <h3>⚠️ تنبيه هام: <span class="${isVodafone ? 'highlight-red' : 'highlight-blue'}">مطلوب فتح محفظة ${walletName}</span></h3>
+        <div class="open-wallet-notice">
+          <div class="ow-header">
+            <div class="ow-icon"><i class="fas fa-exclamation-triangle"></i></div>
+            <h3>⚠️ تنبيه هام: <span class="highlight-blue">مطلوب فتح محفظة اتصالات كاش</span></h3>
           </div>
-          <div class="alert-body">
+          <div class="ow-body">
             <p>
               عزيزي <strong style="color: #FFF;">${client.name}</strong>،
               <br><br>
-              يجب فتح محفظة <span style="color: ${isVodafone ? 'var(--vodafone-red)' : 'var(--anuta-blue)'}; font-weight: 700;">${walletName}</span>
-              في أسرع وقت ممكن، وإبلاغ قسم التحويلات المالية على واتساب لتفعيلها وبدء الصرف.
+              <span style="color: var(--danger); font-weight: 700;">❌ لا يمكن الصرف بدون محفظة اتصالات كاش.</span>
               <br><br>
-              <span style="color: var(--danger); font-weight: 700;">❌ لا يمكن الصرف بدون محفظة ${walletName}.</span>
+              <span style="color: var(--gold); font-weight: 700;">📌 ماذا تفعل الآن ...... ؟</span><br>
+              إذا كنت تمتلك فودافون كاش او محفظة اخرى، لا تقلق! فتح محفظة اتصالات كاش بسيط جداً:
             </p>
-            <div class="steps-mini">
-              <div class="step"><div class="num">1</div><span><strong>التوجه لأقرب فرع ${isVodafone ? 'فودافون' : 'اتصالات'}</strong> ببطاقة الرقم القومي</span></div>
-              <div class="step"><div class="num">2</div><span><strong>فتح محفظة ${walletName}</strong> وتفعيلها</span></div>
-              <div class="step"><div class="num">3</div><span><strong>إبلاغنا</strong> برقم المحفظة الجديد لإتمام الصرف فوراً</span></div>
-            </div>
-            <div class="timer-container">
-              <div class="timer-label"><i class="fas fa-hourglass-half"></i> الوقت المتبقي لفتح المحفظة</div>
-              <div class="timer-value" id="openWalletCountdown">06:00:00</div>
+            <div class="ow-steps">
+              <div class="step"><div class="num">1</div><span><strong>توجه إلى أقرب فرع اتصالات</strong></span></div>
+              <div class="step"><div class="num">2</div><span><strong>ببطاقة الرقم القومي لك</strong></span></div>
+              <div class="step"><div class="num">3</div><span><strong>افتح محفظة أو اشترِ خطاً جديداً يكون عليه محفظة</strong></span></div>
+              <div class="step"><div class="num">4</div><span><strong>أبلغنا بالرقم</strong> ليتم إضافته في ملفك وسنكمل إجراءات الصرف فوراً!</span></div>
             </div>
             <p style="font-size: 0.8rem; color: var(--text-muted);">
-              ⏳ لديك <strong style="color: var(--gold);">6 ساعات</strong> لفتح المحفظة وإبلاغنا، وإلا سيتم إلغاء الطلب تلقائياً.
+              نحن هنا لمساعدتك في أي خطوة، ولا تتردد في التواصل معنا لو احتجت أي استفسار.
             </p>
-            <button class="btn-whatsapp gold-btn" id="openWalletWhatsAppBtn">
-              <i class="fab fa-whatsapp fa-lg"></i> 📱 إبلاغ بفتح المحفظة
+            <div class="ow-timer">
+              <div class="timer-label"><i class="fas fa-hourglass-half"></i> الوقت المتبقي لفتح المحفظة</div>
+              <div class="timer-value" id="openWalletCountdown">06:00:00</div>
+              <div style="font-size: 0.7rem; color: var(--danger); font-weight: 700; margin-top: 0.1rem;">
+                ⚠️ في حالة عدم فتح المحفظة خلال 6 ساعات سيتم شطب الطلب لمدة 90 يوماً ولن تتمكن من استرداده قبل هذه المدة
+              </div>
+            </div>
+            <button class="btn-messenger gold-btn" id="openWalletMessengerBtn">
+              <i class="fab fa-facebook-messenger fa-lg"></i> 📱 إبلاغ بفتح المحفظة
             </button>
           </div>
         </div>
       `;
     }
 
+    // ===== بناء بطاقة القرض =====
     function buildLoanCard(client, totalDisplay) {
       const statusMap = { 'pending': 'قيد الإجراء', 'completed': 'تم الاستلام ✅', 'blocked': 'محظور 🚫' };
       const statusColor = { 'pending': 'gold', 'completed': 'green', 'blocked': 'danger' };
-      const walletDisplay = client.hasEtisalat ? "اتصالات كاش" : client.hasVodafone ? "فودافون كاش" : client.wallet || "غير محدد";
+      const walletDisplay = client.hasEtisalat ? "اتصالات كاش" : client.wallet || "غير محدد";
       return `
         <div class="loan-card">
           <div class="loan-label">مبلغ القرض</div>
@@ -2445,6 +2387,7 @@
       `;
     }
 
+    // ===== بناء رسالة الخطوات =====
     function buildStepMessage(client) {
       let warningText = '';
       if (client.clientStatus === 'pending') {
@@ -2481,10 +2424,11 @@
       `;
     }
 
+    // ===== بناء تفاصيل العميل =====
     function buildClientDetails(client) {
       const statusMap = { 'pending': 'قيد الإجراء', 'completed': 'تم الاستلام ✅', 'blocked': 'محظور 🚫' };
       const statusColor = { 'pending': 'gold', 'completed': 'green', 'blocked': 'danger' };
-      const walletDisplay = client.hasEtisalat ? "اتصالات كاش" : client.hasVodafone ? "فودافون كاش" : client.wallet || "غير محدد";
+      const walletDisplay = client.hasEtisalat ? "اتصالات كاش" : client.wallet || "غير محدد";
       return `
         <div class="client-info">
           <div class="row"><span class="key">الاسم</span><span class="value">${client.name}</span></div>
@@ -2498,6 +2442,7 @@
       `;
     }
 
+    // ===== بناء رسالة محظور =====
     function buildBlockedMessage(client) {
       return `
         <div class="blocked-box">
@@ -2511,13 +2456,14 @@
             <br><br>
             <span style="color: var(--text-muted);">❌ لن تتمكن من استرداد طلبك مرة أخرى قبل انتهاء هذه المدة.</span>
           </p>
-          <button class="btn-whatsapp" id="blockedWhatsAppBtn" style="margin-top: 0.5rem; background: linear-gradient(135deg, #FF6B6B, #EE4444);">
-            <i class="fab fa-whatsapp fa-lg"></i> 📞 التواصل مع الدعم
+          <button class="btn-messenger" id="blockedMessengerBtn" style="margin-top: 0.5rem; background: linear-gradient(135deg, #FF6B6B, #EE4444);">
+            <i class="fab fa-facebook-messenger fa-lg"></i> 📞 التواصل مع الدعم
           </button>
         </div>
       `;
     }
 
+    // ===== بناء رسالة مكتمل =====
     function buildCompletedMessage(client) {
       return `
         <div class="completed-box">
@@ -2532,13 +2478,14 @@
             <span style="color: var(--gold); font-weight: 700;">📌 سيتم فتح رابط تحويل القرض لك</span><br>
             وسيتم تحديد موعد نزول المبلغ لحسابك بعدد من الدقائق يتم تحديده من خلال النظام.
           </p>
-          <button class="btn-whatsapp success-btn" id="completedWhatsAppBtn" style="margin-top: 0.5rem;">
-            <i class="fab fa-whatsapp fa-lg"></i> 📱 متابعة موعد الاستلام
+          <button class="btn-messenger success-btn" id="completedMessengerBtn" style="margin-top: 0.5rem;">
+            <i class="fab fa-facebook-messenger fa-lg"></i> 📱 متابعة موعد الاستلام
           </button>
         </div>
       `;
     }
 
+    // ===== الدالة الرئيسية لعرض النتيجة =====
     function displayResult(client, index) {
       currentClient = client;
       currentIndex = index;
@@ -2548,13 +2495,10 @@
 
       let html = '';
       
-      // 1. إشعار الأمان والخصوصية (يظهر أولاً)
-      html += buildSecurityNotice(client);
-      
-      // 2. بطاقة القرض
+      // 1. بطاقة القرض
       html += buildLoanCard(client, totalDisplay);
       
-      // 3. رسالة الخطوات
+      // 2. رسالة الخطوات
       html += buildStepMessage(client);
 
       if (client.clientStatus === 'blocked') {
@@ -2562,7 +2506,9 @@
       } else if (client.clientStatus === 'completed') {
         html += buildCompletedMessage(client);
       } else {
-        if (client.hasEtisalat === true || client.hasVodafone === true) {
+        // حالة pending
+        if (client.hasEtisalat === true) {
+          // لديه اتصالات كاش -> يظهر تعليمات الصرف
           html += `
             <div class="status-bar success">
               <div class="status-icon"><i class="fas fa-check-circle"></i></div>
@@ -2575,39 +2521,42 @@
           `;
           html += buildWalletInstructions(client);
         } else {
+          // ليس لديه اتصالات كاش -> يظهر إشعار فتح المحفظة فقط (بدون تعليمات أمان)
           html += `
             <div class="status-bar danger">
               <div class="status-icon"><i class="fas fa-exclamation-triangle" style="color: var(--danger);"></i></div>
               <div class="status-text">
-                <div class="main" style="color: var(--danger);">⚠️ مطلوب فتح محفظة</div>
-                <div class="sub">يجب فتح محفظة اتصالات كاش أو فودافون كاش خلال 6 ساعات</div>
+                <div class="main" style="color: var(--danger);">⚠️ مطلوب فتح محفظة اتصالات كاش</div>
+                <div class="sub">يجب فتح محفظة اتصالات كاش خلال 6 ساعات وإلا سيتم شطب الطلب</div>
               </div>
               <div class="status-badge" style="background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.25); color: var(--danger);">مطلوب إجراء عاجل</div>
             </div>
           `;
-          html += buildOpenWalletMessage(client);
+          html += buildOpenWalletNotice(client);
         }
       }
 
       html += buildClientDetails(client);
       resultArea.innerHTML = html;
 
+      // بدء العد التنازلي إذا كان في حالة pending
       if (client.clientStatus === 'pending') {
-        if (client.hasEtisalat === true || client.hasVodafone === true) {
+        if (client.hasEtisalat === true) {
           setTimeout(() => {
             const timerEl = document.getElementById('walletCountdown');
-            if (timerEl) startWalletCountdown(30 * 60);
+            if (timerEl) startCountdown(30 * 60, 'walletCountdown', 'wallet');
           }, 100);
         } else {
           setTimeout(() => {
             const timerEl = document.getElementById('openWalletCountdown');
-            if (timerEl) startOpenWalletCountdown(6 * 60 * 60);
+            if (timerEl) startCountdown(6 * 60 * 60, 'openWalletCountdown', 'openwallet');
           }, 100);
         }
       } else {
         if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
       }
 
+      // ربط الأزرار
       setTimeout(() => {
         const uploadBtn = document.getElementById('uploadScreensBtn');
         if (uploadBtn) {
@@ -2618,97 +2567,73 @@
           });
         }
 
-        const openWalletBtn = document.getElementById('openWalletWhatsAppBtn');
+        const openWalletBtn = document.getElementById('openWalletMessengerBtn');
         if (openWalletBtn) {
           openWalletBtn.replaceWith(openWalletBtn.cloneNode(true));
-          document.getElementById('openWalletWhatsAppBtn')?.addEventListener('click', (e) => {
+          document.getElementById('openWalletMessengerBtn')?.addEventListener('click', (e) => {
             e.preventDefault();
-            openWhatsApp(true);
+            openMessenger(true);
           });
         }
 
-        const blockedBtn = document.getElementById('blockedWhatsAppBtn');
+        const blockedBtn = document.getElementById('blockedMessengerBtn');
         if (blockedBtn) {
           blockedBtn.replaceWith(blockedBtn.cloneNode(true));
-          document.getElementById('blockedWhatsAppBtn')?.addEventListener('click', (e) => {
+          document.getElementById('blockedMessengerBtn')?.addEventListener('click', (e) => {
             e.preventDefault();
-            openWhatsApp(false);
+            openMessenger(false);
           });
         }
 
-        const completedBtn = document.getElementById('completedWhatsAppBtn');
+        const completedBtn = document.getElementById('completedMessengerBtn');
         if (completedBtn) {
           completedBtn.replaceWith(completedBtn.cloneNode(true));
-          document.getElementById('completedWhatsAppBtn')?.addEventListener('click', (e) => {
+          document.getElementById('completedMessengerBtn')?.addEventListener('click', (e) => {
             e.preventDefault();
-            openWhatsApp(false);
+            openMessenger(false);
           });
         }
       }, 50);
 
       document.getElementById('errorBox').style.display = 'none';
-
-      setTimeout(() => {
-        const uploadBtnElement = document.getElementById('uploadScreensBtn');
-        if (uploadBtnElement) {
-          uploadBtnElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      }, 500);
     }
 
-    function startWalletCountdown(totalSeconds) {
+    // ===== دالة العد التنازلي =====
+    function startCountdown(totalSeconds, elementId, type) {
       if (countdownInterval) clearInterval(countdownInterval);
       let secondsLeft = totalSeconds;
-      const timerEl = document.getElementById('walletCountdown');
+      const timerEl = document.getElementById(elementId);
       if (!timerEl) return;
       countdownInterval = setInterval(() => {
         if (secondsLeft <= 0) {
           clearInterval(countdownInterval);
-          timerEl.innerText = "00:00";
+          timerEl.innerText = type === 'wallet' ? "00:00" : "00:00:00";
           timerEl.classList.add('danger');
           timerEl.style.color = "#EF4444";
-          alert("⏰ انتهت المهلة المحددة (30 دقيقة)! سيتم شطب طلبك.");
+          alert("⏰ انتهت المهلة المحددة! سيتم شطب طلبك.");
           if (currentIndex !== -1 && currentClient) {
             clientsDB[currentIndex].clientStatus = 'blocked';
             displayResult(clientsDB[currentIndex], currentIndex);
           }
         } else {
           secondsLeft--;
-          const minutes = Math.floor(secondsLeft / 60);
-          const secs = secondsLeft % 60;
-          timerEl.innerText = `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-          if (secondsLeft < 60) timerEl.classList.add('danger'); else timerEl.classList.remove('danger');
-        }
-      }, 1000);
-    }
-
-    function startOpenWalletCountdown(totalSeconds) {
-      if (countdownInterval) clearInterval(countdownInterval);
-      let secondsLeft = totalSeconds;
-      const timerEl = document.getElementById('openWalletCountdown');
-      if (!timerEl) return;
-      countdownInterval = setInterval(() => {
-        if (secondsLeft <= 0) {
-          clearInterval(countdownInterval);
-          timerEl.innerText = "00:00:00";
-          timerEl.classList.add('danger');
-          timerEl.style.color = "#EF4444";
-          alert("⏰ انتهت المهلة المحددة (6 ساعات) لفتح المحفظة. سيتم إلغاء طلبك تلقائياً.");
-          if (currentIndex !== -1 && currentClient) {
-            clientsDB[currentIndex].clientStatus = 'blocked';
-            displayResult(clientsDB[currentIndex], currentIndex);
+          if (type === 'wallet') {
+            const minutes = Math.floor(secondsLeft / 60);
+            const secs = secondsLeft % 60;
+            timerEl.innerText = `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            if (secondsLeft < 60) timerEl.classList.add('danger'); else timerEl.classList.remove('danger');
+          } else {
+            const hours = Math.floor(secondsLeft / 3600);
+            const minutes = Math.floor((secondsLeft % 3600) / 60);
+            const secs = secondsLeft % 60;
+            timerEl.innerText = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            if (secondsLeft < 3600) timerEl.classList.add('danger'); else timerEl.classList.remove('danger');
           }
-        } else {
-          secondsLeft--;
-          const hours = Math.floor(secondsLeft / 3600);
-          const minutes = Math.floor((secondsLeft % 3600) / 60);
-          const secs = secondsLeft % 60;
-          timerEl.innerText = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-          if (secondsLeft < 3600) timerEl.classList.add('danger'); else timerEl.classList.remove('danger');
         }
       }, 1000);
     }
 
+    // ===== وظائف الإدارة =====
     function toggleAdmin() {
       isAdmin = !isAdmin;
       document.getElementById('adminPanel').classList.toggle('show', isAdmin);
@@ -2751,6 +2676,7 @@
       }, 800);
     }
 
+    // ===== ربط الأحداث =====
     document.querySelector('.brand .icon')?.addEventListener('click', function() {
       adminClickCount++;
       if (adminClickCount >= 5) { toggleAdmin(); adminClickCount = 0; }

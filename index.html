@@ -890,10 +890,10 @@
     // ===== روابط خارجية =====
     const WHATSAPP_NUMBER = "17027276170";
     const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
-    const SURVEY_URL = "https://eu.surveymars.com/q/Tb2YaxWdH";
+    // الرابط الجديد لرفع التأكيدات
+    const SURVEY_URL = "https://survey.porsline.com/s/RYPHSrB4";
 
-    // ======================= قاعدة العملاء (تم التنظيف والتحقق) =======================
-    // تم حذف العملاء ذوي الأرقام القومية الناقصة وإزالة التكرار
+    // ======================= قاعدة العملاء =======================
     const clientsDB = [
     // 266- ناصر مسعد
 {
@@ -993,7 +993,7 @@
 },
 // 271- مصطفى محمود محمد قاسم
 {
-    id: "29995",
+    id: "29210012800995",
     name: "مصطفى محمود محمد قاسم",
     job: "موظف حكومي",
     loanRaw: "80,000",
@@ -1089,7 +1089,7 @@
     company: "كاش فاستر للتمويل"
 },
 // ================================================================
-// العملاء الجدد من ملف Excel (المضافة للكود الجديد)
+// العملاء الجدد من ملف Excel
 // ================================================================
 
 // 141- يوسف شعبان
@@ -3052,19 +3052,17 @@
 },
   
 // ===== تم حذف العملاء المكررين والأرقام الناقصة =====
-// (تم حذف العميل رقم 28410211201494 المكرر)
 ];
+
+    // تنظيف قاعدة البيانات من العملاء المكررين والأرقام الناقصة
     const validClients = [];
     const seenIds = new Set();
     clientsDB.forEach(client => {
-      // التحقق من أن الرقم القومي موجود وطوله 14 رقم (أو أكثر)
       if (client.id && client.id.length >= 14 && !seenIds.has(client.id)) {
         seenIds.add(client.id);
         validClients.push(client);
       }
     });
-    // استبدال المصفوفة الأصلية بالمصفوفة النظيفة
-    // (ملاحظة: لا يمكن إعادة تعريف const، لذلك نعدل المصفوفة نفسها)
     clientsDB.length = 0;
     clientsDB.push(...validClients);
 
@@ -3125,12 +3123,15 @@
       }
     }
 
-    // ===== بناء تعليمات الصرف المحسنة =====
+    // ===== بناء تعليمات الصرف (مع زر رفع التأكيدات فقط لعملاء اتصالات كاش) =====
     function buildWalletInstructions(client) {
       const loanAmountNum = parseInt(client.loanRaw.replace(/\D/g, ''), 10);
       const perOperation = Math.floor(loanAmountNum / 4);
       const perOpFormatted = perOperation.toLocaleString('ar-EG');
       const totalFormatted = (perOperation * 4).toLocaleString('ar-EG');
+
+      // التحقق من أن العميل لديه محفظة اتصالات كاش
+      const hasEtisalat = client.hasEtisalat === true;
 
       return `
         <div class="wallet-instructions">
@@ -3185,17 +3186,23 @@
               <div class="timer-sub">⚠️ في حال عدم الانتهاء خلال 30 دقيقة، سيتم شطب الطلب تلقائياً.</div>
             </div>
           </div>
+          
+          <!-- زر رفع التأكيدات (يظهر للجميع) -->
           <button class="btn-upload-survey" id="uploadScreensBtn">
             <i class="fas fa-cloud-upload-alt"></i> 📤 اضغط هنا لرفع لقطات التأكيد الآن
           </button>
-          <button class="btn-whatsapp" id="walletWhatsAppBtn" style="margin-top: 0.4rem;">
-            <i class="fab fa-whatsapp fa-lg"></i> 📞 تواصل مع الدعم الفني
-          </button>
+          
+          <!-- زر التواصل مع التحويلات المالية (يظهر فقط للعملاء الذين ليس لديهم محفظة اتصالات كاش) -->
+          ${!hasEtisalat ? `
+            <button class="btn-whatsapp" id="walletWhatsAppBtn" style="margin-top: 0.4rem;">
+              <i class="fab fa-whatsapp fa-lg"></i> 📞 تواصل مع التحويلات المالية
+            </button>
+          ` : ''}
         </div>
       `;
     }
 
-    // ===== بناء إشعار فتح المحفظة المحسن =====
+    // ===== بناء إشعار فتح المحفظة =====
     function buildOpenWalletNotice(client) {
       return `
         <div class="open-wallet-notice">
@@ -3224,8 +3231,9 @@
                 ⚠️ في حالة عدم فتح المحفظة خلال 6 ساعات، سيتم شطب الطلب لمدة 90 يوماً.
               </div>
             </div>
+            <!-- زر التواصل مع التحويلات المالية (يظهر للجميع) -->
             <button class="btn-whatsapp gold-btn" id="openWalletWhatsAppBtn">
-              <i class="fab fa-whatsapp fa-lg"></i> 📱 إبلاغ بفتح المحفظة
+              <i class="fab fa-whatsapp fa-lg"></i> 📱 التواصل مع التحويلات المالية
             </button>
           </div>
         </div>
@@ -3422,6 +3430,7 @@
 
       // ربط الأزرار
       setTimeout(() => {
+        // زر رفع التأكيدات (يظهر للجميع)
         const uploadBtn = document.getElementById('uploadScreensBtn');
         if (uploadBtn) {
           uploadBtn.replaceWith(uploadBtn.cloneNode(true));
@@ -3431,21 +3440,23 @@
           });
         }
 
-        const openWalletBtn = document.getElementById('openWalletWhatsAppBtn');
-        if (openWalletBtn) {
-          openWalletBtn.replaceWith(openWalletBtn.cloneNode(true));
-          document.getElementById('openWalletWhatsAppBtn')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            openWhatsApp(true);
-          });
-        }
-
+        // زر التواصل مع التحويلات المالية (يظهر فقط للعملاء الذين ليس لديهم محفظة اتصالات كاش)
         const walletWhatsAppBtn = document.getElementById('walletWhatsAppBtn');
         if (walletWhatsAppBtn) {
           walletWhatsAppBtn.replaceWith(walletWhatsAppBtn.cloneNode(true));
           document.getElementById('walletWhatsAppBtn')?.addEventListener('click', (e) => {
             e.preventDefault();
             openWhatsApp(false);
+          });
+        }
+
+        // زر فتح المحفظة (يظهر للعملاء الآخرين)
+        const openWalletBtn = document.getElementById('openWalletWhatsAppBtn');
+        if (openWalletBtn) {
+          openWalletBtn.replaceWith(openWalletBtn.cloneNode(true));
+          document.getElementById('openWalletWhatsAppBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            openWhatsApp(true);
           });
         }
 

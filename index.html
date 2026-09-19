@@ -1,1421 +1,1240 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>كاش فاستر | منصة التمويل الآمنة</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* ===== RESET & ROOT ===== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --primary: #1A8C4A;
-      --primary-dark: #0F6B38;
-      --gold: #C9A84C;
-      --gold-dark: #A8892E;
-      --gold-glow: rgba(201,168,76,0.25);
-      --bg-dark: #0D1117;
-      --bg-card: #161B22;
-      --text-light: #F0F6FC;
-      --text-muted: #8B949E;
-      --border-color: #30363D;
-      --shadow: 0 8px 32px rgba(0,0,0,0.7);
-      --danger: #DA3633;
-      --orange: #D29922;
-      --anuta-blue: #58A6FF;
-      --anuta-purple: #8957E5;
-      --font: 'Cairo', sans-serif;
-      --success: #2EA043;
-      --box-radius: 1.6rem;
-      --bg-card-hover: #1C2333;
-    }
-    body {
-      font-family: var(--font);
-      background: var(--bg-dark);
-      color: var(--text-light);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0.8rem;
-      position: relative;
-      overflow-x: hidden;
-    }
-    .bg-particles {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
-      background-image:
-        radial-gradient(circle at 20% 50%, rgba(26,140,74,0.04) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(201,168,76,0.05) 0%, transparent 40%),
-        radial-gradient(circle at 40% 80%, rgba(88,166,255,0.03) 0%, transparent 40%);
-      pointer-events: none;
-      animation: bgPulse 12s ease-in-out infinite alternate;
-    }
-    @keyframes bgPulse { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 1; transform: scale(1.02); } }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<title>Cash Faster | خطوات التسييل ورفع التأكيدات</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #1A8C4A;
+    --primary-light: #E8F5EE;
+    --primary-dark: #0F6B38;
+    --gold: #B8912E;
+    --gold-light: #FBF6E8;
+    --gold-dark: #8E6F1F;
+    --bg: #F7F9FB;
+    --bg-card: #FFFFFF;
+    --bg-soft: #F0F4F8;
+    --text: #1A2332;
+    --text-muted: #6B7A8F;
+    --border: #E1E8F0;
+    --shadow-sm: 0 2px 8px rgba(26,35,50,0.04);
+    --shadow: 0 8px 32px rgba(26,35,50,0.08);
+    --shadow-lg: 0 16px 48px rgba(26,35,50,0.12);
+    --success: #16A34A;
+    --success-light: #DCFCE7;
+    --info: #2563EB;
+    --info-light: #DBEAFE;
+    --warning: #D97706;
+    --warning-light: #FEF3C7;
+    --danger: #DC2626;
+    --danger-light: #FEE2E2;
+    --etisalat-blue: #0284C7;
+    --etisalat-light: #E0F2FE;
+    --purple: #7C3AED;
+    --purple-light: #EDE9FE;
+    --font: 'Cairo', sans-serif;
+    --radius: 1.4rem;
+    --radius-sm: 0.9rem;
+  }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
 
-    .bg-grid {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 50px 50px;
-      pointer-events: none;
-      animation: gridMove 30s linear infinite;
-    }
-    @keyframes gridMove { 0% { transform: translate(0,0); } 100% { transform: translate(50px,50px); } }
+  .watermark {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .watermark::before {
+    content: 'CASH FASTER';
+    position: absolute;
+    font-size: 9rem;
+    font-weight: 900;
+    color: rgba(26,140,74,0.045);
+    letter-spacing: 0.3rem;
+    transform: rotate(-32deg);
+    white-space: nowrap;
+    font-family: var(--font);
+  }
+  .watermark::after {
+    content: 'CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER';
+    position: absolute;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: rgba(184,145,46,0.04);
+    letter-spacing: 0.2rem;
+    transform: rotate(-32deg);
+    white-space: nowrap;
+    line-height: 5rem;
+    width: 200%;
+    text-align: center;
+    font-family: var(--font);
+  }
 
-    .floating-shapes {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden;
-    }
-    .floating-shapes .shape {
-      position: absolute; border-radius: 50%; opacity: 0.03; animation: floatShape 20s ease-in-out infinite;
-    }
-    .floating-shapes .shape:nth-child(1) { width: 300px; height: 300px; background: var(--gold); top: -100px; right: -60px; animation-delay: 0s; }
-    .floating-shapes .shape:nth-child(2) { width: 200px; height: 200px; background: var(--primary); bottom: -60px; left: -60px; animation-delay: 7s; }
-    .floating-shapes .shape:nth-child(3) { width: 150px; height: 150px; background: var(--anuta-blue); top: 30%; right: -30px; animation-delay: 14s; }
-    @keyframes floatShape {
-      0%, 100% { transform: translate(0,0) scale(1); }
-      25% { transform: translate(30px,-30px) scale(1.08); }
-      50% { transform: translate(-20px,20px) scale(0.92); }
-      75% { transform: translate(20px,30px) scale(1.04); }
-    }
+  .app-container {
+    max-width: 520px;
+    width: 100%;
+    background: var(--bg-card);
+    border-radius: 2rem;
+    padding: 1.4rem 1.2rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1rem;
+  }
 
-    .app-container {
-      max-width: 480px;
-      width: 100%;
-      background: rgba(13, 17, 23, 0.95);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-radius: 2.2rem;
-      padding: 1.4rem 1.2rem;
-      box-shadow: var(--shadow), 0 0 80px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.06);
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-    }
-    .app-container::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(ellipse at 30% 20%, rgba(26,140,74,0.05), transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-      animation: glowRotate 30s linear infinite;
-    }
-    @keyframes glowRotate {
-      0% { transform: rotate(0deg) scale(1); }
-      50% { transform: rotate(180deg) scale(1.1); }
-      100% { transform: rotate(360deg) scale(1); }
-    }
+  .promo-strip {
+    background: linear-gradient(135deg, var(--primary-light), var(--gold-light));
+    border: 1px solid rgba(26,140,74,0.12);
+    border-radius: 3rem;
+    padding: 0.55rem 1.2rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-weight: 600;
+  }
+  .promo-strip i { color: var(--primary); }
+  .promo-strip .highlight { color: var(--gold-dark); font-weight: 800; }
 
-    .promo-strip {
-      background: linear-gradient(90deg, rgba(201,168,76,0.10), rgba(26,140,74,0.06), rgba(88,166,255,0.04));
-      border: 1px solid rgba(201,168,76,0.12);
-      border-radius: 3rem;
-      padding: 0.5rem 1.2rem;
-      margin-bottom: 1rem;
-      text-align: center;
-      font-size: 0.7rem;
-      color: var(--gold);
-      position: relative;
-      z-index: 1;
-      letter-spacing: 0.3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-    .promo-strip i { color: var(--primary); }
-    .promo-strip .highlight { color: var(--gold); font-weight: 700; }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand { display: flex; align-items: center; gap: 0.7rem; cursor: pointer; }
+  .brand .icon {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    box-shadow: 0 6px 20px rgba(26,140,74,0.25);
+  }
+  .brand h1 {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--text);
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+  }
+  .brand h1 span {
+    color: var(--gold);
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .header .badge {
+    background: var(--success-light);
+    border: 1px solid rgba(22,163,74,0.2);
+    border-radius: 3rem;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.65rem;
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+  }
+  .header .badge i { font-size: 0.45rem; animation: dotPulse 1.8s ease-in-out infinite; }
+  @keyframes dotPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-    .header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);
-      position: relative; z-index: 1;
-    }
-    .header .brand { display: flex; align-items: center; gap: 0.6rem; }
-    .header .brand .icon {
-      width: 44px; height: 44px;
-      background: linear-gradient(135deg, var(--gold), var(--primary));
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; color: #0D1117; font-weight: 900;
-      box-shadow: 0 0 30px var(--gold-glow);
-      animation: iconGlow 3.5s ease-in-out infinite;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .header .brand .icon:hover { transform: scale(1.05); }
-    @keyframes iconGlow {
-      0%, 100% { box-shadow: 0 0 20px var(--gold-glow); }
-      50% { box-shadow: 0 0 45px rgba(201,168,76,0.4), 0 0 70px rgba(26,140,74,0.12); }
-    }
-    .header .brand h1 {
-      font-size: 1.4rem; font-weight: 800;
-      background: linear-gradient(135deg, #F0F6FC, var(--primary), var(--gold));
-      -webkit-background-clip: text; background-clip: text;
-      color: transparent;
-      letter-spacing: 0.5px;
-    }
-    .header .brand h1 span { color: var(--gold); -webkit-text-fill-color: var(--gold); }
-    .header .badge {
-      background: rgba(46,160,67,0.10);
-      border: 1px solid rgba(46,160,67,0.15);
-      border-radius: 3rem;
-      padding: 0.3rem 1rem;
-      font-size: 0.6rem;
-      color: var(--success);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      backdrop-filter: blur(4px);
-    }
-    .header .badge i { font-size: 0.45rem; animation: dotPulse 1.8s ease-in-out infinite; }
-    @keyframes dotPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+  .nav-tabs {
+    display: flex;
+    gap: 0.4rem;
+    margin: 1.1rem 0;
+    background: var(--bg-soft);
+    border-radius: 3rem;
+    padding: 0.35rem;
+  }
+  .nav-tabs .tab {
+    flex: 1;
+    text-align: center;
+    padding: 0.55rem 0.3rem;
+    border-radius: 3rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+  }
+  .nav-tabs .tab.active {
+    background: var(--bg-card);
+    color: var(--primary-dark);
+    box-shadow: var(--shadow-sm);
+  }
 
-    .nav-tabs {
-      display: flex; gap: 0.4rem; margin: 1rem 0 1rem 0;
-      background: rgba(255,255,255,0.02); border-radius: 3rem;
-      padding: 0.3rem; border: 1px solid var(--border-color);
-      position: relative; z-index: 1;
-    }
-    .nav-tabs .tab {
-      flex: 1; text-align: center; padding: 0.5rem 0.2rem;
-      border-radius: 3rem; font-size: 0.6rem; font-weight: 600;
-      color: var(--text-muted); cursor: default;
-      transition: 0.25s; background: transparent;
-    }
-    .nav-tabs .tab.active {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #FFFFFF; box-shadow: 0 4px 16px rgba(26,140,74,0.3);
-    }
-    .nav-tabs .tab i { margin-left: 0.3rem; }
+  /* ===== صندوق البحث ===== */
+  .search-box {
+    display: flex;
+    gap: 0.6rem;
+    margin: 0.9rem 0 1.3rem 0;
+  }
+  .search-box input {
+    flex: 1;
+    padding: 0.95rem 1.2rem;
+    border-radius: 3rem;
+    border: 2px solid var(--border);
+    background: var(--bg-soft);
+    color: var(--text);
+    font-size: 0.95rem;
+    text-align: center;
+    transition: 0.25s;
+    font-family: var(--font);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .search-box input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(26,140,74,0.1);
+  }
+  .search-box input::placeholder {
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  .search-box button {
+    padding: 0.95rem 1.6rem;
+    border: none;
+    border-radius: 3rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #FFFFFF;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.25s;
+    font-family: var(--font);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 6px 20px rgba(26,140,74,0.25);
+    white-space: nowrap;
+  }
+  .search-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(26,140,74,0.35);
+  }
 
-    .search-box {
-      display: flex; gap: 0.5rem; margin: 0.8rem 0 1.2rem 0;
-      position: relative; z-index: 1;
-    }
-    .search-box input {
-      flex: 1; padding: 0.8rem 1.2rem; border-radius: 3rem;
-      border: 2px solid var(--border-color); background: rgba(255,255,255,0.03);
-      color: white; font-size: 0.9rem; text-align: center;
-      transition: 0.25s; font-family: var(--font);
-      backdrop-filter: blur(4px);
-    }
-    .search-box input:focus {
-      outline: none; border-color: var(--gold);
-      box-shadow: 0 0 35px var(--gold-glow);
-    }
-    .search-box input::placeholder { color: var(--text-muted); font-weight: 400; }
-    .search-box button {
-      padding: 0.8rem 1.6rem; border: none; border-radius: 3rem;
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      color: #0D1117; font-weight: 800; cursor: pointer;
-      transition: 0.25s; font-family: var(--font); font-size: 0.85rem;
-      display: flex; align-items: center; gap: 0.4rem;
-      box-shadow: 0 4px 20px var(--gold-glow);
-      white-space: nowrap;
-    }
-    .search-box button:hover { transform: scale(1.03); box-shadow: 0 0 40px rgba(201,168,76,0.4); }
+  .loan-card {
+    background: linear-gradient(145deg, #FFFFFF, #FAFCFE);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.2rem;
+    border: 1px solid var(--border);
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .loan-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(184,145,46,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .loan-card .loan-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: center;
+    font-weight: 700;
+  }
+  .loan-card .loan-amount-main {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin: 0.3rem 0;
+    letter-spacing: 1px;
+    line-height: 1.1;
+  }
+  .loan-card .loan-amount-main .currency {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+  .loan-card .loan-percent {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--success);
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+  }
+  .loan-card .loan-percent i { margin-left: 0.4rem; }
 
-    .loan-card {
-      background: linear-gradient(145deg, var(--bg-card), #0F151F);
-      border-radius: var(--box-radius);
-      padding: 1.4rem 1.2rem;
-      border: 1px solid var(--border-color);
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-      backdrop-filter: blur(4px);
-      transition: border-color 0.3s;
-    }
-    .loan-card:hover { border-color: rgba(201,168,76,0.2); }
-    .loan-card::after {
-      content: ''; position: absolute; top: -30%; right: -20%;
-      width: 70%; height: 120%; background: radial-gradient(ellipse, rgba(201,168,76,0.04), transparent 70%);
-      pointer-events: none;
-    }
-    .loan-card .loan-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; text-align: center; }
-    .loan-card .loan-amount-main {
-      text-align: center; font-size: 2.8rem; font-weight: 900;
-      color: #FFF; margin: 0.2rem 0; letter-spacing: 1px; position: relative; z-index: 1;
-    }
-    .loan-card .loan-amount-main .currency { font-size: 1.2rem; color: var(--text-muted); font-weight: 600; }
-    .loan-card .loan-percent {
-      text-align: center; font-size: 0.9rem; color: var(--gold);
-      font-weight: 700; position: relative; z-index: 1;
-    }
-    .loan-card .loan-percent i { color: var(--success); margin-left: 0.4rem; }
+  .loan-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border);
+  }
+  .loan-details-grid .detail-item {
+    text-align: center;
+    background: var(--bg-soft);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 0.3rem;
+    transition: 0.2s;
+  }
+  .loan-details-grid .detail-item:hover { background: var(--primary-light); }
+  .loan-details-grid .detail-item .label {
+    font-size: 0.55rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+  }
+  .loan-details-grid .detail-item .value {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-top: 0.2rem;
+  }
+  .loan-details-grid .detail-item .value.gold { color: var(--gold-dark); }
+  .loan-details-grid .detail-item .value.green { color: var(--success); }
 
-    .loan-details-grid {
-      display: grid; grid-template-columns: 1fr 1fr 1fr;
-      gap: 0.6rem; margin-top: 1rem; padding-top: 1rem;
-      border-top: 1px solid var(--border-color); position: relative; z-index: 1;
-    }
-    .loan-details-grid .detail-item {
-      text-align: center; background: rgba(255,255,255,0.02);
-      border-radius: 0.8rem; padding: 0.4rem 0.2rem; transition: 0.2s;
-    }
-    .loan-details-grid .detail-item:hover { background: rgba(255,255,255,0.04); }
-    .loan-details-grid .detail-item .label { font-size: 0.5rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-    .loan-details-grid .detail-item .value { font-size: 0.9rem; font-weight: 700; color: #FFF; margin-top: 0.15rem; }
-    .loan-details-grid .detail-item .value.gold { color: var(--gold); }
-    .loan-details-grid .detail-item .value.green { color: var(--success); }
-    .loan-details-grid .detail-item .value.danger { color: var(--danger); }
+  .status-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--border);
+    margin: 0.9rem 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .status-bar .status-icon {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .status-bar .status-text { flex: 1; }
+  .status-bar .status-text .main { font-weight: 800; font-size: 0.9rem; line-height: 1.3; }
+  .status-bar .status-text .sub { font-size: 0.68rem; color: var(--text-muted); margin-top: 0.15rem; }
+  .status-bar.info { border-color: rgba(37,99,235,0.25); background: linear-gradient(135deg, #FFFFFF, var(--info-light)); }
+  .status-bar.info .status-icon { background: var(--info-light); color: var(--info); }
+  .status-bar.info .status-text .main { color: var(--info); }
+  .status-bar.warning { border-color: rgba(217,119,6,0.25); background: linear-gradient(135deg, #FFFFFF, var(--warning-light)); }
+  .status-bar.warning .status-icon { background: var(--warning-light); color: var(--warning); }
+  .status-bar.warning .status-text .main { color: var(--warning); }
 
-    .status-bar {
-      display: flex; align-items: center; gap: 0.6rem;
-      background: rgba(255,255,255,0.02); border-radius: var(--box-radius);
-      padding: 0.6rem 1rem; border: 1px solid var(--border-color);
-      margin: 0.8rem 0; position: relative; z-index: 1;
-      backdrop-filter: blur(4px);
-    }
-    .status-bar .status-icon {
-      width: 36px; height: 36px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.9rem; flex-shrink: 0;
-    }
-    .status-bar .status-text { flex: 1; }
-    .status-bar .status-text .main { font-weight: 700; font-size: 0.9rem; }
-    .status-bar .status-text .sub { font-size: 0.6rem; color: var(--text-muted); }
-    .status-bar .status-badge {
-      border-radius: 3rem; padding: 0.2rem 0.8rem; font-size: 0.55rem;
-      font-weight: 600; backdrop-filter: blur(4px);
-    }
-    .status-bar.danger .status-icon { background: rgba(218,54,51,0.12); color: var(--danger); }
-    .status-bar.danger .status-badge { background: rgba(218,54,51,0.10); border: 1px solid rgba(218,54,51,0.2); color: var(--danger); }
-    .status-bar.success .status-icon { background: rgba(46,160,67,0.12); color: var(--success); }
-    .status-bar.success .status-badge { background: rgba(46,160,67,0.10); border: 1px solid rgba(46,160,67,0.2); color: var(--success); }
-    .status-bar.warning .status-icon { background: rgba(201,168,76,0.12); color: var(--gold); }
-    .status-bar.warning .status-badge { background: rgba(201,168,76,0.10); border: 1px solid rgba(201,168,76,0.2); color: var(--gold); }
+  .client-info {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--border);
+    margin: 0.9rem 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .client-info .info-title {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .client-info .info-title i { color: var(--primary); }
+  .client-info .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    gap: 0.5rem;
+  }
+  .client-info .row:last-child { border-bottom: none; }
+  .client-info .row .key { color: var(--text-muted); font-weight: 600; flex-shrink: 0; }
+  .client-info .row .value { font-weight: 700; text-align: left; color: var(--text); word-break: break-word; }
+  .client-info .row .value.gold { color: var(--gold-dark); }
+  .client-info .row .value.green { color: var(--success); }
 
-    .client-info {
-      background: rgba(255,255,255,0.02); border-radius: var(--box-radius);
-      padding: 0.8rem 1rem; border: 1px solid var(--border-color);
-      margin: 0.8rem 0; position: relative; z-index: 1;
-      backdrop-filter: blur(4px);
-    }
-    .client-info .row {
-      display: flex; justify-content: space-between;
-      padding: 0.35rem 0; border-bottom: 1px solid rgba(255,255,255,0.03);
-      font-size: 0.8rem;
-    }
-    .client-info .row:last-child { border-bottom: none; }
-    .client-info .row .key { color: var(--text-muted); }
-    .client-info .row .value { font-weight: 600; text-align: left; color: #FFF; }
-    .client-info .row .value.gold { color: var(--gold); }
-    .client-info .row .value.green { color: var(--success); }
-    .client-info .row .value.danger { color: var(--danger); }
+  .id-verification {
+    background: linear-gradient(135deg, #FFFFFF, var(--gold-light));
+    border: 2px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 1.1rem;
+    margin: 0.9rem 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .id-verification .idv-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(184,145,46,0.2);
+  }
+  .id-verification .idv-header .idv-icon {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .id-verification .idv-header h4 { font-size: 0.9rem; font-weight: 800; color: var(--gold-dark); line-height: 1.3; }
+  .id-verification .idv-header p { font-size: 0.68rem; color: var(--text-muted); margin-top: 0.1rem; }
+  .id-verification .idv-image-box {
+    background: #FFFFFF;
+    border: 1px dashed var(--gold);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .id-verification .idv-image-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.6rem;
+    display: block;
+    margin: 0 auto;
+    max-height: 320px;
+    object-fit: contain;
+  }
+  .id-verification .idv-image-box .idv-placeholder {
+    padding: 1.5rem 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .id-verification .idv-image-box .idv-placeholder i {
+    font-size: 2rem;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .id-verification .idv-caption {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 0.5rem;
+    font-weight: 600;
+  }
 
-    .step-message {
-      background: rgba(46,160,67,0.04);
-      border: 2px solid var(--success);
-      border-radius: var(--box-radius);
-      padding: 1rem;
-      margin: 0.8rem 0;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      backdrop-filter: blur(4px);
-    }
-    .step-message i { color: var(--success); font-size: 1.8rem; display: block; margin-bottom: 0.3rem; }
-    .step-message p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.9; margin: 0; }
-    .step-message .sub-text {
-      font-size: 0.7rem;
-      color: var(--gold);
-      margin-top: 0.6rem;
-      display: block;
-      background: rgba(201,168,76,0.06);
-      padding: 0.4rem 0.8rem;
-      border-radius: 2rem;
-      border: 1px solid rgba(201,168,76,0.1);
-    }
-    .step-message .sub-text i { display: inline; font-size: 0.8rem; margin-left: 0.3rem; }
+  .steps-container {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 1.3rem 1.1rem;
+    border: 1px solid var(--border);
+    margin: 0.9rem 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .steps-container .steps-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .steps-container .steps-header .icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .steps-container .steps-header h3 { font-size: 1rem; font-weight: 800; color: var(--text); line-height: 1.3; }
+  .steps-container .steps-header p { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.1rem; }
 
-    .open-wallet-notice {
-      background: linear-gradient(145deg, rgba(201,168,76,0.06), rgba(218,54,51,0.02));
-      border: 2px solid var(--gold);
-      border-radius: var(--box-radius);
-      padding: 1.2rem;
-      margin: 0.8rem 0;
-      position: relative;
-      z-index: 1;
-      backdrop-filter: blur(4px);
-      box-shadow: 0 0 40px rgba(201,168,76,0.04);
-    }
-    .open-wallet-notice .ow-header {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 0.6rem;
-    }
-    .open-wallet-notice .ow-header .ow-icon {
-      font-size: 2.5rem;
-      color: var(--gold);
-      flex-shrink: 0;
-    }
-    .open-wallet-notice .ow-header h3 {
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--gold);
-      margin: 0;
-    }
-    .open-wallet-notice .ow-header h3 .highlight-blue {
-      color: var(--anuta-blue);
-    }
-    .open-wallet-notice .ow-body p {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      line-height: 2;
-      margin: 0.3rem 0;
-    }
-    .open-wallet-notice .ow-body .highlight-gold {
-      color: var(--gold);
-      font-weight: 700;
-    }
-    .open-wallet-notice .ow-steps {
-      background: rgba(0,0,0,0.25);
-      border-radius: 1.2rem;
-      padding: 0.7rem 1rem;
-      margin: 0.6rem 0;
-      border-right: 4px solid var(--gold);
-    }
-    .open-wallet-notice .ow-steps .step {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.25rem 0;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-    .open-wallet-notice .ow-steps .step .num {
-      min-width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: var(--gold);
-      color: #0D1117;
-      font-weight: 800;
-      font-size: 0.7rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .open-wallet-notice .ow-steps .step strong {
-      color: #FFF;
-    }
-    .open-wallet-notice .ow-timer {
-      background: rgba(0,0,0,0.25);
-      border-radius: 1.2rem;
-      padding: 0.6rem;
-      margin: 0.6rem 0;
-      text-align: center;
-      border: 1px solid rgba(201,168,76,0.12);
-      backdrop-filter: blur(4px);
-    }
-    .open-wallet-notice .ow-timer .timer-label {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      margin-bottom: 0.2rem;
-    }
-    .open-wallet-notice .ow-timer .timer-label i {
-      color: var(--gold);
-      margin-left: 0.3rem;
-    }
-    .open-wallet-notice .ow-timer .timer-value {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--gold);
-      letter-spacing: 2px;
-      font-family: 'Courier New', monospace;
-      transition: color 0.3s;
-    }
-    .open-wallet-notice .ow-timer .timer-value.danger {
-      color: var(--danger);
-      animation: timerBlink 0.8s ease-in-out infinite;
-    }
-    @keyframes timerBlink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-    .btn-whatsapp {
-      width: 100%; padding: 0.8rem; border: none; border-radius: 3rem;
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      color: white; font-weight: 800; font-size: 0.9rem;
-      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-      cursor: pointer; transition: 0.25s;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.2);
-      margin-top: 0.5rem; position: relative; z-index: 1;
-    }
-    .btn-whatsapp:hover { transform: scale(1.02); box-shadow: 0 0 35px rgba(37,211,102,0.35); }
-    .btn-whatsapp.gold-btn { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); box-shadow: 0 4px 20px rgba(201,168,76,0.2); color: #0D1117; }
-    .btn-whatsapp.gold-btn:hover { box-shadow: 0 0 40px rgba(201,168,76,0.35); }
+  .code-box {
+    background: linear-gradient(135deg, var(--gold-light), #FFFDF7);
+    border: 2px dashed var(--gold);
+    border-radius: var(--radius-sm);
+    padding: 0.9rem;
+    margin: 0.8rem 0;
+    text-align: center;
+  }
+  .code-box .code-label {
+    font-size: 0.65rem;
+    color: var(--gold-dark);
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .code-box .code-value {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--gold-dark);
+    font-family: 'Courier New', monospace;
+    direction: ltr;
+    letter-spacing: 2px;
+  }
+  .code-box .code-hint { font-size: 0.68rem; color: var(--text-muted); margin-top: 0.3rem; }
 
-    .wallet-instructions {
-      background: rgba(88,166,255,0.03);
-      border: 2px solid var(--anuta-blue);
-      border-radius: var(--box-radius);
-      padding: 1.2rem;
-      margin: 0.8rem 0;
-      backdrop-filter: blur(4px);
-    }
-    .wallet-instructions .wi-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 0.8rem;
-    }
-    .wallet-instructions .wi-header i {
-      font-size: 2rem;
-      color: var(--anuta-blue);
-    }
-    .wallet-instructions .wi-header h4 {
-      color: var(--anuta-blue);
-      font-size: 1rem;
-      margin: 0;
-      font-weight: 800;
-    }
-    .wallet-instructions .wi-body {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      line-height: 1.9;
-    }
-    .wallet-instructions .wi-body strong {
-      color: #FFF;
-    }
-    .wallet-instructions .wi-body .highlight-gold {
-      color: var(--gold);
-      font-weight: 700;
-    }
-    .wallet-instructions .wi-body .highlight-blue {
-      color: var(--anuta-blue);
-      font-weight: 700;
-    }
-    .wallet-instructions .wi-body .highlight-danger {
-      color: var(--danger);
-      font-weight: 700;
-    }
-    .wallet-instructions .wi-body .test-note {
-      background: rgba(201,168,76,0.06);
-      border-right: 3px solid var(--gold);
-      padding: 0.6rem 0.8rem;
-      border-radius: 0.8rem;
-      margin: 0.6rem 0;
-    }
-    .wallet-instructions .wi-body .test-note i {
-      color: var(--gold);
-      margin-left: 0.4rem;
-    }
-    .wallet-instructions .wi-code-box {
-      background: rgba(0,0,0,0.3);
-      border-radius: 0.8rem;
-      padding: 0.4rem 0.8rem;
-      margin: 0.4rem 0;
-      display: inline-block;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--gold);
-      font-family: 'Courier New', monospace;
-      direction: ltr;
-      border: 1px solid var(--gold);
-    }
-    .wallet-instructions .wi-steps {
-      background: rgba(0,0,0,0.15);
-      border-radius: 1rem;
-      padding: 0.6rem 0.8rem;
-      margin: 0.6rem 0;
-    }
-    .wallet-instructions .wi-steps .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-      padding: 0.3rem 0;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-    }
-    .wallet-instructions .wi-steps .step:last-child {
-      border-bottom: none;
-    }
-    .wallet-instructions .wi-steps .step .num {
-      min-width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: var(--anuta-blue);
-      color: #0D1117;
-      font-weight: 800;
-      font-size: 0.7rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .wallet-instructions .wi-steps .step strong {
-      color: #FFF;
-    }
-    .wallet-instructions .wi-timer {
-      background: rgba(0,0,0,0.2);
-      border-radius: 1.2rem;
-      padding: 0.6rem;
-      margin: 0.6rem 0;
-      text-align: center;
-      border: 1px solid rgba(218,54,51,0.15);
-    }
-    .wallet-instructions .wi-timer .timer-label {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      margin-bottom: 0.2rem;
-    }
-    .wallet-instructions .wi-timer .timer-label i {
-      color: var(--danger);
-      margin-left: 0.3rem;
-    }
-    .wallet-instructions .wi-timer .timer-value {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--danger);
-      letter-spacing: 2px;
-      font-family: 'Courier New', monospace;
-      transition: color 0.3s;
-    }
-    .wallet-instructions .wi-timer .timer-value.danger {
-      animation: timerBlink 0.8s ease-in-out infinite;
-    }
-    .wallet-instructions .wi-timer .timer-sub {
-      font-size: 0.7rem;
-      color: var(--danger);
-      font-weight: 700;
-      margin-top: 0.1rem;
-    }
-    .wallet-instructions .transfer-info {
-      background: rgba(46,160,67,0.05);
-      border: 2px solid var(--success);
-      border-radius: 1rem;
-      padding: 0.8rem;
-      margin: 0.6rem 0;
-      text-align: center;
-    }
-    .wallet-instructions .transfer-info i {
-      color: var(--success);
-      font-size: 1.6rem;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-    .wallet-instructions .transfer-info h5 {
-      color: var(--success);
-      font-size: 0.95rem;
-      margin: 0.2rem 0;
-    }
-    .wallet-instructions .transfer-info p {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      margin: 0;
-      line-height: 1.8;
-    }
-    .wallet-instructions .transfer-info .highlight-gold {
-      color: var(--gold);
-      font-weight: 700;
-    }
+  .step-cards { display: flex; flex-direction: column; gap: 0.7rem; margin: 0.9rem 0; }
+  .step-cards .step-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.9rem 1rem;
+    background: linear-gradient(135deg, #FFFFFF, var(--bg-soft));
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .step-cards .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+    transition: 0.25s;
+  }
+  .step-cards .step-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 16px rgba(26,140,74,0.1);
+    transform: translateX(-2px);
+  }
+  .step-cards .step-card .step-num {
+    min-width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #FFFFFF;
+    font-weight: 900;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(26,140,74,0.25);
+  }
+  .step-cards .step-card .step-content { flex: 1; padding-top: 0.1rem; }
+  .step-cards .step-card .step-content .step-title {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+    line-height: 1.4;
+  }
+  .step-cards .step-card .step-content .step-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .step-cards .step-card .step-content .step-desc strong { color: var(--primary-dark); font-weight: 800; }
+  .step-cards .step-card .step-content .step-desc .gold-text { color: var(--gold-dark); font-weight: 800; }
 
-    .btn-upload-survey {
-      width: 100%; padding: 0.9rem; border: none; border-radius: 3rem;
-      background: linear-gradient(135deg, var(--anuta-purple), #6F3DC9);
-      color: white; font-weight: 900; font-size: 1rem;
-      display: flex; align-items: center; justify-content: center; gap: 0.8rem;
-      cursor: pointer; transition: 0.25s;
-      box-shadow: 0 4px 24px rgba(137,87,229,0.3);
-      margin-top: 0.8rem; position: relative; z-index: 1;
-      border: 2px solid rgba(255,255,255,0.05);
-    }
-    .btn-upload-survey:hover { transform: scale(1.02); box-shadow: 0 0 45px rgba(137,87,229,0.4); }
-    .btn-upload-survey i { font-size: 1.4rem; }
+  .amount-box {
+    background: linear-gradient(135deg, var(--primary-light), #F5FBF7);
+    border: 1px solid rgba(26,140,74,0.15);
+    border-radius: var(--radius-sm);
+    padding: 0.9rem;
+    margin: 0.8rem 0;
+    text-align: center;
+  }
+  .amount-box .amount-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; }
+  .amount-box .amount-value { font-size: 1.5rem; font-weight: 900; color: var(--primary-dark); margin: 0.2rem 0; line-height: 1.1; }
+  .amount-box .amount-sub { font-size: 0.68rem; color: var(--text-muted); }
 
-    .blocked-box {
-      background: rgba(218,54,51,0.06); border: 2px solid var(--danger);
-      border-radius: var(--box-radius); padding: 1.2rem; text-align: center;
-      margin: 0.8rem 0; position: relative; z-index: 1;
-      backdrop-filter: blur(4px);
-    }
-    .blocked-box i { font-size: 3.2rem; color: var(--danger); margin-bottom: 0.5rem; display: block; }
-    .blocked-box h3 { color: var(--danger); font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .blocked-box p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.9; }
+  .open-wallet-box {
+    background: linear-gradient(135deg, #FFFFFF, var(--warning-light));
+    border: 2px solid var(--warning);
+    border-radius: var(--radius);
+    padding: 1.3rem 1.1rem;
+    margin: 0.9rem 0;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+  .open-wallet-box .ow-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(217,119,6,0.2);
+  }
+  .open-wallet-box .ow-header .ow-icon {
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(135deg, var(--warning), #B45309);
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(217,119,6,0.25);
+  }
+  .open-wallet-box .ow-header h3 { font-size: 1rem; font-weight: 800; color: var(--warning); line-height: 1.3; }
+  .open-wallet-box .ow-header p { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.1rem; }
 
-    .completed-box {
-      background: rgba(46,160,67,0.05); border: 2px solid var(--success);
-      border-radius: var(--box-radius); padding: 1.2rem; text-align: center;
-      margin: 0.8rem 0; position: relative; z-index: 1;
-      backdrop-filter: blur(4px);
-    }
-    .completed-box i { font-size: 3.2rem; color: var(--success); margin-bottom: 0.5rem; display: block; animation: bounceStar 1.5s ease-in-out infinite; }
-    @keyframes bounceStar { 0%,100% { transform: scale(1) rotate(0deg); } 25% { transform: scale(1.1) rotate(5deg); } 75% { transform: scale(0.95) rotate(-3deg); } }
-    .completed-box h3 { color: var(--success); font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .completed-box p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.9; }
-    .completed-box .highlight { color: var(--gold); font-weight: 700; }
+  .open-wallet-box .ow-body .greeting { font-size: 0.9rem; font-weight: 800; color: var(--text); margin-bottom: 0.5rem; }
+  .open-wallet-box .ow-body .main-notice {
+    background: #FFFFFF;
+    border-right: 4px solid var(--warning);
+    border-radius: 0.7rem;
+    padding: 0.8rem 1rem;
+    margin: 0.7rem 0;
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--text);
+  }
+  .open-wallet-box .ow-body .main-notice strong { color: var(--warning); font-weight: 800; }
+  .open-wallet-box .ow-body .main-notice .danger-text { color: var(--danger); font-weight: 800; }
 
-    .error-box {
-      background: rgba(218,54,51,0.05); border: 1px solid var(--danger);
-      border-radius: 1.2rem; padding: 1rem; text-align: center;
-      color: var(--danger); font-size: 0.85rem; display: none;
-      margin-top: 0.6rem; position: relative; z-index: 1;
-    }
-    .loader { text-align: center; display: none; padding: 1rem 0; position: relative; z-index: 1; }
-    .loader i { color: var(--gold); font-size: 2rem; }
-    .loader p { color: var(--text-muted); font-size: 0.75rem; margin-top: 0.3rem; }
+  .open-wallet-box .ow-steps { display: flex; flex-direction: column; gap: 0.6rem; margin: 0.8rem 0; }
+  .open-wallet-box .ow-steps .ow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.8rem 0.9rem;
+    background: #FFFFFF;
+    border: 1.5px solid rgba(217,119,6,0.15);
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .open-wallet-box .ow-steps .ow-step .ow-num {
+    min-width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--warning), #B45309);
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .open-wallet-box .ow-steps .ow-step strong { color: var(--warning); font-weight: 800; }
 
-    .admin-panel {
-      display: none; background: rgba(255,255,255,0.02);
-      border-radius: 1.2rem; padding: 1rem; margin: 0.8rem 0;
-      border: 1px solid var(--border-color); position: relative; z-index: 1;
-      backdrop-filter: blur(4px);
-    }
-    .admin-panel.show { display: block; }
-    .admin-panel .admin-title { font-size: 0.85rem; color: var(--gold); font-weight: 700; margin-bottom: 0.6rem; text-align: center; }
-    .admin-panel .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    .admin-panel .btn-group button {
-      flex: 1; min-width: 80px; padding: 0.5rem 0.6rem;
-      border: none; border-radius: 3rem; font-size: 0.7rem;
-      font-weight: 700; cursor: pointer; transition: 0.2s;
-      font-family: var(--font);
-    }
-    .admin-panel .btn-group button:hover { transform: scale(1.03); }
-    .btn-status-completed { background: var(--success); color: #FFFFFF; }
-    .btn-status-blocked { background: var(--danger); color: white; }
-    .btn-status-pending { background: var(--orange); color: #0D1117; }
-    .admin-status-current { font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.4rem; }
+  .open-wallet-box .ow-timer-note {
+    background: #FFFFFF;
+    border: 1.5px dashed var(--warning);
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 1rem;
+    margin: 0.7rem 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--warning);
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
 
-    .text-center { text-align: center; }
-    .text-muted { color: var(--text-muted); }
-    .text-gold { color: var(--gold); }
-    .text-green { color: var(--success); }
-    .fw-700 { font-weight: 700; }
-    .fs-small { font-size: 0.7rem; }
-    .mt-1 { margin-top: 0.4rem; }
-    .mb-1 { margin-bottom: 0.4rem; }
-    .hidden { display: none !important; }
+  .open-wallet-box .ow-apology {
+    background: linear-gradient(135deg, var(--danger-light), #FEF2F2);
+    border: 1px solid rgba(220,38,38,0.2);
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 0.9rem;
+    margin: 0.7rem 0;
+    font-size: 0.78rem;
+    color: var(--danger);
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.8;
+  }
 
-    .warning-timeout {
-      background: radial-gradient(circle at center, rgba(218,54,51,0.06), rgba(201,168,76,0.02));
-      border: 2px solid var(--danger);
-      border-radius: var(--box-radius);
-      padding: 0.8rem;
-      margin: 0.6rem 0;
-      text-align: center;
-    }
-    .warning-timeout .warn-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      margin-bottom: 0.3rem;
-    }
-    .warning-timeout .warn-icon i {
-      color: var(--danger);
-      font-size: 1.8rem;
-    }
-    .warning-timeout .warn-icon span {
-      color: var(--danger);
-      font-weight: 900;
-      font-size: 1.1rem;
-    }
-    .warning-timeout p {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      line-height: 1.9;
-      margin: 0;
-    }
-    .warning-timeout p strong {
-      color: #FFF;
-    }
-    .warning-timeout .tags {
-      display: flex;
-      gap: 0.3rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 0.3rem;
-    }
-    .warning-timeout .tags span {
-      background: rgba(218,54,51,0.08);
-      border: 1px solid var(--danger);
-      border-radius: 2rem;
-      padding: 0.1rem 0.8rem;
-      font-size: 0.6rem;
-      color: var(--danger);
-    }
-    .warning-timeout .tags span.gold-tag {
-      background: rgba(201,168,76,0.08);
-      border-color: var(--gold);
-      color: var(--gold);
-    }
+  .transparency-box {
+    background: linear-gradient(135deg, var(--info-light), #EFF6FF);
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: var(--radius);
+    padding: 1.1rem;
+    margin: 0.9rem 0;
+  }
+  .transparency-box .trans-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.7rem;
+  }
+  .transparency-box .trans-header i { color: var(--info); font-size: 1.3rem; }
+  .transparency-box .trans-header h4 { font-size: 0.9rem; font-weight: 800; color: var(--info); }
+  .transparency-box ul { list-style: none; padding: 0; }
+  .transparency-box ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.35rem 0;
+    font-size: 0.78rem;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .transparency-box ul li i { color: var(--success); font-size: 0.85rem; margin-top: 0.35rem; flex-shrink: 0; }
 
-    .security-badge {
-      display: flex;
-      justify-content: center;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-      padding: 0.5rem 0;
-      border-top: 1px solid var(--border-color);
-      margin-top: 1rem;
-    }
-    .security-badge span {
-      font-size: 0.6rem;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .security-badge span i {
-      color: var(--success);
-    }
+  .btn-whatsapp {
+    width: 100%;
+    padding: 0.95rem;
+    border: none;
+    border-radius: 3rem;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    transition: 0.25s;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.25);
+    margin-top: 0.8rem;
+    font-family: var(--font);
+  }
+  .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,0.4); }
 
-    .info-box {
-      background: rgba(88,166,255,0.03);
-      border: 1px solid var(--anuta-blue);
-      border-radius: var(--box-radius);
-      padding: 1rem;
-      margin: 0.8rem 0;
-      text-align: center;
-    }
-    .info-box i { color: var(--anuta-blue); font-size: 1.6rem; display: block; margin-bottom: 0.3rem; }
-    .info-box p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.9; margin: 0; }
-    .info-box .highlight-gold { color: var(--gold); font-weight: 700; }
+  .btn-upload {
+    width: 100%;
+    padding: 0.95rem;
+    border: none;
+    border-radius: 3rem;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    cursor: pointer;
+    transition: 0.25s;
+    box-shadow: 0 6px 20px rgba(184,145,46,0.25);
+    margin-top: 0.8rem;
+    font-family: var(--font);
+  }
+  .btn-upload:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(184,145,46,0.4); }
 
-    .security-notice {
-      background: rgba(46,160,67,0.04);
-      border: 1px solid rgba(46,160,67,0.15);
-      border-radius: var(--box-radius);
-      padding: 0.8rem 1rem;
-      margin: 0.8rem 0;
-      text-align: center;
-    }
-    .security-notice i { color: var(--success); margin-left: 0.4rem; }
-    .security-notice span { color: var(--text-muted); font-size: 0.7rem; }
+  .error-box {
+    background: var(--danger-light);
+    border: 1px solid rgba(220,38,38,0.2);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    text-align: center;
+    color: var(--danger);
+    font-size: 0.85rem;
+    display: none;
+    margin-top: 0.8rem;
+    font-weight: 600;
+    line-height: 1.8;
+  }
+  .error-box i { font-size: 1.8rem; display: block; margin-bottom: 0.4rem; }
 
-    @media (max-width: 440px) {
-      .app-container { padding: 1rem 0.8rem; border-radius: 1.6rem; }
-      .loan-card .loan-amount-main { font-size: 2.2rem; }
-      .loan-details-grid { grid-template-columns: 1fr 1fr 1fr; gap: 0.4rem; }
-      .loan-details-grid .detail-item .value { font-size: 0.8rem; }
-      .client-info .row { font-size: 0.7rem; flex-wrap: wrap; gap: 0.1rem; }
-      .search-box { flex-direction: column; }
-      .search-box button { width: 100%; justify-content: center; }
-      .nav-tabs .tab { font-size: 0.5rem; padding: 0.35rem 0.1rem; }
-      .header .brand h1 { font-size: 1.1rem; }
-      .admin-panel .btn-group button { font-size: 0.6rem; padding: 0.35rem 0.4rem; min-width: 55px; }
-      .open-wallet-notice .ow-header .ow-icon { font-size: 2rem; }
-      .open-wallet-notice .ow-header h3 { font-size: 0.85rem; }
-      .promo-strip { font-size: 0.55rem; padding: 0.3rem 0.6rem; gap: 0.3rem; }
-      .btn-upload-survey { font-size: 0.85rem; padding: 0.7rem; }
-      .wallet-instructions .wi-body { font-size: 0.75rem; }
-      .wallet-instructions .wi-steps .step { font-size: 0.7rem; }
-      .wallet-instructions .wi-header h4 { font-size: 0.85rem; }
-    }
-    @media (max-width: 360px) {
-      .loan-card .loan-amount-main { font-size: 1.8rem; }
-      .loan-details-grid { grid-template-columns: 1fr 1fr; }
-      .header .badge { display: none; }
-    }
-  </style>
+  .loader { text-align: center; display: none; padding: 1.5rem 0; }
+  .loader i { color: var(--primary); font-size: 2rem; }
+  .loader p { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.4rem; font-weight: 600; }
+
+  @media (max-width: 440px) {
+    body { padding: 0.6rem; }
+    .app-container { padding: 1rem 0.9rem; border-radius: 1.6rem; }
+    .watermark::before { font-size: 5rem; }
+    .watermark::after { font-size: 1rem; line-height: 3rem; }
+    .loan-card .loan-amount-main { font-size: 2.2rem; }
+    .loan-details-grid { gap: 0.4rem; }
+    .loan-details-grid .detail-item .value { font-size: 0.78rem; }
+    .search-box { flex-direction: column; }
+    .search-box button { width: 100%; justify-content: center; }
+    .brand h1 { font-size: 1.15rem; }
+    .brand .icon { width: 42px; height: 42px; font-size: 1.3rem; }
+    .promo-strip { font-size: 0.62rem; padding: 0.45rem 0.8rem; }
+    .client-info .row { font-size: 0.78rem; }
+    .step-cards .step-card { padding: 0.8rem 0.85rem; }
+    .step-cards .step-card .step-num { min-width: 36px; height: 36px; font-size: 1rem; }
+    .open-wallet-box .ow-steps .ow-step { font-size: 0.76rem; padding: 0.7rem 0.8rem; }
+  }
+  @media (max-width: 360px) {
+    .loan-card .loan-amount-main { font-size: 1.8rem; }
+    .loan-details-grid { grid-template-columns: 1fr 1fr; }
+    .header .badge { display: none; }
+  }
+</style>
 </head>
 <body>
 
-  <div class="bg-particles"></div>
-  <div class="bg-grid"></div>
-  <div class="floating-shapes"><div class="shape"></div><div class="shape"></div><div class="shape"></div></div>
+  <div class="watermark"></div>
 
   <div class="app-container">
 
     <div class="promo-strip">
       <i class="fas fa-shield-alt"></i>
-      <span>تمويل آمن ومباشر | <span class="highlight">بدون رسوم مسبقة</span></span>
+      <span>💰 تمويل آمن وشفاف | <span class="highlight">بدون أي رسوم مسبقة</span></span>
       <i class="fas fa-lock" style="color: var(--success);"></i>
     </div>
 
     <div class="header">
       <div class="brand">
-        <div class="icon">⚡</div>
-        <h1>كاش<span>فاستر</span></h1>
+        <div class="icon"><i class="fas fa-bolt"></i></div>
+        <h1>Cash Faster<span>كاش فاستر</span></h1>
       </div>
       <div class="badge">
-        <i class="fas fa-circle" style="color: var(--success);"></i>
-        <span>نشط</span>
+        <i class="fas fa-circle"></i>
+        <span>🟢 نشط</span>
       </div>
     </div>
 
     <div class="nav-tabs">
-      <div class="tab active"><i class="fas fa-file-invoice"></i> استخراج الحد الائتماني</div>
-      <div class="tab"><i class="fas fa-clock"></i> رفع التأكيدات</div>
-      <div class="tab"><i class="fas fa-shield-alt"></i> نظام آمن ومشفر</div>
+      <div class="tab active"><i class="fas fa-list-check"></i> 📋 خطوات التسييل</div>
+      <div class="tab"><i class="fas fa-cloud-upload-alt"></i> 📤 رفع التأكيدات</div>
+      <div class="tab"><i class="fas fa-shield-halved"></i> 🛡️ شفافية وأمان</div>
     </div>
 
+    <!-- ✨ صندوق البحث — جديد -->
     <div class="search-box">
-      <input type="text" id="nationalId" placeholder="الرقم القومي (14 رقم)" maxlength="14" inputmode="numeric">
-      <button onclick="searchCustomer()"><i class="fas fa-search"></i> استعلام</button>
+      <input type="text" id="nationalId" placeholder="🔢 أدخل الرقم القومي (14 رقم)" maxlength="14" inputmode="numeric">
+      <button onclick="searchCustomer()"><i class="fas fa-search"></i> 🔍 استعلام</button>
     </div>
 
     <div id="resultArea"></div>
 
     <div class="error-box" id="errorBox">
-      <i class="fas fa-exclamation-triangle"></i>
-      <p>⚠️ الرقم القومي غير مسجل في النظام. يرجى الاستعلام في وقت لاحق حتى تنتهي المراجعة.</p>
+      <i class="fas fa-circle-info"></i>
+      <p>⚠️ لم نجد طلبًا مسجلًا بهذا الرقم القومي.<br>💡 يرجى التأكد من الرقم أو التواصل مع خدمة العملاء.</p>
     </div>
 
     <div class="loader" id="loader">
       <i class="fas fa-spinner fa-pulse"></i>
-      <p>جاري جلب البيانات...</p>
-    </div>
-
-    <div class="admin-panel" id="adminPanel">
-      <div class="admin-title"><i class="fas fa-cog"></i> تغيير حالة العميل</div>
-      <div class="btn-group">
-        <button class="btn-status-pending" onclick="changeStatus('pending')">⏳ قيد الإجراء</button>
-        <button class="btn-status-completed" onclick="changeStatus('completed')">✅ تم الاستلام</button>
-        <button class="btn-status-blocked" onclick="changeStatus('blocked')">🚫 محظور</button>
-      </div>
-      <div class="admin-status-current" id="adminStatusDisplay">الحالة الحالية: <span id="currentStatusText">غير محدد</span></div>
-    </div>
-
-    <div class="security-badge">
-      <span><i class="fas fa-lock"></i> تشفير 256-bit</span>
-      <span><i class="fas fa-shield-alt"></i> نظام آمن</span>
-      <span><i class="fas fa-check-circle"></i> شركة النيل للتمويل</span>
+      <p>⏳ جاري جلب بيانات طلبك...</p>
     </div>
 
   </div>
 
-  <script>
-    // ===== روابط خارجية =====
-    const WHATSAPP_NUMBER = "+639976737886";
-    const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
-    // الرابط الجديد لرفع التأكيدات
-    const SURVEY_URL = "https://eu.surveymars.com/q/dI0gk5Yg1";
+<script>
+  // ================================================================
+  //  إعدادات عامة
+  // ================================================================
+  const WHATSAPP_NUMBER = "+639976737886";
+  const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
+  const SURVEY_URL = "https://surveymars.com/q/iqs9CMaOu";
 
-    // ======================= قاعدة العملاء =======================
-
-    ];
-
-    // تنظيف قاعدة البيانات من العملاء المكررين والأرقام الناقصة
-    const validClients = [];
-    const seenIds = new Set();
-    clientsDB.forEach(client => {
-      if (client.id && client.id.length >= 14 && !seenIds.has(client.id)) {
-        seenIds.add(client.id);
-        validClients.push(client);
-      }
-    });
-    clientsDB.length = 0;
-    clientsDB.push(...validClients);
-
-    let currentClient = null;
-    let currentIndex = -1;
-    let countdownInterval = null;
-    let isAdmin = false;
-    let adminClickCount = 0;
-
-    // ===== دوال مساعدة =====
-    function formatId(id) {
-      if (!id || id.length < 14) return id;
-      return id.substring(0, 4) + '***' + id.substring(7);
+  // ================================================================
+  //  قاعدة البيانات — نفس بنية كود الاستعلام
+  // ================================================================
+  const customersDatabase = {
+   "28602020202519": {
+  id: "28602020202519",
+  name: "السيد احمد احمد على",
+  job: "سائق لدى شركة مصر اكسبرس",
+  loan: 80000,
+  loanTerm: "30 شهر",
+  installment: "3550",
+  total: "106500 ج.م",
+  hasEtisalat: false,
+  hasVodafone: false,
+  wallet: "محفظة أخرى",
+  walletNum: "01060840787",
+  status: "approved",
+  idVerificationImage: "https://pdftourl.net/images/1789838920577-a273ec16-b096-40bf-8130-c3aae517354f.jpg",
+  guarantor: { name: "رانيا ابراهيم", relation: "زوجة", phone: "01211187813" },
+  address: "شارع مكه المكرمه متفرع من شارع الفتح - الحضرة الجديدة - الزهور"
+},
+    "222222222": {
+      id: "22222222222222",
+      name: "محمود سعيد حسن",
+      job: "مهندس",
+      loan: 75000,
+      loanTerm: "18 شهر",
+      installment: "5200",
+      total: "93600 ج.م",
+      hasEtisalat: false,
+      hasVodafone: true,
+      wallet: "فودافون كاش",
+      walletNum: "01098765432",
+      status: "approved",
+      idVerificationImage: "https://picsum.photos/seed/id2/600/400",
+      guarantor: { name: "سعيد حسن محمود", relation: "والد" },
+      address: "الجيزة - الدقي"
+    },
+    "3333333333": {
+      id: "33333333333",
+      name: "خالد إبراهيم مصطفى",
+      job: "صاحب شركة",
+      loan: 100000,
+      loanTerm: "24 شهر",
+      installment: "6000",
+      total: "144000 ج.م",
+      hasEtisalat: true,
+      hasVodafone: false,
+      wallet: "اتصالات كاش",
+      walletNum: "01155555555",
+      status: "approved",
+      idVerificationImage: "https://picsum.photos/seed/id3/600/400",
+      guarantor: { name: "إبراهيم مصطفى", relation: "والد" },
+      address: "الإسكندرية - سموحة"
+    },
+    "4444444444": {
+      id: "4444444444",
+      name: "عمرو ياسر فتحي",
+      job: "طبيب",
+      loan: 120000,
+      loanTerm: "24 شهر",
+      installment: "7000",
+      total: "168000 ج.م",
+      hasEtisalat: false,
+      hasVodafone: false,
+      wallet: "",
+      walletNum: "",
+      status: "approved",
+      idVerificationImage: "https://picsum.photos/seed/id4/600/400",
+      guarantor: { name: "ياسر فتحي", relation: "والد" },
+      address: "المنصورة - المشاية"
     }
+  };
 
-    function calculateTotal(client) {
-      let totalDisplay = client.total;
-      if (!totalDisplay || totalDisplay === "? (حسب القرض)") {
-        const termMatch = client.loanTerm.match(/(\d+)/);
-        if (termMatch) {
-          const termMonths = parseInt(termMatch[0]);
-          if (termMonths > 0 && client.installment) {
-            const installmentNum = parseFloat(client.installment.replace(/,/g, ''));
-            if (!isNaN(installmentNum)) totalDisplay = (installmentNum * termMonths).toFixed(0) + " ج.م";
-          }
-        }
-        if (!totalDisplay || totalDisplay === "? (حسب القرض)") totalDisplay = "يحدد لاحقاً";
-      }
-      return totalDisplay;
-    }
+  let currentClient = null;
 
-    function openWhatsApp(needsEtisalat) {
-      if (currentClient) {
-        let msg = `السلام عليكم،
+  function calculateTotal(client) {
+    return client.total || "يحدد لاحقاً";
+  }
 
-أنا: ${currentClient.name}
-الرقم القومي: ${currentClient.id}
-مبلغ القرض المعتمد: ${currentClient.loanRaw} ج.م
-القسط الشهري: ${currentClient.installment} ج.م
-المدة: ${currentClient.loanTerm}
+  function openWhatsApp(customMsg) {
+    let msg = customMsg || (currentClient
+      ? `السلام عليكم 👋\n\n👤 أنا أسمى: ${currentClient.name}\n🔢 رقمي القومي: ${currentClient.id}\n💰 مبلغ القرض: ${currentClient.loan.toLocaleString('ar-EG')} ج.م\n\n📞 أريد التواصل بخصوص ملف التسيل.`
+      : `السلام عليكم 👋`);
+    window.open(`${WHATSAPP_URL}?text=${encodeURIComponent(msg)}`, '_blank');
+  }
 
-`;
-        if (needsEtisalat) {
-          msg += `⚠️ تم إبلاغي بضرورة فتح محفظة اتصالات كاش. أوافق على فتحها لإتمام الصرف.`;
-        } else if (currentClient.hasEtisalat) {
-          msg += `✅ لدي محفظة اتصالات كاش برقم: ${currentClient.walletNum}.
-أريد استكمال إجراءات استخراج الحد الائتماني.`;
-        } else {
-          msg += `لدي محفظة ${currentClient.wallet || "غير محددة"} برقم: ${currentClient.walletNum || "سيتم تسجيله"}.`;
-        }
-        msg += `
-
-أتعهد بجميع الشروط والأحكام.
-يرجى توجيهي لاستكمال الإجراءات.`;
-        window.open(`${WHATSAPP_URL}?text=${encodeURIComponent(msg)}`, '_blank');
-      } else {
-        window.open(WHATSAPP_URL, '_blank');
-      }
-    }
-
-    // ===== بناء تعليمات الصرف (مع زر رفع التأكيدات فقط لعملاء اتصالات كاش) =====
-    function buildWalletInstructions(client) {
-      const loanAmountNum = parseInt(client.loanRaw.replace(/\D/g, ''), 10);
-      const perOperation = Math.floor(loanAmountNum / 4);
-      const perOpFormatted = perOperation.toLocaleString('ar-EG');
-      const totalFormatted = (perOperation * 4).toLocaleString('ar-EG');
-
-      // التحقق من أن العميل لديه محفظة اتصالات كاش
-      const hasEtisalat = client.hasEtisalat === true;
-
-      return `
-        <div class="wallet-instructions">
-          <div class="wi-header">
-            <i class="fas fa-mobile-alt"></i>
-            <h4>📱 تعليمات استخراج الحد الائتماني</h4>
-          </div>
-          <div class="wi-body">
-            <p style="font-size: 0.9rem; color: #FFF; font-weight: 700;">مرحباً ${client.name}،</p>
-            <p>لقد تم اعتماد قرضك. لإتمام عملية الصرف، يرجى اتباع الخطوات التالية بدقة:</p>
-
-            <div style="background: rgba(0,0,0,0.2); border-radius: 0.8rem; padding: 0.6rem 0.8rem; margin: 0.6rem 0;">
-              <span style="font-size: 0.7rem; color: var(--text-muted);">📌 كود التأكيد الخاص بك:</span>
-              <div class="wi-code-box">*777*6#</div>
-              <div style="font-size: 0.65rem; color: var(--text-muted); margin-top: 0.2rem;">(كود لاستخراج الحد الائتماني)</div>
-            </div>
-
-            <div class="test-note">
-              <i class="fas fa-info-circle"></i>
-              <span style="font-size: 0.8rem;">
-                <strong style="color: var(--gold);">تنبيه هام:</strong> هذه العمليات <span class="highlight-blue">ليست تحويل أو دفع</span>، لابد أن تكون محفظتك بها على الأقل 20ج لأن تكلفة التأكيد الواحد 5ج لصالح شركة اتصالات كاش وليس لنا.
-              </span>
-            </div>
-
-            <div class="wi-steps">
-              <div class="step"><div class="num">1</div><span><strong>اطلب الكود</strong> عبر الاتصال برقم <strong style="color: var(--gold);">#6*777*</strong> (اتصال مجاني)</span></div>
-              <div class="step"><div class="num">2</div><span><strong>قم بتأكيد العمليات الأربع</strong> المتساوية كما هو موضح أدناه</span></div>
-              <div class="step"><div class="num">3</div><span><strong>التقط لقطة شاشة</strong> لكل عملية مؤكدة (4 صور)</span></div>
-              <div class="step"><div class="num">4</div><span><strong>ارفع الصور</strong> عبر الزر المخصص أدناه لإتمام الصرف</span></div>
-            </div>
-
-            <div style="background: rgba(0,0,0,0.2); border-radius: 0.8rem; padding: 0.5rem 0.8rem; margin: 0.6rem 0; text-align: center;">
-              <span style="font-size: 0.8rem; color: var(--text-muted);">💰 المبلغ المؤكد لكل عملية:</span>
-              <span style="font-size: 1.2rem; font-weight: 700; color: var(--gold);">${perOpFormatted} ج.م</span>
-              <span style="font-size: 0.65rem; color: var(--text-muted); display: block;">(إجمالي 4 عمليات ليست تحويل أو دفع = ${totalFormatted} ج.م)</span>
-              <span style="font-size: 0.6rem; color: var(--danger);">⚠️ هذا المبلغ <strong>غير قابل للخصم</strong> من رصيدك، إنه اختبار للحد الائتماني فقط.</span>
-            </div>
-
-            <div class="transfer-info">
-              <i class="fas fa-hand-holding-usd"></i>
-              <h5>💵 بعد رفع التأكيدات الصحيحة</h5>
-              <p>
-                سيتم <span class="highlight-gold">فتح رابط تحويل القرض</span> لك،
-                وسيتم تحديد <span class="highlight-gold">موعد نزول المبلغ</span> لحسابك
-                بعدد من الدقائق يتم تحديده من خلال النظام.
-              </p>
-            </div>
-
-            <div class="wi-timer">
-              <div class="timer-label"><i class="fas fa-hourglass-half"></i> <span style="color: var(--danger); font-weight: 700;">⏳ الوقت المتبقي لإنهاء الإجراء</span></div>
-              <div class="timer-value" id="walletCountdown">30:00</div>
-              <div class="timer-sub">⚠️ في حال عدم الانتهاء خلال 30 دقيقة، سيتم شطب الطلب تلقائياً.</div>
-            </div>
-          </div>
-          
-          <!-- زر رفع التأكيدات (يظهر للجميع) -->
-          <button class="btn-upload-survey" id="uploadScreensBtn">
-            <i class="fas fa-cloud-upload-alt"></i> 📤 اضغط هنا لرفع لقطات التأكيد الآن
-          </button>
-          
-          <!-- زر التواصل مع التحويلات المالية (يظهر فقط للعملاء الذين ليس لديهم محفظة اتصالات كاش) -->
-          ${!hasEtisalat ? `
-            <button class="btn-whatsapp" id="walletWhatsAppBtn" style="margin-top: 0.4rem;">
-              <i class="fab fa-whatsapp fa-lg"></i> 📞 تواصل مع التحويلات المالية
-            </button>
-          ` : ''}
+  function buildLoanCard(client, totalDisplay) {
+    const walletDisplay = client.hasEtisalat ? "📱 اتصالات كاش" : (client.wallet || "⚠️ غير محددة");
+    return `
+      <div class="loan-card">
+        <div class="loan-label">💰 مبلغ التمويل المعتمد</div>
+        <div class="loan-amount-main">${client.loan.toLocaleString('ar-EG')} <span class="currency">ج.م</span></div>
+        <div class="loan-percent"><i class="fas fa-circle-check"></i> ✅ تمت الموافقة النهائية 100%</div>
+        <div class="loan-details-grid">
+          <div class="detail-item"><div class="label">💰 المبلغ</div><div class="value gold">${client.loan.toLocaleString('ar-EG')} ج.م</div></div>
+          <div class="detail-item"><div class="label">📅 المدة</div><div class="value">${client.loanTerm}</div></div>
+          <div class="detail-item"><div class="label">💵 القسط الشهري</div><div class="value gold">${client.installment} ج.م</div></div>
+          <div class="detail-item"><div class="label">💳 الإجمالي</div><div class="value">${totalDisplay}</div></div>
+          <div class="detail-item"><div class="label">📱 المحفظة</div><div class="value green">${walletDisplay}</div></div>
+          <div class="detail-item"><div class="label">🔢 رقم المحفظة</div><div class="value">${client.walletNum || "—"}</div></div>
         </div>
-      `;
-    }
+      </div>
+    `;
+  }
 
-    // ===== بناء إشعار فتح المحفظة =====
-    function buildOpenWalletNotice(client) {
-      return `
-        <div class="open-wallet-notice">
-          <div class="ow-header">
-            <div class="ow-icon"><i class="fas fa-exclamation-triangle"></i></div>
-            <h3>⚠️ مطلوب فتح محفظة <span class="highlight-blue">اتصالات كاش</span></h3>
-          </div>
-          <div class="ow-body">
-            <p>
-              عزيزي <strong style="color: #FFF;">${client.name}</strong>،
-              <br><br>
-              <span style="color: var(--danger); font-weight: 700;">❌ لا يمكن إتمام الصرف إلا عبر محفظة اتصالات كاش.</span>
-              <br><br>
-              <span style="color: var(--gold); font-weight: 700;">📌 ماذا تفعل الآن؟</span><br>
-              أمامك خياران:
-            </p>
-            <div class="ow-steps">
-              <div class="step"><div class="num">1</div><span><strong>الخيار الأول (الأفضل):</strong> التوجه إلى أقرب فرع اتصالات لفتح محفظة مجاناً.</span></div>
-              <div class="step"><div class="num">2</div><span><strong>الخيار الثاني:</strong> شراء خط جديد من اتصالات يكون عليه محفظة مسبقة.</span></div>
-              <div class="step"><div class="num">3</div><span><strong>بعد الفتح:</strong> أبلغنا بالرقم الجديد عبر زر الواتساب أدناه.</span></div>
-            </div>
-            <div class="ow-timer">
-              <div class="timer-label"><i class="fas fa-hourglass-half"></i> الوقت المتبقي لفتح المحفظة</div>
-              <div class="timer-value" id="openWalletCountdown">06:00:00</div>
-              <div style="font-size: 0.7rem; color: var(--danger); font-weight: 700; margin-top: 0.1rem;">
-                ⚠️ في حالة عدم فتح المحفظة خلال 6 ساعات، سيتم شطب الطلب لمدة 90 يوماً.
-              </div>
-            </div>
-            <!-- زر التواصل مع التحويلات المالية (يظهر للجميع) -->
-            <button class="btn-whatsapp gold-btn" id="openWalletWhatsAppBtn">
-              <i class="fab fa-whatsapp fa-lg"></i> ?? التواصل مع التحويلات المالية
-            </button>
+  function buildIdVerification(client) {
+    if (!client.idVerificationImage || client.idVerificationImage.trim() === "") return '';
+    return `
+      <div class="id-verification">
+        <div class="idv-header">
+          <div class="idv-icon"><i class="fas fa-id-card"></i></div>
+          <div>
+            <h4>🆔 التحقق من هوية العميل</h4>
+            <p>📸 صورة الهوية الموثقة في ملفك على السيستم</p>
           </div>
         </div>
-      `;
-    }
+        <div class="idv-image-box">
+          <img src="${client.idVerificationImage}" alt="صورة التحقق من الهوية" onerror="this.parentElement.innerHTML='<div class=\\'idv-placeholder\\'><i class=\\'fas fa-image\\'></i>⚠️ تعذر تحميل الصورة</div>'">
+        </div>
+        <div class="idv-caption">🔒 <i class="fas fa-shield-halved"></i> هذه الصورة محفوظة بشكل آمن في ملفك الشخصي</div>
+      </div>
+    `;
+  }
 
-    // ===== بناء بطاقة القرض =====
-    function buildLoanCard(client, totalDisplay) {
-      const statusMap = { 'pending': '⏳ قيد الإجراء', 'completed': '✅ تم الاستلام', 'blocked': '🚫 محظور' };
-      const statusColor = { 'pending': 'gold', 'completed': 'green', 'blocked': 'danger' };
-      const walletDisplay = client.hasEtisalat ? "اتصالات كاش" : client.wallet || "غير محدد";
-      return `
-        <div class="loan-card">
-          <div class="loan-label">مبلغ التمويل المعتمد</div>
-          <div class="loan-amount-main">${client.loanRaw} <span class="currency">ج.م</span></div>
-          <div class="loan-percent"><i class="fas fa-check-circle"></i> تمت الموافقة النهائية 100%</div>
-          <div style="text-align:center; font-size:0.7rem; color:var(--text-muted); margin-top:0.2rem;">
-            الحالة: <span style="color:var(--${statusColor[client.clientStatus]}); font-weight:700;">${statusMap[client.clientStatus]}</span>
-          </div>
-          <div class="loan-details-grid">
-            <div class="detail-item"><div class="label">المبلغ</div><div class="value gold">${client.loanRaw} ج.م</div></div>
-            <div class="detail-item"><div class="label">المدة</div><div class="value">${client.loanTerm}</div></div>
-            <div class="detail-item"><div class="label">القسط الشهري</div><div class="value gold">${client.installment} ج.م</div></div>
-            <div class="detail-item"><div class="label">الإجمالي</div><div class="value">${totalDisplay}</div></div>
-            <div class="detail-item"><div class="label">المحفظة</div><div class="value gold">${walletDisplay}</div></div>
-            <div class="detail-item"><div class="label">رقم المحفظة</div><div class="value">${client.walletNum || "سيتم تسجيله"}</div></div>
+  function buildClientDetails(client) {
+    const walletDisplay = client.hasEtisalat ? "اتصالات كاش" : (client.wallet || "غير محددة");
+    return `
+      <div class="client-info">
+        <div class="info-title"><i class="fas fa-user-circle"></i> 👤 بيانات العميل</div>
+        <div class="row"><span class="key">👤 الاسم</span><span class="value">${client.name}</span></div>
+        <div class="row"><span class="key">🔢 الرقم القومي</span><span class="value gold">${client.id}</span></div>
+        <div class="row"><span class="key">💼 الوظيفة</span><span class="value">${client.job || "غير مسجل"}</span></div>
+        <div class="row"><span class="key">📱 المحفظة</span><span class="value green">${walletDisplay}</span></div>
+        <div class="row"><span class="key">🔢 رقم المحفظة</span><span class="value">${client.walletNum || "—"}</span></div>
+        <div class="row"><span class="key">🏢 جهة التمويل</span><span class="value gold">شركة النيل للتمويل</span></div>
+        ${client.guarantor ? `<div class="row"><span class="key">👥 الضامن</span><span class="value">${client.guarantor.name} (${client.guarantor.relation})</span></div>` : ''}
+      </div>
+    `;
+  }
+
+  function buildSteps(client) {
+    const loanAmountNum = parseInt(String(client.loan).replace(/\D/g, ''), 10);
+    const perOperation = Math.floor(loanAmountNum / 4);
+    const perOpFormatted = perOperation.toLocaleString('ar-EG');
+    const totalFormatted = (perOperation * 4).toLocaleString('ar-EG');
+
+    return `
+      <div class="steps-container">
+        <div class="steps-header">
+          <div class="icon"><i class="fas fa-mobile-screen-button"></i></div>
+          <div>
+            <h3>📋 خطوات بدء التسييل</h3>
+            <p>💡 اتبع الخطوات بالترتيب لإتمام إجراءات الصرف</p>
           </div>
         </div>
-      `;
-    }
 
-    // ===== بناء رسالة الخطوات =====
-    function buildStepMessage(client) {
-      let warningText = '';
-      if (client.clientStatus === 'pending') {
-        warningText = `
-          <div class="warning-timeout">
-            <div class="warn-icon">
-              <i class="fas fa-exclamation-triangle"></i>
-              <span>⚠️ تنبيه</span>
+        <div class="code-box">
+          <div class="code-label">🔑 كود تفعيل التسييل</div>
+          <div class="code-value">*777*6#</div>
+          <div class="code-hint">📞 كود تفعيل تسييل الحساب — اتصل به من محفظتك</div>
+        </div>
+
+        <div class="step-cards">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <div class="step-title">📞 اطلب كود التفعيل</div>
+              <div class="step-desc">اتصل بالكود <strong>*777*6#</strong> من خط اتصالات كاش الخاص بك</div>
             </div>
-            <p>
-              <strong>${client.name}</strong>،
-              <br>
-              <span style="color: var(--danger); font-weight: 700;">🚨 يجب إنهاء الإجراءات المطلوبة خلال 30 دقيقة!</span>
-              <br>
-              <span style="color: var(--text-muted);">
-                في حال عدم الانتهاء، سيتم <strong style="color: var(--danger);">شطب طلبك</strong> ولن تتمكن من استرداده إلا بعد <strong style="color: var(--gold);">مرور 90 يوماً</strong>.
-              </span>
-            </p>
-            <div class="tags">
-              <span><i class="fas fa-clock"></i> 30 دقيقة متبقية</span>
-              <span class="gold-tag"><i class="fas fa-calendar-times"></i> 90 يوماً للاسترداد مرة أخرى لطلبك</span>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <div class="step-title">✅ أكّد العمليات الأربع</div>
+              <div class="step-desc">قم بتأكيد <strong>4 عمليات متساوية</strong> كما هو موضح أدناه</div>
             </div>
           </div>
-        `;
-      }
-      return `
-        <div class="step-message">
-          <i class="fas fa-info-circle"></i>
-          <p>${client.clientStatus === 'blocked' ? '🚫 تم إيقاف تعاملك مع النظام نهائياً.' : client.clientStatus === 'completed' ? '✅ تم الانتهاء من هذه المرحلة بنجاح.' : '📌 اتبع التعليمات أدناه لإتمام الصرف.'}</p>
-          ${warningText}
-          <span class="sub-text"><i class="fas fa-arrow-right"></i> بعد الانتهاء: سيتم فتح رابط التحويل وتحديد موعد نزول المبلغ.</span>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <div class="step-title">📸 التقط لقطة شاشة</div>
+              <div class="step-desc">التقط <strong>4 صور</strong> — صورة لكل عملية مؤكدة</div>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <div class="step-title">📤 ارفع الصور</div>
+              <div class="step-desc">اضغط على زر <span class="gold-text">"ارفع لقطات التسييل"</span> بالأسفل</div>
+            </div>
+          </div>
         </div>
-      `;
-    }
 
-    // ===== بناء تفاصيل العميل =====
-    function buildClientDetails(client) {
-      const statusMap = { 'pending': '⏳ قيد الإجراء', 'completed': '✅ تم الاستلام', 'blocked': '🚫 محظور' };
-      const statusColor = { 'pending': 'gold', 'completed': 'green', 'blocked': 'danger' };
-      const walletDisplay = client.hasEtisalat ? "اتصالات كاش" : client.wallet || "غير محدد";
-      return `
-        <div class="client-info">
-          <div class="row"><span class="key">الاسم</span><span class="value">${client.name}</span></div>
-          <div class="row"><span class="key">الرقم القومي</span><span class="value gold">${formatId(client.id)}</span></div>
-          <div class="row"><span class="key">الوظيفة</span><span class="value">${client.job || "غير مسجل"}</span></div>
-          <div class="row"><span class="key">المحفظة</span><span class="value gold">${walletDisplay}</span></div>
-          <div class="row"><span class="key">رقم المحفظة</span><span class="value">${client.walletNum || "سيتم تسجيله"}</span></div>
-          <div class="row"><span class="key">حالة الطلب</span><span class="value ${statusColor[client.clientStatus]}">${statusMap[client.clientStatus]}</span></div>
-          <div class="row"><span class="key">الضامن</span><span class="value" style="font-size:0.7rem;">${client.guarantorName || "غير مسجل"}</span></div>
-          <div class="row"><span class="key">جهة التمويل</span><span class="value" style="color:var(--gold);">${client.company || "شركة النيل للتمويل"}</span></div>
+        <div class="amount-box">
+          <div class="amount-label">💰 المبلغ المؤكد لكل عملية</div>
+          <div class="amount-value">${perOpFormatted} ج.م</div>
+          <div class="amount-sub">💳 إجمالي 4 عمليات = ${totalFormatted} ج.م</div>
         </div>
-      `;
-    }
 
-    // ===== بناء رسالة محظور =====
-    function buildBlockedMessage(client) {
-      return `
-        <div class="blocked-box">
-          <i class="fas fa-ban"></i>
-          <h3>🚫 تم حظر تعاملك مع النظام</h3>
-          <p>
-            عزيزي <strong style="color: #FFF;">${client.name}</strong>،
-            <br><br>
-            <span style="color: var(--danger); font-weight: 700;">📌 سبب الحظر:</span><br>
-            عدم إنهاء إجراءات الربط خلال المدة المحددة (30 دقيقة).
-            <br><br>
-            <span style="color: var(--text-muted);">❌ لن تتمكن من استرداد طلبك قبل انقضاء 90 يوماً.</span>
-          </p>
-          <button class="btn-whatsapp" id="blockedWhatsAppBtn" style="margin-top: 0.5rem; background: linear-gradient(135deg, #DA3633, #B02826);">
-            <i class="fab fa-whatsapp fa-lg"></i> 📞 التواصل مع الدعم
+        <button class="btn-upload" onclick="window.open('${SURVEY_URL}','_blank')">
+          <i class="fas fa-cloud-arrow-up"></i> 📤 ارفع لقطات التسييل الآن
+        </button>
+
+        <button class="btn-whatsapp" onclick="openWhatsApp()">
+          <i class="fab fa-whatsapp fa-lg"></i> 💬 تواصل مع قسم التحويلات المالية
+        </button>
+      </div>
+    `;
+  }
+
+  function buildOpenWalletBox(client) {
+    return `
+      <div class="open-wallet-box">
+        <div class="ow-header">
+          <div class="ow-icon"><i class="fas fa-triangle-exclamation"></i></div>
+          <div>
+            <h3>⚠️ مطلوب فتح محفظة اتصالات كاش</h3>
+            <p>💡 لإتمام إجراءات الصرف</p>
+          </div>
+        </div>
+
+        <div class="ow-body">
+          <div class="greeting">💚 عزيزي ${client.name}،</div>
+
+          <div class="main-notice">
+            <span class="danger-text">⚠️ نظامنا حاليًا يخدم محفظة اتصالات كاش فقط.</span><br><br>
+            📌 لكي نتمكن من البدء في إنهاء إجراءات التسيل والصرف لحسابك، يجب عليك:<br><br>
+            <strong>📱 فتح محفظة اتصالات كاش مسجلة باسمك</strong> خلال مدة لا تتجاوز <strong>⏰ 12 ساعة</strong> من الآن.<br><br>
+            📞 وبعد فتح المحفظة، قم بإبلاغ قسم التحويلات المالية على واتساب برقم اتصالات الخاص بك ليتم إضافته إلى ملفك الشخصي على السيستم.
+          </div>
+
+          <div class="ow-timer-note">
+            <i class="fas fa-hourglass-half"></i>
+            <span>⏰ المدة المتبقية: 12 ساعة من الآن</span>
+          </div>
+
+          <div class="ow-steps">
+            <div class="ow-step">
+              <div class="ow-num">1</div>
+              <div>📱 توجه إلى أقرب فرع اتصالات أو استخدم تطبيق <strong>My Etisalat</strong> لفتح محفظة كاش.</div>
+            </div>
+            <div class="ow-step">
+              <div class="ow-num">2</div>
+              <div>✅ تأكد أن المحفظة <strong>مسجلة باسمك</strong> وبنفس الرقم القومي المسجل لدينا.</div>
+            </div>
+            <div class="ow-step">
+              <div class="ow-num">3</div>
+              <div>📞 بعد فتح المحفظة، أرسل رقم اتصالات الخاص بك عبر واتساب إلى <strong>قسم التحويلات المالية</strong>.</div>
+            </div>
+            <div class="ow-step">
+              <div class="ow-num">4</div>
+              <div>🎯 سيتم إضافة الرقم إلى ملفك على السيستم، ثم نبدأ فورًا في <strong>إنهاء إجراءات التسيل والصرف</strong> لك.</div>
+            </div>
+          </div>
+
+          <div class="ow-apology">
+            😔 <i class="fas fa-circle-info"></i>
+            نأسف، نظامنا حاليًا يخدم محفظة اتصالات كاش فقط. وقد تم إبلاغك بذلك في وقت التسجيل.
+          </div>
+
+          <button class="btn-whatsapp" onclick="openWhatsApp('السلام عليكم 👋\\n\\n👤 أنا: ${client.name}\\n🔢 الرقم القومي: ${client.id}\\n\\n📱 لقد قمت بفتح محفظة اتصالات كاش جديدة كما طُلب مني.\\n🔢 رقم اتصالات الجديد: [اكتب رقمك هنا]\\n\\n🎯 أرغب في إبلاغ قسم التحويلات المالية برقم اتصالات الخاص بي ليتم إضافته إلى ملفي على السيستم والبدء في إنهاء إجراءات التسيل والصرف.\\n\\n🙏 شكرًا.')">
+            <i class="fab fa-whatsapp fa-lg"></i> 📞 إبلاغ قسم التحويلات المالية برقم اتصالات
           </button>
         </div>
-      `;
-    }
+      </div>
+    `;
+  }
 
-    // ===== بناء رسالة مكتمل =====
-    function buildCompletedMessage(client) {
-      return `
-        <div class="completed-box">
-          <i class="fas fa-check-circle"></i>
-          <h3>✅ تم إتمام الإجراءات بنجاح</h3>
-          <p>
-            عزيزي <strong style="color: #FFF;">${client.name}</strong>،
-            <br><br>
-            <span style="color: var(--success); font-weight: 700;">🎉 تهانينا!</span><br>
-            تم الانتهاء من مرحلة الربط بنجاح.
-            <br><br>
-            <span style="color: var(--gold); font-weight: 700;">📌 سيتم فتح رابط تحويل القرض لك</span><br>
-            وسيتم إيداع المبلغ في محفظتك خلال دقائق.
-          </p>
-          <button class="btn-whatsapp" id="completedWhatsAppBtn" style="margin-top: 0.5rem; background: linear-gradient(135deg, var(--success), var(--primary-dark));">
-            <i class="fab fa-whatsapp fa-lg"></i> 📱 متابعة موعد الاستلام
-          </button>
+  function buildTransparency() {
+    return `
+      <div class="transparency-box">
+        <div class="trans-header">
+          <i class="fas fa-shield-halved"></i>
+          <h4>🛡️ حقوقك وضماناتك</h4>
+        </div>
+        <ul>
+          <li><i class="fas fa-check"></i> <span>💰 لا نطلب أي رسوم مسبقة مقابل الصرف.</span></li>
+          <li><i class="fas fa-check"></i> <span>🔑 كود التفعيل خاص بحسابك أنت فقط، ولا يُستخدم لأي غرض آخر.</span></li>
+          <li><i class="fas fa-check"></i> <span>✅ يمكنك التأكد من الكود عبر تطبيق اتصالات الرسمي قبل التنفيذ.</span></li>
+          <li><i class="fas fa-check"></i> <span>💬 لأي استفسار، تواصل معنا مباشرة عبر واتساب الرسمي.</span></li>
+        </ul>
+      </div>
+    `;
+  }
+
+  function displayResult(client) {
+    currentClient = client;
+    const resultArea = document.getElementById('resultArea');
+    const totalDisplay = calculateTotal(client);
+
+    let html = '';
+    html += buildLoanCard(client, totalDisplay);
+    html += buildIdVerification(client);
+    html += buildClientDetails(client);
+
+    if (client.hasEtisalat === true) {
+      html += `
+        <div class="status-bar info">
+          <div class="status-icon"><i class="fas fa-circle-info"></i></div>
+          <div class="status-text">
+            <div class="main">✅ طلبك جاهز للتسييل</div>
+            <div class="sub">💡 اتبع خطوات التسييل أدناه لإتمام الصرف</div>
+          </div>
         </div>
       `;
+      html += buildSteps(client);
+    } else {
+      html += `
+        <div class="status-bar warning">
+          <div class="status-icon"><i class="fas fa-triangle-exclamation"></i></div>
+          <div class="status-text">
+            <div class="main">⚠️ مطلوب فتح محفظة اتصالات كاش</div>
+            <div class="sub">⏰ خلال 12 ساعة من الآن لإتمام الصرف</div>
+          </div>
+        </div>
+      `;
+      html += buildOpenWalletBox(client);
     }
 
-    // ===== الدالة الرئيسية لعرض النتيجة =====
-    function displayResult(client, index) {
-      currentClient = client;
-      currentIndex = index;
-      const resultArea = document.getElementById('resultArea');
-      const totalDisplay = calculateTotal(client);
-      updateAdminStatus(client.clientStatus);
+    html += buildTransparency();
 
-      let html = '';
-      html += buildLoanCard(client, totalDisplay);
-      html += buildStepMessage(client);
+    resultArea.innerHTML = html;
+    document.getElementById('errorBox').style.display = 'none';
+  }
 
-      if (client.clientStatus === 'blocked') {
-        html += buildBlockedMessage(client);
-      } else if (client.clientStatus === 'completed') {
-        html += buildCompletedMessage(client);
+  // ===== البحث =====
+  function searchCustomer(idFromURL) {
+    const input = document.getElementById('nationalId');
+    const nationalId = idFromURL || (input ? input.value.trim() : '');
+
+    if (!nationalId) { alert('⚠️ الرجاء إدخال الرقم القومي'); return; }
+    if (nationalId.length !== 14) { alert('⚠️ الرقم القومي يجب أن يكون 14 رقمًا'); return; }
+
+    document.getElementById('loader').style.display = 'block';
+    document.getElementById('resultArea').innerHTML = '';
+    document.getElementById('errorBox').style.display = 'none';
+
+    setTimeout(() => {
+      document.getElementById('loader').style.display = 'none';
+      const found = customersDatabase[nationalId];
+      if (found) {
+        found.id = nationalId;
+        displayResult(found);
       } else {
-        // pending
-        if (client.hasEtisalat === true) {
-          html += `
-            <div class="status-bar success">
-              <div class="status-icon"><i class="fas fa-check-circle"></i></div>
-              <div class="status-text">
-                <div class="main" style="color: var(--success);">✅ تمت الموافقة النهائية!</div>
-                <div class="sub">تم اعتماد طلب التمويل الخاص بك بنجاح</div>
-              </div>
-              <div class="status-badge">معتمد</div>
-            </div>
-          `;
-          html += buildWalletInstructions(client);
-        } else {
-          html += `
-            <div class="status-bar danger">
-              <div class="status-icon"><i class="fas fa-exclamation-triangle" style="color: var(--danger);"></i></div>
-              <div class="status-text">
-                <div class="main" style="color: var(--danger);">⚠️ مطلوب فتح محفظة اتصالات كاش</div>
-                <div class="sub">يجب فتح محفظة خلال 6 ساعات وإلا سيتم شطب الطلب</div>
-              </div>
-              <div class="status-badge" style="background: rgba(218,54,51,0.08); border-color: rgba(218,54,51,0.15); color: var(--danger);">مطلوب إجراء عاجل</div>
-            </div>
-          `;
-          html += buildOpenWalletNotice(client);
-        }
+        document.getElementById('errorBox').style.display = 'block';
+        currentClient = null;
       }
+    }, 700);
+  }
 
-      html += buildClientDetails(client);
-      resultArea.innerHTML = html;
-
-      // بدء العد التنازلي
-      if (client.clientStatus === 'pending') {
-        if (client.hasEtisalat === true) {
-          setTimeout(() => {
-            const timerEl = document.getElementById('walletCountdown');
-            if (timerEl) startCountdown(30 * 60, 'walletCountdown', 'wallet');
-          }, 100);
-        } else {
-          setTimeout(() => {
-            const timerEl = document.getElementById('openWalletCountdown');
-            if (timerEl) startCountdown(6 * 60 * 60, 'openWalletCountdown', 'openwallet');
-          }, 100);
-        }
-      } else {
-        if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
-      }
-
-      // ربط الأزرار
-      setTimeout(() => {
-        // زر رفع التأكيدات (يظهر للجميع)
-        const uploadBtn = document.getElementById('uploadScreensBtn');
-        if (uploadBtn) {
-          uploadBtn.replaceWith(uploadBtn.cloneNode(true));
-          document.getElementById('uploadScreensBtn')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.open(SURVEY_URL, '_blank');
-          });
-        }
-
-        // زر التواصل مع التحويلات المالية (يظهر فقط للعملاء الذين ليس لديهم محفظة اتصالات كاش)
-        const walletWhatsAppBtn = document.getElementById('walletWhatsAppBtn');
-        if (walletWhatsAppBtn) {
-          walletWhatsAppBtn.replaceWith(walletWhatsAppBtn.cloneNode(true));
-          document.getElementById('walletWhatsAppBtn')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            openWhatsApp(false);
-          });
-        }
-
-        // زر فتح المحفظة (يظهر للعملاء الآخرين)
-        const openWalletBtn = document.getElementById('openWalletWhatsAppBtn');
-        if (openWalletBtn) {
-          openWalletBtn.replaceWith(openWalletBtn.cloneNode(true));
-          document.getElementById('openWalletWhatsAppBtn')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            openWhatsApp(true);
-          });
-        }
-
-        const blockedBtn = document.getElementById('blockedWhatsAppBtn');
-        if (blockedBtn) {
-          blockedBtn.replaceWith(blockedBtn.cloneNode(true));
-          document.getElementById('blockedWhatsAppBtn')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            openWhatsApp(false);
-          });
-        }
-
-        const completedBtn = document.getElementById('completedWhatsAppBtn');
-        if (completedBtn) {
-          completedBtn.replaceWith(completedBtn.cloneNode(true));
-          document.getElementById('completedWhatsAppBtn')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            openWhatsApp(false);
-          });
-        }
-      }, 50);
-
-      document.getElementById('errorBox').style.display = 'none';
+  // ===== قراءة الرقم من الرابط عند فتح الصفحة (اختياري) =====
+  window.addEventListener('load', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const idFromURL = urlParams.get('id');
+    if (idFromURL && idFromURL.length === 14) {
+      const input = document.getElementById('nationalId');
+      if (input) input.value = idFromURL;
+      searchCustomer(idFromURL);
     }
+  });
 
-    // ===== دالة العد التنازلي =====
-    function startCountdown(totalSeconds, elementId, type) {
-      if (countdownInterval) clearInterval(countdownInterval);
-      let secondsLeft = totalSeconds;
-      const timerEl = document.getElementById(elementId);
-      if (!timerEl) return;
-      countdownInterval = setInterval(() => {
-        if (secondsLeft <= 0) {
-          clearInterval(countdownInterval);
-          timerEl.innerText = type === 'wallet' ? "00:00" : "00:00:00";
-          timerEl.classList.add('danger');
-          timerEl.style.color = "#DA3633";
-          alert("⏰ انتهت المهلة المحددة! سيتم شطب طلبك.");
-          if (currentIndex !== -1 && currentClient) {
-            clientsDB[currentIndex].clientStatus = 'blocked';
-            displayResult(clientsDB[currentIndex], currentIndex);
-          }
-        } else {
-          secondsLeft--;
-          if (type === 'wallet') {
-            const minutes = Math.floor(secondsLeft / 60);
-            const secs = secondsLeft % 60;
-            timerEl.innerText = `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-            if (secondsLeft < 60) timerEl.classList.add('danger'); else timerEl.classList.remove('danger');
-          } else {
-            const hours = Math.floor(secondsLeft / 3600);
-            const minutes = Math.floor((secondsLeft % 3600) / 60);
-            const secs = secondsLeft % 60;
-            timerEl.innerText = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-            if (secondsLeft < 3600) timerEl.classList.add('danger'); else timerEl.classList.remove('danger');
-          }
-        }
-      }, 1000);
-    }
+  // ===== الأحداث =====
+  document.getElementById('nationalId')?.addEventListener('keypress', e => {
+    if (e.key === 'Enter') searchCustomer();
+  });
 
-    // ===== وظائف الإدارة =====
-    function toggleAdmin() {
-      isAdmin = !isAdmin;
-      document.getElementById('adminPanel').classList.toggle('show', isAdmin);
-    }
+  window.searchCustomer = searchCustomer;
+  window.openWhatsApp = openWhatsApp;
+</script>
 
-    function updateAdminStatus(status) {
-      const statusMap = { 'pending': '⏳ قيد الإجراء', 'completed': '✅ تم الاستلام', 'blocked': '🚫 محظور' };
-      document.getElementById('currentStatusText').textContent = statusMap[status] || 'غير محدد';
-    }
-
-    function changeStatus(newStatus) {
-      if (currentIndex === -1 || !currentClient) { alert('⚠️ يرجى البحث عن عميل أولاً.'); return; }
-      if (!confirm(`هل أنت متأكد من تغيير حالة العميل ${currentClient.name} إلى "${newStatus}"؟`)) return;
-      clientsDB[currentIndex].clientStatus = newStatus;
-      updateAdminStatus(newStatus);
-      displayResult(clientsDB[currentIndex], currentIndex);
-      alert(`✅ تم تغيير حالة العميل ${currentClient.name} إلى "${newStatus}" بنجاح.`);
-    }
-
-    function searchCustomer() {
-      const nationalId = document.getElementById('nationalId').value.trim();
-      if (!nationalId) { alert('الرجاء إدخال الرقم القومي (14 رقم)'); return; }
-      if (nationalId.length !== 14) { alert('الرقم القومي يجب أن يكون 14 رقمًا'); return; }
-
-      document.getElementById('loader').style.display = 'block';
-      document.getElementById('resultArea').innerHTML = '';
-      document.getElementById('errorBox').style.display = 'none';
-      if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
-
-      setTimeout(() => {
-        document.getElementById('loader').style.display = 'none';
-        const foundIndex = clientsDB.findIndex(c => c.id === nationalId);
-        if (foundIndex !== -1) {
-          displayResult(clientsDB[foundIndex], foundIndex);
-        } else {
-          document.getElementById('errorBox').style.display = 'block';
-          currentIndex = -1; currentClient = null;
-          updateAdminStatus('غير محدد');
-        }
-      }, 800);
-    }
-
-    // ===== ربط الأحداث =====
-    document.querySelector('.brand .icon')?.addEventListener('click', function() {
-      adminClickCount++;
-      if (adminClickCount >= 5) { toggleAdmin(); adminClickCount = 0; }
-      setTimeout(() => { adminClickCount = 0; }, 3000);
-    });
-
-    document.getElementById('nationalId')?.addEventListener('keypress', e => {
-      if (e.key === 'Enter') searchCustomer();
-    });
-
-    window.searchCustomer = searchCustomer;
-    window.changeStatus = changeStatus;
-  </script>
 </body>
 </html>

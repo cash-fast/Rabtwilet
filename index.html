@@ -837,25 +837,16 @@
   const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
   const SURVEY_URL = "https://surveymars.com/q/dFK8HIBuh";
   
-// ===== العميل الجديد: مؤمن عبداللاه محمد مرزوق =====
-"2940912456": {
-  id: "29409602456",
-  name: "مؤمن عبداللاه محمد مرزوق",
-  job: "عمل حر (متوسط الدخل 9,000 جنيه)",
-  loan: 30000,
-  loanTerm: "12 شهر",
-  installment: "3325",
-  total: "39900 ج.م",
-  hasEtisalat: true,
-  hasVodafone: false,
-  wallet: "اتصالات كاش",
-  walletNum: "01143350882",
-  whatsapp: "01143350882",
-  status: "invalid",
-  idVerificationImage: "https://i.postimg.cc/DytfVSRP/mjmwʿt-adwat-alaʿmal-creation-1172545652433825.jpg",
-  guarantor: { name: "مصطفى حمدى عبد الحميد", relation: "زوج الأخت / ابن الخالة", phone: "01112338493" },
-  address: "سوهاج أول ميدان الشهيد عبد المنعم رياض شارع احمد سعد"
+// ===== العملاء الجدد من الملف (دفعة جديدة) =====
+const customersDatabase = {
+// 1
+"29001011717778": {
+  id: "29001011717778", name: "اشرف عبد الفضيل صباح عبد الغنى", job: "محاسب (موظف قطاع خاص)", loan: 35000, loanTerm: "12 شهر", installment: "3875", total: "46500 ج.م", hasEtisalat: false, hasVodafone: false, wallet: "لا يوجد - سيفتحها", walletNum: "01090569778", whatsapp: "01090569778", status: "approved", idVerificationImage: "", guarantor: { name: "صابرين علاء عبد العزيز", relation: "زوجة", phone: "01097792338" }, address: "اسكنها الباجور منوفية"
 },
+// 2
+"29806231400714": {
+  id: "29806231400714", name: "فادي عبد الملاك جرجس حنا", job: "كابتن صالة مطعم الخديوي+مراقب كاميرات (عمل حر)", loan: 40000, loanTerm: "18 شهر", installment: "2965", total: "53370 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01159078107", whatsapp: "01285365486", status: "approved", idVerificationImage: "", guarantor: { name: "فادي عبد الملاك جرجس حنا", relation: "أب", phone: "01148157627" }, address: "32شارع الازهار بيجام شبرا الخيمه اول القليوبية"
+}
 };
 
   let currentClient = null;

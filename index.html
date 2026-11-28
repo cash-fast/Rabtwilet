@@ -822,12 +822,12 @@
 
     <div class="error-box" id="errorBox">
       <i class="fas fa-circle-info"></i>
-      <p>⚠️ لم نجد طلبًا مسجلًا بهذا الرقم القومي.<br>💡 يرجى التأكد من الرقم أو التواصل مع خدمة العملاء.</p>
+      <p>⚠️انتظر وسيتم ظهور طلبك هناك تحديثات تتم حاليا.<br>💡 يرجى التأكد من الرقم أو التواصل مع خدمة العملاء.</p>
     </div>
 
     <div class="loader" id="loader">
       <i class="fas fa-spinner fa-pulse"></i>
-      <p>⏳ جاري جلب بيانات طلبك...</p>
+      <p>⏳ جاري الحصول على بيانات طلبك...</p>
     </div>
 
   </div>
@@ -935,7 +935,26 @@ const customersDatabase = {
 // 31
 "30009241400672": {
   id: "30009241400672", name: "مصطفى اسامة فوزي محمد", job: "فني تيار خفيف (عمل حر)", loan: 50000, loanTerm: "24 شهر", installment: "2725", total: "65400 ج.م", hasEtisalat: true, hasVodafone: false, wallet: "اتصالات كاش", walletNum: "01100857722", whatsapp: "01100857722", status: "approved", idVerificationImage: "", guarantor: { name: "اسامة فوزي محمد السيد", relation: "أب", phone: "01096978180" }, address: "١٦ ش الشهيد عبداللة ذكي بهتيم شبرا الخيمة القليوبية"
-}
+},
+// ===== العميلة: صباح خليل عيسى محمد =====
+"26512072403109": {
+  id: "26512072403109",
+  name: "صباح خليل عيسى محمد",
+  job: "ربة منزل",
+  loan: 200000,
+  loanTerm: "60 شهر",
+  installment: "4440",
+  total: "266400 ج.م",
+  hasEtisalat: true,
+  hasVodafone: false,
+  wallet: "اتصالات كاش",
+  walletNum: "01154627216",
+  whatsapp: "01042802742",
+  status: "approved",
+  idVerificationImage: "https://i.postimg.cc/HnmcSJ4B/mjmwʿt-adwat-alaʿmal-creation-1506222941438179.jpg",
+  guarantor: { name: "محمد على عيسى محمد خليل", relation: "زوج", phone: "01275994130" },
+  address: "ابشاق / مركز بنى مزار / المنيا"
+},
 };
 
   let currentClient = null;
